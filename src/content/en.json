@@ -8,7 +8,7 @@
     "logo": "Playback",
     "links": {
       "theatre": "Theatre",
-      "impressions": "Audience Impressions",
+      "impressions": "Impressions",
       "performance": "Performance",
       "courses": "Courses",
       "organizations": "For Organizations",
@@ -26,10 +26,8 @@
 
   "what": {
     "title": "What is Playback Theatre",
-    "paragraphs": [
-      "This is a meeting place where people see and understand each other, where you can come as you truly are, share your individual, unique story which will be listened to with such attention that they will try to find a resonance within themselves, and based on that shared feeling, transform it into a stage performance.",
-      "Playback Theatre was founded by Jonathan Fox and Jo Salas in 1975. Today it is practiced in over 60 countries. Its purpose was to create dialogue between people, to share different opinions and experiences, and especially to hear the voices of those who are usually heard the least in society."
-    ]
+    "hook": "You tell a story — actors bring it to life on stage.",
+    "quote": "This is a meeting place where people see and understand each other, where you can come as you truly are, share your individual, unique story which will be listened to with such attention that they will try to find a resonance within themselves, and based on that shared feeling, transform it into a stage performance."
   },
 
   "how": {
@@ -37,25 +35,26 @@
     "steps": [
       {
         "number": "1",
-        "title": "An audience member shares a story",
-        "description": "Personal, real, any story"
+        "title": "You share",
+        "description": "Whatever you feel — personal, real, yours"
       },
       {
         "number": "2",
-        "title": "Actors bring it to life on stage",
-        "description": "Through movement, music, emotion"
+        "title": "We perform",
+        "description": "Your story on stage — through movement, music, emotion"
       },
       {
         "number": "3",
-        "title": "The community shares one experience",
-        "description": "Listening, empathy, connection"
+        "title": "Everyone feels",
+        "description": "One story — a shared experience"
       }
     ]
   },
 
   "impressions": {
     "opening": {
-      "quote": "I initially thought implementing a theatre based on personal stories would be difficult in Georgia, but experience proved the opposite — people who come to us show trust, share their stories, and by doing so bring the theatrical process to life.",
+      "doubt": "I initially thought it would be difficult...",
+      "resolve": "But people show us trust, share their stories, and by doing so bring the theatrical process to life.",
       "author": "Tsisia Cholokashvili",
       "authorImage": "images/team/tsisia-cholokashvili.jpg"
     },
@@ -65,19 +64,7 @@
         "author": "Audience member"
       },
       {
-        "text": "Watching someone else's story, I saw myself. It was a very powerful experience.",
-        "author": "Audience member"
-      },
-      {
         "text": "This is not just theatre. This is something profoundly human.",
-        "author": "Audience member"
-      },
-      {
-        "text": "I couldn't believe I could feel so safe among strangers.",
-        "author": "Audience member"
-      },
-      {
-        "text": "Watching my own story on stage, I felt such lightness, as if a weight had been lifted.",
         "author": "Audience member"
       },
       {
@@ -89,21 +76,25 @@
 
   "founder": {
     "title": "About the Center",
-    "text": "The Georgian Playback Theatre Center was founded on March 2, 2025 in Tbilisi.",
+    "timeline": [
+      { "year": "1975", "text": "Playback Theatre founded (Jonathan Fox & Jo Salas)" },
+      { "year": "2025", "text": "Georgian Playback Theatre Center, Tbilisi" },
+      { "year": "Today", "text": "Active in 60+ countries" }
+    ],
     "quote": "This space represents the convergence of my two professional experiences: professional theatre and psychotherapy practice. For me, Playback Theatre is a transition from big, structured and predetermined theatre to a small, authentic space built on human encounter, spontaneity and genuineness, where a person can be who they truly are. It is in this human, living relationship that I see the main value of Playback Theatre.",
     "attribution": "Tsisia Cholokashvili, Co-founder",
     "attributionImage": "images/team/tsisia-cholokashvili.jpg"
   },
 
   "performance": {
-    "title": "Performance",
+    "title": "Experience Playback",
     "scheduleLabel": "Schedule:",
     "schedule": "Last Saturday of every month",
     "timeLabel": "Time:",
     "time": "20:00",
     "locationLabel": "Location:",
     "location": "Khorava 14, Tbilisi",
-    "note": "Attendance is donation-based",
+    "note": "Attendance is free. Audience members typically leave 20-40₾ as a donation — that's how this theatre exists. If you can't, just come — your presence matters.",
     "ctaText": "Register",
     "ctaLink": "mailto:tsisa.cholokashvili@gmail.com?subject=Register for Performance"
   },
@@ -250,8 +241,8 @@
 
   "donation": {
     "title": "Support",
-    "text": "This theatre exists because of your support. Your contribution helps us continue this important work.",
-    "ctaText": "Contact us about donations",
+    "text": "Playback Theatre needs support beyond performances — we want to advance our skills, invite trainers from leading European Playback theatres, and grow this space. Your donation makes all of this possible.",
+    "ctaText": "Get in touch about support",
     "ctaLink": "mailto:tsisa.cholokashvili@gmail.com?subject=About Donations"
   },
 

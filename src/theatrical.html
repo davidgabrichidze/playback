@@ -175,7 +175,6 @@
 			position: relative;
 			overflow: hidden;
 			scroll-snap-align: start;
-			scroll-snap-stop: always;
 		}
 
 		section h2 {
@@ -259,6 +258,30 @@
 			margin-bottom: 50px;
 		}
 
+		#what .what-hook {
+			font-family: 'Noto Serif Georgian', serif;
+			font-size: 32px;
+			line-height: 1.5;
+			color: #d4a574;
+			margin-bottom: 40px;
+			animation: fadeInUp 0.8s ease-out;
+		}
+
+		.lang-en #what .what-hook {
+			font-family: 'Playfair Display', serif;
+		}
+
+		#what .what-quote {
+			font-size: 18px;
+			line-height: 1.8;
+			color: #b8afa0;
+			font-style: italic;
+			max-width: 700px;
+			margin: 0 auto;
+			border: none;
+			padding: 0;
+		}
+
 		#what p {
 			font-size: 22px;
 			line-height: 1.8;
@@ -325,11 +348,85 @@
 			font-family: 'Playfair Display', serif;
 		}
 
+		.tsisia-doubt {
+			font-size: 20px !important;
+			color: #b8afa0 !important;
+			margin-bottom: 20px !important;
+		}
+
+		.tsisia-resolve {
+			font-size: 32px !important;
+			color: #d4a574 !important;
+			font-weight: 700;
+		}
+
 		.quote-author {
 			font-size: 16px;
 			color: #b8afa0;
 			text-transform: uppercase;
 			letter-spacing: 1px;
+		}
+
+		/* Timeline */
+		.timeline {
+			display: flex;
+			justify-content: center;
+			gap: 0;
+			margin-bottom: 50px;
+			position: relative;
+		}
+
+		.timeline::before {
+			content: '';
+			position: absolute;
+			top: 50px;
+			left: 20%;
+			width: 60%;
+			height: 1px;
+			background: linear-gradient(to right, transparent, #d4a574, transparent);
+		}
+
+		.timeline-item {
+			text-align: center;
+			flex: 1;
+			max-width: 250px;
+		}
+
+		.timeline-year {
+			font-family: 'Noto Serif Georgian', serif;
+			font-size: 28px;
+			font-weight: 700;
+			color: #d4a574;
+			margin-bottom: 12px;
+		}
+
+		.timeline-dot {
+			width: 8px;
+			height: 8px;
+			background: #d4a574;
+			border-radius: 50%;
+			margin: 0 auto 12px;
+		}
+
+		.timeline-text {
+			font-size: 15px;
+			color: #b8afa0;
+			line-height: 1.5;
+		}
+
+		@media (max-width: 768px) {
+			.timeline {
+				flex-direction: column;
+				align-items: center;
+				gap: 30px;
+			}
+			.timeline::before {
+				top: 0;
+				left: 50%;
+				width: 1px;
+				height: 100%;
+				background: linear-gradient(to bottom, transparent, #d4a574, transparent);
+			}
 		}
 
 		/* Founder Section */
@@ -354,17 +451,38 @@
 			line-height: 1.8;
 		}
 
+		#founder .founder-tagline {
+			font-size: 16px;
+			color: #d4a574;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			margin-bottom: 30px;
+		}
+
 		#founder .founder-quote {
 			font-family: 'Noto Serif Georgian', serif;
-			font-size: 24px;
+			font-size: 22px;
 			font-style: italic;
-			color: #d4a574;
-			margin-bottom: 30px;
+			color: #b8afa0;
+			margin-bottom: 20px;
 			line-height: 1.8;
-			padding: 30px;
+			padding: 0 30px;
 		}
 
 		.lang-en #founder .founder-quote {
+			font-family: 'Playfair Display', serif;
+		}
+
+		#founder .founder-closing {
+			font-family: 'Noto Serif Georgian', serif;
+			font-size: 24px;
+			font-weight: 700;
+			color: #d4a574;
+			margin-bottom: 30px;
+			line-height: 1.6;
+		}
+
+		.lang-en #founder .founder-closing {
 			font-family: 'Playfair Display', serif;
 		}
 
@@ -954,6 +1072,121 @@
 			60% { transform: translateX(-50%) translateY(5px); }
 		}
 
+		/* Impressions More Button */
+		.impressions-more-btn {
+			background: none;
+			border: 1px solid #d4a574;
+			color: #d4a574;
+			padding: 10px 30px;
+			cursor: pointer;
+			font-size: 14px;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			transition: all 0.3s ease;
+			font-family: inherit;
+		}
+
+		.impressions-more-btn:hover {
+			background: #d4a574;
+			color: #080604;
+		}
+
+		/* Impressions Carousel Popup */
+		.impressions-popup {
+			display: none;
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			z-index: 3000;
+			background: rgba(8, 6, 4, 0.97);
+		}
+
+		.impressions-popup.active {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.impressions-popup-close {
+			position: absolute;
+			top: 30px; right: 40px;
+			background: none; border: none;
+			color: #d4a574;
+			font-size: 36px;
+			cursor: pointer;
+		}
+
+		.impressions-carousel {
+			width: 100%;
+			overflow-x: auto;
+			overflow-y: hidden;
+			scroll-snap-type: x mandatory;
+			display: flex;
+			-webkit-overflow-scrolling: touch;
+			scrollbar-width: none;
+		}
+
+		.impressions-carousel::-webkit-scrollbar {
+			display: none;
+		}
+
+		.impressions-slide {
+			min-width: 100vw;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 60px 40px;
+			scroll-snap-align: center;
+			flex-shrink: 0;
+		}
+
+		.impressions-slide blockquote {
+			font-family: 'Noto Serif Georgian', serif;
+			font-size: 28px;
+			font-style: italic;
+			color: #d4a574;
+			max-width: 800px;
+			text-align: center;
+			line-height: 1.6;
+			margin-bottom: 30px;
+		}
+
+		.lang-en .impressions-slide blockquote {
+			font-family: 'Playfair Display', serif;
+		}
+
+		.impressions-slide .slide-author {
+			font-size: 16px;
+			color: #b8afa0;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			text-align: center;
+		}
+
+		.impressions-paging {
+			margin-top: 30px;
+			font-size: 18px;
+			color: #d4a574;
+			letter-spacing: 2px;
+		}
+
+		.impressions-nav {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			background: none;
+			border: none;
+			color: #d4a574;
+			font-size: 30px;
+			cursor: pointer;
+			padding: 20px;
+			transition: opacity 0.3s;
+		}
+
+		.impressions-nav:hover { opacity: 0.7; }
+		.impressions-nav.prev { left: 20px; }
+		.impressions-nav.next { right: 20px; }
+
 		/* Responsive */
 		@media (max-width: 768px) {
 			body {
@@ -1232,12 +1465,12 @@ body.lang-en .team-quote {
 		</div>
 		<div class="nav-links">
 			<a href="#theatre"><span class="ka">თეატრი</span><span class="en">Theatre</span></a>
-			<a href="#impressions"><span class="ka">მაყურებლების შთაბეჭდილებები</span><span class="en">Audience Impressions</span></a>
-			<a href="#performance"><span class="ka">პერფორმანსი</span><span class="en">Performance</span></a>
-			<a href="#courses"><span class="ka">კურსები</span><span class="en">Courses</span></a>
-			<a href="#organizations"><span class="ka">ორგანიზაციებისთვის</span><span class="en">For Organizations</span></a>
-			<a href="#gallery"><span class="ka">გალერეა</span><span class="en">Gallery</span></a>
+			<a href="#impressions"><span class="ka">შთაბეჭდილებები</span><span class="en">Impressions</span></a>
 			<a href="#team"><span class="ka">გუნდი</span><span class="en">Team</span></a>
+			<a href="#gallery"><span class="ka">გალერეა</span><span class="en">Gallery</span></a>
+			<a href="#performance"><span class="ka">პერფორმანსი</span><span class="en">Performance</span></a>
+			<a href="#organizations"><span class="ka">ორგანიზაციებისთვის</span><span class="en">For Organizations</span></a>
+			<a href="#courses"><span class="ka">კურსები</span><span class="en">Courses</span></a>
 		</div>
 		<button class="lang-toggle" onclick="toggleLanguage()"><span class="ka">ENG</span><span class="en">KA</span></button>
 		<div class="hamburger" onclick="toggleMobileMenu()">
@@ -1249,12 +1482,12 @@ body.lang-en .team-quote {
 
 	<div class="nav-mobile-menu">
 		<a href="#theatre"><span class="ka">თეატრი</span><span class="en">Theatre</span></a>
-		<a href="#impressions"><span class="ka">მაყურებლების შთაბეჭდილებები</span><span class="en">Audience Impressions</span></a>
-		<a href="#performance"><span class="ka">პერფორმანსი</span><span class="en">Performance</span></a>
-		<a href="#courses"><span class="ka">კურსები</span><span class="en">Courses</span></a>
-		<a href="#organizations"><span class="ka">ორგანიზაციებისთვის</span><span class="en">For Organizations</span></a>
-		<a href="#gallery"><span class="ka">გალერეა</span><span class="en">Gallery</span></a>
+		<a href="#impressions"><span class="ka">შთაბეჭდილებები</span><span class="en">Impressions</span></a>
 		<a href="#team"><span class="ka">გუნდი</span><span class="en">Team</span></a>
+		<a href="#gallery"><span class="ka">გალერეა</span><span class="en">Gallery</span></a>
+		<a href="#performance"><span class="ka">პერფორმანსი</span><span class="en">Performance</span></a>
+		<a href="#organizations"><span class="ka">ორგანიზაციებისთვის</span><span class="en">For Organizations</span></a>
+		<a href="#courses"><span class="ka">კურსები</span><span class="en">Courses</span></a>
 	</div>
 
 	<!-- 1. Hero Section -->
@@ -1276,7 +1509,6 @@ body.lang-en .team-quote {
 	</section>
 
 	<div class="section-divider"></div>
-
 	<!-- 2. What is PT -->
 	<section id="what" id="theatre">
 		<div class="spotlight-glow"></div>
@@ -1285,13 +1517,12 @@ body.lang-en .team-quote {
 				<span class="ka">რა არის ფლეიბექ თეატრი</span>
 				<span class="en">What is Playback Theatre</span>
 			</h2>
-			<p><span class="ka">ეს არის შეხვედრის ადგილი, სადაც ადამიანები ერთმანეთს ხედავენ და ესმით, სადაც შეგიძლია მოხვიდე ისეთი როგორც სინამდვილეში ხარ, გააზიარო შენი ინდივიდულური, უნიკალური ისტორია რომელსაც ისეთი გულისყურით მოგისმენენ, რომ შეეცდებიან საკუთარ თავში გამოხმაურებაც კი უპოვნონ და ამ თანაგანცდაზე დაყრდნობით სცენიურ წარმოდგენად გადააქციონ.</span><span class="en">This is a meeting place where people see and understand each other, where you can come as you truly are, share your individual, unique story which will be listened to with such attention that they will try to find a resonance within themselves, and based on that shared feeling, transform it into a stage performance.</span></p>
-			<p><span class="ka">ფლეიბექ თეატრი დააარსეს ჯონათან ფოქსმა და ჯო სალასმა 1975 წელს. დღეს ის 60-ზე მეტ ქვეყანაში პრაქტიკდება. თეატრის მიზანი იყო ადამიანებს შორის დიალოგის შექმნა, განსხვავებული აზრებისა და გამოცდილებების გაზიარება, განსაკუთრებით კი იმ ადამიანების ხმების გაგება, რომლებიც, როგორც წესი, ყველაზე ნაკლებად ისმის საზოგადოებაში.</span><span class="en">Playback Theatre was founded by Jonathan Fox and Jo Salas in 1975. Today it is practiced in over 60 countries. Its purpose was to create dialogue between people, to share different opinions and experiences, and especially to hear the voices of those who are usually heard the least in society.</span></p>
+			<p class="what-hook"><span class="ka">შენ ჰყვები ისტორიას — მსახიობები მას სცენაზე აცოცხლებენ.</span><span class="en">You tell a story — actors bring it to life on stage.</span></p>
+			<blockquote class="what-quote"><span class="ka">ეს არის შეხვედრის ადგილი, სადაც ადამიანები ერთმანეთს ხედავენ და ესმით, სადაც შეგიძლია მოხვიდე ისეთი როგორც სინამდვილეში ხარ, გააზიარო შენი ინდივიდულური, უნიკალური ისტორია რომელსაც ისეთი გულისყურით მოგისმენენ, რომ შეეცდებიან საკუთარ თავში გამოხმაურებაც კი უპოვნონ და ამ თანაგანცდაზე დაყრდნობით სცენიურ წარმოდგენად გადააქციონ.</span><span class="en">This is a meeting place where people see and understand each other, where you can come as you truly are, share your individual, unique story which will be listened to with such attention that they will try to find a resonance within themselves, and based on that shared feeling, transform it into a stage performance.</span></blockquote>
 		</div>
 	</section>
 
 	<div class="section-divider"></div>
-
 	<!-- 3. How It Works -->
 	<section id="how">
 		<div class="spotlight-glow"></div>
@@ -1303,36 +1534,35 @@ body.lang-en .team-quote {
 			<div class="steps-container">
 				<div class="step">
 					<div class="step-number">1</div>
-					<h3><span class="ka">მაყურებელი ჰყვება ისტორიას</span><span class="en">An audience member shares a story</span></h3>
-					<p><span class="ka">პირადი, რეალური, ნებისმიერი</span><span class="en">Personal, real, any story</span></p>
+					<h3><span class="ka">შენ ჰყვები</span><span class="en">You share</span></h3>
+					<p><span class="ka">რაც გაგიზიარებია — პირადი, რეალური, შენი</span><span class="en">Whatever you feel — personal, real, yours</span></p>
 				</div>
 				<div class="step">
 					<div class="step-number">2</div>
-					<h3><span class="ka">მსახიობები აცოცხლებენ სცენაზე</span><span class="en">Actors bring it to life on stage</span></h3>
-					<p><span class="ka">მოძრაობით, მუსიკით, ემოციით</span><span class="en">Through movement, music, emotion</span></p>
+					<h3><span class="ka">ჩვენ ვასცენარებთ</span><span class="en">We perform</span></h3>
+					<p><span class="ka">შენი ისტორია სცენაზე — მოძრაობით, მუსიკით, ემოციით</span><span class="en">Your story on stage — through movement, music, emotion</span></p>
 				</div>
 				<div class="step">
 					<div class="step-number">3</div>
-					<h3><span class="ka">საზოგადოება ერთ გამოცდილებას იზიარებს</span><span class="en">The community shares one experience</span></h3>
-					<p><span class="ka">მოსმენა, თანაგრძნობა, კავშირი</span><span class="en">Listening, empathy, connection</span></p>
+					<h3><span class="ka">ყველა განიცდის</span><span class="en">Everyone feels</span></h3>
+					<p><span class="ka">ერთი ისტორია — საერთო გამოცდილება</span><span class="en">One story — a shared experience</span></p>
 				</div>
 			</div>
 		</div>
 	</section>
 
 	<div class="section-divider"></div>
-
 	<!-- 4. Impressions - Tsisia opening -->
 	<section class="quote-section tsisia-quote" id="impressions">
 		<div class="spotlight-glow"></div>
 		<div style="position: relative; z-index: 2;">
-			<blockquote><span class="ka">თავდაპირველად ვფიქრობდი, რომ საქართველოში პირად ისტორიებზე დაფუძნებული თეატრის იდეის განხორციელება რთული იქნებოდა, თუმცა გამოცდილებამ საპირისპირო გვაჩვენა — ჩვენთან მოსული ადამიანები გვუცხადებენ ნდობას, გვუზიარებენ ისტორიებს და სწორედ ამით აცოცხლებენ თეატრალურ პროცესს.</span><span class="en">I initially thought implementing a theatre based on personal stories would be difficult in Georgia, but experience proved the opposite — people who come to us show trust, share their stories, and by doing so bring the theatrical process to life.</span></blockquote>
+			<blockquote class="tsisia-doubt"><span class="ka">თავდაპირველად ვფიქრობდი, რთული იქნებოდა...</span><span class="en">I initially thought it would be difficult...</span></blockquote>
+			<blockquote class="tsisia-resolve"><span class="ka">თუმცა ადამიანები გვიცხადებენ ნდობას, გვიზიარებენ ისტორიებს და სწორედ ამით აცოცხლებენ თეატრალურ პროცესს.</span><span class="en">But people show us trust, share their stories, and by doing so bring the theatrical process to life.</span></blockquote>
 			<p class="quote-author tsisia-author"><img src="images/team/tsisia-cholokashvili.jpg" alt="" class="avatar-small"><span><span class="ka">ცისია ჩოლოყაშვილი</span><span class="en">Tsisia Cholokashvili</span></span></p>
 		</div>
 	</section>
 
 	<div class="section-divider"></div>
-
 	<!-- 4b. Impressions - Quote 1 -->
 	<section class="quote-section">
 		<div class="spotlight-glow"></div>
@@ -1343,18 +1573,6 @@ body.lang-en .team-quote {
 	</section>
 
 	<div class="section-divider"></div>
-
-	<!-- 5. Impressions - Quote 2 -->
-	<section class="quote-section">
-		<div class="spotlight-glow"></div>
-		<div style="position: relative; z-index: 2;">
-			<blockquote><span class="ka">სხვისი ისტორიის ყურებისას საკუთარი თავი ვნახე. ძალიან ძლიერი გამოცდილება იყო.</span><span class="en">Watching someone else's story, I saw myself. It was a very powerful experience.</span></blockquote>
-			<p class="quote-author"><span class="ka">მაყურებელი</span><span class="en">Audience member</span></p>
-		</div>
-	</section>
-
-	<div class="section-divider"></div>
-
 	<!-- 6. Impressions - Quote 3 -->
 	<section class="quote-section">
 		<div class="spotlight-glow"></div>
@@ -1365,40 +1583,21 @@ body.lang-en .team-quote {
 	</section>
 
 	<div class="section-divider"></div>
-
-	<!-- 7. Impressions - Quote 4 -->
-	<section class="quote-section">
-		<div class="spotlight-glow"></div>
-		<div style="position: relative; z-index: 2;">
-			<blockquote><span class="ka">ვერ დავიჯერე, რომ უცნობ ადამიანებთან ასეთი უსაფრთხოება შეიძლებოდა მეგრძნო.</span><span class="en">I couldn't believe I could feel so safe among strangers.</span></blockquote>
-			<p class="quote-author"><span class="ka">მაყურებელი</span><span class="en">Audience member</span></p>
-		</div>
-	</section>
-
-	<div class="section-divider"></div>
-
-	<!-- 8. Impressions - Quote 5 -->
-	<section class="quote-section">
-		<div class="spotlight-glow"></div>
-		<div style="position: relative; z-index: 2;">
-			<blockquote><span class="ka">საკუთარ ამბავს როცა სცენაზე ვუყურე, ისეთი სიმსუბუქე ვიგრძენი, თითქოს ტვირთი მომეხსნა.</span><span class="en">Watching my own story on stage, I felt such lightness, as if a weight had been lifted.</span></blockquote>
-			<p class="quote-author"><span class="ka">მაყურებელი</span><span class="en">Audience member</span></p>
-		</div>
-	</section>
-
-	<div class="section-divider"></div>
-
-	<!-- 9. Impressions - Quote 6 -->
+	<!-- 9. Impressions - Quote 6 + More button -->
 	<section class="quote-section">
 		<div class="spotlight-glow"></div>
 		<div style="position: relative; z-index: 2;">
 			<blockquote><span class="ka">მთელ კვირას სხვა ადამიანი ვიყავი ამ საღამოს შემდეგ.</span><span class="en">I was a different person all week after that evening.</span></blockquote>
 			<p class="quote-author"><span class="ka">მაყურებელი</span><span class="en">Audience member</span></p>
+			<div style="margin-top: 50px;">
+				<button class="impressions-more-btn" onclick="openImpressionsCarousel()">
+					<span class="ka">მეტი შთაბეჭდილება</span><span class="en">More Impressions</span>
+				</button>
+			</div>
 		</div>
 	</section>
 
 	<div class="section-divider"></div>
-
 	<!-- 10. Founder -->
 	<section id="founder">
 		<div class="spotlight-glow"></div>
@@ -1407,14 +1606,26 @@ body.lang-en .team-quote {
 				<span class="ka">ცენტრის შესახებ</span>
 				<span class="en">About the Center</span>
 			</h2>
-			<p class="founder-text">
-				<span class="ka">ქართული ფლეიბექ თეატრის ცენტრი დაარსდა 2025 წლის 2 მარტს თბილისში.</span>
-				<span class="en">The Georgian Playback Theatre Center was founded on March 2, 2025 in Tbilisi.</span>
-			</p>
-			<p class="founder-quote">
-				<span class="ka">ეს სივრცე წარმოადგენს ჩემი ორი პროფესიული გამოცდილების თანხვედრას: პროფესიული თეატრის და ფსიქოთერაპევტის პრაქტიკას. ჩემთვის ფლეიბექ თეატრი არის გადასვლა დიდი, სტრუქტურირებული და წინასწარ განსაზღვრული თეატრიდან, პატარა, ავთენტურ სივრცეში, რომელიც ადამიანურ შეხვედრაზე, სპონტანურობაზე და ნამდვილობაზე დგას, სადაც ადამიანი შეიძლება იყოს ისეთი, როგორიც არის. სწორედ ამ ადამიანურ, ცოცხალ ურთიერთობაში ვხედავ ფლეიბექ თეატრის მთავარ ღირებულებას.</span>
-				<span class="en">This space represents the convergence of my two professional experiences: professional theatre and psychotherapy practice. For me, Playback Theatre is a transition from big, structured and predetermined theatre to a small, authentic space built on human encounter, spontaneity and genuineness, where a person can be who they truly are. It is in this human, living relationship that I see the main value of Playback Theatre.</span>
-			</p>
+			<div class="timeline">
+				<div class="timeline-item">
+					<div class="timeline-year">1975</div>
+					<div class="timeline-dot"></div>
+					<div class="timeline-text"><span class="ka">ფლეიბექ თეატრი დაარსდა (ჯონათან ფოქსი & ჯო სალასი)</span><span class="en">Playback Theatre founded (Jonathan Fox & Jo Salas)</span></div>
+				</div>
+				<div class="timeline-item">
+					<div class="timeline-year">2025</div>
+					<div class="timeline-dot"></div>
+					<div class="timeline-text"><span class="ka">ქართული ფლეიბექ თეატრის ცენტრი, თბილისი</span><span class="en">Georgian Playback Theatre Center, Tbilisi</span></div>
+				</div>
+				<div class="timeline-item">
+					<div class="timeline-year"><span class="ka">დღეს</span><span class="en">Today</span></div>
+					<div class="timeline-dot"></div>
+					<div class="timeline-text"><span class="ka">60+ ქვეყანაში მოქმედებს</span><span class="en">Active in 60+ countries</span></div>
+				</div>
+			</div>
+			<p class="founder-tagline"><span class="ka">თეატრი + ფსიქოთერაპია</span><span class="en">Theatre + Psychotherapy</span></p>
+			<p class="founder-quote"><span class="ka">ჩემთვის ფლეიბექ თეატრი არის გადასვლა დიდი, სტრუქტურირებული და წინასწარ განსაზღვრული თეატრიდან, პატარა, ავთენტურ სივრცეში, რომელიც ადამიანურ შეხვედრაზე, სპონტანურობაზე და ნამდვილობაზე დგას, სადაც ადამიანი შეიძლება იყოს ისეთი, როგორიც არის.</span><span class="en">For me, Playback Theatre is a transition from big, structured and predetermined theatre to a small, authentic space built on human encounter, spontaneity and genuineness, where a person can be who they truly are.</span></p>
+			<p class="founder-closing"><span class="ka">სწორედ ამ ადამიანურ, ცოცხალ ურთიერთობაში ვხედავ ფლეიბექ თეატრის მთავარ ღირებულებას.</span><span class="en">It is in this human, living relationship that I see the main value of Playback Theatre.</span></p>
 			<div class="founder-avatar-attribution">
 				<img src="images/team/tsisia-cholokashvili.jpg" alt="Tsisia Cholokashvili" class="avatar-small">
 				<span><span class="ka">ცისია ჩოლოყაშვილი, თანადამფუძნებელი</span><span class="en">Tsisia Cholokashvili, Co-founder</span></span>
@@ -1423,115 +1634,53 @@ body.lang-en .team-quote {
 	</section>
 
 	<div class="section-divider"></div>
-
-	<!-- 11. Performance -->
-	<section id="performance">
-		<div class="spotlight-glow"></div>
-		<div class="performance-content">
+	<!-- 15. Team -->
+	<section id="team">
+		<div class="team-content">
 			<h2>
-				<span class="ka">პერფორმანსი</span>
-				<span class="en">Performance</span>
+				<span class="ka">გუნდი</span>
+				<span class="en">Team</span>
 			</h2>
-			<div class="performance-details">
-				<span class="performance-detail-label"><span class="ka">განრიგი:</span><span class="en">Schedule:</span></span><span class="ka">ყოველი თვის ბოლო შაბათი</span><span class="en">Last Saturday of every month</span>
+			<div class="team-grid">
+				<div class="team-member">
+					<div class="team-photo">
+						<img src="images/team/george-rusetsky.jpg" alt="George Rusetsky">
+					</div>
+					<h3><span class="ka">გიორგი რუსეცკი</span><span class="en">George Rusetsky</span></h3>
+					<p class="team-role"><span class="ka">თანადამფუძნებელი, ტრენერი, მუსიკოსი</span><span class="en">Co-founder, trainer, musician</span></p>
+				</div>
+				<div class="team-member">
+					<div class="team-photo">
+						<img src="images/team/tsisia-cholokashvili.jpg" alt="Tsisia Cholokashvili">
+					</div>
+					<h3><span class="ka">ცისია ჩოლოყაშვილი</span><span class="en">Tsisia Cholokashvili</span></h3>
+					<p class="team-role"><span class="ka">თანადამფუძნებელი, კონდაქტორი</span><span class="en">Co-founder, conductor</span></p>
+				</div>
+				<div class="team-member">
+					<div class="team-photo">
+						<img src="images/team/tea-chubinidze.jpg" alt="Tea Chubinidze">
+					</div>
+					<h3><span class="ka">თეა ჩუბინიძე</span><span class="en">Tea Chubinidze</span></h3>
+					<p class="team-role"><span class="ka">გუნდის წევრი</span><span class="en">Team member</span></p>
+				</div>
 			</div>
-			<div class="performance-details">
-				<span class="performance-detail-label"><span class="ka">დრო:</span><span class="en">Time:</span></span>20:00
+			<div class="team-group-photo">
+				<img src="images/about_center/1.jpg" alt="Georgian Playback Theatre Center team">
 			</div>
-			<div class="performance-details">
-				<span class="performance-detail-label"><span class="ka">ადგილი:</span><span class="en">Location:</span></span><span class="ka">ხორავას N14, თბილისი</span><span class="en">Khorava 14, Tbilisi</span>
+			<p class="team-size"><span class="ka">ცენტრში დღეს 14 ადამიანი მოღვაწეობს, რომლებიც სხვადასხვა პროფესიის წარმომადგენლები არიან და ფლეიბექ თეატრი აერთიანებთ.</span><span class="en">Today the center is home to 14 people from diverse professional backgrounds, united by Playback Theatre.</span></p>
+			<div class="team-closing-quote">
+				<blockquote class="team-quote">
+					<span class="ka">ყოველი წარმოდგენა ექსკლუზიურია. წარმოდგენის დაწყებისას არასდროს ვიცით, როგორი იქნება, ვინ გაგვიზიარებს ისტორიას, რა ტიპის ისტორიებს მოვისმენთ, როგორ განვითარდება თამაში და როგორ აიგება წარმოდგენის უხილავი ხაზი, რომელსაც ჩვენ „ნარატიულ ქსელს“ ვუწოდებთ.</span>
+					<span class="en">Every performance is exclusive. When a performance begins, we never know what it will be like, who will share a story, what kind of stories we will hear, how the play will develop, and how the invisible thread of the performance will weave itself, what we call the “narrative web.”</span>
+				</blockquote>
+				<div class="team-quote-avatar">
+					<img src="images/team/tsisia-cholokashvili.jpg" alt="" class="avatar-small">
+					<span class="team-quote-attr"><span class="ka">ცისია ჩოლოყაშვილი</span><span class="en">Tsisia Cholokashvili</span></span>
+				</div>
 			</div>
-			<p class="performance-note">
-				<span class="ka">დასწრება დონაციურია</span>
-				<span class="en">Attendance is donation-based</span>
-			</p>
-			<div class="performance-cta">
-				<a href="mailto:tsisa.cholokashvili@gmail.com?subject=დარეგისტრირება პერფორმანსზე">
-					<span class="ka">დარეგისტრირდი</span>
-					<span class="en">Register</span>
-				</a>
-			</div>
-		</div>
-	</section>
+		</section>
 
 	<div class="section-divider"></div>
-
-	<!-- 12. Courses -->
-	<section id="courses">
-		<div class="courses-content">
-			<h2>
-				<span class="ka">კურსები</span>
-				<span class="en">Courses</span>
-			</h2>
-			<div class="courses-grid">
-				<div class="course-item">
-					<h3><span class="ka">საბაზისო კურსი</span><span class="en">Basic Course</span></h3>
-					<p class="course-duration"><span class="ka">46 საათი</span><span class="en">46 hours</span></p>
-					<p><span class="ka">ფლეიბექის საფუძვლები: მოსმენა, სპონტანურობა, იმპროვიზაცია</span><span class="en">Playback fundamentals: listening, spontaneity, improvisation</span></p>
-				</div>
-				<div class="course-item">
-					<h3><span class="ka">პრაქტიკოსის კურსი</span><span class="en">Practitioner Course</span></h3>
-					<p class="course-duration"><span class="ka">180 საათი</span><span class="en">180 hours</span></p>
-					<p><span class="ka">სიღრმისეული მომზადება: სცენური პრაქტიკა, კონდაქტინგი</span><span class="en">In-depth training: stage practice, conducting</span></p>
-				</div>
-				<div class="course-item">
-					<h3><span class="ka">ვორქშოფები</span><span class="en">Workshops</span></h3>
-					<p class="course-duration"><span class="ka">მოწვეული ტრენერებით</span><span class="en">With guest trainers</span></p>
-					<p><span class="ka">საერთაშორისო ტრენერებთან ფოკუსირებული სემინარები</span><span class="en">Focused sessions with international trainers</span></p>
-				</div>
-			</div>
-
-		<div class="courses-cta">
-			<a href="mailto:tsisa.cholokashvili@gmail.com?subject=დაინტერესება კურსებით">
-				<span class="ka">დაინტერესდი? დაგვიკავშირდი</span>
-				<span class="en">Interested? Get in touch</span>
-			</a>
-		</div>
-		</div>
-	</section>
-
-	<div class="section-divider"></div>
-
-	<!-- 13. Organizations -->
-	<section id="organizations">
-		<div class="organizations-content">
-			<h2>
-				<span class="ka">ორგანიზაციებისთვის</span>
-				<span class="en">For Organizations</span>
-			</h2>
-			<p class="organizations-subtitle">
-				<span class="ka">ფლეიბექ თეატრი, როგორც გუნდური გამოცდილება</span>
-				<span class="en">Playback Theatre as a team experience</span>
-			</p>
-			<p class="organizations-intro">
-				<span class="ka">შესთავაზეთ თქვენს გუნდს განსაკუთრებული გამოცდილება. ფლეიბექ თეატრი აძლიერებს ნდობას, ემპათიას და კომუნიკაციას, იმას, რასაც ჩვეულებრივი ტრენინგები ვერ აღწევს.</span>
-				<span class="en">Offer your team an extraordinary experience. Playback Theatre strengthens trust, empathy, and communication, what conventional trainings cannot achieve.</span>
-			</p>
-			<div class="services-grid">
-				<div class="service-item">
-					<h3><span class="ka">ექსკლუზიური სპექტაკლი</span><span class="en">Exclusive Performance</span></h3>
-					<p><span class="ka">დახურული პერფორმანსი თქვენი ორგანიზაციისთვის: გუნდის ისტორიები სცენაზე</span><span class="en">A private performance for your organization: your team's stories on stage</span></p>
-				</div>
-				<div class="service-item">
-					<h3><span class="ka">ვორქშოფი</span><span class="en">Workshop</span></h3>
-					<p><span class="ka">პრაქტიკული სემინარი მოსმენის, სპონტანურობისა და გუნდური მუშაობის უნარებზე</span><span class="en">A practical seminar on listening, spontaneity, and teamwork skills</span></p>
-				</div>
-				<div class="service-item">
-					<h3><span class="ka">ტრენინგ-პროგრამა</span><span class="en">Training Program</span></h3>
-					<p><span class="ka">მორგებული პროგრამა თქვენი ორგანიზაციის საჭიროებებზე</span><span class="en">A customized program tailored to your organization's needs</span></p>
-				</div>
-			</div>
-			<div class="organizations-cta">
-				<a href="mailto:tsisa.cholokashvili@gmail.com?subject=ორგანიზაციაზე გამოკითხვა">
-					<span class="ka">დაგვიკავშირდით</span>
-					<span class="en">Get in Touch</span>
-				</a>
-			</div>
-		</div>
-	</section>
-
-	<div class="section-divider"></div>
-
 	<!-- 14. Gallery -->
 	<section id="gallery">
 		<div class="gallery-content">
@@ -1626,55 +1775,112 @@ body.lang-en .team-quote {
 	</section>
 
 	<div class="section-divider"></div>
-
-	<!-- 15. Team -->
-	<section id="team">
-		<div class="team-content">
+	<!-- 11. Performance — გამოცადე ფლეიბექი -->
+	<section id="performance">
+		<div class="spotlight-glow"></div>
+		<div class="performance-content">
 			<h2>
-				<span class="ka">გუნდი</span>
-				<span class="en">Team</span>
+				<span class="ka">გამოცადე ფლეიბექი</span>
+				<span class="en">Experience Playback</span>
 			</h2>
-			<div class="team-grid">
-				<div class="team-member">
-					<div class="team-photo">
-						<img src="images/team/george-rusetsky.jpg" alt="George Rusetsky">
-					</div>
-					<h3><span class="ka">გიორგი რუსეცკი</span><span class="en">George Rusetsky</span></h3>
-					<p class="team-role"><span class="ka">თანადამფუძნებელი, ტრენერი, მუსიკოსი</span><span class="en">Co-founder, trainer, musician</span></p>
-				</div>
-				<div class="team-member">
-					<div class="team-photo">
-						<img src="images/team/tsisia-cholokashvili.jpg" alt="Tsisia Cholokashvili">
-					</div>
-					<h3><span class="ka">ცისია ჩოლოყაშვილი</span><span class="en">Tsisia Cholokashvili</span></h3>
-					<p class="team-role"><span class="ka">თანადამფუძნებელი, კონდაქტორი</span><span class="en">Co-founder, conductor</span></p>
-				</div>
-				<div class="team-member">
-					<div class="team-photo">
-						<img src="images/team/tea-chubinidze.jpg" alt="Tea Chubinidze">
-					</div>
-					<h3><span class="ka">თეა ჩუბინიძე</span><span class="en">Tea Chubinidze</span></h3>
-					<p class="team-role"><span class="ka">გუნდის წევრი</span><span class="en">Team member</span></p>
-				</div>
+			<div class="performance-details">
+				<span class="performance-detail-label"><span class="ka">განრიგი:</span><span class="en">Schedule:</span></span><span class="ka">ყოველი თვის ბოლო შაბათი</span><span class="en">Last Saturday of every month</span>
 			</div>
-			<div class="team-group-photo">
-				<img src="images/about_center/1.jpg" alt="Georgian Playback Theatre Center team">
+			<div class="performance-details">
+				<span class="performance-detail-label"><span class="ka">დრო:</span><span class="en">Time:</span></span>20:00
 			</div>
-			<p class="team-size"><span class="ka">ცენტრში დღეს 14 ადამიანი მოღვაწეობს, რომლებიც სხვადასხვა პროფესიის წარმომადგენლები არიან და ფლეიბექ თეატრი აერთიანებთ.</span><span class="en">Today the center is home to 14 people from diverse professional backgrounds, united by Playback Theatre.</span></p>
-			<div class="team-closing-quote">
-				<blockquote class="team-quote">
-					<span class="ka">ყოველი წარმოდგენა ექსკლუზიურია. წარმოდგენის დაწყებისას არასდროს ვიცით, როგორი იქნება, ვინ გაგვიზიარებს ისტორიას, რა ტიპის ისტორიებს მოვისმენთ, როგორ განვითარდება თამაში და როგორ აიგება წარმოდგენის უხილავი ხაზი, რომელსაც ჩვენ „ნარატიულ ქსელს“ ვუწოდებთ.</span>
-					<span class="en">Every performance is exclusive. When a performance begins, we never know what it will be like, who will share a story, what kind of stories we will hear, how the play will develop, and how the invisible thread of the performance will weave itself, what we call the “narrative web.”</span>
-				</blockquote>
-				<div class="team-quote-avatar">
-					<img src="images/team/tsisia-cholokashvili.jpg" alt="" class="avatar-small">
-					<span class="team-quote-attr"><span class="ka">ცისია ჩოლოყაშვილი</span><span class="en">Tsisia Cholokashvili</span></span>
-				</div>
+			<div class="performance-details">
+				<span class="performance-detail-label"><span class="ka">ადგილი:</span><span class="en">Location:</span></span><span class="ka">ხორავას N14, თბილისი</span><span class="en">Khorava 14, Tbilisi</span>
 			</div>
-		</section>
+			<p class="performance-note">
+				<span class="ka">დასწრება უფასოა. მაყურებლები, როგორც წესი, 20-40₾ სტოვებენ დონაციაში — სწორედ ამით არსებობს ეს თეატრი. თუ არ შეგიძლია, უბრალოდ მოდი — შენი ყოფნა მნიშვნელოვანია.</span>
+				<span class="en">Attendance is free. Audience members typically leave 20-40₾ as a donation — that's how this theatre exists. If you can't, just come — your presence matters.</span>
+			</p>
+			<div class="performance-cta">
+				<a href="mailto:tsisa.cholokashvili@gmail.com?subject=დარეგისტრირება პერფორმანსზე">
+					<span class="ka">დარეგისტრირდი</span>
+					<span class="en">Register</span>
+				</a>
+			</div>
+		</div>
+	</section>
+
 
 	<div class="section-divider"></div>
+	<!-- 13. Organizations -->
+	<section id="organizations">
+		<div class="organizations-content">
+			<h2>
+				<span class="ka">ორგანიზაციებისთვის</span>
+				<span class="en">For Organizations</span>
+			</h2>
+			<p class="organizations-subtitle">
+				<span class="ka">ფლეიბექ თეატრი, როგორც გუნდური გამოცდილება</span>
+				<span class="en">Playback Theatre as a team experience</span>
+			</p>
+			<p class="organizations-intro">
+				<span class="ka">შესთავაზეთ თქვენს გუნდს განსაკუთრებული გამოცდილება. ფლეიბექ თეატრი აძლიერებს ნდობას, ემპათიას და კომუნიკაციას, იმას, რასაც ჩვეულებრივი ტრენინგები ვერ აღწევს.</span>
+				<span class="en">Offer your team an extraordinary experience. Playback Theatre strengthens trust, empathy, and communication, what conventional trainings cannot achieve.</span>
+			</p>
+			<div class="services-grid">
+				<div class="service-item">
+					<h3><span class="ka">ექსკლუზიური სპექტაკლი</span><span class="en">Exclusive Performance</span></h3>
+					<p><span class="ka">დახურული პერფორმანსი თქვენი ორგანიზაციისთვის: გუნდის ისტორიები სცენაზე</span><span class="en">A private performance for your organization: your team's stories on stage</span></p>
+				</div>
+				<div class="service-item">
+					<h3><span class="ka">ვორქშოფი</span><span class="en">Workshop</span></h3>
+					<p><span class="ka">პრაქტიკული სემინარი მოსმენის, სპონტანურობისა და გუნდური მუშაობის უნარებზე</span><span class="en">A practical seminar on listening, spontaneity, and teamwork skills</span></p>
+				</div>
+				<div class="service-item">
+					<h3><span class="ka">ტრენინგ-პროგრამა</span><span class="en">Training Program</span></h3>
+					<p><span class="ka">მორგებული პროგრამა თქვენი ორგანიზაციის საჭიროებებზე</span><span class="en">A customized program tailored to your organization's needs</span></p>
+				</div>
+			</div>
+			<div class="organizations-cta">
+				<a href="mailto:tsisa.cholokashvili@gmail.com?subject=ორგანიზაციაზე გამოკითხვა">
+					<span class="ka">დაგვიკავშირდით</span>
+					<span class="en">Get in Touch</span>
+				</a>
+			</div>
+		</div>
+	</section>
 
+	<div class="section-divider"></div>
+	<!-- 12. Courses -->
+	<section id="courses">
+		<div class="courses-content">
+			<h2>
+				<span class="ka">კურსები</span>
+				<span class="en">Courses</span>
+			</h2>
+			<div class="courses-grid">
+				<div class="course-item">
+					<h3><span class="ka">საბაზისო კურსი</span><span class="en">Basic Course</span></h3>
+					<p class="course-duration"><span class="ka">46 საათი</span><span class="en">46 hours</span></p>
+					<p><span class="ka">ფლეიბექის საფუძვლები: მოსმენა, სპონტანურობა, იმპროვიზაცია</span><span class="en">Playback fundamentals: listening, spontaneity, improvisation</span></p>
+				</div>
+				<div class="course-item">
+					<h3><span class="ka">პრაქტიკოსის კურსი</span><span class="en">Practitioner Course</span></h3>
+					<p class="course-duration"><span class="ka">180 საათი</span><span class="en">180 hours</span></p>
+					<p><span class="ka">სიღრმისეული მომზადება: სცენური პრაქტიკა, კონდაქტინგი</span><span class="en">In-depth training: stage practice, conducting</span></p>
+				</div>
+				<div class="course-item">
+					<h3><span class="ka">ვორქშოფები</span><span class="en">Workshops</span></h3>
+					<p class="course-duration"><span class="ka">მოწვეული ტრენერებით</span><span class="en">With guest trainers</span></p>
+					<p><span class="ka">საერთაშორისო ტრენერებთან ფოკუსირებული სემინარები</span><span class="en">Focused sessions with international trainers</span></p>
+				</div>
+			</div>
+
+		<div class="courses-cta">
+			<a href="mailto:tsisa.cholokashvili@gmail.com?subject=დაინტერესება კურსებით">
+				<span class="ka">დაინტერესდი? დაგვიკავშირდი</span>
+				<span class="en">Interested? Get in touch</span>
+			</a>
+		</div>
+		</div>
+	</section>
+
+	<div class="section-divider"></div>
 	<!-- 16. Ethics -->
 	<section id="ethics">
 		<div class="ethics-content">
@@ -1721,36 +1927,28 @@ body.lang-en .team-quote {
 	</section>
 
 	<div class="section-divider"></div>
-
-	<!-- 17. Donation -->
-	<section id="donation">
-		<div class="donation-content">
+	<!-- Contact + Support -->
+	<section id="contact" class="contact-footer">
+		<div class="contact-content">
 			<h2>
 				<span class="ka">მხარდაჭერა</span>
 				<span class="en">Support</span>
 			</h2>
-			<p>
-				<span class="ka">ეს თეატრი თქვენი წყალობით არსებობს. თქვენი მხარდაჭერა გვეხმარება ამ მნიშვნელოვანი საქმის გაგრძელებაში.</span>
-				<span class="en">This theatre exists because of your support. Your contribution helps us continue this important work.</span>
+			<p class="support-message">
+				<span class="ka">ფლეიბექ თეატრს სჭირდება მხარდაჭერა არა მხოლოდ წარმოდგენებისთვის — გვინდა კვალიფიკაციის ამაღლება, ევროპის წამყვანი ფლეიბექ თეატრებიდან ტრენერების მოწვევა და ამ სივრცის განვითარება. შენი დონაცია ამ ყველაფერს შესაძლებელს ხდის.</span>
+				<span class="en">Playback Theatre needs support beyond performances — we want to advance our skills, invite trainers from leading European Playback theatres, and grow this space. Your donation makes all of this possible.</span>
 			</p>
-			<div class="donation-cta">
-				<a href="mailto:tsisa.cholokashvili@gmail.com?subject=დონაციის შესახებ">
-					<span class="ka">დონაციისთვის დაგვიკავშირდით</span>
-					<span class="en">Contact us about donations</span>
+			<div class="donation-cta" style="margin-bottom: 50px;">
+				<a href="mailto:tsisa.cholokashvili@gmail.com?subject=მხარდაჭერა">
+					<span class="ka">მხარდაჭერისთვის დაგვიკავშირდით</span>
+					<span class="en">Get in touch about support</span>
 				</a>
 			</div>
-		</div>
-	</section>
-
-	<div class="section-divider"></div>
-
-	<!-- Contact + Footer -->
-	<section id="contact" class="contact-footer">
-		<div class="contact-content">
-			<h2>
+			<div class="section-divider" style="margin-bottom: 50px;"></div>
+			<h3 style="font-size: 20px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 30px; color: #d4a574;">
 				<span class="ka">კონტაქტი</span>
 				<span class="en">Contact</span>
-			</h2>
+			</h3>
 			<div class="contact-links">
 				<div class="contact-link">
 					<a href="mailto:tsisa.cholokashvili@gmail.com">tsisa.cholokashvili@gmail.com</a>
@@ -1777,7 +1975,6 @@ body.lang-en .team-quote {
 			</div>
 		</div>
 	</section>
-
 	<!-- Lightbox -->
 	<div class="lightbox" id="lightbox">
 		<button class="lightbox-close" onclick="closeLightbox()">✕</button>
@@ -1786,6 +1983,22 @@ body.lang-en .team-quote {
 			<img class="lightbox-image" id="lightboxImage" src="" alt="">
 		</div>
 		<button class="lightbox-nav lightbox-next" onclick="nextImage()">❯</button>
+	</div>
+
+	<!-- Impressions Carousel Popup -->
+	<div class="impressions-popup" id="impressionsPopup">
+		<button class="impressions-popup-close" onclick="closeImpressionsCarousel()">✕</button>
+		<button class="impressions-nav prev" onclick="impressionNav(-1)">❮</button>
+		<button class="impressions-nav next" onclick="impressionNav(1)">❯</button>
+		<div class="impressions-carousel" id="impressionsCarousel">
+			<div class="impressions-slide"><div><blockquote><span class="ka">პირველად ვიყავი და ვერ წარმოვიდგენდი, რომ ასეთი რამ შეიძლებოდა. ტირილიც მინდოდა და სიცილიც.</span><span class="en">It was my first time and I couldn't imagine something like this was possible. I wanted to both cry and laugh.</span></blockquote><p class="slide-author"><span class="ka">მაყურებელი</span><span class="en">Audience member</span></p></div></div>
+			<div class="impressions-slide"><div><blockquote><span class="ka">სხვისი ისტორიის ყურებისას საკუთარი თავი ვნახე. ძალიან ძლიერი გამოცდილება იყო.</span><span class="en">Watching someone else's story, I saw myself. It was a very powerful experience.</span></blockquote><p class="slide-author"><span class="ka">მაყურებელი</span><span class="en">Audience member</span></p></div></div>
+			<div class="impressions-slide"><div><blockquote><span class="ka">ეს არ არის უბრალოდ თეატრი. ეს რაღაც ძალიან ადამიანურია.</span><span class="en">This is not just theatre. This is something profoundly human.</span></blockquote><p class="slide-author"><span class="ka">მაყურებელი</span><span class="en">Audience member</span></p></div></div>
+			<div class="impressions-slide"><div><blockquote><span class="ka">ვერ დავიჯერე, რომ უცნობ ადამიანებთან ასეთი უსაფრთხოება შეიძლებოდა მეგრძნო.</span><span class="en">I couldn't believe I could feel so safe among strangers.</span></blockquote><p class="slide-author"><span class="ka">მაყურებელი</span><span class="en">Audience member</span></p></div></div>
+			<div class="impressions-slide"><div><blockquote><span class="ka">საკუთარ ამბავს როცა სცენაზე ვუყურე, ისეთი სიმსუბუქე ვიგრძენი, თითქოს ტვირთი მომეხსნა.</span><span class="en">Watching my own story on stage, I felt such lightness, as if a weight had been lifted.</span></blockquote><p class="slide-author"><span class="ka">მაყურებელი</span><span class="en">Audience member</span></p></div></div>
+			<div class="impressions-slide"><div><blockquote><span class="ka">მთელ კვირას სხვა ადამიანი ვიყავი ამ საღამოს შემდეგ.</span><span class="en">I was a different person all week after that evening.</span></blockquote><p class="slide-author"><span class="ka">მაყურებელი</span><span class="en">Audience member</span></p></div></div>
+		</div>
+		<div class="impressions-paging" id="impressionsPaging">1 / 6</div>
 	</div>
 
 	<script>
@@ -1892,6 +2105,64 @@ body.lang-en .team-quote {
 			if (e.target.id === 'lightbox') {
 				closeLightbox();
 			}
+		});
+
+		// Impressions Carousel
+		let currentImpression = 0;
+		const totalImpressions = document.querySelectorAll('.impressions-slide').length;
+
+		function openImpressionsCarousel() {
+			currentImpression = 0;
+			document.getElementById('impressionsPopup').classList.add('active');
+			document.body.style.overflow = 'hidden';
+			scrollToImpression(0);
+			updateImpressionPaging();
+		}
+
+		function closeImpressionsCarousel() {
+			document.getElementById('impressionsPopup').classList.remove('active');
+			document.body.style.overflow = 'auto';
+		}
+
+		function impressionNav(dir) {
+			currentImpression = Math.max(0, Math.min(totalImpressions - 1, currentImpression + dir));
+			scrollToImpression(currentImpression);
+			updateImpressionPaging();
+		}
+
+		function scrollToImpression(idx) {
+			const carousel = document.getElementById('impressionsCarousel');
+			const slide = carousel.children[idx];
+			slide.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+		}
+
+		function updateImpressionPaging() {
+			document.getElementById('impressionsPaging').textContent = (currentImpression + 1) + ' / ' + totalImpressions;
+		}
+
+		// Update paging on scroll
+		document.getElementById('impressionsCarousel').addEventListener('scroll', function() {
+			const carousel = this;
+			const slideWidth = carousel.children[0].offsetWidth;
+			const idx = Math.round(carousel.scrollLeft / slideWidth);
+			if (idx !== currentImpression && idx >= 0 && idx < totalImpressions) {
+				currentImpression = idx;
+				updateImpressionPaging();
+			}
+		});
+
+		// Keyboard nav for impressions popup
+		document.addEventListener('keydown', function(e) {
+			if (document.getElementById('impressionsPopup').classList.contains('active')) {
+				if (e.key === 'ArrowRight') impressionNav(1);
+				if (e.key === 'ArrowLeft') impressionNav(-1);
+				if (e.key === 'Escape') closeImpressionsCarousel();
+			}
+		});
+
+		// Close on background click
+		document.getElementById('impressionsPopup').addEventListener('click', function(e) {
+			if (e.target === this) closeImpressionsCarousel();
 		});
 	</script>
 
