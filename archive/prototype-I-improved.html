@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Georgian Playback Theatre | ფლეიბექ თეატრი</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;700&family=Inter:wght@400;500;700;300&family=Noto+Serif+Georgian:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* =================================
+           RESET & ROOT
+           ================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Dark (default) */
+            --bg-primary: #121110;
+            --bg-surface: #1c1a17;
+            --bg-surface-alt: #252220;
+            --text-primary: #e8e0d4;
+            --text-muted: #8a7f72;
+            --accent: #b8956b;
+            --accent-light: #d4b896;
+            --border: #2a2621;
+            --border-light: #3a3430;
+            --shadow: rgba(0, 0, 0, 0.3);
+
+            font-family: 'Inter', 'Noto Sans Georgian', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+        }
+
+        html.light-mode {
+            --bg-primary: #f5f0e8;
+            --bg-surface: #fefcf9;
+            --bg-surface-alt: #f0e8dc;
+            --text-primary: #2c2418;
+            --text-muted: #7a7062;
+            --accent: #9b7247;
+            --accent-light: #c4a878;
+            --border: #d9cfc4;
+            --border-light: #e8ddd0;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        main {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* =================================
+           TYPOGRAPHY
+           ================================= */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Noto Sans Georgian', sans-serif;
+            font-weight: 500;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 0.03em;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-light);
+        }
+
+        /* =================================
+           NAVIGATION
+           ================================= */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            background-color: rgba(18, 17, 16, 0.95);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            position: relative;
+            overflow: hidden;
+            font-weight: 400;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            transition: left 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        .nav-links a:hover::after {
+            left: 0;
+        }
+
+        .nav-controls {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .lang-toggle, .theme-toggle {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 0.5rem 0.75rem;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+
+        .lang-toggle:hover, .theme-toggle:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        /* =================================
+           RESPONSIVE NAV
+           ================================= */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-primary);
+                flex-direction: column;
+                padding: 2rem;
+                border-bottom: 1px solid var(--border);
+                gap: 1rem;
+                z-index: 99;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-controls {
+                gap: 1rem;
+            }
+        }
+
+        /* =================================
+           HERO
+           ================================= */
+        .hero {
+            height: 100vh;
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('playback_images/general/hero.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(18, 17, 16, 0.85),
+                rgba(18, 17, 16, 0.55)
+            );
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero h1 {
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+            text-transform: none;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+
+        .hero-card {
+            background: rgba(184, 149, 107, 0.05);
+            border: 1px solid rgba(184, 149, 107, 0.15);
+            backdrop-filter: blur(16px);
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 0.95rem 2.5rem;
+            border-radius: 3px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Noto Sans Georgian', sans-serif;
+        }
+
+        .cta-btn-primary {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border: none;
+        }
+
+        .cta-btn-primary:hover {
+            background: var(--accent-light);
+            transform: scale(1.02);
+        }
+
+        .cta-btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+
+        .cta-btn-secondary:hover {
+            background: rgba(184, 149, 107, 0.1);
+            color: var(--accent-light);
+            border-color: var(--accent-light);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .scroll-indicator-line {
+            width: 2px;
+            height: 30px;
+            background: var(--accent);
+            margin: 0 auto;
+        }
+
+        /* =================================
+           KEYFRAMES
+           ================================= */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInReveal {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+
+        /* =================================
+           SECTIONS
+           ================================= */
+        section {
+            padding: 6rem 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        section > .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* =================================
+           THEATRE SECTION
+           ================================= */
+        .theatre-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .theatre-text h3 {
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .theatre-text p {
+            margin-bottom: 1.2rem;
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .theatre-tags {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .tag::before {
+            content: '●';
+            color: var(--accent);
+            font-size: 0.7rem;
+        }
+
+        .theatre-image {
+            position: relative;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .theatre-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: sepia(0.08) brightness(0.95);
+            transition: filter 0.4s ease;
+        }
+
+        .theatre-image {
+            box-shadow: 0 20px 50px rgba(184, 149, 107, 0.15);
+            transition: box-shadow 0.4s ease;
+        }
+
+        .theatre-image:hover {
+            box-shadow: 0 30px 70px rgba(184, 149, 107, 0.25);
+        }
+
+        /* =================================
+           HOW IT HAPPENS
+           ================================= */
+        .how-it-section {
+            background: var(--bg-surface);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .step {
+            text-align: center;
+            animation: slideInReveal 0.7s ease-out both;
+        }
+
+        .step:nth-child(1) { animation-delay: 0.1s; }
+        .step:nth-child(2) { animation-delay: 0.2s; }
+        .step:nth-child(3) { animation-delay: 0.3s; }
+        .step:nth-child(4) { animation-delay: 0.4s; }
+
+        .step-number {
+            font-size: 3.5rem;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .step-title {
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+            font-weight: 500;
+        }
+
+        .step-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .photo-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .strip-photo {
+            aspect-ratio: 1;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .strip-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: sepia(0.05) brightness(0.95);
+            transition: filter 0.4s ease;
+        }
+
+        .strip-photo:hover img {
+            filter: sepia(0.08) brightness(1);
+        }
+
+        /* =================================
+           TESTIMONIALS SECTION
+           ================================= */
+        .testimonials-section {
+            background: var(--bg-surface-alt);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            padding: 2rem;
+            border-radius: 3px;
+            position: relative;
+            transition: all 0.4s ease;
+            cursor: default;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 40px rgba(184, 149, 107, 0.1);
+        }
+
+        .quote-mark {
+            font-family: 'Noto Serif Georgian', serif;
+            font-size: 3rem;
+            color: var(--accent);
+            opacity: 0.2;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .testimonial-quote {
+            font-family: 'Noto Serif Georgian', serif;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .testimonial-divider {
+            height: 2px;
+            background: var(--accent);
+            width: 40px;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-author {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* =================================
+           TSISIA QUOTE
+           ================================= */
+        .tsisia-section {
+            background: linear-gradient(135deg, var(--accent) 0%, #9b7247 100%);
+            color: var(--bg-primary);
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .tsisia-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .tsisia-mark {
+            font-family: 'Noto Serif Georgian', serif;
+            font-size: 4rem;
+            opacity: 0.3;
+            margin-bottom: 1rem;
+        }
+
+        .tsisia-quote {
+            font-family: 'Noto Serif Georgian', serif;
+            font-size: 1.3rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .tsisia-attribution {
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        /* =================================
+           PERFORMANCE SECTION
+           ================================= */
+        .performance-section {
+            background: var(--bg-surface);
+        }
+
+        .performance-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .performance-card {
+            border-top: 3px solid var(--accent);
+            padding-top: 1.5rem;
+        }
+
+        .performance-card h4 {
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .performance-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* =================================
+           COURSES SECTION
+           ================================= */
+        .courses-section {
+            background: var(--bg-primary);
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .course-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 3px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 40px var(--shadow);
+        }
+
+        .course-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--bg-primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .course-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .course-card p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .course-card .cta-btn {
+            width: 100%;
+        }
+
+        /* =================================
+           GALLERY SECTION
+           ================================= */
+        .gallery-section {
+            background: var(--bg-surface);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            border-radius: 3px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: sepia(0.05) brightness(0.95);
+            transition: filter 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .gallery-item:hover img {
+            filter: sepia(0.08) brightness(1.05);
+        }
+
+        .gallery-cta {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .gallery-cta a {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        /* =================================
+           TEAM SECTION
+           ================================= */
+        .team-section {
+            background: var(--bg-primary);
+        }
+
+        .team-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .team-intro p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .team-photo {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            transition: all 0.4s ease;
+        }
+
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: sepia(0.05) brightness(0.95);
+            transition: filter 0.4s ease;
+        }
+
+        .team-member:hover .team-photo {
+            box-shadow: 0 0 30px rgba(184, 149, 107, 0.2);
+        }
+
+        .team-member:hover .team-photo img {
+            filter: sepia(0.08) brightness(1);
+        }
+
+        .team-name {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .team-role {
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+
+        .team-bio {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
+            line-height: 1.6;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .team-member:hover .team-bio {
+            max-height: 150px;
+        }
+
+        /* =================================
+           CONTACT SECTION
+           ================================= */
+        .contact-section {
+            background: var(--bg-surface);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 40px var(--shadow);
+        }
+
+        .contact-card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-card a {
+            display: inline-block;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 0.6rem 1.5rem;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        /* =================================
+           FOOTER
+           ================================= */
+        footer {
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('playback_images/general/footer.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.05;
+            z-index: 1;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 2;
+            padding: 3rem 2rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h4 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .footer-column a {
+            display: block;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .footer-social a {
+            display: inline-flex;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            color: var(--accent);
+            margin: 0;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* =================================
+           RESPONSIVE
+           ================================= */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            .theatre-content,
+            .steps-grid,
+            .testimonials-grid,
+            .performance-grid,
+            .courses-grid,
+            .team-grid,
+            .contact-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+            }
+
+            .cta-btn {
+                width: 100%;
+            }
+
+            .photo-strip {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+        }
+
+        /* =================================
+           INTERSECTION OBSERVER ANIMATIONS
+           ================================= */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-logo">ფლეიბექ | PT</div>
+        <div class="nav-links">
+            <a href="#theatre" data-ka="თეატრი" data-en="Theatre">თეატრი</a>
+            <a href="#how" data-ka="პერფორმანსი" data-en="Performance">პერფორმანსი</a>
+            <a href="#courses" data-ka="კურსები" data-en="Courses">კურსები</a>
+            <a href="#gallery" data-ka="გალერეა" data-en="Gallery">გალერეა</a>
+            <a href="#team" data-ka="გუნდი" data-en="Team">გუნდი</a>
+            <a href="#contact" data-ka="კონტაქტი" data-en="Contact">კონტაქტი</a>
+        </div>
+        <div class="nav-controls">
+            <button class="lang-toggle" id="langToggle">EN</button>
+            <button class="theme-toggle" id="themeToggle">☀</button>
+        </div>
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="scroll-indicator">
+                <div class="scroll-indicator-line"></div>
+            </div>
+            <div class="hero-content">
+                <h1 id="heroTitle">ქართული ფლეიბექ თეატრი</h1>
+                <div class="hero-subtitle" id="heroSubtitle">ჩვენ ვთამაშობთ თქვენს ისტორიებს</div>
+                <p class="hero-description" id="heroDesc">თეატრი, სადაც მაყურებლის ისტორია სცენაზე ცოცხლდება. სცენარი არ არის. რეპეტიცია არ არის. მხოლოდ ნამდვილი.</p>
+                <div class="hero-card" id="heroCard">
+                    <strong id="cardLabel">მომავალი პერფორმანსი</strong> · <span id="cardDate">ყოველი თვის ბოლო შაბათი</span> · <span id="cardTime">20:00</span> · <span id="cardLocation">ხორავას N14</span>
+                </div>
+                <div class="hero-ctas">
+                    <button class="cta-btn cta-btn-primary" id="cta1">დაესწარი</button>
+                    <button class="cta-btn cta-btn-secondary" id="cta2">გაიარე კურსი</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Theatre Section -->
+        <section id="theatre" class="theatre-section">
+            <div class="container">
+                <div class="theatre-content fade-in">
+                    <div class="theatre-text">
+                        <h2 id="theatreTitle">რა არის ფლეიბექ თეატრი?</h2>
+                        <p id="theatreP1">შეხვედრის ადგილი, სადაც ადამიანები ერთმანეთს ხედავენ და ესმით. მაყურებელი ყვება ისტორიას — მსახიობები მას სცენაზე აცოცხლებენ მოძრაობით, მუსიკით, ემოციით.</p>
+                        <p id="theatreP2">მეთოდი 1975 წელს შეიქმნა ნიუ-იორკში. დღეს 60-ზე მეტ ქვეყანაში. ეს ჩვეულებრივი თეატრი არ არის — ჯგუფური გამოცდილებაა, რომელიც თერაპიას უფრო ჰგავს.</p>
+                        <div class="theatre-tags">
+                            <div class="tag" id="tag1">მოსმენა</div>
+                            <div class="tag" id="tag2">თანაგრძნობა</div>
+                            <div class="tag" id="tag3">ნამდვილობა</div>
+                        </div>
+                    </div>
+                    <div class="theatre-image">
+                        <img src="playback_images/about_center/2.jpg" alt="Theatre moment">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Happens -->
+        <section id="how" class="how-it-section">
+            <div class="container">
+                <div class="section-title fade-in">
+                    <h2 id="howTitle">როგორ ხდება</h2>
+                </div>
+                <div class="steps-grid">
+                    <div class="step fade-in">
+                        <div class="step-number">01</div>
+                        <div class="step-title" id="step1Title">ვინმე ყვება ისტორიას</div>
+                        <div class="step-subtitle" id="step1Sub">მაყურებლიდან</div>
+                    </div>
+                    <div class="step fade-in">
+                        <div class="step-number">02</div>
+                        <div class="step-title" id="step2Title">მსახიობები გულით უსმენენ</div>
+                        <div class="step-subtitle" id="step2Sub">ყოველ ნიუანსს</div>
+                    </div>
+                    <div class="step fade-in">
+                        <div class="step-number">03</div>
+                        <div class="step-title" id="step3Title">ისტორია ცოცხლდება</div>
+                        <div class="step-subtitle" id="step3Sub">სპონტანურად, სცენაზე</div>
+                    </div>
+                    <div class="step fade-in">
+                        <div class="step-number">04</div>
+                        <div class="step-title" id="step4Title">მაყურებელი ხედავს</div>
+                        <div class="step-subtitle" id="step4Sub">საკუთარ თავს ახლებურად</div>
+                    </div>
+                </div>
+                <div class="photo-strip fade-in">
+                    <div class="strip-photo"><img src="playback_images/gallery/3.jpg" alt="Gallery 3"></div>
+                    <div class="strip-photo"><img src="playback_images/gallery/7.jpg" alt="Gallery 7"></div>
+                    <div class="strip-photo"><img src="playback_images/gallery/12.jpg" alt="Gallery 12"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section id="testimonials" class="testimonials-section">
+            <div class="container">
+                <div class="section-title fade-in">
+                    <h2 id="testimonialsTitle">შთაბეჭდილებები</h2>
+                    <p id="testimonialsSubtitle" style="color: var(--text-muted); margin-top: 0.5rem;">რას ამბობენ ადამიანები</p>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card fade-in">
+                        <div class="quote-mark">"</div>
+                        <div class="testimonial-quote" id="test1">პირველად ვიყავი და ვერ წარმოვიდგენდი, რომ ასეთი რამ შეიძლებოდა. ტირილიც მინდოდა და სიცილიც.</div>
+                        <div class="testimonial-divider"></div>
+                        <div class="testimonial-author" id="test1auth">— ანონიმური მაყურებელი</div>
+                    </div>
+                    <div class="testimonial-card fade-in">
+                        <div class="quote-mark">"</div>
+                        <div class="testimonial-quote" id="test2">სხვა ადამიანის ისტორიაში საკუთარი თავი ვნახე. ძალიან ძლიერი გამოცდილება.</div>
+                        <div class="testimonial-divider"></div>
+                        <div class="testimonial-author" id="test2auth">— ანონიმური მაყურებელი</div>
+                    </div>
+                    <div class="testimonial-card fade-in">
+                        <div class="quote-mark">"</div>
+                        <div class="testimonial-quote" id="test3">ეს არ არის უბრალოდ თეატრი. ეს რაღაც ძალიან ადამიანურია.</div>
+                        <div class="testimonial-divider"></div>
+                        <div class="testimonial-author" id="test3auth">— ანონიმური მაყურებელი</div>
+                    </div>
+                    <div class="testimonial-card fade-in">
+                        <div class="quote-mark">"</div>
+                        <div class="testimonial-quote" id="test4">ვერ დავიჯერე, რომ უცნობ ადამიანებთან ისეთი უსაფრთხოება ვიგრძენი.</div>
+                        <div class="testimonial-divider"></div>
+                        <div class="testimonial-author" id="test4auth">— ანონიმური მაყურებელი</div>
+                    </div>
+                    <div class="testimonial-card fade-in">
+                        <div class="quote-mark">"</div>
+                        <div class="testimonial-quote" id="test5">საკუთარ ამბავს როცა სცენაზე ვუყურე, ისეთი სიმსუბუქე ვიგრძენი, თითქოს ტვირთი მომეხსნა.</div>
+                        <div class="testimonial-divider"></div>
+                        <div class="testimonial-author" id="test5auth">— ანონიმური მაყურებელი</div>
+                    </div>
+                    <div class="testimonial-card fade-in">
+                        <div class="quote-mark">"</div>
+                        <div class="testimonial-quote" id="test6">მინდა მეგობრებიც წამოვიყვანო. ყველამ ერთხელ მაინც უნდა განიცადოს ეს.</div>
+                        <div class="testimonial-divider"></div>
+                        <div class="testimonial-author" id="test6auth">— ანონიმური მაყურებელი</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tsisia Quote -->
+        <section class="tsisia-section fade-in">
+            <div class="tsisia-content">
+                <div class="tsisia-mark">"</div>
+                <div class="tsisia-quote" id="tsisiaQuote">ეს სივრცე ჩემი ორი პროფესიის თანხვედრაა — თეატრისა და ფსიქოთერაპიის. გადასვლა დიდი, სტრუქტურირებული თეატრიდან პატარა, ავთენტურ სივრცეში, სადაც ადამიანი შეიძლება იყოს ისეთი, როგორიც არის.</div>
+                <div class="tsisia-attribution" id="tsisiaAttribution">— ცისია ჩოლოყაშვილი, დამფუძნებელი</div>
+            </div>
+        </section>
+
+        <!-- Performance -->
+        <section id="performance" class="performance-section">
+            <div class="container">
+                <div class="section-title fade-in">
+                    <h2 id="performanceTitle">პერფორმანსი</h2>
+                </div>
+                <div class="performance-grid">
+                    <div class="performance-card fade-in">
+                        <h4 id="perfTitle1">დასწრება დონაციურია</h4>
+                        <p id="perfP1">თუ გსურთ დაესწროთ ჩვენს პერფორმანსს, დონაციის მაქსიმალური თანხა დამოკიდებულია თქვენს შესაძლებლობებზე.</p>
+                    </div>
+                    <div class="performance-card fade-in">
+                        <h4 id="perfTitle2">კონტაქტი</h4>
+                        <p id="perfP2">დაგვიკავშირდით ელფოსტით დამატებითი ინფორმაციისთვის.</p>
+                    </div>
+                    <div class="performance-card fade-in">
+                        <h4 id="perfTitle3">საიდენტიფიკაციო</h4>
+                        <p id="perfP3">ჩვენ გთხოვთ მაქსიმალურად უსაფრთხოდ და ღრმად მივიღოთ ხელი თქვენს გამოცდილებაში.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses -->
+        <section id="courses" class="courses-section">
+            <div class="container">
+                <div class="section-title fade-in">
+                    <h2 id="coursesTitle">კურსები</h2>
+                </div>
+                <div class="courses-grid">
+                    <div class="course-card fade-in">
+                        <div class="course-badge">46 საათი</div>
+                        <h3 id="course1">ფუნდამენტური კურსი</h3>
+                        <p id="course1desc">გამომთქმელთა, მსახიობებისა და დირიჟორებისთვის შემუშავებული ფლეიბექ თეატრის საფუძვლების შესავალი.</p>
+                        <button class="cta-btn cta-btn-primary" id="coursebtn1">კონტაქტი</button>
+                    </div>
+                    <div class="course-card fade-in">
+                        <div class="course-badge">180 საათი</div>
+                        <h3 id="course2">პრაქტიკოსის კურსი</h3>
+                        <p id="course2desc">სისტემატური ტრენინგი ფლეიბექ თეატრის ფасილიტატორებისა და ხელმძღვანელებისთვის.</p>
+                        <button class="cta-btn cta-btn-primary" id="coursebtn2">კონტაქტი</button>
+                    </div>
+                    <div class="course-card fade-in">
+                        <div class="course-badge">12-16 საათი</div>
+                        <h3 id="course3">სემინარი</h3>
+                        <p id="course3desc">სპეციალიზებული სემინარი კონკრეტული თემების ან სიტუაციების გამოსწვევის მიზნით.</p>
+                        <button class="cta-btn cta-btn-primary" id="coursebtn3">კონტაქტი</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery -->
+        <section id="gallery" class="gallery-section">
+            <div class="container">
+                <div class="section-title fade-in">
+                    <h2 id="galleryTitle">გალერეა</h2>
+                </div>
+                <div class="gallery-grid" id="galleryGrid">
+                    <div class="gallery-item fade-in"><img src="playback_images/gallery/1.jpg" alt="Gallery 1"></div>
+                    <div class="gallery-item fade-in"><img src="playback_images/gallery/2.jpg" alt="Gallery 2"></div>
+                    <div class="gallery-item fade-in"><img src="playback_images/gallery/4.jpg" alt="Gallery 4"></div>
+                    <div class="gallery-item fade-in"><img src="playback_images/gallery/5.jpg" alt="Gallery 5"></div>
+                    <div class="gallery-item fade-in"><img src="playback_images/gallery/6.jpg" alt="Gallery 6"></div>
+                    <div class="gallery-item fade-in"><img src="playback_images/gallery/8.jpg" alt="Gallery 8"></div>
+                    <div class="gallery-item fade-in"><img src="playback_images/gallery/9.jpg" alt="Gallery 9"></div>
+                    <div class="gallery-item fade-in"><img src="playback_images/gallery/10.jpg" alt="Gallery 10"></div>
+                </div>
+                <div class="gallery-cta fade-in">
+                    <a href="#" id="galleryMore">ყველა ფოტო</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team -->
+        <section id="team" class="team-section">
+            <div class="container">
+                <div class="team-intro fade-in">
+                    <h2 id="teamTitle">გუნდი</h2>
+                    <p id="teamIntro">14-წევრიანი გუნდი · სამი ნაკადი</p>
+                </div>
+                <div class="team-grid">
+                    <div class="team-member fade-in">
+                        <div class="team-photo">
+                            <img src="playback_images/team/1.jpg" alt="Team member 1">
+                        </div>
+                        <div class="team-name" id="team1name">სახელი გვარი</div>
+                        <div class="team-role" id="team1role">როლი</div>
+                        <div class="team-bio" id="team1bio">ბიოგრაფია ემოციურ და მოკლე ფორმატში.</div>
+                    </div>
+                    <div class="team-member fade-in">
+                        <div class="team-photo">
+                            <img src="playback_images/team/2.jpg" alt="Team member 2">
+                        </div>
+                        <div class="team-name" id="team2name">სახელი გვარი</div>
+                        <div class="team-role" id="team2role">როლი</div>
+                        <div class="team-bio" id="team2bio">ბიოგრაფია ემოციურ და მოკლე ფორმატში.</div>
+                    </div>
+                    <div class="team-member fade-in">
+                        <div class="team-photo">
+                            <img src="playback_images/team/3.jpg" alt="Team member 3">
+                        </div>
+                        <div class="team-name" id="team3name">სახელი გვარი</div>
+                        <div class="team-role" id="team3role">როლი</div>
+                        <div class="team-bio" id="team3bio">ბიოგრაფია ემოციურ და მოკლე ფორმატში.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="section-title fade-in">
+                    <h2 id="contactTitle">კონტაქტი</h2>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-card fade-in">
+                        <h3 id="contact1title">პერფორმანსი</h3>
+                        <p id="contact1p">გსურთ დაესწროთ ჩვენს ღამური პერფორმანსს?</p>
+                        <a href="mailto:tsisa.cholokashvili@gmail.com" id="contact1link">დაწერეთ ჩვენ</a>
+                    </div>
+                    <div class="contact-card fade-in">
+                        <h3 id="contact2title">მხარდაჭერა</h3>
+                        <p id="contact2p">აინტერესებთ კურსი ან სემინარი?</p>
+                        <a href="mailto:tsisa.cholokashvili@gmail.com" id="contact2link">დაწერეთ ჩვენ</a>
+                    </div>
+                    <div class="contact-card fade-in">
+                        <h3 id="contact3title">სამსახურე</h3>
+                        <p id="contact3p">გაწევრდით ჩვენს Facebook-ის სამსახურეში.</p>
+                        <a href="https://www.facebook.com/groups/playbacktheatregeorgia" target="_blank" id="contact3link">ჯგუფი</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4 id="footerContacts">კონტაქტი</h4>
+                    <a href="mailto:tsisa.cholokashvili@gmail.com">tsisa.cholokashvili@gmail.com</a>
+                    <a href="tel:+995591234567">+995 (591) 123-456</a>
+                </div>
+                <div class="footer-column">
+                    <h4 id="footerNav">ნავიგაცია</h4>
+                    <a href="#theatre" id="footerTheatre">თეატრი</a>
+                    <a href="#performance" id="footerPerformance">პერფორმანსი</a>
+                    <a href="#courses" id="footerCourses">კურსები</a>
+                    <a href="#gallery" id="footerGallery">გალერეა</a>
+                    <a href="#team" id="footerTeam">გუნდი</a>
+                </div>
+                <div class="footer-column">
+                    <h4 id="footerCommunity">კომიტეტი</h4>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/groups/playbacktheatregeorgia" target="_blank" title="Facebook">f</a>
+                        <a href="https://instagram.com" target="_blank" title="Instagram">i</a>
+                    </div>
+                    <p style="margin-top: 1rem; font-size: 0.8rem;"><a href="https://www.iptn.info" target="_blank" style="color: var(--text-muted); text-decoration: none;" id="footerIPTN">IPTN — საერთაშორისო ფლეიბექ თეატრის ქსელი</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom" id="footerCopy">
+                © 2025 Georgian Playback Theatre. ყველა უფლება დაცულია.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ================================
+        // LANGUAGE SWITCHING
+        // ================================
+        const langToggle = document.getElementById('langToggle');
+        let isEnglish = false;
+
+        const translations = {
+            // Navigation
+            'theatre': { ka: 'თეატრი', en: 'Theatre' },
+            'performance': { ka: 'პერფორმანსი', en: 'Performance' },
+            'courses': { ka: 'კურსები', en: 'Courses' },
+            'gallery': { ka: 'გალერეა', en: 'Gallery' },
+            'team': { ka: 'გუნდი', en: 'Team' },
+            'contact': { ka: 'კონტაქტი', en: 'Contact' },
+
+            // Hero
+            'heroTitle': { ka: 'ქართული ფლეიბექ თეატრი', en: 'Georgian Playback Theatre' },
+            'heroSubtitle': { ka: 'ჩვენ ვთამაშობთ თქვენს ისტორიებს', en: 'We play your stories back to you' },
+            'heroDesc': { ka: 'თეატრი, სადაც მაყურებლის ისტორია სცენაზე ცოცხლდება. სცენარი არ არის. რეპეტიცია არ არის. მხოლოდ ნამდვილი.', en: 'A theatre where the audience\'s story comes alive on stage. No script. No rehearsal. Only what\'s real.' },
+            'cardLabel': { ka: 'მომავალი პერფორმანსი', en: 'Next Performance' },
+            'cardDate': { ka: 'ყოველი თვის ბოლო შაბათი', en: 'Last Saturday of every month' },
+            'cardTime': { ka: '20:00', en: '20:00' },
+            'cardLocation': { ka: 'ხორავას N14', en: 'Khorava N14' },
+            'cta1': { ka: 'დაესწარი', en: 'Attend' },
+            'cta2': { ka: 'გაიარე კურსი', en: 'Take Course' },
+
+            // Theatre Section
+            'theatreTitle': { ka: 'რა არის ფლეიბექ თეატრი?', en: 'What is Playback Theatre?' },
+            'theatreP1': { ka: 'შეხვედრის ადგილი, სადაც ადამიანები ერთმანეთს ხედავენ და ესმით. მაყურებელი ყვება ისტორიას — მსახიობები მას სცენაზე აცოცხლებენ მოძრაობით, მუსიკით, ემოციით.', en: 'A meeting place where people truly see and hear each other. An audience member shares a story — actors bring it to life through movement, music, emotion.' },
+            'theatreP2': { ka: 'მეთოდი 1975 წელს შეიქმნა ნიუ-იორკში. დღეს 60-ზე მეტ ქვეყანაში. ეს ჩვეულებრივი თეატრი არ არის — ჯგუფური გამოცდილებაა, რომელიც თერაპიას უფრი ჰგავს.', en: 'Created in 1975, New York. In over 60 countries today. Not conventional theatre — a group experience closer to therapy than performance.' },
+            'tag1': { ka: 'მოსმენა', en: 'Listening' },
+            'tag2': { ka: 'თანაგრძნობა', en: 'Empathy' },
+            'tag3': { ka: 'ნამდვილობა', en: 'Authenticity' },
+
+            // How Section
+            'howTitle': { ka: 'როგორ ხდება', en: 'How It Happens' },
+            'step1Title': { ka: 'ვინმე ყვება ისტორიას', en: 'Someone shares' },
+            'step1Sub': { ka: 'მაყურებლიდან', en: 'From the audience' },
+            'step2Title': { ka: 'მსახიობები გულით უსმენენ', en: 'Actors listen deeply' },
+            'step2Sub': { ka: 'ყოველ ნიუანსს', en: 'Every nuance' },
+            'step3Title': { ka: 'ისტორია ცოცხლდება', en: 'Story comes alive' },
+            'step3Sub': { ka: 'სპონტანურად, სცენაზე', en: 'Spontaneously, on stage' },
+            'step4Title': { ka: 'მაყურებელი ხედავს', en: 'Audience sees' },
+            'step4Sub': { ka: 'საკუთარ თავს ახლებურად', en: 'Themselves anew' },
+
+            // Testimonials
+            'testimonialsTitle': { ka: 'შთაბეჭდილებები', en: 'Impressions' },
+            'testimonialsSubtitle': { ka: 'რას ამბობენ ადამიანები', en: 'What people say' },
+            'test1': { ka: 'პირველად ვიყავი და ვერ წარმოვიდგენდი, რომ ასეთი რამ შეიძლებოდა. ტირილიც მინდოდა და სიცილიც.', en: 'It was my first time and I couldn\'t imagine something like this. I wanted to cry and laugh at the same time.' },
+            'test1auth': { ka: '— ანონიმური მაყურებელი', en: '— Anonymous' },
+            'test2': { ka: 'სხვა ადამიანის ისტორიაში საკუთარი თავი ვნახე. ძალიან ძლიერი გამოცდილება.', en: 'I saw myself in someone else\'s story. A very powerful experience.' },
+            'test2auth': { ka: '— ანონიმური მაყურებელი', en: '— Anonymous' },
+            'test3': { ka: 'ეს არ არის უბრალოდ თეატრი. ეს რაღაც ძალიან ადამიანურია.', en: 'This is not just theatre. It is something profoundly human.' },
+            'test3auth': { ka: '— ანონიმური მაყურებელი', en: '— Anonymous' },
+            'test4': { ka: 'ვერ დავიჯერე, რომ უცნობ ადამიანებთან ისეთი უსაფრთხოება ვიგრძენი.', en: 'I couldn\'t believe I felt so safe among strangers.' },
+            'test4auth': { ka: '— ანონიმური მაყურებელი', en: '— Anonymous' },
+            'test5': { ka: 'საკუთარ ამბავს როცა სცენაზე ვუყურე, ისეთი სიმსუბუქე ვიგრძენი, თითქოს ტვირთი მომეხსნა.', en: 'Watching my story on stage, I felt such lightness, as if a burden was lifted.' },
+            'test5auth': { ka: '— ანონიმური მაყურებელი', en: '— Anonymous' },
+            'test6': { ka: 'მინდა მეგობრებიც წამოვიყვანო. ყველამ ერთხელ მაინც უნდა განიცადოს ეს.', en: 'I want to bring my friends. Everyone should experience this at least once.' },
+            'test6auth': { ka: '— ანონიმური მაყურებელი', en: '— Anonymous' },
+
+            // Tsisia
+            'tsisiaQuote': { ka: 'ეს სივრცე ჩემი ორი პროფესიის თანხვედრაა — თეატრისა და ფსიქოთერაპიის. გადასვლა დიდი, სტრუქტურირებული თეატრიდან პატარა, ავთენტურ სივრცეში, სადაც ადამიანი შეიძლება იყოს ისეთი, როგორიც არის.', en: 'This space is where my two professions converge — theatre and psychotherapy. A transition from large, structured theatre to a small, authentic space where a person can be who they truly are.' },
+            'tsisiaAttribution': { ka: '— ცისია ჩოლოყაშვილი, დამფუძნებელი', en: '— Tsisia Cholokashvili, Founder' },
+
+            // Performance
+            'performanceTitle': { ka: 'პერფორმანსი', en: 'Performance' },
+            'perfTitle1': { ka: 'დასწრება დონაციურია', en: 'Donation-Based' },
+            'perfP1': { ka: 'თუ გსურთ დაესწროთ ჩვენს პერფორმანსს, დონაციის მაქსიმალური თანხა დამოკიდებულია თქვენს შესაძლებლობებზე.', en: 'If you would like to attend our performance, the donation amount depends on your ability to contribute.' },
+            'perfTitle2': { ka: 'კონტაქტი', en: 'Contact' },
+            'perfP2': { ka: 'გილოცვინებთ დაკავშირება ჩვენთან ამ ფორმის მეშვეობით ან ელფოსტით დამატებითი ინფორმაციისთვის.', en: 'We encourage you to contact us through this form or via email for additional information.' },
+            'perfTitle3': { ka: 'საიდენტიფიკაციო', en: 'Safety' },
+            'perfP3': { ka: 'ჩვენ გთხოვთ მაქსიმალურად უსაფრთხოდ და ღრმად მივიღოთ ხელი თქვენს გამოცდილებაში.', en: 'We ask that you fully engage with us in a safe and authentic way.' },
+
+            // Courses
+            'coursesTitle': { ka: 'კურსები', en: 'Courses' },
+            'course1': { ka: 'ფუნდამენტური კურსი', en: 'Fundamental Course' },
+            'course1desc': { ka: 'გამომთქმელთა, მსახიობებისა და დირიჟორებისთვის შემუშავებული ფლეიბექ თეატრის საფუძვლების შესავალი.', en: 'Introduction to Playback Theatre fundamentals designed for speakers, actors, and conductors.' },
+            'course2': { ka: 'პრაქტიკოსის კურსი', en: 'Practitioner Course' },
+            'course2desc': { ka: 'სისტემატური ტრენინგი ფლეიბექ თეატრის ფასილიტატორებისა და ხელმძღვანელებისთვის.', en: 'Systematic training for Playback Theatre facilitators and leaders.' },
+            'course3': { ka: 'სემინარი', en: 'Workshops' },
+            'course3desc': { ka: 'სპეციალიზებული სემინარი კონკრეტული თემების ან სიტუაციების გამოსწვევის მიზნით.', en: 'Specialized workshops for specific themes or situations.' },
+            'coursebtn1': { ka: 'კონტაქტი', en: 'Contact' },
+            'coursebtn2': { ka: 'კონტაქტი', en: 'Contact' },
+            'coursebtn3': { ka: 'კონტაქტი', en: 'Contact' },
+
+            // Gallery
+            'galleryTitle': { ka: 'გალერეა', en: 'Gallery' },
+            'galleryMore': { ka: 'ყველა ფოტო', en: 'See All' },
+
+            // Team
+            'teamTitle': { ka: 'გუნდი', en: 'Team' },
+            'teamIntro': { ka: '14-წევრიანი გუნდი · სამი ნაკადი', en: '14-member team · Three streams' },
+            'team1name': { ka: 'სახელი გვარი', en: 'Name Surname' },
+            'team1role': { ka: 'როლი', en: 'Role' },
+            'team1bio': { ka: 'ბიოგრაფია ემოციურ და მოკლე ფორმატში.', en: 'Biography in emotional and concise format.' },
+            'team2name': { ka: 'სახელი გვარი', en: 'Name Surname' },
+            'team2role': { ka: 'როლი', en: 'Role' },
+            'team2bio': { ka: 'ბიოგრაფია ემოციურ და მოკლე ფორმატში.', en: 'Biography in emotional and concise format.' },
+            'team3name': { ka: 'სახელი გვარი', en: 'Name Surname' },
+            'team3role': { ka: 'როლი', en: 'Role' },
+            'team3bio': { ka: 'ბიოგრაფია ემოციურ და მოკლე ფორმატში.', en: 'Biography in emotional and concise format.' },
+
+            // Contact
+            'contactTitle': { ka: 'კონტაქტი', en: 'Contact' },
+            'contact1title': { ka: 'პერფორმანსი', en: 'Performance' },
+            'contact1p': { ka: 'გსურთ დაესწროთ ჩვენს ღამური პერფორმანსს?', en: 'Want to attend our evening performance?' },
+            'contact1link': { ka: 'დაწერეთ ჩვენ', en: 'Write to us' },
+            'contact2title': { ka: 'მხარდაჭერა', en: 'Support' },
+            'contact2p': { ka: 'აინტერესებთ კურსი ან სემინარი?', en: 'Interested in a course or workshop?' },
+            'contact2link': { ka: 'დაწერეთ ჩვენ', en: 'Write to us' },
+            'contact3title': { ka: 'სამსახურე', en: 'Office' },
+            'contact3p': { ka: 'გაწევრდით ჩვენს Facebook-ის სამსახურეში.', en: 'Join our Facebook community.' },
+            'contact3link': { ka: 'ჯგუფი', en: 'Group' },
+
+            // Footer
+            'footerContacts': { ka: 'კონტაქტი', en: 'Contact' },
+            'footerNav': { ka: 'ნავიგაცია', en: 'Navigation' },
+            'footerTheatre': { ka: 'თეატრი', en: 'Theatre' },
+            'footerPerformance': { ka: 'პერფორმანსი', en: 'Performance' },
+            'footerCourses': { ka: 'კურსები', en: 'Courses' },
+            'footerGallery': { ka: 'გალერეა', en: 'Gallery' },
+            'footerTeam': { ka: 'გუნდი', en: 'Team' },
+            'footerCommunity': { ka: 'კომუნიტი', en: 'Community' },
+            'footerIPTN': { ka: 'IPTN — საერთაშორისო ფლეიბექ თეატრის ქსელი', en: 'IPTN — International Playback Theatre Network' },
+            'footerCopy': { ka: '© 2025 Georgian Playback Theatre. ყველა უფლება დაცულია.', en: '© 2025 Georgian Playback Theatre. All rights reserved.' }
+        };
+
+        function setLanguage(isEn) {
+            const lang = isEn ? 'en' : 'ka';
+            for (const [key, value] of Object.entries(translations)) {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.textContent = value[lang];
+                }
+            }
+            langToggle.textContent = isEn ? 'ქართული' : 'EN';
+            document.documentElement.lang = lang;
+        }
+
+        langToggle.addEventListener('click', () => {
+            isEnglish = !isEnglish;
+            setLanguage(isEnglish);
+        });
+
+        // ================================
+        // THEME TOGGLE
+        // ================================
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            htmlElement.classList.toggle('light-mode');
+            themeToggle.textContent = htmlElement.classList.contains('light-mode') ? '🌙' : '☀';
+        });
+
+        // ================================
+        // HAMBURGER MENU
+        // ================================
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // ================================
+        // INTERSECTION OBSERVER
+        // ================================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ================================
+        // SMOOTH SCROLL
+        // ================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ================================
+        // CTA BUTTON ACTIONS
+        // ================================
+        document.getElementById('cta1')?.addEventListener('click', () => {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('cta2')?.addEventListener('click', () => {
+            document.getElementById('courses').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.querySelectorAll('.course-card .cta-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                window.location.href = 'mailto:tsisa.cholokashvili@gmail.com';
+            });
+        });
+
+        document.getElementById('galleryMore')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert(isEnglish ? 'Full gallery coming soon!' : 'სრული გალერეა მალე!');
+        });
+    </script>
+</body>
+</html>

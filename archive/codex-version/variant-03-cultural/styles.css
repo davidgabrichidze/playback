@@ -1,0 +1,171 @@
+body.cultural-page {
+  --text-color: #202d46;
+  --text-muted: rgba(32, 45, 70, 0.74);
+  --line-color: rgba(32, 45, 70, 0.14);
+  --surface-1: rgba(250, 249, 245, 0.88);
+  --surface-2: rgba(240, 242, 246, 0.82);
+  --button-bg: #202d46;
+  --button-fg: #f7f6f2;
+  --button-secondary-bg: rgba(255, 255, 255, 0.4);
+  --button-secondary-fg: #202d46;
+  --button-secondary-border: rgba(32, 45, 70, 0.16);
+  --toggle-bg: rgba(247, 248, 250, 0.8);
+  --toggle-border: rgba(32, 45, 70, 0.12);
+  --toggle-active-bg: #202d46;
+  --toggle-active-fg: #f7f6f2;
+  --shadow-soft: 0 24px 60px rgba(32, 45, 70, 0.08);
+  background:
+    radial-gradient(circle at 12% 12%, rgba(255, 255, 255, 0.9), transparent 22%),
+    linear-gradient(180deg, #edf1f6 0%, #f4f3ee 56%, #fbfaf6 100%);
+}
+
+.cultural-page .section-title,
+.cultural-page .card-title,
+.cultural-page .stat-value,
+.cultural-page .brand-title {
+  font-family:
+    "Noto Sans Georgian",
+    "Inter",
+    sans-serif;
+  font-weight: 800;
+}
+
+.cultural-header {
+  border-bottom: 1px solid rgba(32, 45, 70, 0.08);
+}
+
+.cultural-hero,
+.cultural-grid,
+.cultural-lower {
+  display: grid;
+  gap: 18px;
+}
+
+.hero-brief,
+.hero-ledger,
+.cultural-slab,
+.cultural-cta,
+.cultural-slab .stat-card,
+.cultural-slab .program-card,
+.cultural-slab .event-card,
+.cultural-slab .gallery-card,
+.cultural-slab .team-card,
+.cultural-slab .value-card,
+.cultural-slab .process-card {
+  border: 1px solid var(--line-color);
+  border-radius: 28px;
+  background: var(--surface-1);
+  box-shadow: var(--shadow-soft);
+}
+
+.hero-brief,
+.hero-ledger,
+.cultural-slab,
+.cultural-cta {
+  padding: clamp(24px, 4vw, 40px);
+}
+
+.hero-brief {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.5), rgba(240, 242, 246, 0.7)),
+    var(--surface-1);
+}
+
+.hero-brief .section-title {
+  max-width: 11ch;
+}
+
+.hero-ledger {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  background:
+    linear-gradient(180deg, rgba(32, 45, 70, 0.03), rgba(255, 255, 255, 0.62)),
+    var(--surface-1);
+}
+
+.ledger-label {
+  margin: 0 0 2px;
+  color: var(--text-muted);
+  font-size: 0.74rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.ledger-title {
+  margin: 0;
+  font-size: 1.18rem;
+  font-weight: 700;
+}
+
+.ledger-copy {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.ledger-divider {
+  height: 1px;
+  background: var(--line-color);
+}
+
+.cultural-slab .value-card,
+.cultural-slab .process-card,
+.cultural-slab .program-card,
+.cultural-slab .event-card,
+.cultural-slab .gallery-card,
+.cultural-slab .team-card {
+  padding: 22px;
+  box-shadow: none;
+}
+
+.cultural-slab .stat-card {
+  box-shadow: none;
+}
+
+.cultural-archive {
+  display: grid;
+  gap: 14px;
+}
+
+.cultural-archive .event-card {
+  border-radius: 24px;
+}
+
+.gallery-grid .gallery-card {
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(235, 239, 246, 0.82)),
+    var(--surface-1);
+}
+
+.cultural-cta {
+  background:
+    radial-gradient(circle at 84% 20%, rgba(32, 45, 70, 0.12), transparent 20%),
+    linear-gradient(145deg, rgba(235, 239, 246, 0.9), rgba(255, 250, 242, 0.92));
+}
+
+.collection-grid {
+  display: grid;
+  gap: 18px;
+}
+
+@media (min-width: 920px) {
+  .cultural-hero {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+
+  .cultural-grid.two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .collection-grid.triple {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .collection-grid.quad {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

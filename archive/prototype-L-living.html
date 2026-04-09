@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Georgian Playback Theatre Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;600;700&family=Noto+Serif+Georgian:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      /* Light mode (default) */
+      --bg-main: #f8f4ed;
+      --bg-alt: #fffbf5;
+      --text-primary: #2a2420;
+      --text-secondary: #5a5550;
+      --accent-gold: #c4a574;
+      --accent-terracotta: #a67c52;
+      --border-light: #e8e0d5;
+      --shadow-light: rgba(0,0,0,0.08);
+      --shadow-medium: rgba(0,0,0,0.12);
+    }
+
+    body.dark-mode {
+      --bg-main: #1a1510;
+      --bg-alt: #2a2215;
+      --text-primary: #f5f0e8;
+      --text-secondary: #d4cfc7;
+      --accent-gold: #d4a574;
+      --accent-terracotta: #b8915a;
+      --border-light: #3a3530;
+      --shadow-light: rgba(0,0,0,0.3);
+      --shadow-medium: rgba(0,0,0,0.4);
+    }
+
+    body {
+      font-family: 'Noto Sans Georgian', sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+      position: relative;
+    }
+
+    /* Subtle noise texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' seed='1' /%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Header & Navigation */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: var(--bg-main);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      border-bottom: 1px solid var(--border-light);
+      transition: all 0.3s;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Noto Serif Georgian', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    nav a:hover {
+      color: var(--accent-gold);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-gold);
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .controls {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    button.control-btn {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0.5rem;
+      transition: color 0.3s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    button.control-btn:hover {
+      color: var(--accent-gold);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--text-primary);
+      transition: all 0.3s;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    /* Hero Section */
+    .hero {
+      margin-top: 60px;
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 2rem;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('playback_images/general/hero.jpg') center/cover no-repeat;
+      z-index: -1;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(200, 170, 140, 0.6);
+      z-index: -1;
+    }
+
+    .hero-content {
+      max-width: 600px;
+      animation: fadeInUp 1.2s ease-out;
+    }
+
+    .hero h1 {
+      font-family: 'Noto Serif Georgian', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      letter-spacing: -1px;
+    }
+
+    .hero h1 .en { display: none; }
+
+    .hero p {
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 2rem;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+      font-weight: 400;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .cta-button {
+      padding: 0.8rem 1.8rem;
+      background: var(--accent-gold);
+      color: var(--bg-main);
+      border: none;
+      border-radius: 0;
+      font-family: 'Noto Sans Georgian', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .cta-button:hover {
+      background: var(--accent-terracotta);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--shadow-medium);
+    }
+
+    /* Wavy Divider */
+    .wavy-divider {
+      width: 100%;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 3rem 0;
+      position: relative;
+    }
+
+    .wavy-divider svg {
+      width: 100%;
+      height: 100%;
+      max-width: 400px;
+    }
+
+    /* Section Styles */
+    section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    section.warm-bg {
+      background: var(--bg-alt);
+    }
+
+    h2 {
+      font-family: 'Noto Serif Georgian', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: var(--text-primary);
+      letter-spacing: -0.5px;
+    }
+
+    h3 {
+      font-family: 'Noto Serif Georgian', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.8rem;
+    }
+
+    /* What is Playback */
+    .what-is-playback {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .what-is-playback-text {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+    }
+
+    .what-is-playback-text p {
+      margin-bottom: 1.2rem;
+    }
+
+    .what-is-playback-image {
+      position: relative;
+      border-radius: 2px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px var(--shadow-medium);
+      transform: rotate(2deg);
+      max-height: 400px;
+    }
+
+    .what-is-playback-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* How It Works */
+    .how-it-works {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .how-card {
+      background: var(--bg-main);
+      padding: 2rem;
+      border-radius: 2px;
+      box-shadow: 0 4px 12px var(--shadow-light);
+      position: relative;
+      transform: rotate(calc(var(--rotation) * 1deg));
+    }
+
+    .how-card:nth-child(1) { --rotation: -1; }
+    .how-card:nth-child(2) { --rotation: 0.5; }
+    .how-card:nth-child(3) { --rotation: -0.5; }
+
+    .how-card h3 {
+      font-size: 1.2rem;
+      color: var(--accent-gold);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .how-card p {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .testimonial-card {
+      background: white;
+      padding: 1.8rem;
+      border-radius: 2px;
+      box-shadow: 0 4px 12px var(--shadow-light);
+      transform: rotate(calc(var(--rot) * 1deg));
+      border-left: 4px solid var(--accent-gold);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    body.dark-mode .testimonial-card {
+      background: var(--bg-alt);
+      border-left-color: var(--accent-terracotta);
+    }
+
+    .testimonial-card:nth-child(1) { --rot: -2; }
+    .testimonial-card:nth-child(2) { --rot: 1.5; }
+    .testimonial-card:nth-child(3) { --rot: -1; }
+    .testimonial-card:nth-child(4) { --rot: 2; }
+    .testimonial-card:nth-child(5) { --rot: -1.5; }
+    .testimonial-card:nth-child(6) { --rot: 0.8; }
+
+    .testimonial-card:hover {
+      transform: rotate(0deg) translateY(-4px);
+      box-shadow: 0 8px 20px var(--shadow-medium);
+    }
+
+    .testimonial-quote {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text-primary);
+      font-style: italic;
+    }
+
+    .testimonial-quote::before {
+      content: '"';
+      font-size: 2rem;
+      color: var(--accent-gold);
+      line-height: 0.5;
+      vertical-align: -0.4em;
+      margin-right: 0.2rem;
+    }
+
+    /* Performance Section */
+    .performance {
+      position: relative;
+      padding: 4rem 2rem;
+      text-align: center;
+      background: url('playback_images/general/hero.jpg') center/cover no-repeat;
+    }
+
+    .performance::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--bg-main);
+      opacity: 0.75;
+      z-index: -1;
+    }
+
+    .performance h2,
+    .performance p {
+      position: relative;
+      z-index: 1;
+    }
+
+    .performance-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .performance-content p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+
+    .performance-email {
+      display: inline-block;
+      padding: 0.8rem 1.8rem;
+      background: var(--accent-gold);
+      color: var(--bg-main);
+      text-decoration: none;
+      border-radius: 0;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .performance-email:hover {
+      background: var(--accent-terracotta);
+      transform: translateY(-2px);
+    }
+
+    /* About Founder */
+    .about-founder {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .founder-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+      box-shadow: 0 8px 24px var(--shadow-medium);
+      aspect-ratio: 3/4;
+    }
+
+    .founder-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .founder-quote {
+      font-family: 'Noto Serif Georgian', serif;
+      font-size: 1.3rem;
+      line-height: 1.8;
+      color: var(--text-primary);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+      border-left: 4px solid var(--accent-gold);
+    }
+
+    .founder-info {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-top: 1.5rem;
+    }
+
+    .founder-info strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Programs */
+    .programs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+    }
+
+    .program-card {
+      background: var(--bg-main);
+      padding: 2rem;
+      border-radius: 2px;
+      box-shadow: 0 4px 12px var(--shadow-light);
+      transform: rotate(calc(var(--prot) * 1deg));
+      transition: transform 0.3s;
+    }
+
+    .program-card:nth-child(1) { --prot: -1.5; }
+    .program-card:nth-child(2) { --prot: 0.5; }
+    .program-card:nth-child(3) { --prot: -0.8; }
+
+    .program-card:hover {
+      transform: rotate(0deg) translateY(-4px);
+    }
+
+    .program-card h3 {
+      color: var(--accent-gold);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .program-card p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.2rem;
+    }
+
+    .program-link {
+      display: inline-block;
+      color: var(--accent-gold);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+      font-size: 0.9rem;
+    }
+
+    .program-link:hover {
+      color: var(--accent-terracotta);
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+      box-shadow: 0 4px 12px var(--shadow-light);
+      transform: rotate(calc(var(--grot) * 0.5deg)) scaleY(1.02);
+      aspect-ratio: 1;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .gallery-item:nth-child(1) { --grot: -1; aspect-ratio: 4/5; grid-row: span 1; }
+    .gallery-item:nth-child(2) { --grot: 1; }
+    .gallery-item:nth-child(3) { --grot: -0.5; aspect-ratio: 3/4; }
+    .gallery-item:nth-child(4) { --grot: 0.8; }
+    .gallery-item:nth-child(5) { --grot: -1.2; aspect-ratio: 4/5; }
+    .gallery-item:nth-child(6) { --grot: 0.6; }
+    .gallery-item:nth-child(7) { --grot: -0.8; }
+    .gallery-item:nth-child(8) { --grot: 1.1; aspect-ratio: 3/4; }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .gallery-item:hover {
+      transform: rotate(0deg) scaleY(1) translateY(-3px);
+      box-shadow: 0 8px 20px var(--shadow-medium);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-see-more {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .see-more-btn {
+      padding: 0.8rem 1.8rem;
+      background: var(--accent-gold);
+      color: var(--bg-main);
+      border: none;
+      border-radius: 0;
+      font-family: 'Noto Sans Georgian', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .see-more-btn:hover {
+      background: var(--accent-terracotta);
+      transform: translateY(-2px);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 85vh;
+    }
+
+    .lightbox-image {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+    }
+
+    .lightbox-close,
+    .lightbox-prev,
+    .lightbox-next {
+      position: absolute;
+      background: var(--accent-gold);
+      color: var(--bg-main);
+      border: none;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .lightbox-close:hover,
+    .lightbox-prev:hover,
+    .lightbox-next:hover {
+      background: var(--accent-terracotta);
+    }
+
+    .lightbox-close {
+      top: -50px;
+      right: 0;
+    }
+
+    .lightbox-prev {
+      left: -60px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .lightbox-next {
+      right: -60px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .lightbox-counter {
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--accent-gold);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* Team */
+    .team {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .team-member {
+      text-align: center;
+      transform: translateY(0);
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .team-member:nth-child(1) {
+      animation-delay: 0.1s;
+      transform: translateX(-20px);
+    }
+
+    .team-member:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .team-member:nth-child(3) {
+      animation-delay: 0.3s;
+      transform: translateX(20px);
+    }
+
+    .team-photo {
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 6px 16px var(--shadow-medium);
+      transform: rotate(calc(var(--trot) * 1deg));
+      aspect-ratio: 3/4;
+    }
+
+    .team-member:nth-child(1) .team-photo { --trot: -1.5; }
+    .team-member:nth-child(2) .team-photo { --trot: 0; }
+    .team-member:nth-child(3) .team-photo { --trot: 1.5; }
+
+    .team-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .team-member h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .team-role {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Ethics Accordion */
+    .ethics-section {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .accordion-item {
+      border-bottom: 1px solid var(--border-light);
+      padding: 1.5rem 0;
+    }
+
+    .accordion-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      padding: 0.5rem 0;
+    }
+
+    .accordion-header h3 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .accordion-toggle {
+      font-size: 1.5rem;
+      color: var(--accent-gold);
+      transition: transform 0.3s;
+    }
+
+    .accordion-toggle.open {
+      transform: rotate(180deg);
+    }
+
+    .accordion-content {
+      display: none;
+      padding: 1.5rem 0;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    .accordion-content.open {
+      display: block;
+    }
+
+    .ethics-link {
+      color: var(--accent-gold);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .ethics-link:hover {
+      color: var(--accent-terracotta);
+    }
+
+    /* Donation */
+    .donation {
+      text-align: center;
+      padding: 3rem;
+      background: linear-gradient(135deg, var(--bg-alt) 0%, var(--bg-main) 100%);
+      border-radius: 2px;
+    }
+
+    .donation h2 {
+      margin-bottom: 1.5rem;
+    }
+
+    .donation p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+
+    .donate-btn {
+      padding: 1rem 2rem;
+      background: var(--accent-gold);
+      color: var(--bg-main);
+      border: none;
+      border-radius: 0;
+      font-family: 'Noto Sans Georgian', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .donate-btn:hover {
+      background: var(--accent-terracotta);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px var(--shadow-medium);
+    }
+
+    /* Contact */
+    .contact {
+      text-align: center;
+      padding: 2rem;
+      background: var(--bg-alt);
+      border-radius: 2px;
+    }
+
+    .contact-methods {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .contact-method {
+      text-align: center;
+    }
+
+    .contact-method h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-secondary);
+    }
+
+    .contact-method a {
+      color: var(--accent-gold);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+      word-break: break-all;
+    }
+
+    .contact-method a:hover {
+      color: var(--accent-terracotta);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border-light);
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--accent-gold);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    footer a:hover {
+      color: var(--accent-terracotta);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+    }
+
+    .fade-in.visible {
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    /* Language Toggle */
+    .lang-toggle {
+      display: flex;
+      gap: 0.3rem;
+      border: 1px solid var(--border-light);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      cursor: pointer;
+      color: var(--text-secondary);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .lang-btn.active {
+      background: var(--accent-gold);
+      color: var(--bg-main);
+    }
+
+    /* Hide/Show Elements */
+    .ka { display: block; }
+    .en { display: none; }
+
+    body.en-mode .ka { display: none; }
+    body.en-mode .en { display: block; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: var(--bg-main);
+        padding: 1rem 2rem;
+        border-bottom: 1px solid var(--border-light);
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      nav a {
+        padding: 0.8rem 0;
+        border-bottom: 1px solid var(--border-light);
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .what-is-playback {
+        grid-template-columns: 1fr;
+      }
+
+      .how-it-works {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonials {
+        grid-template-columns: 1fr;
+      }
+
+      .programs {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about-founder {
+        grid-template-columns: 1fr;
+      }
+
+      .team {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-methods {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .lightbox-prev,
+      .lightbox-next {
+        width: 35px;
+        height: 35px;
+        left: auto;
+        right: auto;
+        bottom: -50px;
+        top: auto;
+      }
+
+      .lightbox-prev {
+        right: 50px;
+      }
+
+      .lightbox-next {
+        right: 0;
+      }
+
+      .lightbox-close {
+        top: -40px;
+      }
+
+      .lightbox-counter {
+        bottom: -50px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-content {
+        padding: 0.8rem 1rem;
+      }
+
+      .logo {
+        font-size: 1.2rem;
+      }
+
+      nav {
+        gap: 0;
+      }
+
+      .controls {
+        gap: 0.5rem;
+      }
+
+      h2 {
+        font-size: 1.6rem;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+      }
+
+      .cta-button {
+        width: 100%;
+        text-align: center;
+      }
+
+      section {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+      <a href="#" class="logo">
+        <span class="ka">ფლეიბექი</span>
+        <span class="en">Playback</span>
+      </a>
+      <nav>
+        <a href="#what"><span class="ka">რა არის</span><span class="en">What is</span></a>
+        <a href="#how"><span class="ka">როგორ</span><span class="en">How it works</span></a>
+        <a href="#impressions"><span class="ka">შთაბეჭდილებები</span><span class="en">Impressions</span></a>
+        <a href="#performance"><span class="ka">პერფორმანსი</span><span class="en">Performances</span></a>
+        <a href="#about"><span class="ka">ჩვენს შესახებ</span><span class="en">About</span></a>
+        <a href="#programs"><span class="ka">პროგრამები</span><span class="en">Programs</span></a>
+        <a href="#ethics"><span class="ka">ეთიკა</span><span class="en">Ethics</span></a>
+      </nav>
+      <div class="controls">
+        <div class="lang-toggle">
+          <button class="lang-btn active" onclick="setLanguage('ka')">KA</button>
+          <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+        </div>
+        <button class="control-btn" onclick="toggleDarkMode()" title="Toggle dark mode">🌙</button>
+        <div class="hamburger" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1><span class="ka">ქართული ფლეიბექ თეატრი</span><span class="en">Georgian Playback Theatre</span></h1>
+      <p><span class="ka">ჩვენ ვთამაშობთ თქვენს ისტორიებს</span><span class="en">We play back your stories</span></p>
+      <div class="hero-ctas">
+        <a href="#performance" class="cta-button"><span class="ka">პერფორმანსი</span><span class="en">Performances</span></a>
+        <a href="#programs" class="cta-button"><span class="ka">კურსები</span><span class="en">Courses</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wavy Divider -->
+  <div class="wavy-divider">
+    <svg viewBox="0 0 400 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 Q100,10 200,20 T400,20" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <!-- What is Playback Theatre -->
+  <section class="warm-bg" id="what">
+    <h2><span class="ka">რა არის ფლეიბექ თეატრი</span><span class="en">What is Playback Theatre</span></h2>
+    <div class="what-is-playback">
+      <div class="what-is-playback-text">
+        <p class="ka">ფლეიბექ თეატრი სპონტანური იმპროვიზაციული თეატრის ფორმაა, სადაც მაყურებლის რეალური ისტორიები სცენაზე ცოცხლდება. 1975 წელს დაფუძნებული ეს მეთოდი დღეს 60-ზე მეტ ქვეყანაში პრაქტიკდება — თეატრალურ სცენებზე, საგანმანათლებლო დაწესებულებებში, თერაპიულ პროგრამებში და საზოგადოებრივ სივრცეებში. ეს არის მოსმენის, თანაგრძნობისა და ერთობლივი შემოქმედების ხელოვნება.</p>
+        <p class="en">Playback Theatre is a form of spontaneous improvisational theatre where real audience stories come alive on stage. Founded in 1975, this method is now practiced in over 60 countries — on theatrical stages, in educational institutions, therapeutic programs, and community spaces. It is the art of listening, empathy, and collective creativity.</p>
+      </div>
+      <div class="what-is-playback-image">
+        <img src="playback_images/general/hero.jpg" alt="Playback Theatre in action">
+      </div>
+    </div>
+  </section>
+
+  <!-- Wavy Divider -->
+  <div class="wavy-divider">
+    <svg viewBox="0 0 400 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 Q100,10 200,20 T400,20" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <!-- How It Works -->
+  <section id="how">
+    <h2><span class="ka">როგორ მუშაობს</span><span class="en">How It Works</span></h2>
+    <div class="how-it-works">
+      <div class="how-card">
+        <h3><span class="ka">მაყურებელი ჰყვება ისტორიას</span><span class="en">An audience member shares a story</span></h3>
+      </div>
+      <div class="how-card">
+        <h3><span class="ka">მსახიობები აცოცხლებენ სცენაზე</span><span class="en">Actors bring it to life on stage</span></h3>
+      </div>
+      <div class="how-card">
+        <h3><span class="ka">საზოგადოება ერთ გამოცდილებას იზიარებს</span><span class="en">The community shares one experience</span></h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wavy Divider -->
+  <div class="wavy-divider">
+    <svg viewBox="0 0 400 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 Q100,10 200,20 T400,20" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <!-- Testimonials / Impressions -->
+  <section class="warm-bg" id="impressions">
+    <h2><span class="ka">შთაბეჭდილებები</span><span class="en">Impressions</span></h2>
+    <div class="testimonials">
+      <div class="testimonial-card fade-in">
+        <div class="testimonial-quote">
+          <span class="ka">არ ვიცოდი, რომ სხვისი ისტორიის ყურება ასეთ ძლიერ განცდას გამოიწვევს</span>
+          <span class="en">I didn't know watching someone else's story could evoke such strong emotions</span>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <div class="testimonial-quote">
+          <span class="ka">პირველად ვიგრძენი, რომ ჩემი ისტორია მნიშვნელოვანია</span>
+          <span class="en">For the first time I felt my story matters</span>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <div class="testimonial-quote">
+          <span class="ka">ეს იყო თერაპიის მსგავსი გამოცდილება, მხოლოდ უფრო ადამიანური</span>
+          <span class="en">It was an experience like therapy, only more human</span>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <div class="testimonial-quote">
+          <span class="ka">ისე ამოვედი, თითქოს ვინმემ ნამდვილად მომისმინა</span>
+          <span class="en">I left feeling like someone truly listened to me</span>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <div class="testimonial-quote">
+          <span class="ka">მთელ კვირას სხვა ადამიანი ვიყავი ამ საღამოს შემდეგ</span>
+          <span class="en">I was a different person all week after that evening</span>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <div class="testimonial-quote">
+          <span class="ka">უცხო ადამიანების ისტორიები ისე ახლოს აღმოჩნდა ჩემთან...</span>
+          <span class="en">Strangers' stories turned out to be so close to mine...</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wavy Divider -->
+  <div class="wavy-divider">
+    <svg viewBox="0 0 400 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 Q100,10 200,20 T400,20" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <!-- Performance -->
+  <section class="performance" id="performance">
+    <div class="performance-content">
+      <h2><span class="ka">პერფორმანსი</span><span class="en">Performances</span></h2>
+      <p><span class="ka">ყოველ თვეში ჩვენ თბილისში სცენაზე ვიდგებით. თუ გინდა მონაწილე ან სტუმარი იყო, ან უბრალოდ უფრო მეტი ინფორმაცია გსჭირდება, დაგვიკავშირდი.</span><span class="en">Every month we take the stage in Tbilisi. If you'd like to participate, attend, or simply want more information, get in touch.</span></p>
+      <a href="mailto:tsisa.cholokashvili@gmail.com" class="performance-email"><span class="ka">კონტაქტი</span><span class="en">Contact</span></a>
+    </div>
+  </section>
+
+  <!-- Wavy Divider -->
+  <div class="wavy-divider">
+    <svg viewBox="0 0 400 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 Q100,10 200,20 T400,20" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <!-- About Founder -->
+  <section class="warm-bg" id="about">
+    <h2><span class="ka">ჩვენს შესახებ</span><span class="en">About Us</span></h2>
+    <div class="about-founder">
+      <div class="founder-image">
+        <img src="playback_images/team/tsisia-cholokashvili.jpg" alt="Tsisia Cholokashvili">
+      </div>
+      <div>
+        <div class="founder-quote">
+          <span class="ka">ფლეიბექ თეატრი სივრცეა, სადაც ადამიანს აქვს თავისუფლება — იყოს ნამდვილი. სადაც ისტორია არ ფასდება, არამედ ფასდება ადამიანი, რომელიც ჰყვება. ეს არის მოსმენის ხელოვნება, და ჩვენ ამ ხელოვნებას საქართველოში ვაშენებთ.</span>
+          <span class="en">Playback Theatre is a space where a person has the freedom to be real. Where the story isn't judged — the person telling it is valued. This is the art of listening, and we are building this art in Georgia.</span>
+        </div>
+        <div class="founder-info">
+          <strong><span class="ka">ცისია ჩოლოყაშვილი</span><span class="en">Tsisia Cholokashvili</span></strong>
+          <br><span class="ka">თანადამფუძნებელი</span><span class="en">Co-founder</span>
+          <br><br>
+          <strong><span class="ka">დაფუძნდა:</span><span class="en">Founded:</span></strong> <span class="ka">2025 წლის 2 მარტი, თბილისი</span><span class="en">March 2, 2025, Tbilisi</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wavy Divider -->
+  <div class="wavy-divider">
+    <svg viewBox="0 0 400 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 Q100,10 200,20 T400,20" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <!-- Programs -->
+  <section id="programs">
+    <h2><span class="ka">პროგრამები</span><span class="en">Programs</span></h2>
+    <div class="programs">
+      <div class="program-card fade-in">
+        <h3><span class="ka">საბაზისო კურსი</span><span class="en">Basic Course</span></h3>
+        <p><span class="ka">46 საათი</span><span class="en">46 hours</span></p>
+        <a href="mailto:tsisa.cholokashvili@gmail.com" class="program-link"><span class="ka">გაიგე მეტი →</span><span class="en">Learn more →</span></a>
+      </div>
+      <div class="program-card fade-in">
+        <h3><span class="ka">პრაქტიკოსის კურსი</span><span class="en">Practitioner Course</span></h3>
+        <p><span class="ka">180 საათი</span><span class="en">180 hours</span></p>
+        <a href="mailto:tsisa.cholokashvili@gmail.com" class="program-link"><span class="ka">გაიგე მეტი →</span><span class="en">Learn more →</span></a>
+      </div>
+      <div class="program-card fade-in">
+        <h3><span class="ka">ვორქშოფები და მასტერ-კლასები</span><span class="en">Workshops & Masterclasses</span></h3>
+        <p><span class="ka">სხვადასხვა ხანგრძლივობა</span><span class="en">Various durations</span></p>
+        <a href="mailto:tsisa.cholokashvili@gmail.com" class="program-link"><span class="ka">გაიგე მეტი →</span><span class="en">Learn more →</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wavy Divider -->
+  <div class="wavy-divider">
+    <svg viewBox="0 0 400 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 Q100,10 200,20 T400,20" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <!-- Gallery -->
+  <section class="warm-bg">
+    <h2><span class="ka">გალერეა</span><span class="en">Gallery</span></h2>
+    <div class="gallery-grid" id="gallery-grid">
+      <!-- Gallery items will be populated by JavaScript -->
+    </div>
+    <div class="gallery-see-more" id="see-more-container" style="display:none;">
+      <button class="see-more-btn" onclick="loadMoreGallery()"><span class="ka">მეტი</span><span class="en">See More</span></button>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <img id="lightbox-image" src="" alt="" class="lightbox-image">
+      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+      <button class="lightbox-prev" onclick="prevImage()">❮</button>
+      <button class="lightbox-next" onclick="nextImage()">❯</button>
+      <div class="lightbox-counter"><span id="current-image">1</span> / <span id="total-images">1</span></div>
+    </div>
+  </div>
+
+  <!-- Wavy Divider -->
+  <div class="wavy-divider">
+    <svg viewBox="0 0 400 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 Q100,10 200,20 T400,20" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <!-- Team -->
+  <section id="team">
+    <h2><span class="ka">ჩვენი გუნდი</span><span class="en">Our Team</span></h2>
+    <div class="team">
+      <div class="team-member">
+        <div class="team-photo">
+          <img src="playback_images/team/george-rusetsky.jpg" alt="George Rusetsky">
+        </div>
+        <h3><span class="ka">გიორგი რუსეცკი</span><span class="en">George Rusetsky</span></h3>
+        <div class="team-role"><span class="ka">დამფუძნებელი, ტრენერი, კონდაქტორი</span><span class="en">Founder, Trainer, Conductor</span></div>
+      </div>
+      <div class="team-member">
+        <div class="team-photo">
+          <img src="playback_images/team/tsisia-cholokashvili.jpg" alt="Tsisia Cholokashvili">
+        </div>
+        <h3><span class="ka">ცისია ჩოლოყაშვილი</span><span class="en">Tsisia Cholokashvili</span></h3>
+        <div class="team-role"><span class="ka">თანადამფუძნებელი</span><span class="en">Co-founder</span></div>
+      </div>
+      <div class="team-member">
+        <div class="team-photo">
+          <img src="playback_images/team/tea-chubinidze.jpg" alt="Tea Chubinidze">
+        </div>
+        <h3><span class="ka">თეა ჩუბინიძე</span><span class="en">Tea Chubinidze</span></h3>
+        <div class="team-role"><span class="ka">წევრი</span><span class="en">Member</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wavy Divider -->
+  <div class="wavy-divider">
+    <svg viewBox="0 0 400 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 Q100,10 200,20 T400,20" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <!-- Ethics -->
+  <section class="warm-bg" id="ethics">
+    <h2><span class="ka">ეთიკის კოდექსი</span><span class="en">Code of Ethics</span></h2>
+    <div class="ethics-section">
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <h3><span class="ka">პატივისცემა</span><span class="en">Respect</span></h3>
+          <span class="accordion-toggle">+</span>
+        </div>
+        <div class="accordion-content">
+          <p><span class="ka">ყველა მონაწილის მოსმენა და პატივი განსაკუთრებული ყურადღებით.</span><span class="en">Every participant is heard and respected with utmost care.</span></p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <h3><span class="ka">ინკლუზიურობა</span><span class="en">Inclusivity</span></h3>
+          <span class="accordion-toggle">+</span>
+        </div>
+        <div class="accordion-content">
+          <p><span class="ka">ფლეიბექი ღია ყველასთვის, დისკრიმინაციის გარეშე.</span><span class="en">Playback is open to all without discrimination.</span></p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <h3><span class="ka">სპონტანურობა</span><span class="en">Spontaneity</span></h3>
+          <span class="accordion-toggle">+</span>
+        </div>
+        <div class="accordion-content">
+          <p><span class="ka">აქტიორები თამაშობენ დამონტაჟებელი სკრიპტის გარეშე, მხოლოდ მოსმენის საფუძველზე.</span><span class="en">Actors perform without a script, responding only to what they've heard.</span></p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <h3><span class="ka">კომპეტენტურობა</span><span class="en">Competence</span></h3>
+          <span class="accordion-toggle">+</span>
+        </div>
+        <div class="accordion-content">
+          <p><span class="ka">ტრენერი და აქტიორები სწავლობენ ის უნარ-ჩვევებს, რომლებიც საჭიროა დელიკატური მუშაობისათვის.</span><span class="en">Trainers and actors develop the skills necessary for this delicate work.</span></p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <h3><span class="ka">სოციალური პასუხისმგებლობა</span><span class="en">Social Responsibility</span></h3>
+          <span class="accordion-toggle">+</span>
+        </div>
+        <div class="accordion-content">
+          <p><span class="ka">ფლეიბექ თეატრი ხელშეწყობს მშვიდობას, თანასწორობას და გაგებას.</span><span class="en">Playback Theatre promotes peace, equality, and understanding.</span></p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <h3><span class="ka">კეთილსინდისიერება</span><span class="en">Integrity</span></h3>
+          <span class="accordion-toggle">+</span>
+        </div>
+        <div class="accordion-content">
+          <p><span class="ka">ჩვენ ვმოქმედებთ სამართლიანად, გამჭვირვალობით და სამართლიანობით.</span><span class="en">We act fairly, with transparency and honesty.</span></p>
+        </div>
+      </div>
+
+      <p style="margin-top: 2rem; font-size: 0.95rem; color: var(--text-secondary);">
+        <span class="ka">ეს კოდექსი დაფუძნებული იქნა</span>
+        <span class="en">This code is based on</span>
+        <a href="https://www.iptn.info" class="ethics-link" target="_blank">IPTN (International Playback Theatre Network)</a>
+        <span class="ka">-ის პრინციპებზე.</span>
+        <span class="en">principles.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- Wavy Divider -->
+  <div class="wavy-divider">
+    <svg viewBox="0 0 400 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 Q100,10 200,20 T400,20" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <!-- Donation -->
+  <section>
+    <div class="donation">
+      <h2><span class="ka">მხარი დაუჭირე თეატრს</span><span class="en">Support the Theatre</span></h2>
+      <p><span class="ka">ეს თეატრი თქვენი წყალობით არსებობს. თუ ჩვენი მისია მნიშვნელოვანია თქვენთვის, დაგვეხმარეთ მის გაგრძელებაში.</span><span class="en">This theatre exists because of your contributions. If our mission matters to you, help us grow.</span></p>
+      <button class="donate-btn" onclick="alert('Donation redirect - implement with payment provider')"><span class="ka">დონაცია</span><span class="en">Donate</span></button>
+    </div>
+  </section>
+
+  <!-- Wavy Divider -->
+  <div class="wavy-divider">
+    <svg viewBox="0 0 400 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 Q100,10 200,20 T400,20" stroke="currentColor" stroke-width="2" fill="none" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <!-- Contact / Join -->
+  <section class="warm-bg">
+    <h2><span class="ka">შეგვიკავშირდი</span><span class="en">Get in Touch</span></h2>
+    <div class="contact">
+      <div class="contact-methods">
+        <div class="contact-method">
+          <h3><span class="ka">ელფოსტა</span><span class="en">Email</span></h3>
+          <a href="mailto:tsisa.cholokashvili@gmail.com">tsisa.cholokashvili@gmail.com</a>
+        </div>
+        <div class="contact-method">
+          <h3><span class="ka">WhatsApp</span></h3>
+          <a href="https://wa.me/995577140222">+995 577 140 222</a>
+        </div>
+        <div class="contact-method">
+          <h3><span class="ka">Facebook</span></h3>
+          <a href="https://www.facebook.com/groups/playbacktheatregeorgia" target="_blank"><span class="ka">ჯგუფი</span><span class="en">Group</span></a>
+        </div>
+      </div>
+      <p><span class="ka">გაგვიზიარე შთაბეჭდილება ან დაგვიკავშირდი ნებისმიერ საკითხზე.</span><span class="en">Share your story or impressions with us.</span></p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 <span class="ka">Georgian Playback Theatre</span><span class="en">Georgian Playback Theatre</span>. <span class="ka">ყველა უფლება დაცულია.</span><span class="en">All rights reserved.</span></p>
+    <p>
+      <a href="https://www.iptn.info" target="_blank">IPTN</a> |
+      <a href="https://www.facebook.com/groups/playbacktheatregeorgia" target="_blank"><span class="ka">Facebook</span></a>
+    </p>
+  </footer>
+
+  <script>
+    // Language Toggle
+    function setLanguage(lang) {
+      const body = document.body;
+      const langBtns = document.querySelectorAll('.lang-btn');
+
+      if (lang === 'en') {
+        body.classList.add('en-mode');
+      } else {
+        body.classList.remove('en-mode');
+      }
+
+      langBtns.forEach((btn, index) => {
+        btn.classList.toggle('active', (index === 0 && lang === 'ka') || (index === 1 && lang === 'en'));
+      });
+    }
+
+    // Dark Mode Toggle
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+    }
+
+    // Restore dark mode preference
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark-mode');
+    }
+
+    // Mobile Menu Toggle
+    function toggleMenu() {
+      const hamburger = document.querySelector('.hamburger');
+      const nav = document.querySelector('nav');
+      hamburger.classList.toggle('active');
+      nav.classList.toggle('active');
+    }
+
+    // Close menu when link is clicked
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelector('.hamburger').classList.remove('active');
+        document.querySelector('nav').classList.remove('active');
+      });
+    });
+
+    // Intersection Observer for Fade-In
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Gallery
+    const galleryGrid = document.getElementById('gallery-grid');
+    const seeMoreContainer = document.getElementById('see-more-container');
+    let visibleItems = 8;
+    const allGalleryItems = 25;
+    let currentLightboxImage = 0;
+    let allGalleryImages = [];
+
+    function initGallery() {
+      for (let i = 1; i <= allGalleryItems; i++) {
+        allGalleryImages.push(`playback_images/gallery/${i}.jpg`);
+      }
+      renderGallery();
+    }
+
+    function renderGallery() {
+      galleryGrid.innerHTML = '';
+      for (let i = 0; i < Math.min(visibleItems, allGalleryImages.length); i++) {
+        const item = document.createElement('div');
+        item.className = 'gallery-item fade-in';
+        item.innerHTML = `<img src="${allGalleryImages[i]}" alt="Gallery image ${i + 1}" onclick="openLightbox(${i})">`;
+        observer.observe(item);
+        galleryGrid.appendChild(item);
+      }
+
+      if (visibleItems < allGalleryImages.length) {
+        seeMoreContainer.style.display = 'block';
+      } else {
+        seeMoreContainer.style.display = 'none';
+      }
+    }
+
+    function loadMoreGallery() {
+      visibleItems += 8;
+      renderGallery();
+    }
+
+    // Lightbox
+    function openLightbox(index) {
+      currentLightboxImage = index;
+      const lightbox = document.getElementById('lightbox');
+      const image = document.getElementById('lightbox-image');
+      image.src = allGalleryImages[index];
+      document.getElementById('current-image').textContent = index + 1;
+      document.getElementById('total-images').textContent = allGalleryImages.length;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function prevImage() {
+      currentLightboxImage = (currentLightboxImage - 1 + allGalleryImages.length) % allGalleryImages.length;
+      openLightbox(currentLightboxImage);
+    }
+
+    function nextImage() {
+      currentLightboxImage = (currentLightboxImage + 1) % allGalleryImages.length;
+      openLightbox(currentLightboxImage);
+    }
+
+    // Lightbox keyboard controls
+    document.addEventListener('keydown', e => {
+      if (document.getElementById('lightbox').classList.contains('active')) {
+        if (e.key === 'ArrowLeft') prevImage();
+        if (e.key === 'ArrowRight') nextImage();
+        if (e.key === 'Escape') closeLightbox();
+      }
+    });
+
+    // Close lightbox on background click
+    document.getElementById('lightbox').addEventListener('click', e => {
+      if (e.target.id === 'lightbox') closeLightbox();
+    });
+
+    // Accordion
+    function toggleAccordion(header) {
+      const content = header.nextElementSibling;
+      const toggle = header.querySelector('.accordion-toggle');
+      const isOpen = content.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.accordion-content.open').forEach(c => {
+        c.classList.remove('open');
+        c.previousElementSibling.querySelector('.accordion-toggle').classList.remove('open');
+      });
+
+      // Open clicked
+      if (!isOpen) {
+        content.classList.add('open');
+        toggle.classList.add('open');
+      }
+    }
+
+    // Initialize
+    initGallery();
+  </script>
+</body>
+</html>

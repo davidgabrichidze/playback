@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="ka" dir="auto">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>განუმეორებელი — Georgian Playback Theatre</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Georgian:wght@400;700;900&family=Noto+Sans+Georgian:wght@400;500;700&family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Noto Sans Georgian', sans-serif;
+      line-height: 1.6;
+      color: #1c1c1c;
+      background: #1c1c1c;
+      overflow-x: hidden;
+    }
+
+    /* Bilingual toggle */
+    .lang-toggle {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(201, 168, 124, 0.3);
+      color: #c9a87c;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      cursor: pointer;
+      border-radius: 2px;
+      font-weight: 500;
+      backdrop-filter: blur(4px);
+      transition: all 0.3s ease;
+    }
+
+    .lang-toggle:hover {
+      background: rgba(201, 168, 124, 0.1);
+      border-color: #c9a87c;
+    }
+
+    /* Text content visibility */
+    .text-ka { display: block; }
+    .text-en { display: none; }
+
+    body.lang-en .text-ka { display: none; }
+    body.lang-en .text-en { display: block; }
+
+    /* Golden thread SVG */
+    .golden-thread {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 100vh;
+      background: linear-gradient(to bottom, #c9a87c, rgba(201, 168, 124, 0.3), transparent);
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .golden-thread::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 100%;
+      background: #c9a87c;
+      opacity: 0.8;
+      filter: drop-shadow(0 0 8px rgba(201, 168, 124, 0.4));
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(135deg, #1c1c1c 0%, #2a2420 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40%;
+      background: url('playback_images/general/hero.jpg') center/cover;
+      opacity: 0.3;
+      clip-path: polygon(0 100%, 100% 80%, 100% 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      opacity: 0;
+      animation: fadeInUp 1.2s ease 0.3s forwards;
+    }
+
+    .hero-label {
+      font-size: 0.875rem;
+      letter-spacing: 0.2em;
+      color: #c9a87c;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+
+    .hero-title {
+      font-family: 'Noto Serif Georgian', serif;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      max-width: 600px;
+      opacity: 0;
+      animation: fadeInUp 1.2s ease 0.6s forwards;
+    }
+
+    /* ===== WHAT IS SECTION ===== */
+    .what-is {
+      background: linear-gradient(180deg, #2a2420 0%, #3a3530 50%, #e8dfd0 100%);
+      padding: 8rem 4rem;
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .what-is-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .what-is-text-block {
+      padding: 3rem;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(201, 168, 124, 0.2);
+      font-size: 1.25rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.95);
+      border-radius: 2px;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .what-is-text-block:nth-child(1) {
+      animation: fadeInUp 0.8s ease 0.2s forwards;
+      transform: rotate(-2deg) translateY(40px);
+      margin-bottom: 2rem;
+    }
+
+    .what-is-text-block:nth-child(2) {
+      animation: fadeInUp 0.8s ease 0.4s forwards;
+      transform: rotate(1deg) translateY(40px);
+      grid-column: 2;
+      grid-row: 2;
+      margin-top: 2rem;
+    }
+
+    .what-is-image {
+      grid-column: 2;
+      grid-row: 1;
+      width: 100%;
+      height: 400px;
+      background: url('playback_images/gallery/5.jpg') center/cover;
+      border-radius: 2px;
+      filter: sepia(0.1) saturate(1.1);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      transform: rotate(3deg);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.3s forwards;
+    }
+
+    /* ===== 1975 SECTION ===== */
+    .year-section {
+      background: linear-gradient(180deg, #e8dfd0 0%, #f0ebe3 100%);
+      padding: 6rem 4rem;
+      position: relative;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .year-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Noto Serif Georgian', serif;
+      font-size: clamp(8rem, 30vw, 25rem);
+      font-weight: 900;
+      color: rgba(28, 28, 28, 0.08);
+      white-space: nowrap;
+      z-index: 1;
+    }
+
+    .year-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 700px;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.2s forwards;
+    }
+
+    .year-content h2 {
+      font-family: 'Noto Serif Georgian', serif;
+      font-size: 3rem;
+      color: #1c1c1c;
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+
+    .year-content p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #3c3c3c;
+      font-weight: 400;
+    }
+
+    /* ===== TESTIMONIALS SECTION ===== */
+    .testimonials {
+      background: linear-gradient(180deg, #f0ebe3 0%, #ebe5d8 100%);
+      padding: 6rem 4rem;
+      position: relative;
+    }
+
+    .testimonials-title {
+      text-align: center;
+      font-family: 'Noto Serif Georgian', serif;
+      font-size: 2.5rem;
+      color: #1c1c1c;
+      margin-bottom: 4rem;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.1s forwards;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .testimonial-card {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 0px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      transform: rotate(var(--rotate-angle, 0deg));
+      opacity: 0;
+      animation: fadeInUp 0.6s ease forwards;
+      border: 1px solid rgba(201, 168, 124, 0.1);
+      position: relative;
+    }
+
+    .testimonial-card:nth-child(1) { animation-delay: 0.1s; --rotate-angle: -2deg; }
+    .testimonial-card:nth-child(2) { animation-delay: 0.2s; --rotate-angle: 1.5deg; }
+    .testimonial-card:nth-child(3) { animation-delay: 0.3s; --rotate-angle: -1deg; }
+    .testimonial-card:nth-child(4) { animation-delay: 0.4s; --rotate-angle: 2deg; }
+    .testimonial-card:nth-child(5) { animation-delay: 0.5s; --rotate-angle: -1.5deg; }
+    .testimonial-card:nth-child(6) { animation-delay: 0.6s; --rotate-angle: 1deg; }
+
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      font-size: 3rem;
+      color: #c9a87c;
+      opacity: 0.3;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .testimonial-quote {
+      font-size: 1rem;
+      font-style: italic;
+      color: #2c2c2c;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .testimonial-author {
+      font-size: 0.875rem;
+      color: #888;
+      font-weight: 500;
+    }
+
+    /* ===== HOW IT WORKS SECTION ===== */
+    .how-it-works {
+      background: linear-gradient(180deg, #ebe5d8 0%, #e8dfd0 100%);
+      padding: 6rem 4rem;
+      position: relative;
+    }
+
+    .how-it-works-title {
+      text-align: center;
+      font-family: 'Noto Serif Georgian', serif;
+      font-size: 2.5rem;
+      color: #1c1c1c;
+      margin-bottom: 4rem;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.1s forwards;
+    }
+
+    .timeline {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #c9a87c;
+    }
+
+    .timeline-step {
+      margin-bottom: 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      opacity: 0;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .timeline-step:nth-child(odd) .timeline-content {
+      text-align: right;
+    }
+
+    .timeline-step:nth-child(odd) .timeline-number {
+      grid-column: 2;
+    }
+
+    .timeline-step:nth-child(even) .timeline-number {
+      grid-column: 1;
+    }
+
+    .timeline-step:nth-child(1) { animation-delay: 0.1s; }
+    .timeline-step:nth-child(2) { animation-delay: 0.2s; }
+    .timeline-step:nth-child(3) { animation-delay: 0.3s; }
+    .timeline-step:nth-child(4) { animation-delay: 0.4s; }
+
+    .timeline-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: #c9a87c;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .timeline-number::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background: #f0ebe3;
+      border: 3px solid #c9a87c;
+      border-radius: 50%;
+      bottom: -60px;
+    }
+
+    .timeline-content {
+      padding: 1.5rem;
+    }
+
+    .timeline-content h3 {
+      font-family: 'Noto Serif Georgian', serif;
+      font-size: 1.3rem;
+      color: #1c1c1c;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-content p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    /* ===== TSISIA SECTION ===== */
+    .tsisia-section {
+      background: linear-gradient(135deg, #2a2420 0%, #1c1c1c 100%);
+      padding: 6rem 4rem;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .tsisia-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .tsisia-image {
+      width: 100%;
+      height: 500px;
+      background: url('playback_images/team/tsisia-cholokashvili.jpg') center/cover;
+      border-radius: 2px;
+      filter: sepia(0.15) saturate(1.15);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.2s forwards;
+    }
+
+    .tsisia-quote {
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.3s forwards;
+    }
+
+    .tsisia-quote blockquote {
+      font-family: 'Noto Serif Georgian', serif;
+      font-size: 1.4rem;
+      color: rgba(255, 255, 255, 0.95);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      font-weight: 400;
+      border-left: 3px solid #c9a87c;
+      padding-left: 2rem;
+    }
+
+    .tsisia-attribution {
+      color: #c9a87c;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    /* ===== GALLERY SECTION ===== */
+    .gallery {
+      background: linear-gradient(180deg, #1c1c1c 0%, #2a2420 100%);
+      padding: 6rem 4rem;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .gallery-title {
+      text-align: center;
+      font-family: 'Noto Serif Georgian', serif;
+      font-size: 2.5rem;
+      color: #fff;
+      margin-bottom: 4rem;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.1s forwards;
+    }
+
+    .gallery-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      height: 600px;
+    }
+
+    .gallery-item {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 2px;
+      filter: sepia(0.1) saturate(1.1);
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      animation: fadeInUp 0.6s ease forwards;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
+    }
+
+    .gallery-item:nth-child(1) { top: 50px; left: 10%; animation-delay: 0.1s; transform: rotate(-5deg); }
+    .gallery-item:nth-child(2) { top: 100px; left: 35%; animation-delay: 0.2s; transform: rotate(3deg); }
+    .gallery-item:nth-child(3) { top: 150px; right: 15%; animation-delay: 0.3s; transform: rotate(-2deg); }
+    .gallery-item:nth-child(4) { bottom: 50px; left: 20%; animation-delay: 0.4s; transform: rotate(2deg); }
+    .gallery-item:nth-child(5) { bottom: 80px; left: 50%; animation-delay: 0.5s; transform: rotate(-3deg); }
+
+    /* ===== TEAM SECTION ===== */
+    .team {
+      background: linear-gradient(180deg, #2a2420 0%, #3a3530 100%);
+      padding: 6rem 4rem;
+      position: relative;
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .team-title {
+      font-family: 'Noto Serif Georgian', serif;
+      font-size: 2.5rem;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.1s forwards;
+    }
+
+    .team-subtitle {
+      color: #c9a87c;
+      text-align: center;
+      margin-bottom: 4rem;
+      font-size: 1.1rem;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.2s forwards;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 3rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .team-member {
+      text-align: center;
+      opacity: 0;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .team-member:nth-child(1) { animation-delay: 0.1s; }
+    .team-member:nth-child(2) { animation-delay: 0.2s; }
+    .team-member:nth-child(3) { animation-delay: 0.3s; }
+
+    .team-member-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      margin: 0 auto 1.5rem;
+      filter: sepia(0.1) saturate(1.1);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      border: 2px solid #c9a87c;
+    }
+
+    .team-member h3 {
+      font-family: 'Noto Serif Georgian', serif;
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .team-member .role {
+      color: #c9a87c;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    /* ===== PROGRAMS SECTION ===== */
+    .programs {
+      background: linear-gradient(180deg, #3a3530 0%, #2a2420 100%);
+      padding: 6rem 4rem;
+      position: relative;
+    }
+
+    .programs-title {
+      text-align: center;
+      font-family: 'Noto Serif Georgian', serif;
+      font-size: 2.5rem;
+      color: #fff;
+      margin-bottom: 4rem;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.1s forwards;
+    }
+
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .program-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(201, 168, 124, 0.2);
+      padding: 3rem;
+      border-radius: 2px;
+      opacity: 0;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .program-card:nth-child(1) { animation-delay: 0.1s; }
+    .program-card:nth-child(2) { animation-delay: 0.2s; }
+    .program-card:nth-child(3) { animation-delay: 0.3s; }
+
+    .program-card h3 {
+      color: #c9a87c;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      font-family: 'Noto Serif Georgian', serif;
+    }
+
+    .program-card .duration {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .program-card p {
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.7;
+    }
+
+    /* ===== CTA SECTION ===== */
+    .cta-section {
+      background: linear-gradient(135deg, #1c1c1c 0%, #2a2420 100%);
+      padding: 6rem 4rem;
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      text-align: center;
+    }
+
+    .cta-main-title {
+      font-family: 'Noto Serif Georgian', serif;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      color: #fff;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.1s forwards;
+      max-width: 800px;
+    }
+
+    .cta-address {
+      font-size: 1.1rem;
+      color: #c9a87c;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.2s forwards;
+      font-weight: 500;
+    }
+
+    .cta-note {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 3rem;
+      font-size: 1rem;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.3s forwards;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease 0.4s forwards;
+    }
+
+    .btn {
+      padding: 1rem 2.5rem;
+      font-size: 1rem;
+      border: 2px solid #c9a87c;
+      background: transparent;
+      color: #c9a87c;
+      cursor: pointer;
+      border-radius: 0;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-family: 'Noto Sans Georgian', sans-serif;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background: #c9a87c;
+      color: #1c1c1c;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(201, 168, 124, 0.3);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0f0f0f;
+      color: rgba(255, 255, 255, 0.7);
+      padding: 3rem 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(201, 168, 124, 0.1);
+    }
+
+    .footer-links {
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #c9a87c;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      opacity: 0.7;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .what-is-content {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+      }
+
+      .what-is-text-block:nth-child(2) {
+        grid-column: 1;
+        grid-row: auto;
+      }
+
+      .what-is-image {
+        grid-column: 1;
+        grid-row: auto;
+        height: 300px;
+      }
+
+      .timeline::before {
+        left: 30px;
+      }
+
+      .timeline-step {
+        grid-template-columns: 60px 1fr;
+        gap: 1rem;
+      }
+
+      .timeline-step:nth-child(odd) .timeline-content {
+        text-align: left;
+      }
+
+      .timeline-step:nth-child(odd) .timeline-number,
+      .timeline-step:nth-child(even) .timeline-number {
+        grid-column: 1;
+      }
+
+      .timeline-content {
+        padding: 0.5rem;
+      }
+
+      .tsisia-content {
+        grid-template-columns: 1fr;
+      }
+
+      .tsisia-image {
+        height: 350px;
+      }
+
+      .gallery-grid {
+        height: 800px;
+      }
+
+      .gallery-item {
+        width: 250px;
+        height: 250px;
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+        margin-bottom: 1rem;
+      }
+
+      .gallery-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .lang-toggle {
+        top: 1rem;
+        right: 1rem;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Language toggle -->
+  <button class="lang-toggle" id="langToggle">ENG | KA</button>
+
+  <!-- Golden thread -->
+  <div class="golden-thread"></div>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <div class="hero-label">
+        <span class="text-ka">ფლეიბექ | PT</span>
+        <span class="text-en">PLAYBACK | PT</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="text-ka">ქართული ფლეიბექ თეატრი</span>
+        <span class="text-en">Georgian Playback Theatre</span>
+      </h1>
+      <p class="hero-subtitle">
+        <span class="text-ka">თეატრი, სადაც ყოველი წარმოდგენა განუმეორებელია</span>
+        <span class="text-en">A theatre where every performance is unrepeatable</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- WHAT IS SECTION -->
+  <section class="what-is" id="what-is">
+    <div class="what-is-content">
+      <div class="what-is-text-block">
+        <span class="text-ka">ფლეიბექ თეატრი კლასიკური თეატრი არ არის. სცენარი არ არსებობს. რეპეტიცია არ არსებობს. აკტორები უსმენენ. ისტორია სცენაზე ცოცხლდება — სპონტანურად, ყოველ ხელმეორედ განსხვავებულად.</span>
+        <span class="text-en">Playback Theatre is not classical theatre. There is no script. There is no rehearsal. Actors listen. The story comes alive on stage — spontaneously, differently every time.</span>
+      </div>
+      <div class="what-is-image"></div>
+      <div class="what-is-text-block">
+        <span class="text-ka">მაყურებელი ხდება თეატრის ნაწილი. ხდება ქმნერი. თავისი ამბავი გიყვის სცენაზე, აღმოჩნდება სხვაში, საკუთარ ემოციებში ხედავს უსაზღვრო მნიშვნელობას.</span>
+        <span class="text-en">An audience member becomes part of the theatre. Becomes a creator. Tells their own story on stage, recognizes themselves in another, finds profound meaning in their own emotions.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- YEAR SECTION -->
+  <section class="year-section" id="year-section">
+    <div class="year-bg">1975</div>
+    <div class="year-content">
+      <h2>
+        <span class="text-ka">წარმოშობა</span>
+        <span class="text-en">Origins</span>
+      </h2>
+      <p>
+        <span class="text-ka">ჯონათან ფოქსმა და ჯო სალასმა ნიუ-იორკში შექმნეს მეთოდი, რომელიც დღეს 60-ზე მეტ ქვეყანაში ცოცხლობს. საქართველოში 2025 წლიდან.</span>
+        <span class="text-en">Jonathan Fox and Jo Salas created this method in New York. Today it thrives in over 60 countries. In Georgia since 2025.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS SECTION -->
+  <section class="testimonials" id="testimonials">
+    <h2 class="testimonials-title">
+      <span class="text-ka">შთაბეჭდილებები</span>
+      <span class="text-en">Impressions</span>
+    </h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-quote">
+          <span class="text-ka">პირველად ვიყავი და ვერ წარმოვიდგენდი, რომ ასეთი რამ შეიძლებოდა. ტირილიც მინდოდა და სიცილიც.</span>
+          <span class="text-en">It was my first time and I couldn't imagine something like this. I wanted to cry and laugh at the same time.</span>
+        </div>
+        <div class="testimonial-author">
+          <span class="text-ka">— ანონიმური მაყურებელი</span>
+          <span class="text-en">— Anonymous</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-quote">
+          <span class="text-ka">სხვა ადამიანის ისტორიაში საკუთარი თავი ვნახე.</span>
+          <span class="text-en">I saw myself in someone else's story.</span>
+        </div>
+        <div class="testimonial-author">
+          <span class="text-ka">— ანონიმური მაყურებელი</span>
+          <span class="text-en">— Anonymous</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-quote">
+          <span class="text-ka">ეს არ არის უბრალოდ თეატრი. ეს რაღაც ძალიან ადამიანურია.</span>
+          <span class="text-en">This is not just theatre. It is something profoundly human.</span>
+        </div>
+        <div class="testimonial-author">
+          <span class="text-ka">— ანონიმური მაყურებელი</span>
+          <span class="text-en">— Anonymous</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-quote">
+          <span class="text-ka">ვერ დავიჯერე, რომ უცნობ ადამიანებთან ისეთი უსაფრთხოება ვიგრძენი.</span>
+          <span class="text-en">I couldn't believe I felt so safe among strangers.</span>
+        </div>
+        <div class="testimonial-author">
+          <span class="text-ka">— ანონიმური მაყურებელი</span>
+          <span class="text-en">— Anonymous</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-quote">
+          <span class="text-ka">მინდა მეგობრებიც წამოვიყვანო შემდეგ პერფორმანსზე.</span>
+          <span class="text-en">I want to bring my friends to the next performance.</span>
+        </div>
+        <div class="testimonial-author">
+          <span class="text-ka">— ანონიმური მაყურებელი</span>
+          <span class="text-en">— Anonymous</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-quote">
+          <span class="text-ka">საკუთარ ამბავს როცა სცენაზე ვუყურე, ისეთი სიმსუბუქე ვიგრძენი.</span>
+          <span class="text-en">Watching my own story on stage, I felt such lightness.</span>
+        </div>
+        <div class="testimonial-author">
+          <span class="text-ka">— ანონიმური მაყურებელი</span>
+          <span class="text-en">— Anonymous</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS SECTION -->
+  <section class="how-it-works" id="how-it-works">
+    <h2 class="how-it-works-title">
+      <span class="text-ka">როგორ მუშაობს</span>
+      <span class="text-en">How It Works</span>
+    </h2>
+    <div class="timeline">
+      <div class="timeline-step">
+        <div class="timeline-number">1</div>
+        <div class="timeline-content">
+          <h3><span class="text-ka">ვინმე ყვება ისტორიას</span><span class="text-en">Someone Shares</span></h3>
+          <p><span class="text-ka">მაყურებლიდან ადამიანი იზიარებს გამოცდილებას</span><span class="text-en">An audience member shares their experience</span></p>
+        </div>
+      </div>
+
+      <div class="timeline-step">
+        <div class="timeline-number">2</div>
+        <div class="timeline-content">
+          <h3><span class="text-ka">მსახიობები უსმენენ</span><span class="text-en">Actors Listen</span></h3>
+          <p><span class="text-ka">გულით, არა მხოლოდ ყურით</span><span class="text-en">With their hearts, not just their ears</span></p>
+        </div>
+      </div>
+
+      <div class="timeline-step">
+        <div class="timeline-number">3</div>
+        <div class="timeline-content">
+          <h3><span class="text-ka">ისტორია ცოცხლდება</span><span class="text-en">Story Comes Alive</span></h3>
+          <p><span class="text-ka">სპონტანურად, იმპროვიზაციით</span><span class="text-en">Spontaneously, through improvisation</span></p>
+        </div>
+      </div>
+
+      <div class="timeline-step">
+        <div class="timeline-number">4</div>
+        <div class="timeline-content">
+          <h3><span class="text-ka">მაყურებელი ხედავს</span><span class="text-en">Audience Sees</span></h3>
+          <p><span class="text-ka">საკუთარ გამოცდილებას ახალი თვალით</span><span class="text-en">Their own experience through new eyes</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TSISIA SECTION -->
+  <section class="tsisia-section" id="tsisia-section">
+    <div class="tsisia-content">
+      <div class="tsisia-image"></div>
+      <div class="tsisia-quote">
+        <blockquote>
+          <span class="text-ka">ეს სივრცე ჩემი ორი პროფესიის თანხვედრაა — თეატრისა და ფსიქოთერაპიის. გადასვლა დიდი, სტრუქტურირებული თეატრიდან პატარა, ავთენტურ სივრცეში, რომელიც ადამიანურ შეხვედრაზე და ნამდვილობაზე დგას.</span>
+          <span class="text-en">This space is where my two professions converge — theatre and psychotherapy. A transition from large, structured theatre to a small, authentic space built on human encounter and genuineness.</span>
+        </blockquote>
+        <div class="tsisia-attribution">
+          <span class="text-ka">ცისია ჩოლოყაშვილი · დამფუძნებელი</span>
+          <span class="text-en">Tsisia Cholokashvili · Founder</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY SECTION -->
+  <section class="gallery" id="gallery">
+    <h2 class="gallery-title">
+      <span class="text-ka">გალერეა</span>
+      <span class="text-en">Gallery</span>
+    </h2>
+    <div class="gallery-grid">
+      <div class="gallery-item" style="background-image: url('playback_images/gallery/1.jpg')"></div>
+      <div class="gallery-item" style="background-image: url('playback_images/gallery/2.jpg')"></div>
+      <div class="gallery-item" style="background-image: url('playback_images/gallery/3.jpg')"></div>
+      <div class="gallery-item" style="background-image: url('playback_images/gallery/4.jpg')"></div>
+      <div class="gallery-item" style="background-image: url('playback_images/gallery/5.jpg')"></div>
+    </div>
+  </section>
+
+  <!-- TEAM SECTION -->
+  <section class="team" id="team">
+    <h2 class="team-title">
+      <span class="text-ka">გუნდი</span>
+      <span class="text-en">Team</span>
+    </h2>
+    <p class="team-subtitle">
+      <span class="text-ka">14-წევრიანი გუნდი · სამი ნაკადი</span>
+      <span class="text-en">A team of 14 · Three cohorts</span>
+    </p>
+    <div class="team-grid">
+      <div class="team-member">
+        <div class="team-member-image" style="background-image: url('playback_images/team/tsisia-cholokashvili.jpg')"></div>
+        <h3>
+          <span class="text-ka">ცისია ჩოლოყაშვილი</span>
+          <span class="text-en">Tsisia Cholokashvili</span>
+        </h3>
+        <div class="role">
+          <span class="text-ka">დამფუძნებელი</span>
+          <span class="text-en">Founder</span>
+        </div>
+      </div>
+
+      <div class="team-member">
+        <div class="team-member-image" style="background-image: url('playback_images/team/george-rusetsky.jpg')"></div>
+        <h3>
+          <span class="text-ka">გიორგი რუსეცკი</span>
+          <span class="text-en">George Rusetsky</span>
+        </h3>
+        <div class="role">
+          <span class="text-ka">მუსიკოსი</span>
+          <span class="text-en">Musician</span>
+        </div>
+      </div>
+
+      <div class="team-member">
+        <div class="team-member-image" style="background-image: url('playback_images/team/tea-chubinidze.jpg')"></div>
+        <h3>
+          <span class="text-ka">თეა ჩუბინიძე</span>
+          <span class="text-en">Tea Chubinidze</span>
+        </h3>
+        <div class="role">
+          <span class="text-ka">მსახიობი</span>
+          <span class="text-en">Actor</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMS SECTION -->
+  <section class="programs" id="programs">
+    <h2 class="programs-title">
+      <span class="text-ka">პროგრამები</span>
+      <span class="text-en">Programs</span>
+    </h2>
+    <div class="programs-grid">
+      <div class="program-card">
+        <h3><span class="text-ka">საბაზისო</span><span class="text-en">Foundations</span></h3>
+        <div class="duration"><span class="text-ka">46 სთ</span><span class="text-en">46 hrs</span></div>
+        <p><span class="text-ka">ფლეიბექის საფუძვლები, იმპროვიზაციის ტექნიკა, ჩანაცვლება</span><span class="text-en">Playback fundamentals, improvisation techniques, doubling</span></p>
+      </div>
+
+      <div class="program-card">
+        <h3><span class="text-ka">პრაქტიკოსი</span><span class="text-en">Practitioner</span></h3>
+        <div class="duration"><span class="text-ka">180 სთ</span><span class="text-en">180 hrs</span></div>
+        <p><span class="text-ka">სცენური პრაქტიკა, კონდაქტინგი, სახლეული პერფორმანსი</span><span class="text-en">Stage practice, conducting, home performances</span></p>
+      </div>
+
+      <div class="program-card">
+        <h3><span class="text-ka">ვორქშოფები</span><span class="text-en">Workshops</span></h3>
+        <div class="duration"><span class="text-ka">საერთაშორისო</span><span class="text-en">International</span></div>
+        <p><span class="text-ka">უცხო ტრენერებთან, სპეციალიზებული თემები, მას-ტერ კლასი</span><span class="text-en">With international trainers, specialized topics, masterclasses</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="cta-section" id="cta">
+    <h2 class="cta-main-title">
+      <span class="text-ka">მოდი პერფორმანსზე</span>
+      <span class="text-en">Come to a Performance</span>
+    </h2>
+    <p class="cta-address">
+      <span class="text-ka">ყოველი თვის ბოლო შაბათი · 20:00</span>
+      <span class="text-en">Every last Saturday · 8:00 PM</span>
+    </p>
+    <p class="cta-address">
+      <span class="text-ka">ხორავას N14, თბილისი</span>
+      <span class="text-en">14 Khorava St, Tbilisi</span>
+    </p>
+    <p class="cta-note">
+      <span class="text-ka">დასწრება დონაციურია</span>
+      <span class="text-en">Attendance is donation-based</span>
+    </p>
+    <div class="cta-buttons">
+      <a href="mailto:hello@playbacktheatre.ge" class="btn">
+        <span class="text-ka">კონტაქტი</span>
+        <span class="text-en">Contact</span>
+      </a>
+      <a href="https://www.facebook.com/groups/georgian.playback.theatre" class="btn" target="_blank">
+        <span class="text-ka">Facebook ჯგუფი</span>
+        <span class="text-en">Facebook Group</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-links">
+      <a href="mailto:hello@playbacktheatre.ge">hello@playbacktheatre.ge</a>
+      <span>·</span>
+      <a href="https://www.facebook.com/groups/georgian.playback.theatre" target="_blank">Facebook</a>
+      <span>·</span>
+      <a href="https://www.iptn.org" target="_blank">IPTN</a>
+    </div>
+    <p>© 2025 <span class="text-ka">ქართული ფლეიბექ თეატრის ცენტრი</span><span class="text-en">Georgian Playback Theatre Centre</span></p>
+  </footer>
+
+  <script>
+    // Language toggle
+    const langToggle = document.getElementById('langToggle');
+    const isEnglish = localStorage.getItem('playbackLang') === 'en';
+
+    if (isEnglish) {
+      document.body.classList.add('lang-en');
+    }
+
+    langToggle.addEventListener('click', () => {
+      document.body.classList.toggle('lang-en');
+      const newLang = document.body.classList.contains('lang-en') ? 'en' : 'ka';
+      localStorage.setItem('playbackLang', newLang);
+    });
+
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = getComputedStyle(entry.target).animation;
+        }
+      });
+    }, observerOptions);
+
+    // Observe all animated elements
+    document.querySelectorAll(
+      '.hero-content, .hero-subtitle, .what-is-text-block, .what-is-image, ' +
+      '.year-content, .testimonials-title, .testimonial-card, ' +
+      '.how-it-works-title, .timeline-step, .tsisia-image, .tsisia-quote, ' +
+      '.gallery-title, .gallery-item, .team-title, .team-subtitle, .team-member, ' +
+      '.programs-title, .program-card, .cta-main-title, .cta-address, .cta-note, .cta-buttons'
+    ).forEach((el) => observer.observe(el));
+
+    // Smooth scroll behavior
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Add a subtle parallax effect to the hero background
+    window.addEventListener('scroll', () => {
+      const hero = document.querySelector('.hero');
+      const scrolled = window.scrollY;
+      if (scrolled < window.innerHeight) {
+        hero.style.backgroundPosition = `0 ${scrolled * 0.5}px`;
+      }
+    });
+
+    // Responsive gallery collapse
+    if (window.innerWidth <= 768) {
+      document.querySelectorAll('.gallery-item').forEach((item, index) => {
+        if (index >= 3) {
+          item.style.display = 'block';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

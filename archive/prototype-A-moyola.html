@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ქართული ფლეიბექ თეატრი | Georgian Playback Theatre</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Noto Sans Georgian', sans-serif;
+            background: #1a1a1a;
+            color: #f5f1ed;
+            line-height: 1.6;
+        }
+
+        body.english {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: #c9a87c;
+            transition: width 0.6s ease;
+            z-index: 100;
+            width: 0%;
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 101;
+            display: flex;
+            gap: 12px;
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 8px 12px;
+            border-radius: 24px;
+            border: 1px solid rgba(201, 168, 124, 0.3);
+        }
+
+        .lang-btn {
+            padding: 6px 14px;
+            border: none;
+            background: transparent;
+            color: #f5f1ed;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 16px;
+        }
+
+        .lang-btn.active {
+            background: #c9a87c;
+            color: #1a1a1a;
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: rgba(201, 168, 124, 0.2);
+        }
+
+        /* Slider Container */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .slides {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        .slide {
+            min-width: 100%;
+            min-height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+        }
+
+        .slide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 26, 0.65);
+            z-index: 1;
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+            text-align: center;
+        }
+
+        .slide-content.split {
+            justify-content: space-between;
+            text-align: left;
+        }
+
+        .slide-content.split .text-section {
+            flex: 1;
+            padding-right: 60px;
+        }
+
+        .slide-content.split .image-section {
+            flex: 1;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            opacity: 0.85;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 64px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 28px;
+            font-weight: 400;
+            color: #d4c5b9;
+            margin-bottom: 40px;
+        }
+
+        .body-text {
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+            color: #f5f1ed;
+        }
+
+        .body-text.split {
+            max-width: 100%;
+            text-align: left;
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .attribution {
+            margin-top: 32px;
+            font-size: 18px;
+            color: #c9a87c;
+            font-style: italic;
+        }
+
+        /* Steps Grid */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step {
+            background: rgba(201, 168, 124, 0.1);
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid rgba(201, 168, 124, 0.3);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 48px;
+            height: 48px;
+            background: #c9a87c;
+            color: #1a1a1a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #f5f1ed;
+        }
+
+        /* Info Card */
+        .info-card {
+            background: rgba(201, 168, 124, 0.1);
+            border: 1px solid rgba(201, 168, 124, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .info-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #c9a87c;
+        }
+
+        .info-card p {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #f5f1ed;
+        }
+
+        .info-card .location {
+            font-size: 16px;
+            color: #d4c5b9;
+            margin-bottom: 32px;
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 32px;
+            position: relative;
+            z-index: 2;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 14px 32px;
+            border: 2px solid #c9a87c;
+            background: transparent;
+            color: #c9a87c;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            background: #c9a87c;
+            color: #1a1a1a;
+        }
+
+        /* Navigation */
+        .nav-arrows {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 16px;
+            z-index: 50;
+        }
+
+        .nav-btn {
+            width: 48px;
+            height: 48px;
+            border: 2px solid #c9a87c;
+            background: rgba(26, 26, 26, 0.8);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #c9a87c;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: #c9a87c;
+            color: #1a1a1a;
+            transform: scale(1.1);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Dot Indicators */
+        .dot-indicators {
+            position: fixed;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 50;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(201, 168, 124, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .dot.active {
+            background: #c9a87c;
+            transform: scale(1.3);
+            border-color: #c9a87c;
+        }
+
+        .dot:hover {
+            background: rgba(201, 168, 124, 0.7);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 24px;
+            height: 24px;
+            stroke: #c9a87c;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* Footer */
+        .footer-text {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            font-size: 14px;
+            color: rgba(245, 241, 237, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 40px;
+            }
+
+            h2 {
+                font-size: 32px;
+            }
+
+            .subtitle {
+                font-size: 20px;
+            }
+
+            .body-text {
+                font-size: 18px;
+            }
+
+            .body-text.split {
+                font-size: 16px;
+            }
+
+            .slide-content {
+                padding: 40px 24px;
+            }
+
+            .slide-content.split {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .slide-content.split .text-section {
+                padding-right: 0;
+                padding-bottom: 40px;
+            }
+
+            .slide-content.split .image-section {
+                position: relative;
+                width: 100%;
+                height: 300px;
+                right: 0;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .nav-arrows {
+                bottom: 160px;
+            }
+
+            .dot-indicators {
+                bottom: 200px;
+            }
+
+            .language-toggle {
+                top: 16px;
+                right: 16px;
+                padding: 6px 10px;
+            }
+
+            .lang-btn {
+                padding: 4px 10px;
+                font-size: 12px;
+            }
+
+            .info-card {
+                padding: 24px;
+                max-width: 90%;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .cta-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .step-number {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+        }
+
+        /* Text overflow handling for Georgian */
+        .text-container {
+            max-width: 900px;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+    </style>
+</head>
+<body class="georgian">
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="language-toggle">
+        <button class="lang-btn active" data-lang="georgian" onclick="toggleLanguage('georgian')">ქართული</button>
+        <button class="lang-btn" data-lang="english" onclick="toggleLanguage('english')">ENG</button>
+    </div>
+
+    <div class="slider-container">
+        <div class="slides" id="slides">
+            <!-- Slide 1: Hero -->
+            <div class="slide">
+                <div class="slide-background" style="background-image: url('playback_images/general/hero.jpg')"></div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <div class="text-container">
+                        <h1 class="slide-title-ka">ქართული ფლეიბექ თეატრი</h1>
+                        <h1 class="slide-title-en" style="display: none;">Georgian Playback Theatre</h1>
+                        <p class="subtitle slide-subtitle-ka">ჩვენ ვთამაშობთ თქვენს ისტორიებს</p>
+                        <p class="subtitle slide-subtitle-en" style="display: none;">We play your stories back to you</p>
+                    </div>
+                </div>
+                <div class="scroll-indicator">
+                    <svg viewBox="0 0 24 24">
+                        <polyline points="12 5 12 19"></polyline>
+                        <polyline points="19 12 12 19 5 12"></polyline>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Slide 2: What is Playback Theatre -->
+            <div class="slide">
+                <div class="slide-background" style="background-image: url('playback_images/gallery/3.jpg')"></div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <div class="text-container">
+                        <h2 class="slide-heading-ka">რა არის ფლეიბექ თეატრი?</h2>
+                        <h2 class="slide-heading-en" style="display: none;">What is Playback Theatre?</h2>
+                        <p class="body-text slide-body-ka">ეს არ არის თეატრი კლასიკური გაგებით. ეს არის შეხვედრის ადგილი, სადაც ადამიანები ერთმანეთს ხედავენ და ესმით, სადაც შეგიძლია მოხვიდე ისეთი როგორიც სინამდვილეში ხარ, გააზიარო შენი უნიკალური ისტორია, რომელსაც ისეთი გულისყურით მოგისმენენ, რომ საკუთარ თავში გამოხმაურებაც კი უპოვნონ.</p>
+                        <p class="body-text slide-body-en" style="display: none;">This is not theatre in the classical sense. It's a meeting place where people truly see and hear each other, where you can come as you really are, share your unique story, and be listened to so deeply that others find echoes of it within themselves.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Origins & Purpose -->
+            <div class="slide">
+                <div class="slide-background" style="background-image: url('playback_images/gallery/7.jpg')"></div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content split">
+                    <div class="text-section">
+                        <h2 class="slide-heading-ka">და მაინც, რა არის?</h2>
+                        <h2 class="slide-heading-en" style="display: none;">And yet, what is it?</h2>
+                        <p class="body-text split slide-body-ka">ხელოვნებაა, ფსიქოლოგია თუ სოციალური ურთიერთობების ფორმა? ფლეიბექ თეატრი დააარსეს ჯონათან ფოქსმა და ჯო სალასმა 1975 წელს. მიზანი იყო ადამიანებს შორის დიალოგის შექმნა — განსხვავებული გამოცდილებების გაზიარება, საერთო განცდების ერთად გადატანა, და განსაკუთრებით იმ ადამიანების ხმების გაგება, რომლებიც ყველაზე ნაკლებად ისმის.</p>
+                        <p class="body-text split slide-body-en" style="display: none;">Is it art, psychology, or a form of social connection? Playback Theatre was founded by Jonathan Fox and Jo Salas in 1975. Its purpose was to create dialogue between people — sharing different experiences, carrying common joys and difficulties together, and especially hearing the voices of those who are heard the least.</p>
+                    </div>
+                    <div class="image-section"></div>
+                </div>
+            </div>
+
+            <!-- Slide 4: How It Works -->
+            <div class="slide">
+                <div class="slide-background" style="background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%)"></div>
+                <div class="slide-content">
+                    <div class="text-container">
+                        <h2 class="slide-heading-ka">როგორ მუშაობს</h2>
+                        <h2 class="slide-heading-en" style="display: none;">How It Works</h2>
+                        <div class="steps-grid">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-title slide-step-ka">ვინმე ყვება ისტორიას</div>
+                                <div class="step-title slide-step-en" style="display: none;">Someone shares a story</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-title slide-step-ka">მსახიობები უსმენენ</div>
+                                <div class="step-title slide-step-en" style="display: none;">Actors listen deeply</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-title slide-step-ka">ისტორია სცენაზე ცოცხლდება</div>
+                                <div class="step-title slide-step-en" style="display: none;">The story comes alive on stage</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <div class="step-title slide-step-ka">მაყურებელი ხედავს თავის ამბავს</div>
+                                <div class="step-title slide-step-en" style="display: none;">The audience sees their experience</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5: In Georgia -->
+            <div class="slide">
+                <div class="slide-background" style="background-image: url('playback_images/about_center/2.jpg')"></div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <div class="text-container">
+                        <h2 class="slide-heading-ka">საქართველოში</h2>
+                        <h2 class="slide-heading-en" style="display: none;">In Georgia</h2>
+                        <p class="body-text slide-body-ka">თავდაპირველად ვფიქრობდი, საქართველოში პირად ისტორიებზე დაფუძნებული თეატრის იდეის განხორციელება რთული იქნებოდა. თუმცა გამოცდილებამ საპირისპირო გვაჩვენა — ადამიანები გვიცხადებენ ნდობას, გვიზიარებენ ისტორიებს და სწორედ ამით აცოცხლებენ თეატრალურ პროცესს.</p>
+                        <p class="body-text slide-body-en" style="display: none;">At first I thought it would be difficult to realize the idea of a theatre based on personal stories in Georgia. But experience showed us the opposite — people trust us, share their stories, and in doing so, they bring the theatrical process to life.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6: Personal Story -->
+            <div class="slide">
+                <div class="slide-background" style="background-image: url('playback_images/team/tsisia-cholokashvili.jpg')"></div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <div class="text-container">
+                        <p class="body-text slide-body-ka">პირადად ჩემთვის ეს სივრცე ჩემი ორი პროფესიის თანხვედრაა: თეატრისა და ფსიქოთერაპიის. გადასვლა დიდი, სტრუქტურირებული თეატრიდან პატარა, ავთენტურ სივრცეში, რომელიც ადამიანურ შეხვედრაზე, სპონტანურობაზე და ნამდვილობაზე დგას.</p>
+                        <p class="body-text slide-body-en" style="display: none;">For me personally, this space is where my two professions converge: theatre and psychotherapy. A transition from large, structured theatre to a small, authentic space built on human encounter, spontaneity, and genuineness.</p>
+                        <p class="attribution slide-attr-ka">— ცისია ჩოლოყაშვილი, დამფუძნებელი</p>
+                        <p class="attribution slide-attr-en" style="display: none;">— Tsisia Cholokashvili, Founder</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 7: Uniqueness -->
+            <div class="slide">
+                <div class="slide-background" style="background-image: url('playback_images/gallery/14.jpg')"></div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <div class="text-container">
+                        <h2 class="slide-heading-ka">განუმეორებლობა</h2>
+                        <h2 class="slide-heading-en" style="display: none;">Uniqueness</h2>
+                        <p class="body-text slide-body-ka">ყოველი წარმოდგენა ექსკლუზიურია. დაწყებისას არასდროს ვიცით, როგორი იქნება, ვინ გაგვიზიარებს ისტორიას, როგორ განვითარდება თამაში და როგორ აიგება „ნარატიული ქსელი", რომელიც ყოველ ჯერზე თავიდან იქარგება.</p>
+                        <p class="body-text slide-body-en" style="display: none;">Every performance is exclusive. When we begin, we never know what it will be like, who will share a story, how the play will unfold, or how the 'narrative web' will weave itself — a web that is woven anew every single time.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 8: Join Us -->
+            <div class="slide">
+                <div class="slide-background" style="background-image: url('playback_images/gallery/20.jpg')"></div>
+                <div class="slide-overlay"></div>
+                <div class="slide-content">
+                    <div class="text-container">
+                        <h2 class="slide-heading-ka">შემოგვიერთდი</h2>
+                        <h2 class="slide-heading-en" style="display: none;">Join Us</h2>
+                        <div class="info-card">
+                            <h3 class="event-title-ka">ყოველი თვის ბოლო შაბათი</h3>
+                            <h3 class="event-title-en" style="display: none;">Every last Saturday</h3>
+                            <p>20:00</p>
+                            <p class="location">ხორავას N14, თბილისი</p>
+                            <p class="location" style="display: none;">Khorava N14, Tbilisi</p>
+                            <div class="cta-buttons">
+                                <a href="mailto:tsisa.cholokashvili@gmail.com" class="cta-btn contact-btn-ka">კონტაქტი</a>
+                                <a href="mailto:tsisa.cholokashvili@gmail.com" class="cta-btn contact-btn-en" style="display: none;">Contact</a>
+                                <a href="https://www.facebook.com/groups/playbacktheatregeorgia" target="_blank" class="cta-btn facebook-btn-ka">Facebook ჯგუფი</a>
+                                <a href="https://www.facebook.com/groups/playbacktheatregeorgia" target="_blank" class="cta-btn facebook-btn-en" style="display: none;">Facebook Group</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-text">
+                    <span class="footer-ka">© 2025 ქართული ფლეიბექ თეატრის ცენტრი</span>
+                    <span class="footer-en" style="display: none;">© 2025 Georgian Playback Theatre Center</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="dot-indicators" id="dotIndicators"></div>
+
+        <div class="nav-arrows">
+            <button class="nav-btn" id="prevBtn" onclick="previousSlide()">←</button>
+            <button class="nav-btn" id="nextBtn" onclick="nextSlide()">→</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let totalSlides = 0;
+        let isAnimating = false;
+        let currentLanguage = 'georgian';
+
+        function initSlider() {
+            const slides = document.querySelectorAll('.slide');
+            totalSlides = slides.length;
+            createDots();
+            updateSlider();
+            attachEventListeners();
+        }
+
+        function createDots() {
+            const dotContainer = document.getElementById('dotIndicators');
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                if (i === 0) dot.classList.add('active');
+                dot.onclick = () => goToSlide(i);
+                dotContainer.appendChild(dot);
+            }
+        }
+
+        function updateSlider() {
+            const slides = document.getElementById('slides');
+            const offset = currentSlide * -100;
+            slides.style.transform = `translateX(${offset}%)`;
+
+            // Update progress bar
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+
+            // Update dots
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+
+            // Update button states
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+
+            isAnimating = false;
+        }
+
+        function nextSlide() {
+            if (!isAnimating && currentSlide < totalSlides - 1) {
+                isAnimating = true;
+                currentSlide++;
+                updateSlider();
+            }
+        }
+
+        function previousSlide() {
+            if (!isAnimating && currentSlide > 0) {
+                isAnimating = true;
+                currentSlide--;
+                updateSlider();
+            }
+        }
+
+        function goToSlide(index) {
+            if (!isAnimating && index !== currentSlide) {
+                isAnimating = true;
+                currentSlide = index;
+                updateSlider();
+            }
+        }
+
+        function attachEventListeners() {
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') nextSlide();
+                if (e.key === 'ArrowLeft') previousSlide();
+            });
+
+            // Touch/Swipe support
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            document.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            document.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+
+            function handleSwipe() {
+                if (touchStartX - touchEndX > 50) {
+                    nextSlide();
+                }
+                if (touchEndX - touchStartX > 50) {
+                    previousSlide();
+                }
+            }
+
+            // Mouse wheel
+            document.addEventListener('wheel', (e) => {
+                if (e.deltaY > 0) {
+                    nextSlide();
+                } else {
+                    previousSlide();
+                }
+            });
+        }
+
+        function toggleLanguage(lang) {
+            currentLanguage = lang;
+            document.body.className = lang;
+
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+
+            // Show/hide Georgian elements
+            const isGeorgian = lang === 'georgian';
+            document.querySelectorAll('[class*="-ka"]').forEach(el => {
+                el.style.display = isGeorgian ? '' : 'none';
+            });
+            document.querySelectorAll('[class*="-en"]').forEach(el => {
+                el.style.display = isGeorgian ? 'none' : '';
+            });
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', initSlider);
+    </script>
+</body>
+</html>

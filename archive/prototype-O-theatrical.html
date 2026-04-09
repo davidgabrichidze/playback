@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Georgian Playback Theatre Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;600&family=Noto+Serif+Georgian:wght@400;600&family=Playfair+Display:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --text-light: #e8dfd0;
+            --accent-gold: #d4a574;
+
+            --hero-bg: #080604;
+            --what-bg: #151210;
+            --how-bg: #1e1a15;
+            --impressions-bg: #2a241e;
+            --founder-bg: #3a3025;
+            --performance-bg: #4a3f30;
+            --courses-bg: #5a4d3a;
+            --gallery-bg: #6a5d4a;
+            --team-bg: #3a3025;
+            --ethics-bg: #1e1a15;
+            --donation-bg: #151210;
+            --contact-bg: #0a0804;
+            --footer-bg: #080604;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--hero-bg);
+            color: var(--text-light);
+            line-height: 1.75;
+            transition: all 0.3s ease;
+        }
+
+        /* Language Toggle */
+        .lang-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(212, 165, 116, 0.2);
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .lang-toggle:hover {
+            background: rgba(212, 165, 116, 0.4);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(8, 6, 4, 0.3);
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(8, 6, 4, 0.7);
+        }
+
+        .logo {
+            font-family: 'Noto Serif Georgian', serif;
+            font-size: 20px;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+            opacity: 1;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: all 0.3s ease;
+        }
+
+        /* Typography */
+        .ka { display: inline; }
+        .en { display: none; }
+        body.lang-en .ka { display: none; }
+        body.lang-en .en { display: inline; }
+
+        h1 {
+            font-family: 'Noto Serif Georgian', serif;
+        }
+        body.lang-en h1 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        h2 {
+            font-family: 'Noto Serif Georgian', serif;
+        }
+        body.lang-en h2 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        h3 {
+            font-family: 'Noto Serif Georgian', serif;
+        }
+        body.lang-en h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--accent-gold), transparent);
+            animation: scroll-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scroll-pulse {
+            0% { transform: translateX(-50%) translateY(0); opacity: 1; }
+            100% { transform: translateX(-50%) translateY(20px); opacity: 0.3; }
+        }
+
+        /* Section divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            margin: 80px 0;
+            opacity: 0.4;
+        }
+
+        /* Spotlight effect */
+        .spotlight {
+            position: relative;
+        }
+
+        .spotlight::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--hero-bg) 0%, #0f0c09 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at top right, rgba(212, 165, 116, 0.1) 0%, transparent 40%),
+                radial-gradient(ellipse at bottom left, rgba(212, 165, 116, 0.05) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, transparent 30%, rgba(8, 6, 4, 0.6) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            animation: fade-in 1.2s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            color: var(--accent-gold);
+            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero .subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--text-light);
+            margin-bottom: 50px;
+            opacity: 0.9;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .cta-link {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 1px solid var(--accent-gold);
+            padding: 12px 28px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-link::before {
+            content: '';
+            position: absolute;
+            left: -100%;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-gold);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .cta-link:hover::before {
+            left: 0;
+        }
+
+        .cta-link:hover {
+            color: var(--hero-bg);
+            border-color: var(--text-light);
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 40px;
+            transition: background-color 0.3s ease;
+        }
+
+        .section-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            color: var(--accent-gold);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        /* What is Playback Theatre */
+        #theatre {
+            background-color: var(--what-bg);
+        }
+
+        .what-text {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .spotlight-text {
+            position: relative;
+            padding: 40px;
+        }
+
+        .spotlight-text::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .what-text p {
+            position: relative;
+            z-index: 1;
+            font-size: 17px;
+            margin-bottom: 30px;
+            line-height: 1.75;
+        }
+
+        /* How It Works */
+        #how {
+            background-color: var(--how-bg);
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+            animation: fade-in 0.8s ease-out;
+            position: relative;
+        }
+
+        .step:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+        .step:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .step-number {
+            font-size: 48px;
+            font-weight: 600;
+            color: var(--accent-gold);
+            min-width: 60px;
+            position: relative;
+        }
+
+        .step-number::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.1) 0%, transparent 60%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .step-content h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-light);
+        }
+
+        .step-content p {
+            font-size: 16px;
+            color: var(--text-light);
+            opacity: 0.85;
+        }
+
+        /* Impressions */
+        #impressions {
+            background-color: var(--impressions-bg);
+        }
+
+        .carousel {
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .quote-slide {
+            display: none;
+            text-align: center;
+            animation: fade-in 1s ease-out;
+            position: relative;
+        }
+
+        .quote-slide.active {
+            display: block;
+        }
+
+        .quote-slide::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .quote-text {
+            font-size: 24px;
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quote-author {
+            font-size: 14px;
+            color: var(--accent-gold);
+            letter-spacing: 1.5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .carousel-controls {
+            text-align: center;
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(212, 165, 116, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: var(--accent-gold);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* Founder Section */
+        #founder {
+            background-color: var(--founder-bg);
+        }
+
+        .founder-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .founder-quote {
+            position: relative;
+        }
+
+        .founder-quote::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .founder-quote-text {
+            font-size: 20px;
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .founder-attribution {
+            font-size: 14px;
+            color: var(--accent-gold);
+            letter-spacing: 1.5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .founder-info {
+            text-align: center;
+            margin-top: 40px;
+            position: relative;
+            z-index: 1;
+            grid-column: 1 / -1;
+        }
+
+        .founder-info p {
+            font-size: 16px;
+            color: var(--text-light);
+            line-height: 1.75;
+        }
+
+        /* Performance Section */
+        #performance {
+            background-color: var(--performance-bg);
+        }
+
+        .performance-info {
+            text-align: center;
+        }
+
+        .performance-item {
+            margin-bottom: 30px;
+        }
+
+        .performance-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+        }
+
+        .performance-value {
+            font-size: 22px;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .performance-note {
+            font-size: 16px;
+            color: var(--text-light);
+            opacity: 0.85;
+            margin-top: 40px;
+        }
+
+        .performance-cta {
+            margin-top: 40px;
+        }
+
+        .performance-cta a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 1px solid var(--accent-gold);
+            padding: 12px 28px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .performance-cta a::before {
+            content: '';
+            position: absolute;
+            left: -100%;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-gold);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .performance-cta a:hover::before {
+            left: 0;
+        }
+
+        .performance-cta a:hover {
+            color: var(--performance-bg);
+        }
+
+        /* Courses Section */
+        #courses {
+            background-color: var(--courses-bg);
+        }
+
+        .courses-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .course-card {
+            border-left: 3px solid var(--accent-gold);
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            animation: fade-in 0.8s ease-out;
+        }
+
+        .course-card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .course-card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .course-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+        }
+
+        .course-duration {
+            font-size: 13px;
+            color: var(--text-light);
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .course-desc {
+            font-size: 16px;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Gallery Section */
+        #gallery {
+            background-color: var(--gallery-bg);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            opacity: 0.9;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-item.hidden {
+            display: none;
+        }
+
+        .gallery-toggle {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .gallery-toggle button {
+            background: transparent;
+            color: var(--accent-gold);
+            border: 1px solid var(--accent-gold);
+            padding: 10px 24px;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-toggle button:hover {
+            background: rgba(212, 165, 116, 0.1);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            animation: fade-in 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90vh;
+            max-height: 90vh;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: var(--accent-gold);
+            font-size: 32px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* Team Section */
+        #team {
+            background-color: var(--team-bg);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .team-member {
+            text-align: center;
+            animation: fade-in 0.8s ease-out;
+        }
+
+        .team-member:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .team-member:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .team-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border: 2px solid var(--accent-gold);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .team-role {
+            font-size: 13px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* Ethics Section */
+        #ethics {
+            background-color: var(--ethics-bg);
+        }
+
+        .ethics-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            font-size: 16px;
+            color: var(--text-light);
+            line-height: 1.75;
+        }
+
+        .ethics-items {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .ethics-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .ethics-item:hover {
+            border-left-color: var(--accent-gold);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .ethics-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ethics-title::after {
+            content: '+';
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .ethics-item.active .ethics-title::after {
+            transform: rotate(45deg);
+        }
+
+        .ethics-text {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.7;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .ethics-item.active .ethics-text {
+            max-height: 200px;
+            margin-top: 15px;
+        }
+
+        .ethics-iptn {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .ethics-iptn a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-gold);
+            transition: all 0.3s ease;
+        }
+
+        .ethics-iptn a:hover {
+            opacity: 0.8;
+        }
+
+        /* Donation Section */
+        #donation {
+            background-color: var(--donation-bg);
+        }
+
+        .donation-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .donation-text {
+            font-size: 18px;
+            color: var(--text-light);
+            line-height: 1.75;
+            margin-bottom: 30px;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: var(--contact-bg);
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-method {
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            padding: 20px;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-method:hover {
+            border-color: var(--accent-gold);
+            background: rgba(212, 165, 116, 0.05);
+        }
+
+        .contact-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+        }
+
+        .contact-value {
+            font-size: 18px;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-method a .contact-value:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--footer-bg);
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid rgba(212, 165, 116, 0.2);
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .footer-links {
+            margin: 15px 0;
+        }
+
+        .footer-links a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            margin: 0 15px;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+
+        .footer-copyright {
+            opacity: 0.7;
+            margin-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            nav {
+                padding: 15px 20px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+                letter-spacing: 2px;
+            }
+
+            .hero .subtitle {
+                font-size: 18px;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .cta-link {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+
+            .section-title {
+                font-size: 22px;
+                letter-spacing: 2px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .founder-content {
+                grid-template-columns: 1fr;
+            }
+
+            .quote-text {
+                font-size: 20px;
+            }
+
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .step-number::before {
+                width: 200px;
+                height: 200px;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            .section-divider {
+                margin: 60px 0;
+            }
+
+            .lang-toggle {
+                top: 80px;
+            }
+
+            .scroll-indicator {
+                bottom: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero .subtitle {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 18px;
+            }
+
+            .quote-text {
+                font-size: 18px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .performance-value {
+                font-size: 18px;
+            }
+
+            .hero-ctas {
+                gap: 10px;
+            }
+
+            .cta-link {
+                padding: 10px 20px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Toggle -->
+    <button class="lang-toggle" id="langToggle">
+        <span class="ka">English</span><span class="en">ქართული</span>
+    </button>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">
+            <span class="ka">ფლეიბექი</span>
+            <span class="en">Playback</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#theatre"><span class="ka">თეატრი</span><span class="en">Theatre</span></a></li>
+            <li><a href="#impressions"><span class="ka">შთაბეჭდილებები</span><span class="en">Impressions</span></a></li>
+            <li><a href="#performance"><span class="ka">პერფორმანსი</span><span class="en">Performance</span></a></li>
+            <li><a href="#courses"><span class="ka">კურსები</span><span class="en">Courses</span></a></li>
+            <li><a href="#gallery"><span class="ka">გალერეა</span><span class="en">Gallery</span></a></li>
+            <li><a href="#team"><span class="ka">გუნდი</span><span class="en">Team</span></a></li>
+            <li><a href="#ethics"><span class="ka">ეთიკა</span><span class="en">Ethics</span></a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1><span class="ka">ქართული ფლეიბექ თეატრი</span><span class="en">Georgian Playback Theatre</span></h1>
+            <p class="subtitle"><span class="ka">ჩვენ ვთამაშობთ თქვენს ისტორიებს</span><span class="en">We play back your stories</span></p>
+            <div class="hero-ctas">
+                <a href="#performance" class="cta-link"><span class="ka">პერფორმანსი</span><span class="en">Performance</span></a>
+                <a href="#courses" class="cta-link"><span class="ka">კურსები</span><span class="en">Courses</span></a>
+            </div>
+        </div>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- What is Playback Theatre -->
+    <section id="theatre">
+        <div class="section-container">
+            <h2 class="section-title"><span class="ka">რა არის ფლეიბექ თეატრი</span><span class="en">What is Playback Theatre</span></h2>
+            <div class="what-text spotlight-text">
+                <p><span class="ka">ფლეიბექ თეატრი სპონტანური იმპროვიზაციული თეატრის ფორმაა, სადაც მაყურებლის რეალური ისტორიები სცენაზე ცოცხლდება. მსახიობები მოძრაობით, მუსიკითა და ემოციით გადმოსცემენ იმას, რაც მოყვა. სცენარი არ არსებობს. რეპეტიცია არ არსებობს.</span><span class="en">Playback Theatre is a form of spontaneous improvisational theatre where real audience stories come alive on stage. Actors convey what was told through movement, music, and emotion. There is no script. There is no rehearsal.</span></p>
+                <p><span class="ka">მეთოდი 1975 წელს შექმნეს ჯონათან ფოქსმა და ჯო სალასმა ნიუ-იორკში. დღეს ფლეიბექ თეატრი 60-ზე მეტ ქვეყანაში პრაქტიკდება — თეატრალურ სცენებზე, საგანმანათლებლო დაწესებულებებში, თერაპიულ პროგრამებსა და საზოგადოებრივ სივრცეებში.</span><span class="en">The method was created in 1975 by Jonathan Fox and Jo Salas in New York. Today Playback Theatre is practiced in over 60 countries — on theatrical stages, in educational institutions, therapeutic programs, and community spaces.</span></p>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- How It Works -->
+    <section id="how">
+        <div class="section-container">
+            <h2 class="section-title"><span class="ka">როგორ ხდება</span><span class="en">How It Works</span></h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3><span class="ka">მაყურებელი ჰყვება ისტორიას</span><span class="en">An audience member shares a story</span></h3>
+                        <p><span class="ka">პირადი, რეალური, ნებისმიერი</span><span class="en">Personal, real, any story</span></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3><span class="ka">მსახიობები აცოცხლებენ სცენაზე</span><span class="en">Actors bring it to life on stage</span></h3>
+                        <p><span class="ka">მოძრაობით, მუსიკით, ემოციით</span><span class="en">Through movement, music, emotion</span></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3><span class="ka">საზოგადოება ერთ გამოცდილებას იზიარებს</span><span class="en">The community shares one experience</span></h3>
+                        <p><span class="ka">მოსმენა, თანაგრძნობა, კავშირი</span><span class="en">Listening, empathy, connection</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Impressions -->
+    <section id="impressions">
+        <div class="section-container">
+            <h2 class="section-title"><span class="ka">შთაბეჭდილებები</span><span class="en">Impressions</span></h2>
+            <p class="section-subtitle"><span class="ka">რას ამბობენ ადამიანები პერფორმანსის შემდეგ</span><span class="en">What people say after a performance</span></p>
+
+            <div class="carousel">
+                <div class="quote-slide active">
+                    <p class="quote-text"><span class="ka">პირველად ვიყავი და ვერ წარმოვიდგენდი, რომ ასეთი რამ შეიძლებოდა. ტირილიც მინდოდა და სიცილიც.</span><span class="en">It was my first time and I couldn't imagine something like this was possible. I wanted to both cry and laugh.</span></p>
+                    <p class="quote-author"><span class="ka">— მაყურებელი</span><span class="en">— Audience member</span></p>
+                </div>
+                <div class="quote-slide">
+                    <p class="quote-text"><span class="ka">სხვისი ისტორიის ყურებისას საკუთარი თავი ვნახე. ძალიან ძლიერი გამოცდილება იყო.</span><span class="en">Watching someone else's story, I saw myself. It was a very powerful experience.</span></p>
+                    <p class="quote-author"><span class="ka">— მაყურებელი</span><span class="en">— Audience member</span></p>
+                </div>
+                <div class="quote-slide">
+                    <p class="quote-text"><span class="ka">ეს არ არის უბრალოდ თეატრი. ეს რაღაც ძალიან ადამიანურია.</span><span class="en">This is not just theatre. This is something profoundly human.</span></p>
+                    <p class="quote-author"><span class="ka">— მაყურებელი</span><span class="en">— Audience member</span></p>
+                </div>
+                <div class="quote-slide">
+                    <p class="quote-text"><span class="ka">ვერ დავიჯერე, რომ უცნობ ადამიანებთან ასეთი უსაფრთხოება შეიძლებოდა მეგრძნო.</span><span class="en">I couldn't believe I could feel so safe among strangers.</span></p>
+                    <p class="quote-author"><span class="ka">— მაყურებელი</span><span class="en">— Audience member</span></p>
+                </div>
+                <div class="quote-slide">
+                    <p class="quote-text"><span class="ka">საკუთარ ამბავს როცა სცენაზე ვუყურე, ისეთი სიმსუბუქე ვიგრძენი — თითქოს ტვირთი მომეხსნა.</span><span class="en">Watching my own story on stage, I felt such lightness — as if a weight had been lifted.</span></p>
+                    <p class="quote-author"><span class="ka">— მაყურებელი</span><span class="en">— Audience member</span></p>
+                </div>
+                <div class="quote-slide">
+                    <p class="quote-text"><span class="ka">მთელ კვირას სხვა ადამიანი ვიყავი ამ საღამოს შემდეგ.</span><span class="en">I was a different person all week after that evening.</span></p>
+                    <p class="quote-author"><span class="ka">— მაყურებელი</span><span class="en">— Audience member</span></p>
+                </div>
+            </div>
+
+            <div class="carousel-controls">
+                <div class="carousel-dot active" data-slide="0"></div>
+                <div class="carousel-dot" data-slide="1"></div>
+                <div class="carousel-dot" data-slide="2"></div>
+                <div class="carousel-dot" data-slide="3"></div>
+                <div class="carousel-dot" data-slide="4"></div>
+                <div class="carousel-dot" data-slide="5"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Founder Section -->
+    <section id="founder">
+        <div class="section-container">
+            <h2 class="section-title"><span class="ka">ცენტრის შესახებ</span><span class="en">About the Center</span></h2>
+
+            <div class="founder-content">
+                <div class="founder-quote">
+                    <p class="founder-quote-text"><span class="ka">ეს სივრცე ჩემი ორი პროფესიის თანხვედრაა — თეატრისა და ფსიქოთერაპიის. გადასვლა დიდი, სტრუქტურირებული თეატრიდან პატარა, ავთენტურ სივრცეში, სადაც ადამიანი შეიძლება იყოს ისეთი, როგორიც არის.</span><span class="en">This space is a convergence of my two professions — theatre and psychotherapy. A transition from big, structured theatre to a small, authentic space where a person can be who they truly are.</span></p>
+                    <p class="founder-attribution"><span class="ka">— ცისია ჩოლოყაშვილი, თანადამფუძნებელი</span><span class="en">— Tsisia Cholokashvili, Co-founder</span></p>
+                </div>
+
+                <div style="text-align: center;">
+                    <p style="font-size: 16px; color: var(--text-light); line-height: 1.75; position: relative; z-index: 1;"><span class="ka">ქართული ფლეიბექ თეატრის ცენტრი დაარსდა 2025 წლის 2 მარტს თბილისში.</span><span class="en">The Georgian Playback Theatre Center was founded on March 2, 2025 in Tbilisi.</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Performance Section -->
+    <section id="performance">
+        <div class="section-container">
+            <h2 class="section-title"><span class="ka">პერფორმანსი</span><span class="en">Performance</span></h2>
+
+            <div class="performance-info">
+                <div class="performance-item">
+                    <div class="performance-label"><span class="ka">განრიგი</span><span class="en">Schedule</span></div>
+                    <div class="performance-value"><span class="ka">ყოველი თვის ბოლო შაბათი</span><span class="en">Last Saturday of every month</span></div>
+                </div>
+
+                <div class="performance-item">
+                    <div class="performance-label"><span class="ka">დრო</span><span class="en">Time</span></div>
+                    <div class="performance-value">20:00</div>
+                </div>
+
+                <div class="performance-item">
+                    <div class="performance-label"><span class="ka">ადგილი</span><span class="en">Location</span></div>
+                    <div class="performance-value"><span class="ka">ხორავას N14, თბილისი</span><span class="en">Khorava 14, Tbilisi</span></div>
+                </div>
+
+                <p class="performance-note"><span class="ka">დასწრება დონაციურია</span><span class="en">Attendance is donation-based</span></p>
+
+                <div class="performance-cta">
+                    <a href="mailto:tsisa.cholokashvili@gmail.com"><span class="ka">კონტაქტი</span><span class="en">Contact</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Courses Section -->
+    <section id="courses">
+        <div class="section-container">
+            <h2 class="section-title"><span class="ka">კურსები</span><span class="en">Courses</span></h2>
+
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-name"><span class="ka">საბაზისო კურსი</span><span class="en">Basic Course</span></div>
+                    <div class="course-duration"><span class="ka">46 საათი</span><span class="en">46 hours</span></div>
+                    <div class="course-desc"><span class="ka">ფლეიბექის საფუძვლები — მოსმენა, სპონტანურობა, იმპროვიზაცია</span><span class="en">Playback fundamentals — listening, spontaneity, improvisation</span></div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-name"><span class="ka">პრაქტიკოსის კურსი</span><span class="en">Practitioner Course</span></div>
+                    <div class="course-duration"><span class="ka">180 საათი</span><span class="en">180 hours</span></div>
+                    <div class="course-desc"><span class="ka">სიღრმისეული მომზადება — სცენური პრაქტიკა, კონდაქტინგი</span><span class="en">In-depth training — stage practice, conducting</span></div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-name"><span class="ka">ვორქშოფები</span><span class="en">Workshops</span></div>
+                    <div class="course-duration"><span class="ka">მოწვეული ტრენერებით</span><span class="en">With guest trainers</span></div>
+                    <div class="course-desc"><span class="ka">საერთაშორისო ტრენერებთან ფოკუსირებული სემინარები</span><span class="en">Focused sessions with international trainers</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <div class="section-container">
+            <h2 class="section-title"><span class="ka">გალერეა</span><span class="en">Gallery</span></h2>
+
+            <div class="gallery-grid">
+                <div class="gallery-item" data-index="1">
+                    <img src="playback_images/gallery/1.jpg" alt="Gallery image 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item" data-index="2">
+                    <img src="playback_images/gallery/2.jpg" alt="Gallery image 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item" data-index="3">
+                    <img src="playback_images/gallery/3.jpg" alt="Gallery image 3" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item" data-index="4">
+                    <img src="playback_images/gallery/4.jpg" alt="Gallery image 4" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item" data-index="5">
+                    <img src="playback_images/gallery/5.jpg" alt="Gallery image 5" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item" data-index="6">
+                    <img src="playback_images/gallery/6.jpg" alt="Gallery image 6" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item" data-index="7">
+                    <img src="playback_images/gallery/7.jpg" alt="Gallery image 7" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item" data-index="8">
+                    <img src="playback_images/gallery/8.jpg" alt="Gallery image 8" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item hidden" data-index="9">
+                    <img src="playback_images/gallery/9.jpg" alt="Gallery image 9" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item hidden" data-index="10">
+                    <img src="playback_images/gallery/10.jpg" alt="Gallery image 10" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item hidden" data-index="11">
+                    <img src="playback_images/gallery/11.jpg" alt="Gallery image 11" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item hidden" data-index="12">
+                    <img src="playback_images/gallery/12.jpg" alt="Gallery image 12" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item hidden" data-index="13">
+                    <img src="playback_images/gallery/13.jpg" alt="Gallery image 13" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item hidden" data-index="14">
+                    <img src="playback_images/gallery/14.jpg" alt="Gallery image 14" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item hidden" data-index="15">
+                    <img src="playback_images/gallery/15.jpg" alt="Gallery image 15" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item hidden" data-index="16">
+                    <img src="playback_images/gallery/16.jpg" alt="Gallery image 16" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item hidden" data-index="17">
+                    <img src="playback_images/gallery/17.jpg" alt="Gallery image 17" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item hidden" data-index="18">
+                    <img src="playback_images/gallery/18.jpg" alt="Gallery image 18" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item hidden" data-index="19">
+                    <img src="playback_images/gallery/19.jpg" alt="Gallery image 19" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item hidden" data-index="20">
+                    <img src="playback_images/gallery/20.jpg" alt="Gallery image 20" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item hidden" data-index="21">
+                    <img src="playback_images/gallery/21.jpg" alt="Gallery image 21" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item hidden" data-index="22">
+                    <img src="playback_images/gallery/22.jpg" alt="Gallery image 22" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item hidden" data-index="23">
+                    <img src="playback_images/gallery/23.jpg" alt="Gallery image 23" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item hidden" data-index="24">
+                    <img src="playback_images/gallery/24.jpg" alt="Gallery image 24" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+                <div class="gallery-item hidden" data-index="25">
+                    <img src="playback_images/gallery/25.jpg" alt="Gallery image 25" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%23333%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                </div>
+            </div>
+
+            <div class="gallery-toggle">
+                <button id="galleryToggle"><span class="ka">მეტის ნახვა</span><span class="en">See More</span></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">&times;</button>
+            <img class="lightbox-img" id="lightboxImg" src="" alt="">
+            <div class="lightbox-nav">
+                <span id="lightboxCounter">1 / 25</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Team Section -->
+    <section id="team">
+        <div class="section-container">
+            <h2 class="section-title"><span class="ka">გუნდი</span><span class="en">Team</span></h2>
+
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="playback_images/team/george-rusetsky.jpg" alt="George Rusetsky" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22180%22 height=%22180%22%3E%3Crect fill=%22%23333%22 width=%22180%22 height=%22180%22/%3E%3C/svg%3E'">
+                    </div>
+                    <div class="team-name"><span class="ka">გიორგი რუსეცკი</span><span class="en">George Rusetsky</span></div>
+                    <div class="team-role"><span class="ka">დამფუძნებელი, ტრენერი, კონდაქტორი</span><span class="en">Founder, trainer, conductor</span></div>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="playback_images/team/tsisia-cholokashvili.jpg" alt="Tsisia Cholokashvili" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22180%22 height=%22180%22%3E%3Crect fill=%22%23333%22 width=%22180%22 height=%22180%22/%3E%3C/svg%3E'">
+                    </div>
+                    <div class="team-name"><span class="ka">ცისია ჩოლოყაშვილი</span><span class="en">Tsisia Cholokashvili</span></div>
+                    <div class="team-role"><span class="ka">თანადამფუძნებელი</span><span class="en">Co-founder</span></div>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="playback_images/team/tea-chubinidze.jpg" alt="Tea Chubinidze" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22180%22 height=%22180%22%3E%3Crect fill=%22%23333%22 width=%22180%22 height=%22180%22/%3E%3C/svg%3E'">
+                    </div>
+                    <div class="team-name"><span class="ka">თეა ჩუბინიძე</span><span class="en">Tea Chubinidze</span></div>
+                    <div class="team-role"><span class="ka">გუნდის წევრი</span><span class="en">Team member</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Ethics Section -->
+    <section id="ethics">
+        <div class="section-container">
+            <h2 class="section-title"><span class="ka">ეთიკის კოდექსი</span><span class="en">Code of Ethics</span></h2>
+
+            <p class="ethics-intro">
+                <span class="ka">ფლეიბექ თეატრი მიჰყვება IPTN-ის (International Playback Theatre Network) საერთაშორისო ეთიკის პრინციპებს:</span>
+                <span class="en">Playback Theatre follows the ethical principles of IPTN (International Playback Theatre Network):</span>
+            </p>
+
+            <div class="ethics-items">
+                <div class="ethics-item">
+                    <div class="ethics-title">
+                        <span class="ka">პატივისცემა</span><span class="en">Respect</span>
+                    </div>
+                    <div class="ethics-text">
+                        <span class="ka">ჩვენ პატივს ვცემთ თითოეულ ადამიანს, მის გამოცდილებასა და ისტორიას. ვაღიარებთ ადამიანის მთლიანობას და ვიქცევით ისე, რომ არ დავამციროთ იგი.</span>
+                        <span class="en">We respect each person, their experience and their story. We honor the wholeness of each individual and act so as never to diminish them.</span>
+                    </div>
+                </div>
+
+                <div class="ethics-item">
+                    <div class="ethics-title">
+                        <span class="ka">ინკლუზიურობა</span><span class="en">Inclusivity</span>
+                    </div>
+                    <div class="ethics-text">
+                        <span class="ka">ღია ვართ ნებისმიერი ისტორიისადმი. ვცდილობთ გავაჟღეროთ ის ხმები, რომლებიც ხშირად არ ისმის საზოგადოებაში.</span>
+                        <span class="en">We are open to any story. We strive to amplify voices that are often unheard in society.</span>
+                    </div>
+                </div>
+
+                <div class="ethics-item">
+                    <div class="ethics-title">
+                        <span class="ka">სპონტანურობა</span><span class="en">Spontaneity</span>
+                    </div>
+                    <div class="ethics-text">
+                        <span class="ka">ვაძლევთ მოვლენებს საშუალებას განვითარდეს ბუნებრივად, წინასწარი დაგეგმვის ან მანიპულაციის გარეშე.</span>
+                        <span class="en">We allow events to unfold naturally, without pre-planning or manipulation.</span>
+                    </div>
+                </div>
+
+                <div class="ethics-item">
+                    <div class="ethics-title">
+                        <span class="ka">კომპეტენტურობა</span><span class="en">Competence</span>
+                    </div>
+                    <div class="ethics-text">
+                        <span class="ka">ჩვენი გუნდი მუდმივად ავითარებს კომპეტენციას სწავლით, პრაქტიკითა და სუპერვიზიით.</span>
+                        <span class="en">Our team continuously develops competence through learning, practice, and supervision.</span>
+                    </div>
+                </div>
+
+                <div class="ethics-item">
+                    <div class="ethics-title">
+                        <span class="ka">სოციალური პასუხისმგებლობა</span><span class="en">Social Responsibility</span>
+                    </div>
+                    <div class="ethics-text">
+                        <span class="ka">გვესმის ფლეიბექ თეატრის შესაძლებლობა — ხელი შეუწყოს სოციალურ სამართლიანობას. ვიყენებთ ხელოვნებას, როგორც ცვლილების ინსტრუმენტს.</span>
+                        <span class="en">We understand Playback Theatre's potential to promote social justice. We use art as an instrument of change.</span>
+                    </div>
+                </div>
+
+                <div class="ethics-item">
+                    <div class="ethics-title">
+                        <span class="ka">კეთილსინდისიერება</span><span class="en">Integrity</span>
+                    </div>
+                    <div class="ethics-text">
+                        <span class="ka">ვმოქმედებთ პატიოსნად და გამჭვირვალედ. ჩვენი სიტყვა და საქმე თანმიმდევრულია.</span>
+                        <span class="en">We act with honesty and transparency. Our words and actions are consistent.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ethics-iptn">
+                <span class="ka">მეტი ინფორმაცია:</span><span class="en">Learn more:</span> <a href="https://www.iptn.info" target="_blank">IPTN</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Donation Section -->
+    <section id="donation">
+        <div class="section-container">
+            <h2 class="section-title"><span class="ka">მხარდაჭერა</span><span class="en">Support</span></h2>
+
+            <div class="donation-content">
+                <p class="donation-text">
+                    <span class="ka">ეს თეატრი თქვენი წყალობით არსებობს. თქვენი მხარდაჭერა გვეხმარება ამ მნიშვნელოვანი საქმის გაგრძელებაში.</span>
+                    <span class="en">This theatre exists because of your support. Your contribution helps us continue this important work.</span>
+                </p>
+                <div style="text-align: center;">
+                    <a href="mailto:tsisa.cholokashvili@gmail.com" class="cta-link"><span class="ka">დონაცია</span><span class="en">Donate</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-container">
+            <h2 class="section-title"><span class="ka">კონტაქტი</span><span class="en">Contact</span></h2>
+
+            <div class="contact-content">
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="contact-label">Email</div>
+                        <a href="mailto:tsisa.cholokashvili@gmail.com" style="text-decoration: none;">
+                            <div class="contact-value">tsisa.cholokashvili@gmail.com</div>
+                        </a>
+                    </div>
+
+                    <div class="contact-method">
+                        <div class="contact-label">WhatsApp</div>
+                        <a href="https://wa.me/995577140222" target="_blank" style="text-decoration: none;">
+                            <div class="contact-value">+995 577 140 222</div>
+                        </a>
+                    </div>
+
+                    <div class="contact-method">
+                        <div class="contact-label"><span class="ka">Facebook ჯგუფი</span><span class="en">Facebook Group</span></div>
+                        <a href="https://www.facebook.com/groups/playbacktheatregeorgia" target="_blank" style="text-decoration: none;">
+                            <div class="contact-value"><span class="ka">Facebook ჯგუფი</span><span class="en">Facebook Group</span></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-copyright"><span class="ka">© 2025 ქართული ფლეიბექ თეატრის ცენტრი</span><span class="en">© 2025 Georgian Playback Theatre Center</span></p>
+            <div class="footer-links">
+                <a href="https://www.iptn.info" target="_blank">IPTN</a>
+                <a href="https://www.facebook.com/groups/playbacktheatregeorgia" target="_blank">Facebook</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language toggle
+        const langToggle = document.getElementById('langToggle');
+        const body = document.body;
+
+        langToggle.addEventListener('click', () => {
+            body.classList.toggle('lang-en');
+            localStorage.setItem('language', body.classList.contains('lang-en') ? 'en' : 'ka');
+        });
+
+        // Load saved language preference
+        if (localStorage.getItem('language') === 'en') {
+            body.classList.add('lang-en');
+        }
+
+        // Navigation scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.quote-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlide = index;
+                showSlide(currentSlide);
+            });
+        });
+
+        // Auto advance carousel every 6 seconds
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }, 6000);
+
+        // Gallery functionality
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const galleryToggle = document.getElementById('galleryToggle');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxCounter = document.getElementById('lightboxCounter');
+        let currentLightboxIndex = 0;
+        let isExpanded = false;
+
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                currentLightboxIndex = index;
+                openLightbox(index);
+            });
+        });
+
+        function openLightbox(index) {
+            currentLightboxIndex = index;
+            const img = galleryItems[index].querySelector('img');
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightbox.classList.add('active');
+            updateLightboxCounter();
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+        }
+
+        function updateLightboxCounter() {
+            lightboxCounter.textContent = (currentLightboxIndex + 1) + ' / 25';
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+
+            if (e.key === 'ArrowRight') {
+                currentLightboxIndex = (currentLightboxIndex + 1) % 25;
+                openLightbox(currentLightboxIndex);
+            } else if (e.key === 'ArrowLeft') {
+                currentLightboxIndex = (currentLightboxIndex - 1 + 25) % 25;
+                openLightbox(currentLightboxIndex);
+            } else if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        // Gallery expand/collapse
+        galleryToggle.addEventListener('click', () => {
+            isExpanded = !isExpanded;
+            galleryItems.forEach((item, index) => {
+                if (index >= 8) {
+                    item.classList.toggle('hidden', !isExpanded);
+                }
+            });
+
+            const isEn = body.classList.contains('lang-en');
+            galleryToggle.innerHTML = isExpanded ?
+                `<span class="ka">ნაკლები</span><span class="en">Show Less</span>` :
+                `<span class="ka">მეტის ნახვა</span><span class="en">See More</span>`;
+        });
+
+        // Ethics accordion
+        const ethicsItems = document.querySelectorAll('.ethics-item');
+        ethicsItems.forEach((item) => {
+            item.addEventListener('click', () => {
+                ethicsItems.forEach((otherItem) => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                item.classList.toggle('active');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Initial animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.step, .course-card, .team-member').forEach((el) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
