@@ -111,12 +111,14 @@
         opacity: 1;
       }
 
-      .logo {
+      .logo, .logo:hover, .logo:visited {
         font-size: 18px;
         font-weight: 700;
         letter-spacing: 2px;
         color: var(--accent-gold);
         text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
       }
 
       .nav-right {
@@ -994,7 +996,7 @@
       }
 
       /* Contact */
-      .contact h2 {
+      .contact h2, .contact-footer h2 {
         font-size: 42px;
         margin-bottom: 60px;
         color: var(--text-light);
@@ -1159,6 +1161,19 @@
       .impressions-nav.prev { left: 20px; }
       .impressions-nav.next { right: 20px; }
 
+      @media (max-width: 768px) {
+        .impressions-slide {
+          padding: 40px 20px;
+        }
+        .impressions-slide blockquote {
+          font-size: 20px;
+          line-height: 1.7;
+        }
+        .impressions-nav { padding: 10px; font-size: 24px; }
+        .impressions-nav.prev { left: 5px; }
+        .impressions-nav.next { right: 5px; }
+      }
+
       /* Animations */
       .fade-in {
         opacity: 0;
@@ -1218,8 +1233,20 @@
           padding: 80px 20px;
         }
 
+        .hero {
+          background-position: center top !important;
+        }
+
         .hero h1 {
           font-size: 48px;
+        }
+
+        .org-services {
+          grid-template-columns: 1fr;
+        }
+
+        .team-grid {
+          grid-template-columns: 1fr;
         }
 
         .hero p {
@@ -1315,9 +1342,8 @@
         padding-top: 30px;
         border-top: 1px solid rgba(196, 154, 108, 0.2);
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
         align-items: center;
-        flex-wrap: wrap;
         gap: 20px;
       }
 
@@ -1446,9 +1472,9 @@
   <body>
     <!-- Navigation -->
     <nav>
-      <div class="logo">
+      <a href="#hero" class="logo">
         <span class="ka">ფლეიბექი</span><span class="en">Playback</span>
-      </div>
+      </a>
       <div class="nav-right">
         <ul class="nav-links">
           <li>
@@ -1487,6 +1513,11 @@
           <li>
             <a href="#courses"
               ><span class="ka">კურსები</span><span class="en">Courses</span></a
+            >
+          </li>
+          <li>
+            <a href="#contact"
+              ><span class="ka">მხარდაჭერა</span><span class="en">Support</span></a
             >
           </li>
         </ul>
@@ -1721,8 +1752,8 @@
               ><span class="en">George Rusetsky</span>
             </h3>
             <p class="team-role">
-              <span class="ka">თანადამფუძნებელი, ტრენერი, მუსიკოსი</span
-              ><span class="en">Co-founder, trainer, musician</span>
+              <span class="ka">თანადამფუძნებელი, მუსიკოსი</span
+              ><span class="en">Co-founder, musician</span>
             </p>
           </div>
           <div class="team-member">
@@ -1915,7 +1946,7 @@
           </div>
         </div>
         <div class="performance-note">
-          <span class="ka">დასწრება უფასოა. მაყურებლები, როგორც წესი, 20-40₾ სტოვებენ დონაციაში — სწორედ ამით არსებობს ეს თეატრი. თუ არ შეგიძლია, უბრალოდ მოდი — შენი ყოფნა მნიშვნელოვანია.</span
+          <span class="ka">დასწრება უფასოა. მაყურებლები, როგორც წესი, დონაციის სახით 20-40₾ გვიტოვებენ — სწორედ ამით არსებობს ეს თეატრი. თუ არ შეგიძლია, უბრალოდ მოდი — შენი ყოფნა მნიშვნელოვანია.</span
           ><span class="en">Attendance is free. Audience members typically leave 20-40₾ as a donation — that's how this theatre exists. If you can't, just come — your presence matters.</span>
         </div>
         <div class="performance-cta">
@@ -2217,7 +2248,7 @@
       </div>
     </section>
 
-    <!-- Donation -->
+    <!-- Support -->
     <section class="contact-footer" id="contact">
       <div class="section-content fade-in">
         <h2><span class="ka">მხარდაჭერა</span><span class="en">Support</span></h2>
@@ -2225,50 +2256,22 @@
           <span class="ka">ფლეიბექ თეატრს სჭირდება მხარდაჭერა არა მხოლოდ წარმოდგენებისთვის — გვინდა კვალიფიკაციის ამაღლება, ევროპის წამყვანი ფლეიბექ თეატრებიდან ტრენერების მოწვევა და ამ სივრცის განვითარება. შენი დონაცია ამ ყველაფერს შესაძლებელს ხდის.</span>
           <span class="en">Playback Theatre needs support beyond performances — we want to advance our skills, invite trainers from leading European Playback theatres, and grow this space. Your donation makes all of this possible.</span>
         </p>
-        <div class="donation-cta" style="margin-bottom: 50px;">
+        <div class="donation-cta">
           <a href="mailto:tsisa.cholokashvili@gmail.com?subject=მხარდაჭერა" style="color: var(--accent-gold); text-decoration: none; border-bottom: 2px solid var(--accent-gold);">
             <span class="ka">მხარდაჭერისთვის დაგვიკავშირდით</span>
             <span class="en">Get in touch about support</span>
           </a>
         </div>
-        <div style="height: 1px; background: linear-gradient(to right, transparent, var(--accent-gold), transparent); margin-bottom: 50px;"></div>
-        <h3 style="font-size: 20px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 30px; color: var(--accent-gold);">
-          <span class="ka">კონტაქტი</span><span class="en">Contact</span>
-        </h3>
-        <div class="contact-methods">
-          <div class="contact-method">
-            <a href="mailto:tsisa.cholokashvili@gmail.com"
-              >tsisa.cholokashvili@gmail.com</a
-            >
-          </div>
-          <div class="contact-method">
-            <a href="https://wa.me/995577140222" target="_blank"
-              >WhatsApp: +995 577 140 222</a
-            >
-          </div>
-          <div class="contact-method">
-            <a
-              href="https://www.facebook.com/groups/4088209314751117"
-              target="_blank"
-            >
-              <span class="ka">Facebook ჯგუფი</span
-              ><span class="en">Facebook Group</span>
-            </a>
-          </div>
-        </div>
         <div class="contact-footer-bottom">
-          <div class="footer-copyright">
-            <span class="ka">© 2025 ქართული ფლეიბექ თეატრის ცენტრი</span
-            ><span class="en">© 2025 Georgian Playback Theatre Center</span>
-          </div>
           <div class="footer-links">
+            <a href="mailto:tsisa.cholokashvili@gmail.com">tsisa.cholokashvili@gmail.com</a>
+            <a href="https://www.facebook.com/groups/4088209314751117" target="_blank">Facebook</a>
             <a href="https://www.iptn.info" target="_blank">IPTN</a>
-            <a
-              href="https://www.facebook.com/groups/4088209314751117"
-              target="_blank"
-              >Facebook</a
-            >
           </div>
+          <p style="margin-top: 15px; font-size: 14px; color: rgba(232,223,208,0.3);">
+            <span class="ka">© 2025 ქართული ფლეიბექ თეატრის ცენტრი</span>
+            <span class="en">© 2025 Georgian Playback Theatre Center</span>
+          </p>
         </div>
       </div>
     </section>
@@ -2341,15 +2344,31 @@
         });
       });
 
-      // Nav scroll effect
+      // Nav scroll effect + URL hash update
       const nav = document.querySelector("nav");
-      window.addEventListener("scroll", () => {
+      var hashSections = document.querySelectorAll("section[id]");
+      var hashTimer;
+      window.addEventListener("scroll", function() {
         if (window.scrollY > 50) {
           nav.classList.add("scrolled");
         } else {
           nav.classList.remove("scrolled");
         }
-      });
+        clearTimeout(hashTimer);
+        hashTimer = setTimeout(function() {
+          var current = "";
+          for (var i = 0; i < hashSections.length; i++) {
+            if (window.scrollY >= hashSections[i].offsetTop - window.innerHeight * 0.4) {
+              current = hashSections[i].id;
+            }
+          }
+          if (current && location.hash !== "#" + current) {
+            history.replaceState(null, "", "#" + current);
+          } else if (!current && location.hash) {
+            history.replaceState(null, "", location.pathname);
+          }
+        }, 100);
+      }, { passive: true });
 
       // Fade-in on scroll
       const fadeElements = document.querySelectorAll(".fade-in");

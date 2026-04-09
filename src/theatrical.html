@@ -101,12 +101,14 @@
 			display: none;
 		}
 
-		.nav-logo {
+		.nav-logo, .nav-logo:hover, .nav-logo:visited {
 			font-family: 'Noto Serif Georgian', serif;
 			font-size: 24px;
 			font-weight: 700;
 			color: #d4a574;
 			letter-spacing: 2px;
+			text-decoration: none;
+			cursor: pointer;
 		}
 
 		.nav-links {
@@ -645,7 +647,7 @@
 
 		.services-grid {
 			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
 			gap: 40px;
 			margin-bottom: 50px;
 		}
@@ -983,6 +985,7 @@
 		}
 
 		#contact h2 {
+			font-size: 42px;
 			margin-bottom: 50px;
 		}
 
@@ -1187,6 +1190,19 @@
 		.impressions-nav.prev { left: 20px; }
 		.impressions-nav.next { right: 20px; }
 
+		@media (max-width: 768px) {
+			.impressions-slide {
+				padding: 40px 20px;
+			}
+			.impressions-slide blockquote {
+				font-size: 20px;
+				line-height: 1.7;
+			}
+			.impressions-nav { padding: 10px; font-size: 24px; }
+			.impressions-nav.prev { left: 5px; }
+			.impressions-nav.next { right: 5px; }
+		}
+
 		/* Responsive */
 		@media (max-width: 768px) {
 			body {
@@ -1232,11 +1248,12 @@
 
 			.nav-mobile-menu {
 				display: none;
-				position: absolute;
+				position: fixed;
 				top: 60px;
+				left: 0;
 				right: 0;
 				background: rgba(8, 6, 4, 0.95);
-				width: 100%;
+				z-index: 999;
 				flex-direction: column;
 				padding: 20px;
 				gap: 15px;
@@ -1278,6 +1295,10 @@
 
 			.team-grid {
 				grid-template-columns: 1fr;
+			}
+
+			#hero {
+				background-position: center top;
 			}
 
 			#hero h1 {
@@ -1344,10 +1365,9 @@
   padding-top: 30px;
   border-top: 1px solid rgba(212, 165, 116, 0.2);
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
+  gap: 15px;
 }
 
 .footer-copyright {
@@ -1459,10 +1479,10 @@ body.lang-en .team-quote {
 <body>
 	<!-- Navigation -->
 	<nav>
-		<div class="nav-logo">
+		<a href="#hero" class="nav-logo">
 			<span class="ka">ფლეიბექი</span>
 			<span class="en">Playback</span>
-		</div>
+		</a>
 		<div class="nav-links">
 			<a href="#theatre"><span class="ka">თეატრი</span><span class="en">Theatre</span></a>
 			<a href="#impressions"><span class="ka">შთაბეჭდილებები</span><span class="en">Impressions</span></a>
@@ -1471,8 +1491,9 @@ body.lang-en .team-quote {
 			<a href="#performance"><span class="ka">პერფორმანსი</span><span class="en">Performance</span></a>
 			<a href="#organizations"><span class="ka">ორგანიზაციებისთვის</span><span class="en">For Organizations</span></a>
 			<a href="#courses"><span class="ka">კურსები</span><span class="en">Courses</span></a>
+			<a href="#contact"><span class="ka">მხარდაჭერა</span><span class="en">Support</span></a>
 		</div>
-		<button class="lang-toggle" onclick="toggleLanguage()"><span class="ka">ENG</span><span class="en">KA</span></button>
+		<button class="lang-toggle"><span class="ka">ENG</span><span class="en">KA</span></button>
 		<div class="hamburger" onclick="toggleMobileMenu()">
 			<span></span>
 			<span></span>
@@ -1488,6 +1509,7 @@ body.lang-en .team-quote {
 		<a href="#performance"><span class="ka">პერფორმანსი</span><span class="en">Performance</span></a>
 		<a href="#organizations"><span class="ka">ორგანიზაციებისთვის</span><span class="en">For Organizations</span></a>
 		<a href="#courses"><span class="ka">კურსები</span><span class="en">Courses</span></a>
+		<a href="#contact"><span class="ka">მხარდაჭერა</span><span class="en">Support</span></a>
 	</div>
 
 	<!-- 1. Hero Section -->
@@ -1503,7 +1525,7 @@ body.lang-en .team-quote {
 			</p>
 		</div>
 		<div class="scroll-indicator">
-			<span class="ka">↓ დაწიეთ</span>
+			<span class="ka">↓ დაიწყე</span>
 			<span class="en">↓ Scroll</span>
 		</div>
 	</section>
@@ -1647,7 +1669,7 @@ body.lang-en .team-quote {
 						<img src="images/team/george-rusetsky.jpg" alt="George Rusetsky">
 					</div>
 					<h3><span class="ka">გიორგი რუსეცკი</span><span class="en">George Rusetsky</span></h3>
-					<p class="team-role"><span class="ka">თანადამფუძნებელი, ტრენერი, მუსიკოსი</span><span class="en">Co-founder, trainer, musician</span></p>
+					<p class="team-role"><span class="ka">თანადამფუძნებელი, მუსიკოსი</span><span class="en">Co-founder, trainer, musician</span></p>
 				</div>
 				<div class="team-member">
 					<div class="team-photo">
@@ -1793,7 +1815,7 @@ body.lang-en .team-quote {
 				<span class="performance-detail-label"><span class="ka">ადგილი:</span><span class="en">Location:</span></span><span class="ka">ხორავას N14, თბილისი</span><span class="en">Khorava 14, Tbilisi</span>
 			</div>
 			<p class="performance-note">
-				<span class="ka">დასწრება უფასოა. მაყურებლები, როგორც წესი, 20-40₾ სტოვებენ დონაციაში — სწორედ ამით არსებობს ეს თეატრი. თუ არ შეგიძლია, უბრალოდ მოდი — შენი ყოფნა მნიშვნელოვანია.</span>
+				<span class="ka">დასწრება უფასოა. მაყურებლები, როგორც წესი, დონაციის სახით 20-40₾ გვიტოვებენ — სწორედ ამით არსებობს ეს თეატრი. თუ არ შეგიძლია, უბრალოდ მოდი — შენი ყოფნა მნიშვნელოვანია.</span>
 				<span class="en">Attendance is free. Audience members typically leave 20-40₾ as a donation — that's how this theatre exists. If you can't, just come — your presence matters.</span>
 			</p>
 			<div class="performance-cta">
@@ -1927,7 +1949,7 @@ body.lang-en .team-quote {
 	</section>
 
 	<div class="section-divider"></div>
-	<!-- Contact + Support -->
+	<!-- Support -->
 	<section id="contact" class="contact-footer">
 		<div class="contact-content">
 			<h2>
@@ -1938,39 +1960,21 @@ body.lang-en .team-quote {
 				<span class="ka">ფლეიბექ თეატრს სჭირდება მხარდაჭერა არა მხოლოდ წარმოდგენებისთვის — გვინდა კვალიფიკაციის ამაღლება, ევროპის წამყვანი ფლეიბექ თეატრებიდან ტრენერების მოწვევა და ამ სივრცის განვითარება. შენი დონაცია ამ ყველაფერს შესაძლებელს ხდის.</span>
 				<span class="en">Playback Theatre needs support beyond performances — we want to advance our skills, invite trainers from leading European Playback theatres, and grow this space. Your donation makes all of this possible.</span>
 			</p>
-			<div class="donation-cta" style="margin-bottom: 50px;">
+			<div class="donation-cta">
 				<a href="mailto:tsisa.cholokashvili@gmail.com?subject=მხარდაჭერა">
 					<span class="ka">მხარდაჭერისთვის დაგვიკავშირდით</span>
 					<span class="en">Get in touch about support</span>
 				</a>
 			</div>
-			<div class="section-divider" style="margin-bottom: 50px;"></div>
-			<h3 style="font-size: 20px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 30px; color: #d4a574;">
-				<span class="ka">კონტაქტი</span>
-				<span class="en">Contact</span>
-			</h3>
-			<div class="contact-links">
-				<div class="contact-link">
-					<a href="mailto:tsisa.cholokashvili@gmail.com">tsisa.cholokashvili@gmail.com</a>
-				</div>
-				<div class="contact-link">
-					<a href="https://wa.me/995577140222" target="_blank">WhatsApp: +995 577 140 222</a>
-				</div>
-				<div class="contact-link">
-					<a href="https://www.facebook.com/groups/4088209314751117" target="_blank">
-						<span class="ka">Facebook ჯგუფი</span>
-						<span class="en">Facebook Group</span>
-					</a>
-				</div>
-			</div>
 			<div class="contact-footer-bottom">
+				<div class="footer-links">
+					<a href="mailto:tsisa.cholokashvili@gmail.com">tsisa.cholokashvili@gmail.com</a>
+					<a href="https://www.facebook.com/groups/4088209314751117" target="_blank">Facebook</a>
+					<a href="https://www.iptn.info" target="_blank">IPTN</a>
+				</div>
 				<div class="footer-copyright">
 					<span class="ka">© 2025 ქართული ფლეიბექ თეატრის ცენტრი</span>
 					<span class="en">© 2025 Georgian Playback Theatre Center</span>
-				</div>
-				<div class="footer-links">
-					<a href="https://www.iptn.info" target="_blank">IPTN</a>
-					<a href="https://www.facebook.com/groups/4088209314751117" target="_blank">Facebook</a>
 				</div>
 			</div>
 		</div>
@@ -2193,15 +2197,34 @@ body.lang-en .team-quote {
 		// Restore language preference
 		try { if (localStorage.getItem('language') === 'en') { document.body.classList.add('lang-en'); } } catch(e) {}
 
-		// Scroll event for nav background
-		window.addEventListener('scroll', function() {
-			const nav = document.querySelector('nav');
-			if (window.scrollY > 100) {
-				nav.classList.add('scrolled');
-			} else {
-				nav.classList.remove('scrolled');
-			}
-		});
+		// Scroll event for nav background + URL hash update
+		(function() {
+			var hashSections = document.querySelectorAll('section[id]');
+			var hashTimer;
+			window.addEventListener('scroll', function() {
+				var nav = document.querySelector('nav');
+				if (window.scrollY > 100) {
+					nav.classList.add('scrolled');
+				} else {
+					nav.classList.remove('scrolled');
+				}
+				clearTimeout(hashTimer);
+				hashTimer = setTimeout(function() {
+					var current = '';
+					for (var i = 0; i < hashSections.length; i++) {
+						var top = hashSections[i].offsetTop;
+						if (window.scrollY >= top - window.innerHeight * 0.4) {
+							current = hashSections[i].id;
+						}
+					}
+					if (current && location.hash !== '#' + current) {
+						history.replaceState(null, '', '#' + current);
+					} else if (!current && location.hash) {
+						history.replaceState(null, '', location.pathname);
+					}
+				}, 100);
+			}, { passive: true });
+		})();
 	</script>
 
 
