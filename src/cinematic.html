@@ -302,18 +302,15 @@
       }
 
       .step {
-        position: relative;
-        padding-left: 80px;
+        text-align: center;
       }
 
       .step-number {
-        position: absolute;
-        left: 0;
-        top: 0;
         font-size: 48px;
         font-weight: 700;
         color: var(--accent-gold);
         line-height: 1;
+        margin-bottom: 15px;
       }
 
       .step h3 {
@@ -496,7 +493,20 @@
 
       /* Performance */
       .performance {
-        background-color: #111008;
+        background-color: var(--dark-bg);
+        overflow: hidden;
+      }
+
+      .performance::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(196, 154, 108, 0.08) 0%, transparent 70%);
+        pointer-events: none;
       }
 
       .performance h2 {
@@ -550,8 +560,17 @@
       .courses h2 {
         font-size: 42px;
         text-align: center;
-        margin-bottom: 80px;
+        margin-bottom: 30px;
         color: var(--text-light);
+      }
+
+      .section-intro {
+        font-size: 20px;
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 50px;
+        line-height: 1.8;
+        color: rgba(232, 223, 208, 0.6);
       }
 
       .courses-grid {
@@ -606,21 +625,8 @@
       /* Organizations */
       .organizations h2 {
         font-size: 42px;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
         color: var(--text-light);
-      }
-
-      .organizations h3 {
-        font-size: 26px;
-        margin-bottom: 40px;
-        color: var(--accent-gold);
-        font-weight: 400;
-      }
-
-      .org-intro {
-        font-size: 22px;
-        margin-bottom: 60px;
-        line-height: 1.8;
       }
 
       .org-services {
@@ -1329,7 +1335,7 @@
         .what p,
         .course-desc,
         .donation p,
-        .org-intro {
+        .section-intro {
           font-size: 18px;
         }
 
@@ -1337,15 +1343,8 @@
           font-size: 22px;
         }
 
-        .step {
-          padding-left: 0;
-          text-align: center;
-        }
-
         .step-number {
-          position: static;
           font-size: 36px;
-          margin-bottom: 10px;
         }
 
         .step h3 {
@@ -1720,17 +1719,15 @@
       <div class="impression tsisia-impression">
         <div class="impression-content fade-in">
           <div class="impression-quote tsisia-doubt">
-            <span class="ka">თავდაპირველად ვფიქრობდი, რთული იქნებოდა...</span
-            ><span class="en"
-              >I initially thought it would be difficult...</span
-            >
+            <span class="ka">თავდაპირველად ვფიქრობდი, რომ საქართველოში ასეთი თეატრის განხორციელება რთული იქნებოდა...</span>
+            <span class="en">I initially thought, that it would be difficult to implement such theatre in Georgia...</span>
           </div>
           <div class="impression-quote tsisia-resolve">
             <span class="ka"
-              >თუმცა ადამიანები გვიცხადებენ ნდობას, გვიზიარებენ ისტორიებს და
+              >თუმცა ადამიანები გვიცხადებენ ნდობას, გვიზიარებენ პირად ისტორიებს და
               სწორედ ამით აცოცხლებენ თეატრალურ პროცესს.</span
             ><span class="en"
-              >But people show us trust, share their stories, and by doing so
+              >But people show us trust, share their personal stories, and by doing so
               bring the theatrical process to life.</span
             >
           </div>
@@ -1797,8 +1794,8 @@
           </div>
           <div style="margin-top: 50px; text-align: center">
             <button class="impressions-more-btn" id="impOpenBtn">
-              <span class="ka">მეტი შთაბეჭდილება</span
-              ><span class="en">More Impressions</span>
+              <span class="ka">სხვების შთაბეჭდილებები</span
+              ><span class="en">Others' Impressions</span>
             </button>
           </div>
         </div>
@@ -2121,19 +2118,11 @@
           <span class="ka">ორგანიზაციებისთვის</span
           ><span class="en">For Organizations</span>
         </h2>
-        <h3>
-          <span class="ka">ფლეიბექ თეატრი, როგორც გუნდური გამოცდილება</span
-          ><span class="en">Playback Theatre as a team experience</span>
-        </h3>
-        <p class="org-intro">
+        <p class="section-intro">
           <span class="ka"
-            >შესთავაზეთ თქვენს გუნდს განსაკუთრებული გამოცდილება. ფლეიბექ თეატრი
-            აძლიერებს ნდობას, ემპათიას და კომუნიკაციას იმას, რასაც ჩვეულებრივი
-            ტრენინგები ვერ აღწევს.</span
+            >შესთავაზეთ თქვენს გუნდს განსაკუთრებული გამოცდილება. ფლეიბექ თეატრი აძლიერებს ნდობას, ემპათიას და კომუნიკაციას — იმას, რასაც ჩვეულებრივი ტრენინგები ვერ აღწევს.</span
           ><span class="en"
-            >Offer your team an extraordinary experience. Playback Theatre
-            strengthens trust, empathy, and communication what conventional
-            trainings cannot achieve.</span
+            >Offer your team an extraordinary experience. Playback Theatre strengthens trust, empathy, and communication — what conventional trainings cannot achieve.</span
           >
         </p>
         <div class="org-services">
@@ -2196,6 +2185,7 @@
     <section class="courses" id="courses">
       <div class="section-content fade-in">
         <h2><span class="ka">კურსები</span><span class="en">Courses</span></h2>
+        <p class="section-intro"><span class="ka">ჩვენ არამხოლოდ წარმოდგენებს ვდგამთ — ვასწავლით კიდეც. მუდმივად ვეძებთ ახალ ადამიანებს, ვისაც სურს გახდეს ფლეიბექ თეატრის მსახიობი.</span><span class="en">We don't just perform — we teach. We're always looking for new people who want to become Playback Theatre actors.</span></p>
         <div class="courses-grid">
           <div class="course-item">
             <div class="course-name">
@@ -2254,8 +2244,8 @@
           <a
             href="mailto:tsisa.cholokashvili@gmail.com?subject=დაინტერესება%20კურსებით"
           >
-            <span class="ka">დაინტერესდი? დაგვიკავშირდი</span
-            ><span class="en">Interested? Get in touch</span>
+            <span class="ka">დაგვიკავშირდი</span
+            ><span class="en">Get in Touch</span>
           </a>
         </div>
       </div>
@@ -2268,15 +2258,10 @@
           <span class="ka">ეთიკის კოდექსი</span
           ><span class="en">Code of Ethics</span>
         </h2>
-        <div class="ethics-intro">
-          <span class="ka"
-            >ფლეიბექ თეატრი მიჰყვება IPTN-ის (International Playback Theatre
-            Network) საერთაშორისო ეთიკის პრინციპებს:</span
-          ><span class="en"
-            >Playback Theatre follows the ethical principles of IPTN
-            (International Playback Theatre Network):</span
-          >
-        </div>
+        <p class="section-intro">
+          <span class="ka">ფლეიბექ თეატრი მიჰყვება IPTN-ის (International Playback Theatre Network) საერთაშორისო ეთიკის პრინციპებს:</span
+          ><span class="en">Playback Theatre follows the ethical principles of IPTN (International Playback Theatre Network):</span>
+        </p>
         <div class="ethics-items">
           <div class="ethics-item" data-index="0">
             <div class="ethics-title">
@@ -2398,7 +2383,7 @@
         <div class="ethics-iptn">
           <span class="ka">მეტი ინფორმაცია:</span
           ><span class="en">Learn more:</span>
-          <a href="https://www.iptn.info" target="_blank">IPTN</a>
+          <a href="https://playbacktheatrenetwork.org" target="_blank">IPTN</a>
         </div>
       </div>
     </section>
@@ -2454,7 +2439,7 @@
               target="_blank"
               >Facebook</a
             >
-            <a href="https://www.iptn.info" target="_blank">IPTN</a>
+            <a href="https://playbacktheatrenetwork.org" target="_blank">IPTN</a>
           </div>
           <p
             style="

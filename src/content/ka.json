@@ -101,6 +101,7 @@
 
   "courses": {
     "title": "კურსები",
+    "intro": "ჩვენ არამხოლოდ წარმოდგენებს ვდგამთ — ვასწავლით კიდეც. მუდმივად ვეძებთ ახალ ადამიანებს, ვისაც სურს გახდეს ფლეიბექ თეატრის მსახიობი.",
     "items": [
       {
         "name": "საბაზისო კურსი",
@@ -118,7 +119,7 @@
         "description": "საერთაშორისო ტრენერებთან ფოკუსირებული სემინარები"
       }
     ],
-    "ctaText": "დაინტერესდი? დაგვიკავშირდი",
+    "ctaText": "დაგვიკავშირდი",
     "ctaLink": "mailto:tsisa.cholokashvili@gmail.com?subject=დაინტერესება კურსებით"
   },
 
@@ -236,7 +237,7 @@
       }
     ],
     "iptnText": "მეტი ინფორმაცია:",
-    "iptnLink": "https://www.iptn.info"
+    "iptnLink": "https://playbacktheatrenetwork.org"
   },
 
   "donation": {
@@ -258,7 +259,7 @@
   "footer": {
     "copyright": "© 2025 ქართული ფლეიბექ თეატრის ცენტრი",
     "links": [
-      { "label": "IPTN", "url": "https://www.iptn.info" },
+      { "label": "IPTN", "url": "https://playbacktheatrenetwork.org" },
       { "label": "Facebook", "url": "https://www.facebook.com/groups/4088209314751117" }
     ]
   },

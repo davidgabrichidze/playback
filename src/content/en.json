@@ -101,6 +101,7 @@
 
   "courses": {
     "title": "Courses",
+    "intro": "We don't just perform — we teach. We're always looking for new people who want to become Playback Theatre actors.",
     "items": [
       {
         "name": "Basic Course",
@@ -118,7 +119,7 @@
         "description": "Focused sessions with international trainers"
       }
     ],
-    "ctaText": "Interested? Get in touch",
+    "ctaText": "Get in Touch",
     "ctaLink": "mailto:tsisa.cholokashvili@gmail.com?subject=Course Inquiry"
   },
 
@@ -236,7 +237,7 @@
       }
     ],
     "iptnText": "Learn more:",
-    "iptnLink": "https://www.iptn.info"
+    "iptnLink": "https://playbacktheatrenetwork.org"
   },
 
   "donation": {
@@ -258,7 +259,7 @@
   "footer": {
     "copyright": "© 2025 Georgian Playback Theatre Center",
     "links": [
-      { "label": "IPTN", "url": "https://www.iptn.info" },
+      { "label": "IPTN", "url": "https://playbacktheatrenetwork.org" },
       { "label": "Facebook", "url": "https://www.facebook.com/groups/4088209314751117" }
     ]
   },
