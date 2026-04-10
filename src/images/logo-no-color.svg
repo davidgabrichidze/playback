@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <style>
+      .outer {
+        fill: none;
+        stroke: #e8dfd0;
+        stroke-width: 24px;
+        stroke-linecap: round;
+        z-index: 0;
+      }
+      .story {
+        fill: none;
+        stroke: #e8dfd0;
+        stroke-width: 16px;
+        stroke-linecap: round;
+        stroke-dasharray: 1 32;
+        z-index: 5;
+      }
+      .open-node {
+        fill: #e8dfd0;
+        stroke: #e8dfd0;
+        stroke-width: 24px;
+        z-index: 10;
+      }
+      .solid-node {
+        fill: #e8dfd0;
+        stroke: #e8dfd0;
+        stroke-width: 24px;
+        z-index: 10;
+      }
+    </style>
+  </defs>
+
+  <!-- Full circle so the three right-side nodes remain connected by the same ring -->
+  <circle class="outer" cx="512" cy="512" r="310" />
+
+  <!-- Nodes -->
+  <circle class="open-node" cx="202" cy="512" r="24" />
+  <circle class="solid-node" cx="780.467" cy="357" r="24" />
+  <circle class="solid-node" cx="822" cy="512" r="24" />
+  <circle class="solid-node" cx="780.467" cy="667" r="24" />
+
+  <!-- Story trunk -->
+  <path class="story" d="M 226 512
+                         C 278 512, 308 512, 340 512" />
+
+  <!-- Split flow -->
+  <path class="story" d="M 340 512
+                         C 430 500, 505 435, 585 395
+                         C 650 363, 712 352, 756 357" />
+
+  <path class="story" d="M 340 512
+                         C 455 512, 590 512, 798 512" />
+
+  <path class="story" d="M 340 512
+                         C 430 524, 505 589, 585 629
+                         C 650 661, 712 672, 756 667" />
+</svg>

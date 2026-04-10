@@ -3,7 +3,102 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ქართული ფლეიბექ თეატრი</title>
+    <link rel="icon" type="image/svg+xml" href="images/logo.svg" />
+    <title>
+      ქართული ფლეიბექ თეატრი — განსაკუთრებული ადგილი, სადაც შენს ისტორიას
+      სცენაზე აცოცხლებენ
+    </title>
+    <meta
+      name="description"
+      content="ქართული ფლეიბექ თეატრის ცენტრი — თბილისში პირველი ფლეიბექ თეატრი. შენ ჰყვები ისტორიას, მსახიობები მას სცენაზე აცოცხლებენ. დასწრება უფასოა. ყოველი თვის ბოლო შაბათი, 20:00, ხორავას 14."
+    />
+    <meta
+      name="keywords"
+      content="ფლეიბექ თეატრი, playback theatre, თბილისი, იმპროვიზაციული თეატრი, სპონტანური თეატრი, თეატრი თბილისში, განსაკუთრებული ადგილი, უფასო წარმოდგენა, ფლეიბექი საქართველოში, Georgian Playback Theatre"
+    />
+    <meta name="author" content="ქართული ფლეიბექ თეატრის ცენტრი" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://playbacktheatre.ge/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="ქართული ფლეიბექ თეატრი — შენს ისტორიას სცენაზე აცოცხლებენ"
+    />
+    <meta
+      property="og:description"
+      content="განსაკუთრებული ადგილი თბილისში, სადაც შენი ისტორია სცენაზე ცოცხლდება. დასწრება უფასოა. ყოველი თვის ბოლო შაბათი, 20:00."
+    />
+    <meta property="og:image" content="images/general/hero.jpg" />
+    <meta property="og:url" content="https://playbacktheatre.ge/" />
+    <meta property="og:locale" content="ka_GE" />
+    <meta property="og:locale:alternate" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ქართული ფლეიბექ თეატრი" />
+    <meta
+      name="twitter:description"
+      content="შენ ჰყვები ისტორიას — მსახიობები მას სცენაზე აცოცხლებენ. დასწრება უფასოა."
+    />
+    <meta name="twitter:image" content="images/general/hero.jpg" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "PerformingArtsTheater",
+        "name": "ქართული ფლეიბექ თეატრის ცენტრი",
+        "alternateName": "Georgian Playback Theatre Center",
+        "description": "თბილისში პირველი ფლეიბექ თეატრი — განსაკუთრებული ადგილი, სადაც მაყურებლის ისტორიას სცენაზე აცოცხლებენ იმპროვიზაციით.",
+        "url": "https://playbacktheatre.ge/",
+        "image": "images/general/hero.jpg",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "ხორავას 14",
+          "addressLocality": "თბილისი",
+          "addressCountry": "GE"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 41.7068,
+          "longitude": 44.7827
+        },
+        "telephone": "+995577140222",
+        "email": "tsisa.cholokashvili@gmail.com",
+        "foundingDate": "2025-03-02",
+        "founder": [
+          { "@type": "Person", "name": "ცისია ჩოლოყაშვილი" },
+          { "@type": "Person", "name": "გიორგი რუსეცკი" }
+        ],
+        "event": {
+          "@type": "TheaterEvent",
+          "name": "ფლეიბექ წარმოდგენა",
+          "description": "იმპროვიზაციული წარმოდგენა მაყურებლის ისტორიებზე დაყრდნობით. დასწრება უფასოა.",
+          "eventSchedule": {
+            "@type": "Schedule",
+            "repeatFrequency": "P1M",
+            "byDay": "Saturday",
+            "startTime": "20:00"
+          },
+          "location": {
+            "@type": "Place",
+            "name": "ხორავას 14",
+            "address": "ხორავას 14, თბილისი"
+          },
+          "isAccessibleForFree": true,
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "GEL",
+            "description": "დასწრება უფასოა, დონაცია მისასალმებელია"
+          }
+        },
+        "sameAs": ["https://www.facebook.com/groups/4088209314751117"]
+      }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -119,6 +214,10 @@
       .logo,
       .logo:hover,
       .logo:visited {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Playfair Display", serif;
         font-size: 18px;
         font-weight: 700;
         letter-spacing: 2px;
@@ -126,6 +225,11 @@
         text-transform: uppercase;
         text-decoration: none;
         cursor: pointer;
+      }
+
+      .logo img {
+        height: 40px;
+        width: 40px;
       }
 
       .nav-right {
@@ -207,6 +311,14 @@
           linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
           url("images/general/hero.jpg") center/cover no-repeat;
         background-attachment: fixed;
+      }
+
+      .hero-logo {
+        width: 160px;
+        height: 160px;
+        margin: 0 auto 30px;
+        display: block;
+        opacity: 0.9;
       }
 
       .hero h1 {
@@ -498,14 +610,18 @@
       }
 
       .performance::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 600px;
         height: 600px;
-        background: radial-gradient(circle, rgba(196, 154, 108, 0.08) 0%, transparent 70%);
+        background: radial-gradient(
+          circle,
+          rgba(196, 154, 108, 0.08) 0%,
+          transparent 70%
+        );
         pointer-events: none;
       }
 
@@ -1556,7 +1672,8 @@
     <!-- Navigation -->
     <nav>
       <a href="#hero" class="logo">
-        <span class="ka">ფლეიბექი</span><span class="en">Playback</span>
+        <img src="images/logo.svg" alt="Playback Theatre logo" />
+        Playback
       </a>
       <div class="nav-right">
         <ul class="nav-links">
@@ -1619,6 +1736,11 @@
     <!-- Hero -->
     <section class="hero" id="hero">
       <div class="section-content">
+        <img
+          src="images/logo-no-color.svg"
+          alt="Playback Theatre"
+          class="hero-logo"
+        />
         <h1>
           <span class="ka">ქართული ფლეიბექ თეატრი</span
           ><span class="en">Georgian Playback Theatre</span>
@@ -1719,22 +1841,28 @@
       <div class="impression tsisia-impression">
         <div class="impression-content fade-in">
           <div class="impression-quote tsisia-doubt">
-            <span class="ka">თავდაპირველად ვფიქრობდი, რომ საქართველოში ასეთი თეატრის განხორციელება რთული იქნებოდა...</span>
-            <span class="en">I initially thought, that it would be difficult to implement such theatre in Georgia...</span>
+            <span class="ka"
+              >თავდაპირველად ვფიქრობდი, რომ საქართველოში ასეთი თეატრის
+              განხორციელება რთული იქნებოდა...</span
+            >
+            <span class="en"
+              >I initially thought, that it would be difficult to implement such
+              theatre in Georgia...</span
+            >
           </div>
           <div class="impression-quote tsisia-resolve">
             <span class="ka"
-              >თუმცა ადამიანები გვიცხადებენ ნდობას, გვიზიარებენ პირად ისტორიებს და
-              სწორედ ამით აცოცხლებენ თეატრალურ პროცესს.</span
+              >თუმცა ადამიანები გვიცხადებენ ნდობას, გვიზიარებენ პირად ისტორიებს
+              და სწორედ ამით აცოცხლებენ თეატრალურ პროცესს.</span
             ><span class="en"
-              >But people show us trust, share their personal stories, and by doing so
-              bring the theatrical process to life.</span
+              >But people show us trust, share their personal stories, and by
+              doing so bring the theatrical process to life.</span
             >
           </div>
           <div class="impression-author tsisia-author">
             <img
               src="images/team/tsisia-cholokashvili.jpg"
-              alt=""
+              alt="ცისია ჩოლოყაშვილი"
               class="avatar-small"
             /><span
               ><span class="ka">ცისია ჩოლოყაშვილი</span
@@ -1973,7 +2101,7 @@
           <div class="team-quote-avatar">
             <img
               src="images/team/tsisia-cholokashvili.jpg"
-              alt=""
+              alt="ცისია ჩოლოყაშვილი"
               class="avatar-small"
             />
             <span class="team-quote-attr"
@@ -2096,8 +2224,16 @@
           </div>
         </div>
         <div class="performance-note">
-          <span class="ka">დასწრება უფასოა. მაყურებლები, როგორც წესი, დონაციის სახით 20-40₾ გვიტოვებენ. სწორედ ამით არსებობს ეს თეატრი. თუ არ შეგიძლია, უბრალოდ მოდი - შენი ყოფნა მნიშვნელოვანია 🤍</span>
-          <span class="en">Attendance is free. Audience members typically leave 20-40₾ as a donation — that's how this theatre exists. If you can't, just come — your presence matters 🤍</span>
+          <span class="ka"
+            >დასწრება უფასოა. მაყურებლები, როგორც წესი, დონაციის სახით 20-40₾
+            გვიტოვებენ. სწორედ ამით არსებობს ეს თეატრი. თუ არ შეგიძლია, უბრალოდ
+            მოდი - შენი ყოფნა მნიშვნელოვანია 🤍</span
+          >
+          <span class="en"
+            >Attendance is free. Audience members typically leave 20-40₾ as a
+            donation — that's how this theatre exists. If you can't, just come —
+            your presence matters 🤍</span
+          >
         </div>
         <div class="performance-cta">
           <a
@@ -2120,9 +2256,13 @@
         </h2>
         <p class="section-intro">
           <span class="ka"
-            >შესთავაზეთ თქვენს გუნდს განსაკუთრებული გამოცდილება. ფლეიბექ თეატრი აძლიერებს ნდობას, ემპათიას და კომუნიკაციას — იმას, რასაც ჩვეულებრივი ტრენინგები ვერ აღწევს.</span
+            >შესთავაზეთ თქვენს გუნდს განსაკუთრებული გამოცდილება. ფლეიბექ თეატრი
+            აძლიერებს ნდობას, ემპათიას და კომუნიკაციას — იმას, რასაც ჩვეულებრივი
+            ტრენინგები ვერ აღწევს.</span
           ><span class="en"
-            >Offer your team an extraordinary experience. Playback Theatre strengthens trust, empathy, and communication — what conventional trainings cannot achieve.</span
+            >Offer your team an extraordinary experience. Playback Theatre
+            strengthens trust, empathy, and communication — what conventional
+            trainings cannot achieve.</span
           >
         </p>
         <div class="org-services">
@@ -2185,7 +2325,16 @@
     <section class="courses" id="courses">
       <div class="section-content fade-in">
         <h2><span class="ka">კურსები</span><span class="en">Courses</span></h2>
-        <p class="section-intro"><span class="ka">ჩვენ არამხოლოდ წარმოდგენებს ვდგამთ — ვასწავლით კიდეც. მუდმივად ვეძებთ ახალ ადამიანებს, ვისაც სურს გახდეს ფლეიბექ თეატრის მსახიობი.</span><span class="en">We don't just perform — we teach. We're always looking for new people who want to become Playback Theatre actors.</span></p>
+        <p class="section-intro">
+          <span class="ka"
+            >ჩვენ არამხოლოდ წარმოდგენებს ვდგამთ — ვასწავლით კიდეც. მუდმივად
+            ვეძებთ ახალ ადამიანებს, ვისაც სურს გახდეს ფლეიბექ თეატრის
+            მსახიობი.</span
+          ><span class="en"
+            >We don't just perform — we teach. We're always looking for new
+            people who want to become Playback Theatre actors.</span
+          >
+        </p>
         <div class="courses-grid">
           <div class="course-item">
             <div class="course-name">
@@ -2259,8 +2408,13 @@
           ><span class="en">Code of Ethics</span>
         </h2>
         <p class="section-intro">
-          <span class="ka">ფლეიბექ თეატრი მიჰყვება IPTN-ის (International Playback Theatre Network) საერთაშორისო ეთიკის პრინციპებს:</span
-          ><span class="en">Playback Theatre follows the ethical principles of IPTN (International Playback Theatre Network):</span>
+          <span class="ka"
+            >ფლეიბექ თეატრი მიჰყვება IPTN-ის (International Playback Theatre
+            Network) საერთაშორისო ეთიკის პრინციპებს:</span
+          ><span class="en"
+            >Playback Theatre follows the ethical principles of IPTN
+            (International Playback Theatre Network):</span
+          >
         </p>
         <div class="ethics-items">
           <div class="ethics-item" data-index="0">
@@ -2439,7 +2593,9 @@
               target="_blank"
               >Facebook</a
             >
-            <a href="https://playbacktheatrenetwork.org" target="_blank">IPTN</a>
+            <a href="https://playbacktheatrenetwork.org" target="_blank"
+              >IPTN</a
+            >
           </div>
           <p
             style="
