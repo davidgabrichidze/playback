@@ -27,7 +27,12 @@
 
       html {
         scroll-behavior: smooth;
-        scroll-snap-type: y mandatory;
+      }
+
+      @media (min-width: 769px) {
+        html {
+          scroll-snap-type: y mandatory;
+        }
       }
 
       body {
@@ -111,7 +116,9 @@
         opacity: 1;
       }
 
-      .logo, .logo:hover, .logo:visited {
+      .logo,
+      .logo:hover,
+      .logo:visited {
         font-size: 18px;
         font-weight: 700;
         letter-spacing: 2px;
@@ -371,13 +378,18 @@
         position: relative;
       }
       .timeline::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 50px;
         left: 20%;
         width: 60%;
         height: 1px;
-        background: linear-gradient(to right, transparent, var(--accent-gold), transparent);
+        background: linear-gradient(
+          to right,
+          transparent,
+          var(--accent-gold),
+          transparent
+        );
       }
       .timeline-item {
         text-align: center;
@@ -996,7 +1008,8 @@
       }
 
       /* Contact */
-      .contact h2, .contact-footer h2 {
+      .contact h2,
+      .contact-footer h2 {
         font-size: 42px;
         margin-bottom: 60px;
         color: var(--text-light);
@@ -1083,7 +1096,10 @@
       .impressions-popup {
         display: none;
         position: fixed;
-        top: 0; left: 0; right: 0; bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         z-index: 3000;
         background: rgba(10, 8, 5, 0.97);
       }
@@ -1095,30 +1111,37 @@
       }
       .impressions-popup-close {
         position: absolute;
-        top: 30px; right: 40px;
-        background: none; border: none;
+        top: 30px;
+        right: 40px;
+        background: none;
+        border: none;
         color: var(--accent-gold);
         font-size: 36px;
         cursor: pointer;
       }
       .impressions-carousel {
         width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
-        scroll-snap-type: x mandatory;
-        display: flex;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
+        height: 70vh;
+        overflow: hidden;
+        position: relative;
       }
-      .impressions-carousel::-webkit-scrollbar { display: none; }
       .impressions-slide {
-        min-width: 100vw;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 60px 40px;
-        scroll-snap-align: center;
-        flex-shrink: 0;
+        padding: 60px 80px;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+      }
+      .impressions-slide.active {
+        opacity: 1;
+        pointer-events: auto;
       }
       .impressions-slide blockquote {
         font-family: "Noto Serif Georgian", serif;
@@ -1135,7 +1158,7 @@
       }
       .impressions-slide .slide-author {
         font-size: 16px;
-        color: rgba(255,255,255,0.5);
+        color: rgba(255, 255, 255, 0.5);
         text-transform: uppercase;
         letter-spacing: 1px;
         text-align: center;
@@ -1150,28 +1173,57 @@
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        background: none; border: none;
+        background: none;
+        border: none;
         color: var(--accent-gold);
         font-size: 30px;
         cursor: pointer;
         padding: 20px;
         transition: opacity 0.3s;
       }
-      .impressions-nav:hover { opacity: 0.7; }
-      .impressions-nav.prev { left: 20px; }
-      .impressions-nav.next { right: 20px; }
+      .impressions-nav:hover {
+        opacity: 0.7;
+      }
+      .impressions-nav.prev {
+        left: 20px;
+      }
+      .impressions-nav.next {
+        right: 20px;
+      }
+      .impressions-nav {
+        z-index: 3001;
+      }
 
       @media (max-width: 768px) {
+        .impressions-carousel {
+          height: 60vh;
+        }
         .impressions-slide {
-          padding: 40px 20px;
+          padding: 30px 50px;
+          overflow-y: auto;
         }
         .impressions-slide blockquote {
-          font-size: 20px;
-          line-height: 1.7;
+          font-size: 18px;
+          line-height: 1.6;
         }
-        .impressions-nav { padding: 10px; font-size: 24px; }
-        .impressions-nav.prev { left: 5px; }
-        .impressions-nav.next { right: 5px; }
+        .impressions-slide .slide-author {
+          font-size: 14px;
+        }
+        .impressions-nav {
+          padding: 8px;
+          font-size: 20px;
+        }
+        .impressions-nav.prev {
+          left: 5px;
+        }
+        .impressions-nav.next {
+          right: 5px;
+        }
+        .impressions-popup-close {
+          top: 15px;
+          right: 15px;
+          font-size: 28px;
+        }
       }
 
       /* Animations */
@@ -1265,12 +1317,13 @@
         .ethics h2,
         .donation h2,
         .contact h2,
+        .contact-footer h2,
         .performance h2,
         .courses h2,
         .organizations h2,
         .team h2,
         .founder h2 {
-          font-size: 32px;
+          font-size: 26px;
         }
 
         .what p,
@@ -1284,17 +1337,48 @@
           font-size: 22px;
         }
 
-        .step h3 {
-          font-size: 22px;
+        .step {
+          padding-left: 0;
+          text-align: center;
         }
 
         .step-number {
+          position: static;
           font-size: 36px;
+          margin-bottom: 10px;
+        }
+
+        .step h3 {
+          font-size: 20px;
+        }
+
+        .step p {
+          font-size: 18px;
         }
 
         .founder-quote {
           font-size: 18px;
-          padding: 20px;
+          padding: 0 10px;
+        }
+
+        .founder-closing {
+          font-size: 20px;
+        }
+
+        .what .what-hook {
+          font-size: 24px;
+        }
+
+        .ethics-title {
+          font-size: 18px;
+        }
+
+        .ethics-text {
+          font-size: 16px;
+        }
+
+        .ethics-intro {
+          font-size: 18px;
         }
 
         .gallery-grid {
@@ -1517,7 +1601,8 @@
           </li>
           <li>
             <a href="#contact"
-              ><span class="ka">მხარდაჭერა</span><span class="en">Support</span></a
+              ><span class="ka">მხარდაჭერა</span
+              ><span class="en">Support</span></a
             >
           </li>
         </ul>
@@ -1555,12 +1640,27 @@
           ><span class="en">What is Playback Theatre</span>
         </h2>
         <p class="what-hook">
-          <span class="ka">შენ ჰყვები ისტორიას — მსახიობები მას სცენაზე აცოცხლებენ.</span
-          ><span class="en">You tell a story — actors bring it to life on stage.</span>
+          <span class="ka"
+            >შენ ჰყვები ისტორიას — მსახიობები მას სცენაზე აცოცხლებენ.</span
+          ><span class="en"
+            >You tell a story — actors bring it to life on stage.</span
+          >
         </p>
         <blockquote class="what-quote">
-          <span class="ka">ეს არის შეხვედრის ადგილი, სადაც ადამიანები ერთმანეთს ხედავენ და ესმით, სადაც შეგიძლია მოხვიდე ისეთი როგორც სინამდვილეში ხარ, გააზიარო შენი ინდივიდულური, უნიკალური ისტორია რომელსაც ისეთი გულისყურით მოგისმენენ, რომ შეეცდებიან საკუთარ თავში გამოხმაურებაც კი უპოვნონ და ამ თანაგანცდაზე დაყრდნობით სცენიურ წარმოდგენად გადააქციონ.</span
-          ><span class="en">This is a meeting place where people see and understand each other, where you can come as you truly are, share your individual, unique story which will be listened to with such attention that they will try to find a resonance within themselves, and based on that shared feeling, transform it into a stage performance.</span>
+          <span class="ka"
+            >ეს არის შეხვედრის ადგილი, სადაც ადამიანები ერთმანეთს ხედავენ და
+            ესმით, სადაც შეგიძლია მოხვიდე ისეთი როგორც სინამდვილეში ხარ,
+            გააზიარო შენი ინდივიდულური, უნიკალური ისტორია რომელსაც ისეთი
+            გულისყურით მოგისმენენ, რომ შეეცდებიან საკუთარ თავში გამოხმაურებაც კი
+            უპოვნონ და ამ თანაგანცდაზე დაყრდნობით სცენიურ წარმოდგენად
+            გადააქციონ.</span
+          ><span class="en"
+            >This is a meeting place where people see and understand each other,
+            where you can come as you truly are, share your individual, unique
+            story which will be listened to with such attention that they will
+            try to find a resonance within themselves, and based on that shared
+            feeling, transform it into a stage performance.</span
+          >
         </blockquote>
       </div>
     </section>
@@ -1576,23 +1676,28 @@
           <div class="step">
             <div class="step-number">1</div>
             <h3>
-              <span class="ka">შენ ჰყვები</span
+              <span class="ka">შენ გვიყვები</span
               ><span class="en">You share</span>
             </h3>
             <p>
-              <span class="ka">რაც გაგიზიარებია — პირადი, რეალური, შენი</span
+              <span class="ka"
+                >რაც გაზიარებადია — პირადი, რეალური, შენი ამბავი</span
               ><span class="en">Whatever you feel — personal, real, yours</span>
             </p>
           </div>
           <div class="step">
             <div class="step-number">2</div>
             <h3>
-              <span class="ka">ჩვენ ვასცენარებთ</span
+              <span class="ka">ჩვენ ვასრულებთ</span
               ><span class="en">We perform</span>
             </h3>
             <p>
-              <span class="ka">შენი ისტორია სცენაზე — მოძრაობით, მუსიკით, ემოციით</span
-              ><span class="en">Your story on stage — through movement, music, emotion</span>
+              <span class="ka"
+                >შენი ისტორია იქვე თამაშდება — მოძრაობით, მუსიკით, ემოციით,
+                სიტყვებით</span
+              ><span class="en"
+                >Your story on stage — through movement, music, emotion</span
+              >
             </p>
           </div>
           <div class="step">
@@ -1616,11 +1721,18 @@
         <div class="impression-content fade-in">
           <div class="impression-quote tsisia-doubt">
             <span class="ka">თავდაპირველად ვფიქრობდი, რთული იქნებოდა...</span
-            ><span class="en">I initially thought it would be difficult...</span>
+            ><span class="en"
+              >I initially thought it would be difficult...</span
+            >
           </div>
           <div class="impression-quote tsisia-resolve">
-            <span class="ka">თუმცა ადამიანები გვიცხადებენ ნდობას, გვიზიარებენ ისტორიებს და სწორედ ამით აცოცხლებენ თეატრალურ პროცესს.</span
-            ><span class="en">But people show us trust, share their stories, and by doing so bring the theatrical process to life.</span>
+            <span class="ka"
+              >თუმცა ადამიანები გვიცხადებენ ნდობას, გვიზიარებენ ისტორიებს და
+              სწორედ ამით აცოცხლებენ თეატრალურ პროცესს.</span
+            ><span class="en"
+              >But people show us trust, share their stories, and by doing so
+              bring the theatrical process to life.</span
+            >
           </div>
           <div class="impression-author tsisia-author">
             <img
@@ -1673,8 +1785,8 @@
       <div class="impression">
         <div class="impression-content fade-in">
           <div class="impression-quote">
-            <span class="ka"
-              >მთელ კვირას სხვა ადამიანი ვიყავი ამ საღამოს შემდეგ.</span
+            <span class="ka">
+              ამ საღამოს შემდეგ მთელი კვირა სხვა ადამიანი ვიყავი.</span
             ><span class="en"
               >I was a different person all week after that evening.</span
             >
@@ -1683,9 +1795,10 @@
             <span class="ka">მაყურებელი</span
             ><span class="en">Audience member</span>
           </div>
-          <div style="margin-top: 50px; text-align: center;">
-            <button class="impressions-more-btn" onclick="openImpressionsCarousel()">
-              <span class="ka">მეტი შთაბეჭდილება</span><span class="en">More Impressions</span>
+          <div style="margin-top: 50px; text-align: center">
+            <button class="impressions-more-btn" id="impOpenBtn">
+              <span class="ka">მეტი შთაბეჭდილება</span
+              ><span class="en">More Impressions</span>
             </button>
           </div>
         </div>
@@ -1704,22 +1817,61 @@
             <div class="timeline-item">
               <div class="timeline-year">1975</div>
               <div class="timeline-dot"></div>
-              <div class="timeline-text"><span class="ka">ფლეიბექ თეატრი დაარსდა (ჯონათან ფოქსი & ჯო სალასი)</span><span class="en">Playback Theatre founded (Jonathan Fox & Jo Salas)</span></div>
+              <div class="timeline-text">
+                <span class="ka"
+                  >ფლეიბექ თეატრი დაარსდა (ჯონათან ფოქსი & ჯო სალასი)</span
+                ><span class="en"
+                  >Playback Theatre founded (Jonathan Fox & Jo Salas)</span
+                >
+              </div>
             </div>
             <div class="timeline-item">
               <div class="timeline-year">2025</div>
               <div class="timeline-dot"></div>
-              <div class="timeline-text"><span class="ka">ქართული ფლეიბექ თეატრის ცენტრი, თბილისი</span><span class="en">Georgian Playback Theatre Center, Tbilisi</span></div>
+              <div class="timeline-text">
+                <span class="ka">ქართული ფლეიბექ თეატრის ცენტრი, თბილისი</span
+                ><span class="en"
+                  >Georgian Playback Theatre Center, Tbilisi</span
+                >
+              </div>
             </div>
             <div class="timeline-item">
-              <div class="timeline-year"><span class="ka">დღეს</span><span class="en">Today</span></div>
+              <div class="timeline-year">
+                <span class="ka">დღეს</span><span class="en">Today</span>
+              </div>
               <div class="timeline-dot"></div>
-              <div class="timeline-text"><span class="ka">60+ ქვეყანაში მოქმედებს</span><span class="en">Active in 60+ countries</span></div>
+              <div class="timeline-text">
+                <span class="ka">60+ ქვეყანაში მოქმედებს</span
+                ><span class="en">Active in 60+ countries</span>
+              </div>
             </div>
           </div>
-          <p class="founder-tagline"><span class="ka">თეატრი + ფსიქოთერაპია</span><span class="en">Theatre + Psychotherapy</span></p>
-          <p class="founder-quote"><span class="ka">ჩემთვის ფლეიბექ თეატრი არის გადასვლა დიდი, სტრუქტურირებული და წინასწარ განსაზღვრული თეატრიდან, პატარა, ავთენტურ სივრცეში, რომელიც ადამიანურ შეხვედრაზე, სპონტანურობაზე და ნამდვილობაზე დგას, სადაც ადამიანი შეიძლება იყოს ისეთი, როგორიც არის.</span><span class="en">For me, Playback Theatre is a transition from big, structured and predetermined theatre to a small, authentic space built on human encounter, spontaneity and genuineness, where a person can be who they truly are.</span></p>
-          <p class="founder-closing"><span class="ka">სწორედ ამ ადამიანურ, ცოცხალ ურთიერთობაში ვხედავ ფლეიბექ თეატრის მთავარ ღირებულებას.</span><span class="en">It is in this human, living relationship that I see the main value of Playback Theatre.</span></p>
+          <p class="founder-tagline">
+            <span class="ka">თეატრი + ფსიქოთერაპია</span
+            ><span class="en">Theatre + Psychotherapy</span>
+          </p>
+          <p class="founder-quote">
+            <span class="ka"
+              >ჩემთვის ფლეიბექ თეატრი არის გადასვლა დიდი, სტრუქტურირებული და
+              წინასწარ განსაზღვრული თეატრიდან, პატარა, ავთენტურ სივრცეში,
+              რომელიც ადამიანურ შეხვედრაზე, სპონტანურობაზე და ნამდვილობაზე დგას,
+              სადაც ადამიანი შეიძლება იყოს ისეთი, როგორიც არის.</span
+            ><span class="en"
+              >For me, Playback Theatre is a transition from big, structured and
+              predetermined theatre to a small, authentic space built on human
+              encounter, spontaneity and genuineness, where a person can be who
+              they truly are.</span
+            >
+          </p>
+          <p class="founder-closing">
+            <span class="ka"
+              >სწორედ ამ ადამიანურ, ცოცხალ ურთიერთობაში ვხედავ ფლეიბექ თეატრის
+              მთავარ ღირებულებას.</span
+            ><span class="en"
+              >It is in this human, living relationship that I see the main
+              value of Playback Theatre.</span
+            >
+          </p>
           <div class="founder-avatar-attribution">
             <img
               src="images/team/tsisia-cholokashvili.jpg"
@@ -1932,7 +2084,8 @@
     <section class="performance" id="performance">
       <div class="section-content fade-in">
         <h2>
-          <span class="ka">გამოცადე ფლეიბექი</span><span class="en">Experience Playback</span>
+          <span class="ka">გამოცადე ფლეიბექი</span
+          ><span class="en">Experience Playback</span>
         </h2>
         <div class="performance-info">
           <div class="performance-schedule">
@@ -1946,11 +2099,13 @@
           </div>
         </div>
         <div class="performance-note">
-          <span class="ka">დასწრება უფასოა. მაყურებლები, როგორც წესი, დონაციის სახით 20-40₾ გვიტოვებენ — სწორედ ამით არსებობს ეს თეატრი. თუ არ შეგიძლია, უბრალოდ მოდი — შენი ყოფნა მნიშვნელოვანია.</span
-          ><span class="en">Attendance is free. Audience members typically leave 20-40₾ as a donation — that's how this theatre exists. If you can't, just come — your presence matters.</span>
+          <span class="ka">დასწრება უფასოა. მაყურებლები, როგორც წესი, დონაციის სახით 20-40₾ გვიტოვებენ. სწორედ ამით არსებობს ეს თეატრი. თუ არ შეგიძლია, უბრალოდ მოდი - შენი ყოფნა მნიშვნელოვანია 🤍</span>
+          <span class="en">Attendance is free. Audience members typically leave 20-40₾ as a donation — that's how this theatre exists. If you can't, just come — your presence matters 🤍</span>
         </div>
         <div class="performance-cta">
-          <a href="mailto:tsisa.cholokashvili@gmail.com?subject=დარეგისტრირება პერფორმანსზე">
+          <a
+            href="mailto:tsisa.cholokashvili@gmail.com?subject=დარეგისტრირება პერფორმანსზე"
+          >
             <span class="ka">დარეგისტრირდი</span
             ><span class="en">Register</span>
           </a>
@@ -2251,24 +2406,63 @@
     <!-- Support -->
     <section class="contact-footer" id="contact">
       <div class="section-content fade-in">
-        <h2><span class="ka">მხარდაჭერა</span><span class="en">Support</span></h2>
-        <p style="font-size: 20px; max-width: 700px; margin: 0 auto 30px; line-height: 1.8; color: var(--text-light);">
-          <span class="ka">ფლეიბექ თეატრს სჭირდება მხარდაჭერა არა მხოლოდ წარმოდგენებისთვის — გვინდა კვალიფიკაციის ამაღლება, ევროპის წამყვანი ფლეიბექ თეატრებიდან ტრენერების მოწვევა და ამ სივრცის განვითარება. შენი დონაცია ამ ყველაფერს შესაძლებელს ხდის.</span>
-          <span class="en">Playback Theatre needs support beyond performances — we want to advance our skills, invite trainers from leading European Playback theatres, and grow this space. Your donation makes all of this possible.</span>
+        <h2>
+          <span class="ka">მხარდაჭერა</span><span class="en">Support</span>
+        </h2>
+        <p
+          style="
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+            color: var(--text-light);
+          "
+        >
+          <span class="ka"
+            >ფლეიბექ თეატრს სჭირდება მხარდაჭერა არა მხოლოდ წარმოდგენებისთვის —
+            გვინდა კვალიფიკაციის ამაღლება, ევროპის წამყვანი ფლეიბექ თეატრებიდან
+            ტრენერების მოწვევა და ამ სივრცის განვითარება. შენი დონაცია ამ
+            ყველაფერს შესაძლებელს ხდის.</span
+          >
+          <span class="en"
+            >Playback Theatre needs support beyond performances — we want to
+            advance our skills, invite trainers from leading European Playback
+            theatres, and grow this space. Your donation makes all of this
+            possible.</span
+          >
         </p>
         <div class="donation-cta">
-          <a href="mailto:tsisa.cholokashvili@gmail.com?subject=მხარდაჭერა" style="color: var(--accent-gold); text-decoration: none; border-bottom: 2px solid var(--accent-gold);">
+          <a
+            href="mailto:tsisa.cholokashvili@gmail.com?subject=მხარდაჭერა"
+            style="
+              color: var(--accent-gold);
+              text-decoration: none;
+              border-bottom: 2px solid var(--accent-gold);
+            "
+          >
             <span class="ka">მხარდაჭერისთვის დაგვიკავშირდით</span>
             <span class="en">Get in touch about support</span>
           </a>
         </div>
         <div class="contact-footer-bottom">
           <div class="footer-links">
-            <a href="mailto:tsisa.cholokashvili@gmail.com">tsisa.cholokashvili@gmail.com</a>
-            <a href="https://www.facebook.com/groups/4088209314751117" target="_blank">Facebook</a>
+            <a href="mailto:tsisa.cholokashvili@gmail.com"
+              >tsisa.cholokashvili@gmail.com</a
+            >
+            <a
+              href="https://www.facebook.com/groups/4088209314751117"
+              target="_blank"
+              >Facebook</a
+            >
             <a href="https://www.iptn.info" target="_blank">IPTN</a>
           </div>
-          <p style="margin-top: 15px; font-size: 14px; color: rgba(232,223,208,0.3);">
+          <p
+            style="
+              margin-top: 15px;
+              font-size: 14px;
+              color: rgba(232, 223, 208, 0.3);
+            "
+          >
             <span class="ka">© 2025 ქართული ფლეიბექ თეატრის ცენტრი</span>
             <span class="en">© 2025 Georgian Playback Theatre Center</span>
           </p>
@@ -2296,16 +2490,108 @@
 
     <!-- Impressions Carousel Popup -->
     <div class="impressions-popup" id="impressionsPopup">
-      <button class="impressions-popup-close" onclick="closeImpressionsCarousel()">&times;</button>
-      <button class="impressions-nav prev" onclick="impressionNav(-1)">&#10094;</button>
-      <button class="impressions-nav next" onclick="impressionNav(1)">&#10095;</button>
+      <button class="impressions-popup-close" id="impCloseBtn">&times;</button>
+      <button class="impressions-nav prev" id="impPrev">&#10094;</button>
+      <button class="impressions-nav next" id="impNext">&#10095;</button>
       <div class="impressions-carousel" id="impressionsCarousel">
-        <div class="impressions-slide"><div><blockquote><span class="ka">პირველად ვიყავი და ვერ წარმოვიდგენდი, რომ ასეთი რამ შეიძლებოდა. ტირილიც მინდოდა და სიცილიც.</span><span class="en">It was my first time and I couldn't imagine something like this was possible. I wanted to both cry and laugh.</span></blockquote><p class="slide-author"><span class="ka">მაყურებელი</span><span class="en">Audience member</span></p></div></div>
-        <div class="impressions-slide"><div><blockquote><span class="ka">სხვისი ისტორიის ყურებისას საკუთარი თავი ვნახე. ძალიან ძლიერი გამოცდილება იყო.</span><span class="en">Watching someone else's story, I saw myself. It was a very powerful experience.</span></blockquote><p class="slide-author"><span class="ka">მაყურებელი</span><span class="en">Audience member</span></p></div></div>
-        <div class="impressions-slide"><div><blockquote><span class="ka">ეს არ არის უბრალოდ თეატრი. ეს რაღაც ძალიან ადამიანურია.</span><span class="en">This is not just theatre. This is something profoundly human.</span></blockquote><p class="slide-author"><span class="ka">მაყურებელი</span><span class="en">Audience member</span></p></div></div>
-        <div class="impressions-slide"><div><blockquote><span class="ka">ვერ დავიჯერე, რომ უცნობ ადამიანებთან ასეთი უსაფრთხოება შეიძლებოდა მეგრძნო.</span><span class="en">I couldn't believe I could feel so safe among strangers.</span></blockquote><p class="slide-author"><span class="ka">მაყურებელი</span><span class="en">Audience member</span></p></div></div>
-        <div class="impressions-slide"><div><blockquote><span class="ka">საკუთარ ამბავს როცა სცენაზე ვუყურე, ისეთი სიმსუბუქე ვიგრძენი, თითქოს ტვირთი მომეხსნა.</span><span class="en">Watching my own story on stage, I felt such lightness, as if a weight had been lifted.</span></blockquote><p class="slide-author"><span class="ka">მაყურებელი</span><span class="en">Audience member</span></p></div></div>
-        <div class="impressions-slide"><div><blockquote><span class="ka">მთელ კვირას სხვა ადამიანი ვიყავი ამ საღამოს შემდეგ.</span><span class="en">I was a different person all week after that evening.</span></blockquote><p class="slide-author"><span class="ka">მაყურებელი</span><span class="en">Audience member</span></p></div></div>
+        <div class="impressions-slide">
+          <div>
+            <blockquote>
+              <span class="ka"
+                >პირველად ვიყავი და ვერ წარმოვიდგენდი, რომ ასეთი რამ შეიძლებოდა.
+                ტირილიც მინდოდა და სიცილიც.</span
+              ><span class="en"
+                >It was my first time and I couldn't imagine something like this
+                was possible. I wanted to both cry and laugh.</span
+              >
+            </blockquote>
+            <p class="slide-author">
+              <span class="ka">მაყურებელი</span
+              ><span class="en">Audience member</span>
+            </p>
+          </div>
+        </div>
+        <div class="impressions-slide">
+          <div>
+            <blockquote>
+              <span class="ka"
+                >სხვისი ისტორიის ყურებისას საკუთარი თავი ვნახე. ძალიან ძლიერი
+                გამოცდილება იყო.</span
+              ><span class="en"
+                >Watching someone else's story, I saw myself. It was a very
+                powerful experience.</span
+              >
+            </blockquote>
+            <p class="slide-author">
+              <span class="ka">მაყურებელი</span
+              ><span class="en">Audience member</span>
+            </p>
+          </div>
+        </div>
+        <div class="impressions-slide">
+          <div>
+            <blockquote>
+              <span class="ka"
+                >ეს არ არის უბრალოდ თეატრი. ეს რაღაც ძალიან ადამიანურია.</span
+              ><span class="en"
+                >This is not just theatre. This is something profoundly
+                human.</span
+              >
+            </blockquote>
+            <p class="slide-author">
+              <span class="ka">მაყურებელი</span
+              ><span class="en">Audience member</span>
+            </p>
+          </div>
+        </div>
+        <div class="impressions-slide">
+          <div>
+            <blockquote>
+              <span class="ka"
+                >ვერ დავიჯერე, რომ უცნობ ადამიანებთან ასეთი უსაფრთხოება
+                შეიძლებოდა მეგრძნო.</span
+              ><span class="en"
+                >I couldn't believe I could feel so safe among strangers.</span
+              >
+            </blockquote>
+            <p class="slide-author">
+              <span class="ka">მაყურებელი</span
+              ><span class="en">Audience member</span>
+            </p>
+          </div>
+        </div>
+        <div class="impressions-slide">
+          <div>
+            <blockquote>
+              <span class="ka"
+                >საკუთარ ამბავს როცა სცენაზე ვუყურე, ისეთი სიმსუბუქე ვიგრძენი,
+                თითქოს ტვირთი მომეხსნა.</span
+              ><span class="en"
+                >Watching my own story on stage, I felt such lightness, as if a
+                weight had been lifted.</span
+              >
+            </blockquote>
+            <p class="slide-author">
+              <span class="ka">მაყურებელი</span
+              ><span class="en">Audience member</span>
+            </p>
+          </div>
+        </div>
+        <div class="impressions-slide">
+          <div>
+            <blockquote>
+              <span class="ka"
+                >ამ საღამოს შემდეგ მთელი კვირა სხვა ადამიანი ვიყავი.</span
+              ><span class="en"
+                >I was a different person all week after that evening.</span
+              >
+            </blockquote>
+            <p class="slide-author">
+              <span class="ka">მაყურებელი</span
+              ><span class="en">Audience member</span>
+            </p>
+          </div>
+        </div>
       </div>
       <div class="impressions-paging" id="impressionsPaging">1 / 6</div>
     </div>
@@ -2348,27 +2634,34 @@
       const nav = document.querySelector("nav");
       var hashSections = document.querySelectorAll("section[id]");
       var hashTimer;
-      window.addEventListener("scroll", function() {
-        if (window.scrollY > 50) {
-          nav.classList.add("scrolled");
-        } else {
-          nav.classList.remove("scrolled");
-        }
-        clearTimeout(hashTimer);
-        hashTimer = setTimeout(function() {
-          var current = "";
-          for (var i = 0; i < hashSections.length; i++) {
-            if (window.scrollY >= hashSections[i].offsetTop - window.innerHeight * 0.4) {
-              current = hashSections[i].id;
+      window.addEventListener(
+        "scroll",
+        function () {
+          if (window.scrollY > 50) {
+            nav.classList.add("scrolled");
+          } else {
+            nav.classList.remove("scrolled");
+          }
+          clearTimeout(hashTimer);
+          hashTimer = setTimeout(function () {
+            var current = "";
+            for (var i = 0; i < hashSections.length; i++) {
+              if (
+                window.scrollY >=
+                hashSections[i].offsetTop - window.innerHeight * 0.4
+              ) {
+                current = hashSections[i].id;
+              }
             }
-          }
-          if (current && location.hash !== "#" + current) {
-            history.replaceState(null, "", "#" + current);
-          } else if (!current && location.hash) {
-            history.replaceState(null, "", location.pathname);
-          }
-        }, 100);
-      }, { passive: true });
+            if (current && location.hash !== "#" + current) {
+              history.replaceState(null, "", "#" + current);
+            } else if (!current && location.hash) {
+              history.replaceState(null, "", location.pathname);
+            }
+          }, 100);
+        },
+        { passive: true },
+      );
 
       // Fade-in on scroll
       const fadeElements = document.querySelectorAll(".fade-in");
@@ -2401,19 +2694,9 @@
           );
         });
 
-      // Gallery toggle - show/hide items with .hidden class
+      // Gallery "See More" opens lightbox from photo 10 (index 9)
       galleryBtn.addEventListener("click", () => {
-        expanded = !expanded;
-        hiddenItems.forEach((item) => {
-          item.classList.toggle("hidden", !expanded);
-        });
-        if (expanded) {
-          galleryBtn.innerHTML =
-            '<span class="ka">ნაკლები</span><span class="en">Show Less</span>';
-        } else {
-          galleryBtn.innerHTML =
-            '<span class="ka">მეტის ნახვა</span><span class="en">See More</span>';
-        }
+        openLightbox(10);
       });
 
       // Lightbox
@@ -2488,61 +2771,70 @@
         heroObserver.observe(heroSection);
       }
 
-      // Impressions Carousel
-      let currentImpression = 0;
-      const totalImpressions = document.querySelectorAll('.impressions-slide').length;
+      // Impressions Carousel — fade-based
+      var slides = document.querySelectorAll(".impressions-slide");
+      var currentImpression = 0;
+      var totalImpressions = slides.length;
+
+      function showSlide(idx) {
+        for (var i = 0; i < slides.length; i++) {
+          slides[i].classList.remove("active");
+        }
+        slides[idx].classList.add("active");
+        document.getElementById("impressionsPaging").textContent =
+          idx + 1 + " / " + totalImpressions;
+      }
 
       function openImpressionsCarousel() {
         currentImpression = 0;
-        document.getElementById('impressionsPopup').classList.add('active');
-        document.body.style.overflow = 'hidden';
-        scrollToImpression(0);
-        updateImpressionPaging();
+        showSlide(0);
+        document.getElementById("impressionsPopup").classList.add("active");
+        document.body.style.overflow = "hidden";
       }
 
       function closeImpressionsCarousel() {
-        document.getElementById('impressionsPopup').classList.remove('active');
-        document.body.style.overflow = 'auto';
+        document.getElementById("impressionsPopup").classList.remove("active");
+        document.body.style.overflow = "auto";
       }
 
       function impressionNav(dir) {
-        currentImpression = Math.max(0, Math.min(totalImpressions - 1, currentImpression + dir));
-        scrollToImpression(currentImpression);
-        updateImpressionPaging();
+        currentImpression = Math.max(
+          0,
+          Math.min(totalImpressions - 1, currentImpression + dir),
+        );
+        showSlide(currentImpression);
       }
 
-      function scrollToImpression(idx) {
-        var carousel = document.getElementById('impressionsCarousel');
-        carousel.children[idx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      }
+      document
+        .getElementById("impOpenBtn")
+        .addEventListener("click", openImpressionsCarousel);
+      document
+        .getElementById("impCloseBtn")
+        .addEventListener("click", closeImpressionsCarousel);
+      document.getElementById("impPrev").addEventListener("click", function () {
+        impressionNav(-1);
+      });
+      document.getElementById("impNext").addEventListener("click", function () {
+        impressionNav(1);
+      });
 
-      function updateImpressionPaging() {
-        document.getElementById('impressionsPaging').textContent = (currentImpression + 1) + ' / ' + totalImpressions;
-      }
-
-      document.getElementById('impressionsCarousel').addEventListener('scroll', function() {
-        var slideWidth = this.children[0].offsetWidth;
-        var idx = Math.round(this.scrollLeft / slideWidth);
-        if (idx !== currentImpression && idx >= 0 && idx < totalImpressions) {
-          currentImpression = idx;
-          updateImpressionPaging();
+      document.addEventListener("keydown", function (e) {
+        if (
+          document
+            .getElementById("impressionsPopup")
+            .classList.contains("active")
+        ) {
+          if (e.key === "ArrowRight") impressionNav(1);
+          if (e.key === "ArrowLeft") impressionNav(-1);
+          if (e.key === "Escape") closeImpressionsCarousel();
         }
       });
 
-      document.addEventListener('keydown', function(e) {
-        if (document.getElementById('impressionsPopup').classList.contains('active')) {
-          if (e.key === 'ArrowRight') impressionNav(1);
-          if (e.key === 'ArrowLeft') impressionNav(-1);
-          if (e.key === 'Escape') closeImpressionsCarousel();
-        }
-      });
-
-      document.getElementById('impressionsPopup').addEventListener('click', function(e) {
-        if (e.target === this) closeImpressionsCarousel();
-      });
+      document
+        .getElementById("impressionsPopup")
+        .addEventListener("click", function (e) {
+          if (e.target === this) closeImpressionsCarousel();
+        });
     </script>
-
-
-
   </body>
 </html>

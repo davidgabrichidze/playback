@@ -14,7 +14,10 @@
 
 		html {
 			scroll-behavior: smooth;
-			scroll-snap-type: y mandatory;
+		}
+
+		@media (min-width: 769px) {
+			html { scroll-snap-type: y mandatory; }
 		}
 
 		body {
@@ -1121,26 +1124,26 @@
 
 		.impressions-carousel {
 			width: 100%;
-			overflow-x: auto;
-			overflow-y: hidden;
-			scroll-snap-type: x mandatory;
-			display: flex;
-			-webkit-overflow-scrolling: touch;
-			scrollbar-width: none;
-		}
-
-		.impressions-carousel::-webkit-scrollbar {
-			display: none;
+			height: 70vh;
+			overflow: hidden;
+			position: relative;
 		}
 
 		.impressions-slide {
-			min-width: 100vw;
+			position: absolute;
+			top: 0; left: 0; right: 0; bottom: 0;
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			padding: 60px 40px;
-			scroll-snap-align: center;
-			flex-shrink: 0;
+			padding: 60px 80px;
+			opacity: 0;
+			transition: opacity 0.4s ease;
+			pointer-events: none;
+		}
+
+		.impressions-slide.active {
+			opacity: 1;
+			pointer-events: auto;
 		}
 
 		.impressions-slide blockquote {
@@ -1189,18 +1192,27 @@
 		.impressions-nav:hover { opacity: 0.7; }
 		.impressions-nav.prev { left: 20px; }
 		.impressions-nav.next { right: 20px; }
+		.impressions-nav { z-index: 3001; }
 
 		@media (max-width: 768px) {
+			.impressions-carousel {
+				height: 60vh;
+			}
 			.impressions-slide {
-				padding: 40px 20px;
+				padding: 30px 50px;
+				overflow-y: auto;
 			}
 			.impressions-slide blockquote {
-				font-size: 20px;
-				line-height: 1.7;
+				font-size: 18px;
+				line-height: 1.6;
 			}
-			.impressions-nav { padding: 10px; font-size: 24px; }
+			.impressions-slide .slide-author {
+				font-size: 14px;
+			}
+			.impressions-nav { padding: 8px; font-size: 20px; }
 			.impressions-nav.prev { left: 5px; }
 			.impressions-nav.next { right: 5px; }
+			.impressions-popup-close { top: 15px; right: 15px; font-size: 28px; }
 		}
 
 		/* Responsive */
@@ -1214,8 +1226,20 @@
 			}
 
 			h2 {
-				font-size: 28px;
-				letter-spacing: 2px;
+				font-size: 26px;
+				letter-spacing: 1px;
+			}
+
+			.step-number {
+				font-size: 36px;
+			}
+
+			#what .what-hook {
+				font-size: 24px;
+			}
+
+			#founder .founder-closing {
+				font-size: 20px;
 			}
 
 			nav {
@@ -1556,13 +1580,13 @@ body.lang-en .team-quote {
 			<div class="steps-container">
 				<div class="step">
 					<div class="step-number">1</div>
-					<h3><span class="ka">შენ ჰყვები</span><span class="en">You share</span></h3>
-					<p><span class="ka">რაც გაგიზიარებია — პირადი, რეალური, შენი</span><span class="en">Whatever you feel — personal, real, yours</span></p>
+					<h3><span class="ka">შენ გვიყვები</span><span class="en">You share</span></h3>
+					<p><span class="ka">რაც გაგიზიარებია — პირადი, რეალური, შენი ამბავი</span><span class="en">Whatever you feel — personal, real, yours</span></p>
 				</div>
 				<div class="step">
 					<div class="step-number">2</div>
-					<h3><span class="ka">ჩვენ ვასცენარებთ</span><span class="en">We perform</span></h3>
-					<p><span class="ka">შენი ისტორია სცენაზე — მოძრაობით, მუსიკით, ემოციით</span><span class="en">Your story on stage — through movement, music, emotion</span></p>
+					<h3><span class="ka">ჩვენ ვასრულებთ</span><span class="en">We perform</span></h3>
+					<p><span class="ka">შენი ისტორია იქვე თამაშდება — მოძრაობით, მუსიკით, ემოციით, სიტყვებით</span><span class="en">Your story on stage — through movement, music, emotion, words</span></p>
 				</div>
 				<div class="step">
 					<div class="step-number">3</div>
@@ -1609,10 +1633,10 @@ body.lang-en .team-quote {
 	<section class="quote-section">
 		<div class="spotlight-glow"></div>
 		<div style="position: relative; z-index: 2;">
-			<blockquote><span class="ka">მთელ კვირას სხვა ადამიანი ვიყავი ამ საღამოს შემდეგ.</span><span class="en">I was a different person all week after that evening.</span></blockquote>
+			<blockquote><span class="ka">ამ საღამოს შემდეგ მთელი კვირა სხვა ადამიანი ვიყავი.</span><span class="en">I was a different person all week after that evening.</span></blockquote>
 			<p class="quote-author"><span class="ka">მაყურებელი</span><span class="en">Audience member</span></p>
 			<div style="margin-top: 50px;">
-				<button class="impressions-more-btn" onclick="openImpressionsCarousel()">
+				<button class="impressions-more-btn" id="impOpenBtn">
 					<span class="ka">მეტი შთაბეჭდილება</span><span class="en">More Impressions</span>
 				</button>
 			</div>
@@ -1788,7 +1812,7 @@ body.lang-en .team-quote {
 				</div>
 			</div>
 			<div class="gallery-expand">
-				<button onclick="expandGallery()">
+				<button onclick="openLightbox(6)">
 					<span class="ka">მეტის ნახვა</span>
 					<span class="en">See More</span>
 				</button>
@@ -1815,8 +1839,8 @@ body.lang-en .team-quote {
 				<span class="performance-detail-label"><span class="ka">ადგილი:</span><span class="en">Location:</span></span><span class="ka">ხორავას N14, თბილისი</span><span class="en">Khorava 14, Tbilisi</span>
 			</div>
 			<p class="performance-note">
-				<span class="ka">დასწრება უფასოა. მაყურებლები, როგორც წესი, დონაციის სახით 20-40₾ გვიტოვებენ — სწორედ ამით არსებობს ეს თეატრი. თუ არ შეგიძლია, უბრალოდ მოდი — შენი ყოფნა მნიშვნელოვანია.</span>
-				<span class="en">Attendance is free. Audience members typically leave 20-40₾ as a donation — that's how this theatre exists. If you can't, just come — your presence matters.</span>
+				<span class="ka">დასწრება უფასოა. მაყურებლები, როგორც წესი, დონაციის სახით 20-40₾ გვიტოვებენ. სწორედ ამით არსებობს ეს თეატრი. თუ არ შეგიძლია, უბრალოდ მოდი - შენი ყოფნა მნიშვნელოვანია 🤍</span>
+				<span class="en">Attendance is free. Audience members typically leave 20-40₾ as a donation — that's how this theatre exists. If you can't, just come — your presence matters 🤍</span>
 			</p>
 			<div class="performance-cta">
 				<a href="mailto:tsisa.cholokashvili@gmail.com?subject=დარეგისტრირება პერფორმანსზე">
@@ -1991,16 +2015,16 @@ body.lang-en .team-quote {
 
 	<!-- Impressions Carousel Popup -->
 	<div class="impressions-popup" id="impressionsPopup">
-		<button class="impressions-popup-close" onclick="closeImpressionsCarousel()">✕</button>
-		<button class="impressions-nav prev" onclick="impressionNav(-1)">❮</button>
-		<button class="impressions-nav next" onclick="impressionNav(1)">❯</button>
+		<button class="impressions-popup-close" id="impCloseBtn">✕</button>
+		<button class="impressions-nav prev" id="impPrev">❮</button>
+		<button class="impressions-nav next" id="impNext">❯</button>
 		<div class="impressions-carousel" id="impressionsCarousel">
 			<div class="impressions-slide"><div><blockquote><span class="ka">პირველად ვიყავი და ვერ წარმოვიდგენდი, რომ ასეთი რამ შეიძლებოდა. ტირილიც მინდოდა და სიცილიც.</span><span class="en">It was my first time and I couldn't imagine something like this was possible. I wanted to both cry and laugh.</span></blockquote><p class="slide-author"><span class="ka">მაყურებელი</span><span class="en">Audience member</span></p></div></div>
 			<div class="impressions-slide"><div><blockquote><span class="ka">სხვისი ისტორიის ყურებისას საკუთარი თავი ვნახე. ძალიან ძლიერი გამოცდილება იყო.</span><span class="en">Watching someone else's story, I saw myself. It was a very powerful experience.</span></blockquote><p class="slide-author"><span class="ka">მაყურებელი</span><span class="en">Audience member</span></p></div></div>
 			<div class="impressions-slide"><div><blockquote><span class="ka">ეს არ არის უბრალოდ თეატრი. ეს რაღაც ძალიან ადამიანურია.</span><span class="en">This is not just theatre. This is something profoundly human.</span></blockquote><p class="slide-author"><span class="ka">მაყურებელი</span><span class="en">Audience member</span></p></div></div>
 			<div class="impressions-slide"><div><blockquote><span class="ka">ვერ დავიჯერე, რომ უცნობ ადამიანებთან ასეთი უსაფრთხოება შეიძლებოდა მეგრძნო.</span><span class="en">I couldn't believe I could feel so safe among strangers.</span></blockquote><p class="slide-author"><span class="ka">მაყურებელი</span><span class="en">Audience member</span></p></div></div>
 			<div class="impressions-slide"><div><blockquote><span class="ka">საკუთარ ამბავს როცა სცენაზე ვუყურე, ისეთი სიმსუბუქე ვიგრძენი, თითქოს ტვირთი მომეხსნა.</span><span class="en">Watching my own story on stage, I felt such lightness, as if a weight had been lifted.</span></blockquote><p class="slide-author"><span class="ka">მაყურებელი</span><span class="en">Audience member</span></p></div></div>
-			<div class="impressions-slide"><div><blockquote><span class="ka">მთელ კვირას სხვა ადამიანი ვიყავი ამ საღამოს შემდეგ.</span><span class="en">I was a different person all week after that evening.</span></blockquote><p class="slide-author"><span class="ka">მაყურებელი</span><span class="en">Audience member</span></p></div></div>
+			<div class="impressions-slide"><div><blockquote><span class="ka">ამ საღამოს შემდეგ მთელი კვირა სხვა ადამიანი ვიყავი.</span><span class="en">I was a different person all week after that evening.</span></blockquote><p class="slide-author"><span class="ka">მაყურებელი</span><span class="en">Audience member</span></p></div></div>
 		</div>
 		<div class="impressions-paging" id="impressionsPaging">1 / 6</div>
 	</div>
@@ -2111,16 +2135,24 @@ body.lang-en .team-quote {
 			}
 		});
 
-		// Impressions Carousel
-		let currentImpression = 0;
-		const totalImpressions = document.querySelectorAll('.impressions-slide').length;
+		// Impressions Carousel — fade-based
+		var slides = document.querySelectorAll('.impressions-slide');
+		var currentImpression = 0;
+		var totalImpressions = slides.length;
+
+		function showSlide(idx) {
+			for (var i = 0; i < slides.length; i++) {
+				slides[i].classList.remove('active');
+			}
+			slides[idx].classList.add('active');
+			document.getElementById('impressionsPaging').textContent = (idx + 1) + ' / ' + totalImpressions;
+		}
 
 		function openImpressionsCarousel() {
 			currentImpression = 0;
+			showSlide(0);
 			document.getElementById('impressionsPopup').classList.add('active');
 			document.body.style.overflow = 'hidden';
-			scrollToImpression(0);
-			updateImpressionPaging();
 		}
 
 		function closeImpressionsCarousel() {
@@ -2130,30 +2162,13 @@ body.lang-en .team-quote {
 
 		function impressionNav(dir) {
 			currentImpression = Math.max(0, Math.min(totalImpressions - 1, currentImpression + dir));
-			scrollToImpression(currentImpression);
-			updateImpressionPaging();
+			showSlide(currentImpression);
 		}
 
-		function scrollToImpression(idx) {
-			const carousel = document.getElementById('impressionsCarousel');
-			const slide = carousel.children[idx];
-			slide.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-		}
-
-		function updateImpressionPaging() {
-			document.getElementById('impressionsPaging').textContent = (currentImpression + 1) + ' / ' + totalImpressions;
-		}
-
-		// Update paging on scroll
-		document.getElementById('impressionsCarousel').addEventListener('scroll', function() {
-			const carousel = this;
-			const slideWidth = carousel.children[0].offsetWidth;
-			const idx = Math.round(carousel.scrollLeft / slideWidth);
-			if (idx !== currentImpression && idx >= 0 && idx < totalImpressions) {
-				currentImpression = idx;
-				updateImpressionPaging();
-			}
-		});
+		document.getElementById('impOpenBtn').addEventListener('click', openImpressionsCarousel);
+		document.getElementById('impCloseBtn').addEventListener('click', closeImpressionsCarousel);
+		document.getElementById('impPrev').addEventListener('click', function() { impressionNav(-1); });
+		document.getElementById('impNext').addEventListener('click', function() { impressionNav(1); });
 
 		// Keyboard nav for impressions popup
 		document.addEventListener('keydown', function(e) {
