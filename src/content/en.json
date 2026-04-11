@@ -35,18 +35,18 @@
     "steps": [
       {
         "number": "1",
-        "title": "You share",
-        "description": "Whatever you feel — personal, real, yours"
+        "title": "We listen",
+        "description": "A member of the audience shares a real story from their life"
       },
       {
         "number": "2",
-        "title": "We perform",
-        "description": "Your story on stage — through movement, music, emotion"
+        "title": "We play",
+        "description": "The story is performed right there by actors, with live music"
       },
       {
         "number": "3",
-        "title": "Everyone feels",
-        "description": "One story — a shared experience"
+        "title": "We return (playback)",
+        "description": "We ritually return this story to the teller, and it becomes a shared experience"
       }
     ]
   },
@@ -68,7 +68,11 @@
         "author": "Audience member"
       },
       {
-        "text": "I was a different person all week after that evening.",
+        "text": "I was filled with emotions all week after that evening.",
+        "author": "Audience member"
+      },
+      {
+        "text": "Now I realize this is exactly the place I needed so much, and from today I'll be at every performance.",
         "author": "Audience member"
       }
     ]
@@ -82,7 +86,7 @@
       { "year": "Today", "text": "Active in 60+ countries" }
     ],
     "quote": "This space represents the convergence of my two professional experiences: professional theatre and psychotherapy practice. For me, Playback Theatre is a transition from big, structured and predetermined theatre to a small, authentic space built on human encounter, spontaneity and genuineness, where a person can be who they truly are. It is in this human, living relationship that I see the main value of Playback Theatre.",
-    "attribution": "Tsisia Cholokashvili, Co-founder",
+    "attribution": "Tsisia Cholokashvili, Founder",
     "attributionImage": "images/team/tsisia-cholokashvili.jpg"
   },
 
@@ -94,9 +98,9 @@
     "time": "20:00",
     "locationLabel": "Location:",
     "location": "Khorava 14, Tbilisi",
-    "note": "Attendance is free. Audience members typically leave 20-40₾ as a donation — that's how this theatre exists. If you can't, just come — your presence matters.",
+    "note": "Attendance is free. As an expression of gratitude, audience members typically leave a 20-40₾ donation — that's how this theatre exists. If you can't, just come — your presence matters 🤍",
     "ctaText": "Register",
-    "ctaLink": "mailto:tsisa.cholokashvili@gmail.com?subject=Register for Performance"
+    "ctaLink": "mailto:info@playbacktheatre.ge?subject=Register for Performance"
   },
 
   "courses": {
@@ -120,7 +124,7 @@
       }
     ],
     "ctaText": "Get in Touch",
-    "ctaLink": "mailto:tsisa.cholokashvili@gmail.com?subject=Course Inquiry"
+    "ctaLink": "mailto:info@playbacktheatre.ge?subject=Course Inquiry"
   },
 
   "organizations": {
@@ -142,7 +146,7 @@
       }
     ],
     "ctaText": "Get in Touch",
-    "ctaLink": "mailto:tsisa.cholokashvili@gmail.com?subject=Organization Inquiry"
+    "ctaLink": "mailto:info@playbacktheatre.ge?subject=Organization Inquiry"
   },
 
   "gallery": {
@@ -183,19 +187,9 @@
     "title": "Team",
     "members": [
       {
-        "name": "George Rusetsky",
-        "role": "Co-founder, trainer, musician",
-        "photo": "images/team/george-rusetsky.jpg"
-      },
-      {
         "name": "Tsisia Cholokashvili",
-        "role": "Co-founder, conductor",
+        "role": "Founder, director",
         "photo": "images/team/tsisia-cholokashvili.jpg"
-      },
-      {
-        "name": "Tea Chubinidze",
-        "role": "Team member",
-        "photo": "images/team/tea-chubinidze.jpg"
       }
     ],
     "groupPhoto": "images/about_center/1.jpg",
@@ -209,7 +203,7 @@
 
   "ethics": {
     "title": "Code of Ethics",
-    "intro": "Playback Theatre follows the ethical principles of IPTN (International Playback Theatre Network):",
+    "intro": "Playback Theatre follows the ethical principles of CPT (Center for Playback Theatre):",
     "items": [
       {
         "title": "Respect",
@@ -237,19 +231,19 @@
       }
     ],
     "iptnText": "Learn more:",
-    "iptnLink": "https://playbacktheatrenetwork.org"
+    "iptnLink": "https://playbacktheatre.org"
   },
 
   "donation": {
     "title": "Support",
-    "text": "Playback Theatre needs support beyond performances — we want to advance our skills, invite trainers from leading European Playback theatres, and grow this space. Your donation makes all of this possible.",
+    "text": "Playback Theatre needs support beyond performances — we continuously invest in raising our skills, invite trainers from leading European Playback theatres, and develop this space. Your donation makes all of this possible.",
     "ctaText": "Get in touch about support",
-    "ctaLink": "mailto:tsisa.cholokashvili@gmail.com?subject=About Donations"
+    "ctaLink": "mailto:info@playbacktheatre.ge?subject=About Donations"
   },
 
   "contact": {
     "title": "Contact",
-    "email": "tsisa.cholokashvili@gmail.com",
+    "email": "info@playbacktheatre.ge",
     "facebook": {
       "label": "Facebook Group",
       "link": "https://www.facebook.com/groups/4088209314751117"
@@ -259,7 +253,7 @@
   "footer": {
     "copyright": "© 2025 Georgian Playback Theatre Center",
     "links": [
-      { "label": "IPTN", "url": "https://playbacktheatrenetwork.org" },
+      { "label": "CPT", "url": "https://playbacktheatre.org" },
       { "label": "Facebook", "url": "https://www.facebook.com/groups/4088209314751117" }
     ]
   },

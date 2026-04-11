@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ვებსაიტის ვარიანტები - შიდა გამოყენებისთვის</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@300;400;600;700&family=Noto+Serif+Georgian:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0a0805;
+      color: #e8dfd0;
+      font-family: 'Noto Sans Georgian', 'Inter', sans-serif;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 30px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .header h1 {
+      font-family: 'Noto Serif Georgian', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: #e8dfd0;
+      margin-bottom: 15px;
+    }
+
+    .header .subtitle {
+      font-size: 18px;
+      color: rgba(232, 223, 208, 0.5);
+    }
+
+    .header .badge {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 6px 20px;
+      border: 1px solid rgba(196, 154, 108, 0.3);
+      border-radius: 20px;
+      font-size: 13px;
+      color: #c49a6c;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* Philosophy */
+    .philosophy {
+      margin-bottom: 80px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .philosophy h2 {
+      font-family: 'Noto Serif Georgian', serif;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: #e8dfd0;
+      text-align: center;
+    }
+
+    .philosophy-quote {
+      font-family: 'Noto Serif Georgian', serif;
+      font-size: 22px;
+      font-style: italic;
+      color: #c49a6c;
+      text-align: center;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    .philosophy-points {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 40px;
+    }
+
+    .philosophy-point {
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(196, 154, 108, 0.08);
+    }
+
+    .philosophy-point strong {
+      color: #c49a6c;
+      font-size: 15px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .philosophy-point span {
+      font-size: 15px;
+      color: rgba(232, 223, 208, 0.6);
+    }
+
+    /* Variants */
+    .variants {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 80px;
+    }
+
+    .variant-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: rgba(232, 223, 208, 0.03);
+      border: 1px solid rgba(196, 154, 108, 0.15);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .variant-card:hover {
+      border-color: rgba(196, 154, 108, 0.5);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 40px rgba(196, 154, 108, 0.1);
+    }
+
+    .variant-preview {
+      height: 280px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .variant-preview iframe {
+      width: 200%;
+      height: 200%;
+      border: none;
+      transform: scale(0.5);
+      transform-origin: top left;
+      pointer-events: none;
+    }
+
+    .variant-info {
+      padding: 30px;
+    }
+
+    .variant-name {
+      font-family: 'Noto Serif Georgian', serif;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #e8dfd0;
+    }
+
+    .variant-concept {
+      font-size: 16px;
+      color: #c49a6c;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .variant-desc {
+      font-size: 16px;
+      color: rgba(232, 223, 208, 0.7);
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+
+    .variant-traits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .trait {
+      padding: 4px 14px;
+      background: rgba(196, 154, 108, 0.08);
+      border: 1px solid rgba(196, 154, 108, 0.15);
+      border-radius: 15px;
+      font-size: 13px;
+      color: rgba(232, 223, 208, 0.6);
+    }
+
+    .variant-cta-label {
+      display: block;
+      text-align: center;
+      padding: 14px;
+      background: rgba(196, 154, 108, 0.1);
+      color: #c49a6c;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+      letter-spacing: 0.5px;
+    }
+
+    .variant-card:hover .variant-cta-label {
+      background: rgba(196, 154, 108, 0.2);
+    }
+
+    /* Shared section */
+    .shared-section {
+      margin-bottom: 80px;
+    }
+
+    .shared-section h2 {
+      font-family: 'Noto Serif Georgian', serif;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: #e8dfd0;
+    }
+
+    .shared-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px 40px;
+    }
+
+    .shared-item {
+      font-size: 16px;
+      color: rgba(232, 223, 208, 0.7);
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(196, 154, 108, 0.08);
+    }
+
+    /* Differences */
+    .diff-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .diff-table th {
+      text-align: left;
+      padding: 12px 15px;
+      font-size: 14px;
+      color: #c49a6c;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px solid rgba(196, 154, 108, 0.2);
+      font-weight: 600;
+    }
+
+    .diff-table td {
+      padding: 12px 15px;
+      font-size: 15px;
+      color: rgba(232, 223, 208, 0.7);
+      border-bottom: 1px solid rgba(196, 154, 108, 0.06);
+    }
+
+    .diff-table td:first-child {
+      color: rgba(232, 223, 208, 0.5);
+      font-size: 14px;
+      width: 30%;
+    }
+
+    /* Footer */
+    .page-footer {
+      text-align: center;
+      padding-top: 40px;
+      border-top: 1px solid rgba(196, 154, 108, 0.1);
+      font-size: 14px;
+      color: rgba(232, 223, 208, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .variants { grid-template-columns: 1fr; }
+      .shared-list { grid-template-columns: 1fr; }
+      .philosophy-points { grid-template-columns: 1fr; }
+      .header h1 { font-size: 28px; }
+      .variant-preview { height: 200px; }
+      .philosophy-quote { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="header">
+      <img src="images/logo.svg" alt="Playback Theatre" style="width: 240px; height: 240px; margin: 0 auto 30px; display: block; opacity: 0.8;">
+      <div class="badge">v0.2-alpha-testing</div>
+      <h1>აირჩიეთ რომელი მოგწონთ ორი ფინალური ვარიანტიდან</h1>
+      <p class="subtitle">ქართული ფლეიბექ თეატრის ცენტრი</p>
+    </div>
+
+    <div class="philosophy">
+      <h2>საიტის ფილოსოფია</h2>
+      <p class="philosophy-quote">„დარბაზში ხარ“ - ვებსაიტი ბაძავს ფლეიბექ თეატრის წარმოდგენის ატმოსფეროს. ეს არ არის საინფორმაციო პორტალი - ეს არის გამოცდილება.</p>
+      <div class="philosophy-points">
+        <div class="philosophy-point">
+          <strong>მუქი პალიტრა</strong>
+          <span>თეატრის მეტაფორა: დარბაზში შუქი ჩამქვრალია, ყურადღება სცენაზეა. განათებული თემა არ გვაქვს.</span>
+        </div>
+        <div class="philosophy-point">
+          <strong>Full-page სექციები</strong>
+          <span>ერთი გზავნილი = ერთი სივრცე. ერთი ასქროლვა, ერთი „ძვირფასო მსახიობებო“ - Scroll-ი მოქმედებს, როგორც სცენის ცვლილება.</span>
+        </div>
+        <div class="philosophy-point">
+          <strong>22px მინიმალური ფონტი</strong>
+          <span>„შენ გესაუბრებიან“ - თითქოს ადამიანი გესაუბრება, გიყვება, იქმნება ინტიმური განწყობა, არა დოკუმენტური.</span>
+        </div>
+        <div class="philosophy-point">
+          <strong>მინიმალური CTA-ები</strong>
+          <span>ეს არ არის landing page სტანდარტული გაგებით (სადაც ყოველ ფეხის ნაბიჯზე მოქმედებისკენ მოგიწოდებენ) - ეს არის ისტორია, რომელსაც ბოლოში მოქმედება მოყვება.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="philosophy" style="margin-top: 0;">
+      <h2>სექციების მიმდევრობა - AIDA</h2>
+      <p class="philosophy-quote" style="font-size: 18px;">სექციები დალაგებულია AIDA პრინციპით (Attention → Interest → Desire → Action) - ჯერ ყურადღება, მერე ინტერესი, მერე სურვილი, მერე მოქმედება.</p>
+      <div class="philosophy-points">
+        <div class="philosophy-point">
+          <strong>Attention</strong>
+          <span>Hero - პირველი ემოცია</span>
+        </div>
+        <div class="philosophy-point">
+          <strong>Interest</strong>
+          <span>What + How - რა არის და როგორ მუშაობს</span>
+        </div>
+        <div class="philosophy-point">
+          <strong>Desire</strong>
+          <span>Impressions → Founder → Team → Gallery - ნდობა, ემოცია, ვიზუალი</span>
+        </div>
+        <div class="philosophy-point">
+          <strong>Action</strong>
+          <span>Performance → Donation → Organizations → Courses - მოქმედება</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="philosophy" style="margin-top: 0;">
+      <h2>ცისიას ხმა საიტზე</h2>
+      <p class="philosophy-quote" style="font-size: 18px;">ცისია ჩოლოყაშვილი, დამფუძნებელი, საიტზე რამდენჯერმე ჩნდება - და ეს განზრახ არის ასე. ის არ არის „ციტატა გვერდის გასალამაზებლად". ცისია სტუმარს უყვება თავის ამბავს: ჯერ ხსნის რატომ გადაწყვიტა ამ თეატრის შექმნა (Impressions), მერე ყვება ცენტრის ისტორიას (Founder), და ბოლოს აღწერს რა ხდება ყოველ წარმოდგენაზე (Team). სტუმარი შემოსულია არა უბრალოდ ვებსაიტზე, არამედ იცნობს და უსმენს ადამიანს, რომელიც ამ ყველაფრის უკან დგას.</p>
+    </div>
+
+    <div class="variants">
+
+      <a href="index.html" class="variant-card">
+        <div class="variant-preview">
+          <iframe src="index.html" loading="lazy" tabindex="-1"></iframe>
+        </div>
+        <div class="variant-info">
+          <div class="variant-name">Cinematic</div>
+          <div class="variant-concept">„სიჩუმე და ფოკუსი“</div>
+          <p class="variant-desc">ერთიანი მუქი ფონი მთელი საიტის მანძილზე. როგორც კინოთეატრის დარბაზი - ყველგან ერთნაირი სიბნელე, შუქი მხოლოდ კონტენტზეა. ტექსტი „ცურავს“ სიბნელეში, ფოტოები მკვეთრად გამოხატულია.</p>
+          <div class="variant-traits">
+            <span class="trait">ერთიანი მუქი ფონი</span>
+            <span class="trait">მინიმალისტური</span>
+            <span class="trait">ფოტო-ფოკუსი</span>
+            <span class="trait">კინემატოგრაფიული</span>
+          </div>
+          <div class="variant-cta-label">სინემატიკის ნახვა →</div>
+        </div>
+      </a>
+
+      <a href="alternative.html" class="variant-card">
+        <div class="variant-preview">
+          <iframe src="alternative.html" loading="lazy" tabindex="-1"></iframe>
+        </div>
+        <div class="variant-info">
+          <div class="variant-name">Theatrical</div>
+          <div class="variant-concept">„ტემპერატურის მოგზაურობა“</div>
+          <p class="variant-desc">ფონის ფერი იცვლება სექციიდან სექციაზე - ღრმა სიბნელიდან თანდათან თბება და ისევ ბრუნდება. Spotlight ეფექტით, თითქოს სცენის პროჟექტორიდან მოდის სინათლე. საიტს თავად აქვს დრამატურგია.</p>
+          <div class="variant-traits">
+            <span class="trait">ფერის მოგზაურობა</span>
+            <span class="trait">Spotlight ეფექტი</span>
+            <span class="trait">დრამატურგიული</span>
+            <span class="trait">ემოციური რკალი</span>
+          </div>
+          <div class="variant-cta-label">თეატრალურის ნახვა →</div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="shared-section">
+      <h2>რა არის საერთო ორივე ვარიანტში</h2>
+      <div class="shared-list">
+        <div class="shared-item">ბილინგვური (ქართულ-ინგლისური)</div>
+        <div class="shared-item">მხოლოდ მუქი რეჟიმი - თეატრის მეტაფორა</div>
+        <div class="shared-item">Full-page სექციები (100vh)</div>
+        <div class="shared-item">ცისიას ტექსტი ვერბატიმ</div>
+        <div class="shared-item">25 ფოტოს გალერეა სლაიდერით</div>
+        <div class="shared-item">მობილურზე ადაპტირებული</div>
+        <div class="shared-item">ეთიკის კოდექსი აკორდეონით</div>
+        <div class="shared-item">ნავიგაცია scroll-ზე ჩნდება</div>
+        <div class="shared-item">კონტაქტი = საბოლოო სექცია</div>
+        <div class="shared-item">ერთი ფაილი - CSS/JS inline</div>
+      </div>
+    </div>
+
+    <div class="shared-section">
+      <h2>სად განსხვავდებიან</h2>
+      <table class="diff-table">
+        <thead>
+          <tr>
+            <th>ელემენტი</th>
+            <th>Cinematic</th>
+            <th>Theatrical</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ფონი</td>
+            <td>ერთიანი მუქი ფერი მთელ საიტზე</td>
+            <td>ფერი იცვლება სექციიდან სექციაზე (ბნელი → თბილი → ბნელი)</td>
+          </tr>
+          <tr>
+            <td>Spotlight</td>
+            <td>არ აქვს</td>
+            <td>თბილი სინათლის ლაქა თითოეულ სექციაზე</td>
+          </tr>
+          <tr>
+            <td>ოქროს ტონი</td>
+            <td>მუქი, თავშეკავებული</td>
+            <td>ღია, თბილი</td>
+          </tr>
+          <tr>
+            <td>გალერეა</td>
+            <td>3x3 ფიქსირებული</td>
+            <td>მოქნილი grid</td>
+          </tr>
+          <tr>
+            <td>შეგრძნება</td>
+            <td>სიჩუმე, ფოკუსი, მინიმალიზმი</td>
+            <td>სითბო, დრამატურგია, მოგზაურობა</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="page-footer">
+      <p>ეს გვერდი მხოლოდ შიდა გამოყენებისთვისაა - გუნდის მიერ ვარიანტის არჩევისთვის</p>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,444 +1,2972 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ka">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ვებსაიტის ვარიანტები - შიდა გამოყენებისთვის</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@300;400;600;700&family=Noto+Serif+Georgian:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="images/logo.svg" />
+    <title>
+      ქართული ფლეიბექ თეატრი — განსაკუთრებული ადგილი, სადაც თქვენს ისტორიას
+      სცენაზე აცოცხლებენ
+    </title>
+    <meta
+      name="description"
+      content="ქართული ფლეიბექ თეატრის ცენტრი — თბილისში პირველი ფლეიბექ თეატრი. თქვენ ჰყვებით ისტორიას, მსახიობები მას სცენაზე აცოცხლებენ. დასწრება თავისუფალია. ყოველი თვის ბოლო შაბათი, 20:00, ხორავას 14."
+    />
+    <meta
+      name="keywords"
+      content="ფლეიბექ თეატრი, playback theatre, თბილისი, იმპროვიზაციული თეატრი, სპონტანური თეატრი, თეატრი თბილისში, განსაკუთრებული ადგილი, უფასო წარმოდგენა, ფლეიბექი საქართველოში, Georgian Playback Theatre"
+    />
+    <meta name="author" content="ქართული ფლეიბექ თეატრის ცენტრი" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://playbacktheatre.ge/" />
 
-    body {
-      background: #0a0805;
-      color: #e8dfd0;
-      font-family: 'Noto Sans Georgian', 'Inter', sans-serif;
-      line-height: 1.7;
-      min-height: 100vh;
-    }
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="ქართული ფლეიბექ თეატრი — თქვენს ისტორიას სცენაზე აცოცხლებენ"
+    />
+    <meta
+      property="og:description"
+      content="განსაკუთრებული ადგილი თბილისში, სადაც თქვენი ისტორია სცენაზე ცოცხლდება. ყოველი თვის ბოლო შაბათი, 20:00."
+    />
+    <meta property="og:image" content="images/general/hero.jpg" />
+    <meta property="og:url" content="https://playbacktheatre.ge/" />
+    <meta property="og:locale" content="ka_GE" />
+    <meta property="og:locale:alternate" content="en_US" />
 
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 60px 30px;
-    }
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ქართული ფლეიბექ თეატრი" />
+    <meta
+      name="twitter:description"
+      content="თქვენ ჰყვებით ისტორიას — მსახიობები მას სცენაზე აცოცხლებენ."
+    />
+    <meta name="twitter:image" content="images/general/hero.jpg" />
 
-    .header {
-      text-align: center;
-      margin-bottom: 80px;
-    }
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "PerformingArtsTheater",
+        "name": "ქართული ფლეიბექ თეატრის ცენტრი",
+        "alternateName": "Georgian Playback Theatre Center",
+        "description": "თბილისში პირველი ფლეიბექ თეატრი — განსაკუთრებული ადგილი, სადაც მაყურებლის ისტორიას სცენაზე აცოცხლებენ იმპროვიზაციით.",
+        "url": "https://playbacktheatre.ge/",
+        "image": "images/general/hero.jpg",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "ხორავას 14",
+          "addressLocality": "თბილისი",
+          "addressCountry": "GE"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 41.7068,
+          "longitude": 44.7827
+        },
+        "telephone": "+995577140222",
+        "email": "info@playbacktheatre.ge",
+        "foundingDate": "2025-03-02",
+        "founder": [{ "@type": "Person", "name": "ცისია ჩოლოყაშვილი" }],
+        "event": {
+          "@type": "TheaterEvent",
+          "name": "ფლეიბექ წარმოდგენა",
+          "description": "იმპროვიზაციული წარმოდგენა მაყურებლის ისტორიებზე დაყრდნობით. დასწრება თავისუფალია.",
+          "eventSchedule": {
+            "@type": "Schedule",
+            "repeatFrequency": "P1M",
+            "byDay": "Saturday",
+            "startTime": "20:00"
+          },
+          "location": {
+            "@type": "Place",
+            "name": "ხორავას 14",
+            "address": "ხორავას 14, თბილისი"
+          },
+          "isAccessibleForFree": true,
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "GEL",
+            "description": "დასწრება თავისუფალია, დონაცია მისასალმებელია"
+          }
+        },
+        "sameAs": ["https://www.facebook.com/groups/4088209314751117"]
+      }
+    </script>
 
-    .header h1 {
-      font-family: 'Noto Serif Georgian', serif;
-      font-size: 36px;
-      font-weight: 700;
-      color: #e8dfd0;
-      margin-bottom: 15px;
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;600;700&family=Noto+Serif+Georgian:wght@400;600;700&family=Playfair+Display:wght@400;700&family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-    .header .subtitle {
-      font-size: 18px;
-      color: rgba(232, 223, 208, 0.5);
-    }
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    .header .badge {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 6px 20px;
-      border: 1px solid rgba(196, 154, 108, 0.3);
-      border-radius: 20px;
-      font-size: 13px;
-      color: #c49a6c;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
+      :root {
+        --dark-bg: #0a0805;
+        --text-light: #e8dfd0;
+        --accent-gold: #c49a6c;
+        --transition: 0.5s ease;
+      }
 
-    /* Philosophy */
-    .philosophy {
-      margin-bottom: 80px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+      html {
+        scroll-behavior: smooth;
+      }
 
-    .philosophy h2 {
-      font-family: 'Noto Serif Georgian', serif;
-      font-size: 26px;
-      font-weight: 700;
-      margin-bottom: 30px;
-      color: #e8dfd0;
-      text-align: center;
-    }
+      @media (min-width: 769px) {
+        html {
+          scroll-snap-type: y mandatory;
+        }
+      }
 
-    .philosophy-quote {
-      font-family: 'Noto Serif Georgian', serif;
-      font-size: 22px;
-      font-style: italic;
-      color: #c49a6c;
-      text-align: center;
-      margin-bottom: 40px;
-      line-height: 1.6;
-    }
+      body {
+        font-family: "Noto Sans Georgian", sans-serif;
+        background-color: var(--dark-bg);
+        color: var(--text-light);
+        line-height: 1.6;
+      }
 
-    .philosophy-points {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px 40px;
-    }
+      body.lang-en {
+        font-family: "Inter", sans-serif;
+      }
 
-    .philosophy-point {
-      padding: 15px 0;
-      border-bottom: 1px solid rgba(196, 154, 108, 0.08);
-    }
+      h1,
+      h2,
+      h3 {
+        font-family: "Noto Serif Georgian", serif;
+      }
 
-    .philosophy-point strong {
-      color: #c49a6c;
-      font-size: 15px;
-      display: block;
-      margin-bottom: 4px;
-    }
+      body.lang-en h1,
+      body.lang-en h2,
+      body.lang-en h3 {
+        font-family: "Playfair Display", serif;
+      }
 
-    .philosophy-point span {
-      font-size: 15px;
-      color: rgba(232, 223, 208, 0.6);
-    }
+      .en {
+        display: none;
+      }
+      body.lang-en .ka {
+        display: none;
+      }
+      body.lang-en .en {
+        display: inline;
+      }
 
-    /* Variants */
-    .variants {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 80px;
-    }
+      body.lang-en p .en,
+      body.lang-en h1 .en,
+      body.lang-en h2 .en,
+      body.lang-en h3 .en,
+      body.lang-en li .en,
+      body.lang-en div .en {
+        display: block;
+      }
 
-    .variant-card {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-      background: rgba(232, 223, 208, 0.03);
-      border: 1px solid rgba(196, 154, 108, 0.15);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-    }
+      body.lang-en p .ka,
+      body.lang-en h1 .ka,
+      body.lang-en h2 .ka,
+      body.lang-en h3 .ka,
+      body.lang-en li .ka,
+      body.lang-en div .ka {
+        display: none;
+      }
 
-    .variant-card:hover {
-      border-color: rgba(196, 154, 108, 0.5);
-      transform: translateY(-4px);
-      box-shadow: 0 8px 40px rgba(196, 154, 108, 0.1);
-    }
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: rgba(10, 8, 5, 0.7);
+        backdrop-filter: blur(8px);
+        padding: 20px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition:
+          transform 0.4s ease,
+          opacity 0.4s ease,
+          background 0.3s ease;
+        transform: translateY(-100%);
+        opacity: 0;
+      }
 
-    .variant-preview {
-      height: 280px;
-      position: relative;
-      overflow: hidden;
-    }
+      nav.scrolled {
+        background: rgba(10, 8, 5, 0.95);
+      }
 
-    .variant-preview iframe {
-      width: 200%;
-      height: 200%;
-      border: none;
-      transform: scale(0.5);
-      transform-origin: top left;
-      pointer-events: none;
-    }
+      nav.visible {
+        transform: translateY(0);
+        opacity: 1;
+      }
 
-    .variant-info {
-      padding: 30px;
-    }
+      .logo,
+      .logo:hover,
+      .logo:visited {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Playfair Display", serif;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: var(--accent-gold);
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+      }
 
-    .variant-name {
-      font-family: 'Noto Serif Georgian', serif;
-      font-size: 26px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: #e8dfd0;
-    }
+      .logo img {
+        height: 40px;
+        width: 40px;
+      }
 
-    .variant-concept {
-      font-size: 16px;
-      color: #c49a6c;
-      margin-bottom: 20px;
-      font-style: italic;
-    }
+      .nav-right {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+      }
 
-    .variant-desc {
-      font-size: 16px;
-      color: rgba(232, 223, 208, 0.7);
-      margin-bottom: 20px;
-      line-height: 1.8;
-    }
+      .nav-links {
+        display: flex;
+        gap: 30px;
+        list-style: none;
+      }
 
-    .variant-traits {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
+      .nav-links a {
+        text-decoration: none;
+        color: var(--text-light);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: color 0.3s ease;
+      }
 
-    .trait {
-      padding: 4px 14px;
-      background: rgba(196, 154, 108, 0.08);
-      border: 1px solid rgba(196, 154, 108, 0.15);
-      border-radius: 15px;
-      font-size: 13px;
-      color: rgba(232, 223, 208, 0.6);
-    }
+      .nav-links a:hover {
+        color: var(--accent-gold);
+      }
 
-    .variant-cta-label {
-      display: block;
-      text-align: center;
-      padding: 14px;
-      background: rgba(196, 154, 108, 0.1);
-      color: #c49a6c;
-      font-size: 16px;
-      font-weight: 600;
-      border-radius: 8px;
-      transition: background 0.3s ease;
-      letter-spacing: 0.5px;
-    }
+      .lang-toggle {
+        background: none;
+        border: 1px solid var(--accent-gold);
+        color: var(--accent-gold);
+        padding: 6px 12px;
+        cursor: pointer;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+      }
 
-    .variant-card:hover .variant-cta-label {
-      background: rgba(196, 154, 108, 0.2);
-    }
+      .lang-toggle:hover {
+        background: var(--accent-gold);
+        color: var(--dark-bg);
+      }
 
-    /* Shared section */
-    .shared-section {
-      margin-bottom: 80px;
-    }
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+        cursor: pointer;
+      }
 
-    .shared-section h2 {
-      font-family: 'Noto Serif Georgian', serif;
-      font-size: 26px;
-      font-weight: 700;
-      margin-bottom: 30px;
-      color: #e8dfd0;
-    }
+      .hamburger span {
+        width: 20px;
+        height: 2px;
+        background: var(--text-light);
+        transition: all 0.3s ease;
+      }
 
-    .shared-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px 40px;
-    }
+      /* Sections */
+      section {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 100px 40px;
+        position: relative;
+        scroll-snap-align: start;
+      }
 
-    .shared-item {
-      font-size: 16px;
-      color: rgba(232, 223, 208, 0.7);
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(196, 154, 108, 0.08);
-    }
+      .section-content {
+        max-width: 800px;
+        width: 100%;
+        text-align: center;
+      }
 
-    /* Differences */
-    .diff-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
+      /* Hero */
+      .hero {
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("images/general/hero.jpg") center/cover no-repeat;
+        background-attachment: fixed;
+      }
 
-    .diff-table th {
-      text-align: left;
-      padding: 12px 15px;
-      font-size: 14px;
-      color: #c49a6c;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      border-bottom: 1px solid rgba(196, 154, 108, 0.2);
-      font-weight: 600;
-    }
+      .hero-logo {
+        width: 160px;
+        height: 160px;
+        margin: 0 auto 30px;
+        display: block;
+        opacity: 0.9;
+      }
 
-    .diff-table td {
-      padding: 12px 15px;
-      font-size: 15px;
-      color: rgba(232, 223, 208, 0.7);
-      border-bottom: 1px solid rgba(196, 154, 108, 0.06);
-    }
+      .hero h1 {
+        font-size: 72px;
+        line-height: 1.2;
+        margin-bottom: 20px;
+        color: var(--text-light);
+      }
 
-    .diff-table td:first-child {
-      color: rgba(232, 223, 208, 0.5);
-      font-size: 14px;
-      width: 30%;
-    }
+      .hero p {
+        font-size: 28px;
+        color: var(--text-light);
+        font-style: italic;
+        text-shadow:
+          0 2px 20px rgba(0, 0, 0, 0.8),
+          0 0 40px rgba(0, 0, 0, 0.6);
+        letter-spacing: 1px;
+      }
 
-    /* Footer */
-    .page-footer {
-      text-align: center;
-      padding-top: 40px;
-      border-top: 1px solid rgba(196, 154, 108, 0.1);
-      font-size: 14px;
-      color: rgba(232, 223, 208, 0.3);
-    }
+      .scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 40px;
+        background: linear-gradient(to bottom, var(--accent-gold), transparent);
+        animation: scroll-pulse 2s infinite;
+      }
 
-    @media (max-width: 768px) {
-      .variants { grid-template-columns: 1fr; }
-      .shared-list { grid-template-columns: 1fr; }
-      .philosophy-points { grid-template-columns: 1fr; }
-      .header h1 { font-size: 28px; }
-      .variant-preview { height: 200px; }
-      .philosophy-quote { font-size: 18px; }
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
+      @keyframes scroll-pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
 
-    <div class="header">
-      <img src="images/logo.svg" alt="Playback Theatre" style="width: 240px; height: 240px; margin: 0 auto 30px; display: block; opacity: 0.8;">
-      <div class="badge">v0.2-alpha-testing</div>
-      <h1>აირჩიეთ რომელი მოგწონთ ორი ფინალური ვარიანტიდან</h1>
-      <p class="subtitle">ქართული ფლეიბექ თეატრის ცენტრი</p>
-    </div>
+      /* What is Playback */
+      .what h2 {
+        font-size: 42px;
+        margin-bottom: 60px;
+        color: var(--text-light);
+      }
 
-    <div class="philosophy">
-      <h2>საიტის ფილოსოფია</h2>
-      <p class="philosophy-quote">„დარბაზში ხარ“ - ვებსაიტი ბაძავს ფლეიბექ თეატრის წარმოდგენის ატმოსფეროს. ეს არ არის საინფორმაციო პორტალი - ეს არის გამოცდილება.</p>
-      <div class="philosophy-points">
-        <div class="philosophy-point">
-          <strong>მუქი პალიტრა</strong>
-          <span>თეატრის მეტაფორა: დარბაზში შუქი ჩამქვრალია, ყურადღება სცენაზეა. განათებული თემა არ გვაქვს.</span>
-        </div>
-        <div class="philosophy-point">
-          <strong>Full-page სექციები</strong>
-          <span>ერთი გზავნილი = ერთი სივრცე. ერთი ასქროლვა, ერთი „ძვირფასო მსახიობებო“ - Scroll-ი მოქმედებს, როგორც სცენის ცვლილება.</span>
-        </div>
-        <div class="philosophy-point">
-          <strong>22px მინიმალური ფონტი</strong>
-          <span>„შენ გესაუბრებიან“ - თითქოს ადამიანი გესაუბრება, გიყვება, იქმნება ინტიმური განწყობა, არა დოკუმენტური.</span>
-        </div>
-        <div class="philosophy-point">
-          <strong>მინიმალური CTA-ები</strong>
-          <span>ეს არ არის landing page სტანდარტული გაგებით (სადაც ყოველ ფეხის ნაბიჯზე მოქმედებისკენ მოგიწოდებენ) - ეს არის ისტორია, რომელსაც ბოლოში მოქმედება მოყვება.</span>
-        </div>
-      </div>
-    </div>
+      .what .what-hook {
+        font-family: "Noto Serif Georgian", serif;
+        font-size: 32px;
+        line-height: 1.5;
+        color: var(--accent-gold);
+        margin-bottom: 40px;
+      }
 
-    <div class="philosophy" style="margin-top: 0;">
-      <h2>სექციების მიმდევრობა - AIDA</h2>
-      <p class="philosophy-quote" style="font-size: 18px;">სექციები დალაგებულია AIDA პრინციპით (Attention → Interest → Desire → Action) - ჯერ ყურადღება, მერე ინტერესი, მერე სურვილი, მერე მოქმედება.</p>
-      <div class="philosophy-points">
-        <div class="philosophy-point">
-          <strong>Attention</strong>
-          <span>Hero - პირველი ემოცია</span>
-        </div>
-        <div class="philosophy-point">
-          <strong>Interest</strong>
-          <span>What + How - რა არის და როგორ მუშაობს</span>
-        </div>
-        <div class="philosophy-point">
-          <strong>Desire</strong>
-          <span>Impressions → Founder → Team → Gallery - ნდობა, ემოცია, ვიზუალი</span>
-        </div>
-        <div class="philosophy-point">
-          <strong>Action</strong>
-          <span>Performance → Donation → Organizations → Courses - მოქმედება</span>
-        </div>
-      </div>
-    </div>
+      body.lang-en .what .what-hook {
+        font-family: "Playfair Display", serif;
+      }
 
-    <div class="philosophy" style="margin-top: 0;">
-      <h2>ცისიას ხმა საიტზე</h2>
-      <p class="philosophy-quote" style="font-size: 18px;">ცისია ჩოლოყაშვილი, თანადამფუძნებელი, საიტზე რამდენჯერმე ჩნდება - და ეს განზრახ არის ასე. ის არ არის „ციტატა გვერდის გასალამაზებლად". ცისია სტუმარს უყვება თავის ამბავს: ჯერ ხსნის რატომ გადაწყვიტა ამ თეატრის შექმნა (Impressions), მერე ყვება ცენტრის ისტორიას (Founder), და ბოლოს აღწერს რა ხდება ყოველ წარმოდგენაზე (Team). სტუმარი შემოსულია არა უბრალოდ ვებსაიტზე, არამედ იცნობს და უსმენს ადამიანს, რომელიც ამ ყველაფრის უკან დგას.</p>
-    </div>
+      .what .what-quote {
+        font-size: 18px;
+        line-height: 1.8;
+        color: rgba(232, 223, 208, 0.6);
+        font-style: italic;
+        max-width: 700px;
+        margin: 0 auto;
+        border: none;
+        padding: 0;
+      }
 
-    <div class="variants">
+      .what p {
+        font-size: 22px;
+        line-height: 1.8;
+        margin-bottom: 40px;
+        font-family: "Noto Serif Georgian", serif;
+      }
 
-      <a href="cinematic.html" class="variant-card">
-        <div class="variant-preview">
-          <iframe src="cinematic.html" loading="lazy" tabindex="-1"></iframe>
-        </div>
-        <div class="variant-info">
-          <div class="variant-name">Cinematic</div>
-          <div class="variant-concept">„სიჩუმე და ფოკუსი“</div>
-          <p class="variant-desc">ერთიანი მუქი ფონი მთელი საიტის მანძილზე. როგორც კინოთეატრის დარბაზი - ყველგან ერთნაირი სიბნელე, შუქი მხოლოდ კონტენტზეა. ტექსტი „ცურავს“ სიბნელეში, ფოტოები მკვეთრად გამოხატულია.</p>
-          <div class="variant-traits">
-            <span class="trait">ერთიანი მუქი ფონი</span>
-            <span class="trait">მინიმალისტური</span>
-            <span class="trait">ფოტო-ფოკუსი</span>
-            <span class="trait">კინემატოგრაფიული</span>
-          </div>
-          <div class="variant-cta-label">სინემატიკის ნახვა →</div>
-        </div>
+      body.lang-en .what p {
+        font-family: "Playfair Display", serif;
+      }
+
+      /* How It Works */
+      .how h2 {
+        font-size: 42px;
+        margin-bottom: 80px;
+        color: var(--text-light);
+      }
+
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+      }
+
+      .step {
+        text-align: center;
+      }
+
+      .step-number {
+        font-size: 48px;
+        font-weight: 700;
+        color: var(--accent-gold);
+        line-height: 1;
+        margin-bottom: 15px;
+      }
+
+      .step h3 {
+        font-size: 28px;
+        margin-bottom: 15px;
+        color: var(--text-light);
+      }
+
+      .step p {
+        font-size: 22px;
+        color: var(--accent-gold);
+        margin-bottom: 8px;
+      }
+
+      /* Impressions */
+      .impression-section {
+        min-height: 100vh;
+      }
+
+      .impression {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 100px 40px;
+        scroll-snap-align: start;
+      }
+
+      .impression:first-child {
+        padding-top: 140px;
+      }
+
+      .impression-content {
+        max-width: 800px;
+        text-align: center;
+      }
+
+      .impression-quote {
+        font-size: 28px;
+        font-style: italic;
+        margin-bottom: 30px;
+        line-height: 1.8;
+        font-family: "Noto Serif Georgian", serif;
+      }
+
+      body.lang-en .impression-quote {
+        font-family: "Playfair Display", serif;
+      }
+
+      .impression-author {
+        font-size: 18px;
+        color: var(--accent-gold);
+        letter-spacing: 1px;
+      }
+
+      /* Timeline */
+      .timeline {
+        display: flex;
+        justify-content: center;
+        gap: 0;
+        margin-bottom: 50px;
+        position: relative;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        top: 50px;
+        left: 20%;
+        width: 60%;
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          var(--accent-gold),
+          transparent
+        );
+      }
+      .timeline-item {
+        text-align: center;
+        flex: 1;
+        max-width: 250px;
+      }
+      .timeline-year {
+        font-family: "Noto Serif Georgian", serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--accent-gold);
+        margin-bottom: 12px;
+      }
+      .timeline-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--accent-gold);
+        border-radius: 50%;
+        margin: 0 auto 12px;
+      }
+      .timeline-text {
+        font-size: 15px;
+        color: rgba(232, 223, 208, 0.6);
+        line-height: 1.5;
+      }
+
+      /* Founder */
+      .founder {
+        background-color: var(--dark-bg);
+      }
+
+      .founder h2 {
+        font-size: 42px;
+        margin-bottom: 60px;
+        color: var(--text-light);
+      }
+
+      .founder-content {
+        max-width: 900px;
+        text-align: center;
+      }
+
+      .founder-avatar-attribution {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .avatar-small {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .founder-avatar-attribution span {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.5);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .founder-text {
+        font-size: 22px;
+        margin-bottom: 40px;
+        line-height: 1.8;
+        color: var(--text-light);
+      }
+
+      .founder-tagline {
+        font-size: 16px;
+        color: var(--accent-gold);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 30px;
+      }
+
+      .founder-quote {
+        font-family: "Noto Serif Georgian", serif;
+        font-size: 20px;
+        font-style: italic;
+        color: rgba(232, 223, 208, 0.6);
+        margin-bottom: 20px;
+        line-height: 1.8;
+        padding: 0 30px;
+      }
+
+      body.lang-en .founder-quote {
+        font-family: "Playfair Display", serif;
+      }
+
+      .founder-closing {
+        font-family: "Noto Serif Georgian", serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--accent-gold);
+        margin-bottom: 30px;
+        line-height: 1.6;
+      }
+
+      body.lang-en .founder-closing {
+        font-family: "Playfair Display", serif;
+      }
+
+      /* Performance */
+      .performance {
+        background-color: var(--dark-bg);
+        overflow: hidden;
+      }
+
+      .performance::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(196, 154, 108, 0.08) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+
+      .performance h2 {
+        font-size: 42px;
+        margin-bottom: 60px;
+        color: var(--text-light);
+      }
+
+      .performance-info {
+        font-size: 24px;
+        margin-bottom: 15px;
+        color: var(--text-light);
+      }
+
+      .performance-schedule {
+        font-weight: 600;
+        color: var(--accent-gold);
+      }
+
+      .performance-note {
+        font-size: 22px;
+        margin-top: 50px;
+        color: var(--accent-gold);
+        margin-bottom: 50px;
+      }
+
+      .performance-cta {
+        font-size: 22px;
+      }
+
+      .performance-cta a {
+        color: var(--accent-gold);
+        text-decoration: none;
+        border-bottom: 2px solid var(--accent-gold);
+        transition: all 0.3s ease;
+      }
+
+      .performance-cta a:hover {
+        color: var(--text-light);
+        background: var(--accent-gold);
+        padding: 5px 10px;
+        border-bottom: 2px solid var(--text-light);
+      }
+
+      /* Courses */
+      .courses {
+        min-height: auto;
+        padding: 100px 40px;
+      }
+
+      .courses h2 {
+        font-size: 42px;
+        text-align: center;
+        margin-bottom: 30px;
+        color: var(--text-light);
+      }
+
+      .section-intro {
+        font-size: 20px;
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 50px;
+        line-height: 1.8;
+        color: rgba(232, 223, 208, 0.6);
+      }
+
+      .courses-grid {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+      }
+
+      .course-item {
+        text-align: center;
+      }
+
+      .course-name {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: var(--text-light);
+      }
+
+      .course-duration {
+        font-size: 20px;
+        color: var(--accent-gold);
+        margin-bottom: 15px;
+      }
+
+      .course-desc {
+        font-size: 22px;
+        color: var(--text-light);
+        margin-bottom: 20px;
+        line-height: 1.7;
+      }
+
+      .course-link {
+        font-size: 18px;
+      }
+
+      .course-link a {
+        color: var(--accent-gold);
+        text-decoration: none;
+        border-bottom: 2px solid var(--accent-gold);
+        transition: all 0.3s ease;
+      }
+
+      .course-link a:hover {
+        color: var(--text-light);
+        background: var(--accent-gold);
+        padding: 5px 10px;
+      }
+
+      /* Organizations */
+      .organizations h2 {
+        font-size: 42px;
+        margin-bottom: 30px;
+        color: var(--text-light);
+      }
+
+      .org-services {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        margin-bottom: 50px;
+      }
+
+      .org-service {
+        background: rgba(196, 154, 108, 0.05);
+        padding: 40px;
+        border-top: 3px solid var(--accent-gold);
+      }
+
+      .org-service h4 {
+        font-size: 22px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: var(--accent-gold);
+      }
+
+      .org-service p {
+        font-size: 18px;
+        color: var(--text-light);
+        line-height: 1.7;
+      }
+
+      .org-cta {
+        font-size: 22px;
+      }
+
+      .org-cta a {
+        color: var(--accent-gold);
+        text-decoration: none;
+        border-bottom: 2px solid var(--accent-gold);
+        transition: all 0.3s ease;
+      }
+
+      .org-cta a:hover {
+        color: var(--text-light);
+        background: var(--accent-gold);
+        padding: 5px 10px;
+      }
+
+      /* Gallery */
+      .gallery {
+        padding: 100px 20px;
+      }
+
+      .gallery .section-content {
+        max-width: 100%;
+      }
+
+      .gallery h2 {
+        font-size: 42px;
+        text-align: center;
+        margin-bottom: 60px;
+        color: var(--text-light);
+      }
+
+      .gallery-container {
+        max-width: 100%;
+        margin: 0 auto;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-bottom: 40px;
+      }
+
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 1/1;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      /* Responsive gallery grid */
+      @media (max-width: 768px) {
+        .gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .gallery-item.hidden {
+        display: none;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.05);
+      }
+
+      .gallery-toggle {
+        text-align: center;
+      }
+
+      .gallery-toggle button {
+        background: none;
+        border: 2px solid var(--accent-gold);
+        color: var(--accent-gold);
+        padding: 12px 24px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .gallery-toggle button:hover {
+        background: var(--accent-gold);
+        color: var(--dark-bg);
+      }
+
+      .gallery-hidden {
+        display: none;
+      }
+
+      /* Lightbox */
+      .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 2000;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .lightbox.active {
+        display: flex;
+      }
+
+      .lightbox-content {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .lightbox-image {
+        width: 100%;
+        max-height: 80vh;
+        object-fit: contain;
+      }
+
+      .lightbox-prev,
+      .lightbox-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(196, 154, 108, 0.3);
+        color: var(--text-light);
+        border: none;
+        font-size: 24px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 2001;
+      }
+
+      .lightbox-prev:hover,
+      .lightbox-next:hover {
+        background: rgba(196, 154, 108, 0.7);
+      }
+
+      .lightbox-prev {
+        left: 10px;
+      }
+
+      .lightbox-next {
+        right: 10px;
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        background: none;
+        border: none;
+        color: var(--text-light);
+        font-size: 32px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .lightbox-close:hover {
+        color: var(--accent-gold);
+      }
+
+      .lightbox-counter {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: var(--text-light);
+        font-size: 14px;
+        letter-spacing: 1px;
+      }
+
+      /* Team */
+      .team h2 {
+        font-size: 42px;
+        margin-bottom: 80px;
+        color: var(--text-light);
+      }
+
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        max-width: 1000px;
+      }
+
+      .team-member {
+        text-align: center;
+      }
+
+      .team-photo {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+        margin: 0 auto 30px;
+      }
+
+      .team-name {
+        font-size: 22px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: var(--text-light);
+      }
+
+      .team-role {
+        font-size: 18px;
+        color: var(--accent-gold);
+      }
+
+      .team-founder {
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+      }
+
+      /* Ethics */
+      .ethics {
+        min-height: auto;
+        padding: 100px 40px;
+      }
+
+      .ethics h2 {
+        font-size: 42px;
+        text-align: center;
+        margin-bottom: 30px;
+        color: var(--text-light);
+      }
+
+      .ethics-intro {
+        text-align: center;
+        font-size: 22px;
+        margin-bottom: 60px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .ethics-items {
+        max-width: 900px;
+        margin: 0 auto 40px;
+      }
+
+      .ethics-item {
+        border-bottom: 1px solid rgba(196, 154, 108, 0.2);
+        padding: 30px 20px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .ethics-item:hover {
+        background: rgba(196, 154, 108, 0.05);
+      }
+
+      .ethics-title {
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--text-light);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .ethics-icon {
+        color: var(--accent-gold);
+        font-size: 18px;
+      }
+
+      .ethics-text {
+        font-size: 18px;
+        color: var(--text-light);
+        margin-top: 15px;
+        max-height: 500px;
+        overflow: hidden;
+        line-height: 1.7;
+        transition: all 0.3s ease;
+      }
+
+      .ethics-text.hidden {
+        max-height: 0;
+        margin-top: 0;
+        overflow: hidden;
+      }
+
+      .ethics-item.active .ethics-text {
+        max-height: 500px;
+      }
+
+      .ethics-item.active .ethics-icon {
+        transform: rotate(180deg);
+      }
+
+      .ethics-iptn {
+        text-align: center;
+        font-size: 18px;
+        margin-top: 20px;
+      }
+
+      .ethics-iptn a {
+        color: var(--accent-gold);
+        text-decoration: none;
+        border-bottom: 2px solid var(--accent-gold);
+        transition: all 0.3s ease;
+      }
+
+      .ethics-iptn a:hover {
+        color: var(--text-light);
+        background: var(--accent-gold);
+        padding: 3px 6px;
+      }
+
+      /* Donation */
+      .donation h2 {
+        font-size: 42px;
+        margin-bottom: 50px;
+        color: var(--text-light);
+      }
+
+      .donation p {
+        font-size: 22px;
+        max-width: 700px;
+        margin: 0 auto 50px;
+        line-height: 1.8;
+      }
+
+      .donation-cta {
+        font-size: 22px;
+      }
+
+      .donation-cta a {
+        color: var(--accent-gold);
+        text-decoration: none;
+        border-bottom: 2px solid var(--accent-gold);
+        transition: all 0.3s ease;
+      }
+
+      .donation-cta a:hover {
+        color: var(--text-light);
+        background: var(--accent-gold);
+        padding: 5px 10px;
+      }
+
+      /* Contact */
+      .contact h2,
+      .contact-footer h2 {
+        font-size: 42px;
+        margin-bottom: 60px;
+        color: var(--text-light);
+      }
+
+      .contact-methods {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+      }
+
+      .contact-method {
+        font-size: 22px;
+        text-align: center;
+      }
+
+      .contact-method a {
+        color: var(--accent-gold);
+        text-decoration: none;
+        border-bottom: 2px solid var(--accent-gold);
+        transition: all 0.3s ease;
+      }
+
+      .contact-method a:hover {
+        color: var(--text-light);
+        background: var(--accent-gold);
+        padding: 5px 10px;
+      }
+
+      /* Footer */
+      footer {
+        background: #111008;
+        padding: 40px;
+        text-align: center;
+        font-size: 14px;
+        color: var(--text-light);
+        border-top: 1px solid rgba(196, 154, 108, 0.1);
+      }
+
+      .footer-content {
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+      }
+
+      .footer-links a {
+        color: var(--accent-gold);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--text-light);
+      }
+
+      /* Impressions More Button */
+      .impressions-more-btn {
+        background: none;
+        border: 1px solid var(--accent-gold);
+        color: var(--accent-gold);
+        padding: 10px 30px;
+        cursor: pointer;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        font-family: inherit;
+      }
+      .impressions-more-btn:hover {
+        background: var(--accent-gold);
+        color: var(--dark-bg);
+      }
+
+      /* Impressions Carousel Popup */
+      .impressions-popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 3000;
+        background: rgba(10, 8, 5, 0.97);
+      }
+      .impressions-popup.active {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .impressions-popup-close {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        background: none;
+        border: none;
+        color: var(--accent-gold);
+        font-size: 36px;
+        cursor: pointer;
+      }
+      .impressions-carousel {
+        width: 100%;
+        height: 70vh;
+        overflow: hidden;
+        position: relative;
+      }
+      .impressions-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 80px;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+      }
+      .impressions-slide.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .impressions-slide blockquote {
+        font-family: "Noto Serif Georgian", serif;
+        font-size: 28px;
+        font-style: italic;
+        color: var(--accent-gold);
+        max-width: 800px;
+        text-align: center;
+        line-height: 1.6;
+        margin-bottom: 30px;
+      }
+      body.lang-en .impressions-slide blockquote {
+        font-family: "Playfair Display", serif;
+      }
+      .impressions-slide .slide-author {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.5);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-align: center;
+      }
+      .impressions-paging {
+        margin-top: 30px;
+        font-size: 18px;
+        color: var(--accent-gold);
+        letter-spacing: 2px;
+      }
+      .impressions-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: var(--accent-gold);
+        font-size: 30px;
+        cursor: pointer;
+        padding: 20px;
+        transition: opacity 0.3s;
+      }
+      .impressions-nav:hover {
+        opacity: 0.7;
+      }
+      .impressions-nav.prev {
+        left: 20px;
+      }
+      .impressions-nav.next {
+        right: 20px;
+      }
+      .impressions-nav {
+        z-index: 3001;
+      }
+
+      @media (max-width: 768px) {
+        .impressions-carousel {
+          height: 60vh;
+        }
+        .impressions-slide {
+          padding: 30px 50px;
+          overflow-y: auto;
+        }
+        .impressions-slide blockquote {
+          font-size: 18px;
+          line-height: 1.6;
+        }
+        .impressions-slide .slide-author {
+          font-size: 14px;
+        }
+        .impressions-nav {
+          padding: 8px;
+          font-size: 20px;
+        }
+        .impressions-nav.prev {
+          left: 5px;
+        }
+        .impressions-nav.next {
+          right: 5px;
+        }
+        .impressions-popup-close {
+          top: 15px;
+          right: 15px;
+          font-size: 28px;
+        }
+      }
+
+      /* Animations */
+      .fade-in {
+        opacity: 0;
+        transition: opacity 0.8s ease;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+      }
+
+      /* Fallback: if JS fails, show content after 2s */
+      @keyframes fadeInFallback {
+        to {
+          opacity: 1;
+        }
+      }
+      .fade-in {
+        animation: fadeInFallback 1s ease 2s forwards;
+      }
+      .fade-in.visible {
+        animation: none;
+        opacity: 1;
+      }
+
+      /* Mobile */
+      @media (max-width: 768px) {
+        nav {
+          padding: 15px 20px;
+        }
+
+        .nav-links {
+          display: none;
+          position: absolute;
+          top: 60px;
+          left: 0;
+          right: 0;
+          flex-direction: column;
+          background: rgba(10, 8, 5, 0.98);
+          padding: 20px;
+          gap: 15px;
+          z-index: 999;
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        .nav-right {
+          gap: 15px;
+        }
+
+        .hamburger {
+          display: flex;
+        }
+
+        section {
+          padding: 80px 20px;
+        }
+
+        .hero {
+          background-position: center top !important;
+        }
+
+        .hero h1 {
+          font-size: 48px;
+        }
+
+        .org-services {
+          grid-template-columns: 1fr;
+        }
+
+        .team-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero p {
+          font-size: 28px;
+          color: var(--text-light);
+          font-style: italic;
+          text-shadow:
+            0 2px 20px rgba(0, 0, 0, 0.8),
+            0 0 40px rgba(0, 0, 0, 0.6);
+          letter-spacing: 1px;
+        }
+
+        .what h2,
+        .how h2,
+        .gallery h2,
+        .ethics h2,
+        .donation h2,
+        .contact h2,
+        .contact-footer h2,
+        .performance h2,
+        .courses h2,
+        .organizations h2,
+        .team h2,
+        .founder h2 {
+          font-size: 26px;
+        }
+
+        .what p,
+        .course-desc,
+        .donation p,
+        .section-intro {
+          font-size: 18px;
+        }
+
+        .impression-quote {
+          font-size: 22px;
+        }
+
+        .step-number {
+          font-size: 36px;
+        }
+
+        .step h3 {
+          font-size: 20px;
+        }
+
+        .step p {
+          font-size: 18px;
+        }
+
+        .founder-quote {
+          font-size: 18px;
+          padding: 0 10px;
+        }
+
+        .founder-closing {
+          font-size: 20px;
+        }
+
+        .what .what-hook {
+          font-size: 24px;
+        }
+
+        .ethics-title {
+          font-size: 18px;
+        }
+
+        .ethics-text {
+          font-size: 16px;
+        }
+
+        .ethics-intro {
+          font-size: 18px;
+        }
+
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .team-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .performance-info,
+        .course-name,
+        .org-service h4,
+        .team-name,
+        .ethics-title {
+          font-size: 20px;
+        }
+
+        .performance-note {
+          font-size: 18px;
+        }
+
+        .course-link a,
+        .performance-cta a,
+        .donation-cta a,
+        .contact-method a,
+        .org-cta a {
+          display: inline-block;
+        }
+
+        .team-photo {
+          width: 150px;
+          height: 150px;
+        }
+      }
+
+      /* Contact-footer merged */
+      .contact-footer {
+        background-color: #0a0805;
+        padding-bottom: 40px;
+      }
+
+      .contact-footer-bottom {
+        margin-top: 60px;
+        padding-top: 30px;
+        border-top: 1px solid rgba(196, 154, 108, 0.2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .footer-copyright {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      /* Courses CTA */
+      .courses-cta {
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      .courses-cta a {
+        color: var(--accent-gold);
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 600;
+        border: 2px solid var(--accent-gold);
+        padding: 12px 35px;
+        display: inline-block;
+        transition: all 0.3s ease;
+        letter-spacing: 1px;
+      }
+
+      .courses-cta a:hover {
+        background: var(--accent-gold);
+        color: #0a0805;
+      }
+
+      /* Tsisia impression */
+      .tsisia-author {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .tsisia-impression .impression-quote {
+        font-style: italic;
+      }
+
+      .tsisia-doubt {
+        font-size: 20px !important;
+        color: rgba(232, 223, 208, 0.5) !important;
+        margin-bottom: 20px !important;
+      }
+
+      .tsisia-resolve {
+        font-size: 28px !important;
+        color: var(--accent-gold) !important;
+        font-weight: 700;
+        font-style: normal !important;
+      }
+
+      /* Team additions */
+      .team-group-photo {
+        margin: 50px auto;
+        max-width: 800px;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .team-group-photo img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .team-size {
+        text-align: center;
+        font-size: 20px;
+        color: var(--text-light);
+        margin-bottom: 50px;
+        line-height: 1.7;
+      }
+
+      .team-closing-quote {
+        margin-top: 50px;
+        text-align: center;
+      }
+
+      .team-quote-avatar {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 15px;
+      }
+
+      /* Team intro section */
+      .team-intro {
+        text-align: center;
+        margin-bottom: 80px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .team-intro-photo {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+        margin: 0 auto 30px;
+      }
+
+      .team-quote {
+        font-size: 22px;
+        font-style: italic;
+        line-height: 1.8;
+        margin-bottom: 20px;
+        font-family: "Noto Serif Georgian", serif;
+      }
+
+      body.lang-en .team-quote {
+        font-family: "Playfair Display", serif;
+      }
+
+      .team-quote-attr {
+        font-size: 18px;
+        color: var(--accent-gold);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <a href="#hero" class="logo">
+        <img src="images/logo.svg" alt="Playback Theatre logo" />
+        Playback
       </a>
-
-      <a href="theatrical.html" class="variant-card">
-        <div class="variant-preview">
-          <iframe src="theatrical.html" loading="lazy" tabindex="-1"></iframe>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li>
+            <a href="#theatre"
+              ><span class="ka">თეატრი</span><span class="en">Theatre</span></a
+            >
+          </li>
+          <li>
+            <a href="#impressions"
+              ><span class="ka">შთაბეჭდილებები</span
+              ><span class="en">Impressions</span></a
+            >
+          </li>
+          <li>
+            <a href="#team"
+              ><span class="ka">გუნდი</span><span class="en">Team</span></a
+            >
+          </li>
+          <li>
+            <a href="#gallery"
+              ><span class="ka">გალერეა</span><span class="en">Gallery</span></a
+            >
+          </li>
+          <li>
+            <a href="#performance"
+              ><span class="ka">პერფორმანსი</span
+              ><span class="en">Performance</span></a
+            >
+          </li>
+          <li>
+            <a href="#organizations"
+              ><span class="ka">ორგანიზაციებისთვის</span
+              ><span class="en">For Organizations</span></a
+            >
+          </li>
+          <li>
+            <a href="#courses"
+              ><span class="ka">კურსები</span><span class="en">Courses</span></a
+            >
+          </li>
+          <li>
+            <a href="#contact"
+              ><span class="ka">მხარდაჭერა</span
+              ><span class="en">Support</span></a
+            >
+          </li>
+        </ul>
+        <button class="lang-toggle" id="langToggle">
+          <span class="ka">EN</span><span class="en">KA</span>
+        </button>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
-        <div class="variant-info">
-          <div class="variant-name">Theatrical</div>
-          <div class="variant-concept">„ტემპერატურის მოგზაურობა“</div>
-          <p class="variant-desc">ფონის ფერი იცვლება სექციიდან სექციაზე - ღრმა სიბნელიდან თანდათან თბება და ისევ ბრუნდება. Spotlight ეფექტით, თითქოს სცენის პროჟექტორიდან მოდის სინათლე. საიტს თავად აქვს დრამატურგია.</p>
-          <div class="variant-traits">
-            <span class="trait">ფერის მოგზაურობა</span>
-            <span class="trait">Spotlight ეფექტი</span>
-            <span class="trait">დრამატურგიული</span>
-            <span class="trait">ემოციური რკალი</span>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="section-content">
+        <img
+          src="images/logo-no-color.svg"
+          alt="Playback Theatre"
+          class="hero-logo"
+        />
+        <h1>
+          <span class="ka">ქართული ფლეიბექ თეატრი</span
+          ><span class="en">Georgian Playback Theatre</span>
+        </h1>
+        <p>
+          <span class="ka">ჩვენ ვთამაშობთ თქვენს ისტორიებს</span
+          ><span class="en">We play back your stories</span>
+        </p>
+      </div>
+      <div class="scroll-indicator"></div>
+    </section>
+
+    <!-- What is Playback Theatre -->
+    <section class="what" id="theatre">
+      <div class="section-content fade-in">
+        <h2>
+          <span class="ka">რა არის ფლეიბექ თეატრი</span
+          ><span class="en">What is Playback Theatre</span>
+        </h2>
+        <p class="what-hook">
+          <span class="ka"
+            >თქვენ ჰყვებით ისტორიას — მსახიობები მას სცენაზე აცოცხლებენ.</span
+          ><span class="en"
+            >You tell a story — actors bring it to life on stage.</span
+          >
+        </p>
+        <blockquote class="what-quote">
+          <span class="ka"
+            >ეს არის შეხვედრის ადგილი, სადაც ადამიანები ერთმანეთს ხედავენ და
+            ესმით, სადაც შეგიძლიათ მოხვიდეთ ისეთი როგორც სინამდვილეში ხართ,
+            გააზიაროთ თქვენი ინდივიდუალური, უნიკალური ისტორია რომელსაც ისეთი
+            გულისყურით მოგისმენენ, რომ შეეცდებიან საკუთარ თავში გამოხმაურებაც კი
+            უპოვნონ და ამ თანაგანცდაზე დაყრდნობით სცენიურ წარმოდგენად
+            გადააქციონ.</span
+          ><span class="en"
+            >This is a meeting place where people see and understand each other,
+            where you can come as you truly are, share your individual, unique
+            story which will be listened to with such attention that they will
+            try to find a resonance within themselves, and based on that shared
+            feeling, transform it into a stage performance.</span
+          >
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how" id="how">
+      <div class="section-content fade-in">
+        <h2>
+          <span class="ka">როგორ მუშაობს</span
+          ><span class="en">How It Works</span>
+        </h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>
+              <span class="ka">ვუსმენთ</span><span class="en">We listen</span>
+            </h3>
+            <p>
+              <span class="ka"
+                >მაყურებელი, რომელიც მოისურვებს, გვიყვება რეალურ ამბავს თავისი
+                ცხოვრებიდან</span
+              ><span class="en"
+                >A member of the audience shares a real story from their
+                life</span
+              >
+            </p>
           </div>
-          <div class="variant-cta-label">თეატრალურის ნახვა →</div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>
+              <span class="ka">ვთამაშობთ</span><span class="en">We play</span>
+            </h3>
+            <p>
+              <span class="ka"
+                >ამბავი იქვე თამაშდება მსახიობების მიერ, ცოცხალი მუსიკის
+                თანხლებით, მოძრაობებით, სპონტანურად</span
+              ><span class="en"
+                >The story is performed right there by actors, with live
+                music</span
+              >
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>
+              <span class="ka">ვუბრუნებთ (playback)</span
+              ><span class="en">We return (playback)</span>
+            </h3>
+            <p>
+              <span class="ka"
+                >ამ ამბავს რიტუალურად ვუბრუნებთ მთხრობელს და ის საერთო
+                გამოცდილება ხდება</span
+              ><span class="en"
+                >We ritually return this story to the teller, and it becomes a
+                shared experience</span
+              >
+            </p>
+          </div>
         </div>
-      </a>
+      </div>
+    </section>
 
-    </div>
+    <!-- Impressions - 6 full pages -->
+    <div class="impression-section" id="impressions">
+      <div class="impression tsisia-impression">
+        <div class="impression-content fade-in">
+          <div class="impression-quote tsisia-doubt">
+            <span class="ka"
+              >თავდაპირველად ვფიქრობდი, რომ საქართველოში ასეთი თეატრის
+              განხორციელება რთული იქნებოდა...</span
+            >
+            <span class="en"
+              >I initially thought, that it would be difficult to implement such
+              theatre in Georgia...</span
+            >
+          </div>
+          <div class="impression-quote tsisia-resolve">
+            <span class="ka"
+              >თუმცა ადამიანები გვიცხადებენ ნდობას, გვიზიარებენ პირად ისტორიებს
+              და სწორედ ამით აცოცხლებენ თეატრალურ პროცესს.</span
+            ><span class="en"
+              >But people show us trust, share their personal stories, and by
+              doing so bring the theatrical process to life.</span
+            >
+          </div>
+          <div class="impression-author tsisia-author">
+            <img
+              src="images/team/tsisia-cholokashvili.jpg"
+              alt="ცისია ჩოლოყაშვილი"
+              class="avatar-small"
+            /><span
+              ><span class="ka">ცისია ჩოლოყაშვილი</span
+              ><span class="en">Tsisia Cholokashvili</span></span
+            >
+          </div>
+        </div>
+      </div>
 
-    <div class="shared-section">
-      <h2>რა არის საერთო ორივე ვარიანტში</h2>
-      <div class="shared-list">
-        <div class="shared-item">ბილინგვური (ქართულ-ინგლისური)</div>
-        <div class="shared-item">მხოლოდ მუქი რეჟიმი - თეატრის მეტაფორა</div>
-        <div class="shared-item">Full-page სექციები (100vh)</div>
-        <div class="shared-item">ცისიას ტექსტი ვერბატიმ</div>
-        <div class="shared-item">25 ფოტოს გალერეა სლაიდერით</div>
-        <div class="shared-item">მობილურზე ადაპტირებული</div>
-        <div class="shared-item">ეთიკის კოდექსი აკორდეონით</div>
-        <div class="shared-item">ნავიგაცია scroll-ზე ჩნდება</div>
-        <div class="shared-item">კონტაქტი = საბოლოო სექცია</div>
-        <div class="shared-item">ერთი ფაილი - CSS/JS inline</div>
+      <div class="impression">
+        <div class="impression-content fade-in">
+          <div class="impression-quote">
+            <span class="ka"
+              >სხვისი ისტორიის ყურებისას საკუთარი თავი დავინახე. ძალიან ძლიერი
+              გამოცდილება იყო.</span
+            ><span class="en"
+              >Watching someone else's story, I saw myself. It was a very
+              powerful experience.</span
+            >
+          </div>
+          <div class="impression-author">
+            <span class="ka">მაყურებელი</span
+            ><span class="en">Audience member</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="impression">
+        <div class="impression-content fade-in">
+          <div class="impression-quote">
+            <span class="ka"
+              >ვერ დავიჯერე, რომ უცნობ ადამიანებთან ასეთი უსაფრთხოება შეიძლებოდა
+              მეგრძნო.</span
+            ><span class="en"
+              >I couldn't believe I could feel so safe among strangers.</span
+            >
+          </div>
+          <div class="impression-author">
+            <span class="ka">მაყურებელი</span
+            ><span class="en">Audience member</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="impression">
+        <div class="impression-content fade-in">
+          <div class="impression-quote">
+              <span class="ka"
+                >პირველად ვიყავი და ვერ წარმოვიდგენდი, რომ ასეთი რამ შეიძლებოდა.
+                ტირილიც მინდოდა და სიცილიც.</span
+              ><span class="en"
+                >It was my first time and I couldn't imagine something like this
+                was possible. I wanted to both cry and laugh.</span
+              >
+          </div>
+          <div class="impression-author">
+            <span class="ka">მაყურებელი</span
+            ><span class="en">Audience member</span>
+          </div>
+          <div style="margin-top: 50px; text-align: center">
+            <button class="impressions-more-btn" id="impOpenBtn">
+              <span class="ka">სხვების შთაბეჭდილებები</span
+              ><span class="en">Others' Impressions</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="shared-section">
-      <h2>სად განსხვავდებიან</h2>
-      <table class="diff-table">
-        <thead>
-          <tr>
-            <th>ელემენტი</th>
-            <th>Cinematic</th>
-            <th>Theatrical</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>ფონი</td>
-            <td>ერთიანი მუქი ფერი მთელ საიტზე</td>
-            <td>ფერი იცვლება სექციიდან სექციაზე (ბნელი → თბილი → ბნელი)</td>
-          </tr>
-          <tr>
-            <td>Spotlight</td>
-            <td>არ აქვს</td>
-            <td>თბილი სინათლის ლაქა თითოეულ სექციაზე</td>
-          </tr>
-          <tr>
-            <td>ოქროს ტონი</td>
-            <td>მუქი, თავშეკავებული</td>
-            <td>ღია, თბილი</td>
-          </tr>
-          <tr>
-            <td>გალერეა</td>
-            <td>3x3 ფიქსირებული</td>
-            <td>მოქნილი grid</td>
-          </tr>
-          <tr>
-            <td>შეგრძნება</td>
-            <td>სიჩუმე, ფოკუსი, მინიმალიზმი</td>
-            <td>სითბო, დრამატურგია, მოგზაურობა</td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- Founder / About the Center -->
+    <section class="founder">
+      <div class="section-content fade-in">
+        <h2>
+          <span class="ka">ცენტრის შესახებ</span
+          ><span class="en">About the Center</span>
+        </h2>
+        <div class="founder-content">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-year">1975</div>
+              <div class="timeline-dot"></div>
+              <div class="timeline-text">
+                <span class="ka"
+                  >ფლეიბექ თეატრი დაარსდა (ჯონათან ფოქსი & ჯო სალასი)</span
+                ><span class="en"
+                  >Playback Theatre founded (Jonathan Fox & Jo Salas)</span
+                >
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2025</div>
+              <div class="timeline-dot"></div>
+              <div class="timeline-text">
+                <span class="ka">ქართული ფლეიბექ თეატრის ცენტრი, თბილისი</span
+                ><span class="en"
+                  >Georgian Playback Theatre Center, Tbilisi</span
+                >
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">
+                <span class="ka">დღეს</span><span class="en">Today</span>
+              </div>
+              <div class="timeline-dot"></div>
+              <div class="timeline-text">
+                <span class="ka">60+ ქვეყანაში მოქმედებს</span
+                ><span class="en">Active in 60+ countries</span>
+              </div>
+            </div>
+          </div>
+          <p class="founder-quote">
+            <span class="ka"
+              >ჩემთვის ფლეიბექ თეატრი არის გადასვლა დიდი, სტრუქტურირებული და
+              წინასწარ განსაზღვრული თეატრიდან, პატარა, ავთენტურ სივრცეში,
+              რომელიც ადამიანურ შეხვედრაზე, სპონტანურობაზე და ნამდვილობაზე დგას,
+              სადაც ადამიანი შეიძლება იყოს ისეთი, როგორიც არის.</span
+            ><span class="en"
+              >For me, Playback Theatre is a transition from big, structured and
+              predetermined theatre to a small, authentic space built on human
+              encounter, spontaneity and genuineness, where a person can be who
+              they truly are.</span
+            >
+          </p>
+          <p class="founder-closing">
+            <span class="ka"
+              >სწორედ ამ ადამიანურ, ცოცხალ ურთიერთობაში ვხედავ ფლეიბექ თეატრის
+              მთავარ ღირებულებას.</span
+            ><span class="en"
+              >It is in this human, living relationship that I see the main
+              value of Playback Theatre.</span
+            >
+          </p>
+          <div class="founder-avatar-attribution">
+            <img
+              src="images/team/tsisia-cholokashvili.jpg"
+              alt="Tsisia Cholokashvili"
+              class="avatar-small"
+            />
+            <span
+              ><span class="ka">ცისია ჩოლოყაშვილი, დამფუძნებელი</span
+              ><span class="en">Tsisia Cholokashvili, Founder</span></span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Performance -->
+    <section class="team" id="team">
+      <div class="section-content fade-in">
+        <h2><span class="ka">გუნდი</span><span class="en">Team</span></h2>
+        <p class="team-size">
+          <span class="ka"
+            >ცენტრში დღეს 14 ადამიანი მოღვაწეობს, რომლებიც სხვადასხვა პროფესიის
+            წარმომადგენლები არიან და ფლეიბექ თეატრი აერთიანებთ.</span
+          ><span class="en"
+            >Today the center is home to 14 people from diverse professional
+            backgrounds, united by Playback Theatre.</span
+          >
+        </p>
+        <div class="team-group-photo">
+          <img
+            src="images/about_center/1.jpg"
+            alt="Georgian Playback Theatre Center team"
+          />
+        </div>
+        <div class="team-founder">
+          <div class="team-member">
+            <div
+              class="team-photo"
+              style="
+                background-image: url(&quot;images/team/tsisia-cholokashvili.jpg&quot;);
+              "
+            ></div>
+            <h3>
+              <span class="ka">ცისია ჩოლოყაშვილი</span
+              ><span class="en">Tsisia Cholokashvili</span>
+            </h3>
+            <p class="team-role">
+              <span class="ka">დამფუძნებელი, ხელმძღვანელი</span
+              ><span class="en">Founder, director</span>
+            </p>
+          </div>
+        </div>
+        <div class="team-closing-quote">
+          <blockquote class="team-quote">
+            <span class="ka"
+              >ყოველი წარმოდგენა ექსკლუზიურია. წარმოდგენის დაწყებისას არასდროს
+              ვიცით, როგორი იქნება, ვინ გაგვიზიარებს ისტორიას, რა ტიპის
+              ისტორიებს მოვისმენთ, როგორ განვითარდება თამაში და როგორ აიგება
+              წარმოდგენის უხილავი ხაზი, რომელსაც ჩვენ „ნარატიულ ქსელს“
+              ვუწოდებთ.</span
+            >
+            <span class="en"
+              >Every performance is exclusive. When a performance begins, we
+              never know what it will be like, who will share a story, what kind
+              of stories we will hear, how the play will develop, and how the
+              invisible thread of the performance will weave itself, what we
+              call the “narrative web.”</span
+            >
+          </blockquote>
+          <div class="team-quote-avatar">
+            <img
+              src="images/team/tsisia-cholokashvili.jpg"
+              alt="ცისია ჩოლოყაშვილი"
+              class="avatar-small"
+            />
+            <span class="team-quote-attr"
+              ><span class="ka">ცისია ჩოლოყაშვილი</span
+              ><span class="en">Tsisia Cholokashvili</span></span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ethics -->
+    <section class="gallery" id="gallery">
+      <div class="section-content fade-in">
+        <h2><span class="ka">გალერეა</span><span class="en">Gallery</span></h2>
+        <div class="gallery-container">
+          <div class="gallery-grid" id="galleryGrid">
+            <div class="gallery-item" data-index="0">
+              <img src="images/gallery/1.jpg" alt="Gallery 1" />
+            </div>
+            <div class="gallery-item" data-index="1">
+              <img src="images/gallery/2.jpg" alt="Gallery 2" />
+            </div>
+            <div class="gallery-item" data-index="2">
+              <img src="images/gallery/3.jpg" alt="Gallery 3" />
+            </div>
+            <div class="gallery-item" data-index="3">
+              <img src="images/gallery/4.jpg" alt="Gallery 4" />
+            </div>
+            <div class="gallery-item" data-index="4">
+              <img src="images/gallery/5.jpg" alt="Gallery 5" />
+            </div>
+            <div class="gallery-item" data-index="5">
+              <img src="images/gallery/6.jpg" alt="Gallery 6" />
+            </div>
+            <div class="gallery-item" data-index="6">
+              <img src="images/gallery/7.jpg" alt="Gallery 7" />
+            </div>
+            <div class="gallery-item" data-index="7">
+              <img src="images/gallery/8.jpg" alt="Gallery 8" />
+            </div>
+            <div class="gallery-item" data-index="8">
+              <img src="images/gallery/9.jpg" alt="Gallery 9" />
+            </div>
+            <div class="gallery-item hidden" data-index="9">
+              <img src="images/gallery/10.jpg" alt="Gallery 10" />
+            </div>
+            <div class="gallery-item hidden" data-index="10">
+              <img src="images/gallery/11.jpg" alt="Gallery 11" />
+            </div>
+            <div class="gallery-item hidden" data-index="11">
+              <img src="images/gallery/12.jpg" alt="Gallery 12" />
+            </div>
+            <div class="gallery-item hidden" data-index="12">
+              <img src="images/gallery/13.jpg" alt="Gallery 13" />
+            </div>
+            <div class="gallery-item hidden" data-index="13">
+              <img src="images/gallery/14.jpg" alt="Gallery 14" />
+            </div>
+            <div class="gallery-item hidden" data-index="14">
+              <img src="images/gallery/15.jpg" alt="Gallery 15" />
+            </div>
+            <div class="gallery-item hidden" data-index="15">
+              <img src="images/gallery/16.jpg" alt="Gallery 16" />
+            </div>
+            <div class="gallery-item hidden" data-index="16">
+              <img src="images/gallery/17.jpg" alt="Gallery 17" />
+            </div>
+            <div class="gallery-item hidden" data-index="17">
+              <img src="images/gallery/18.jpg" alt="Gallery 18" />
+            </div>
+            <div class="gallery-item hidden" data-index="18">
+              <img src="images/gallery/19.jpg" alt="Gallery 19" />
+            </div>
+            <div class="gallery-item hidden" data-index="19">
+              <img src="images/gallery/20.jpg" alt="Gallery 20" />
+            </div>
+            <div class="gallery-item hidden" data-index="20">
+              <img src="images/gallery/21.jpg" alt="Gallery 21" />
+            </div>
+            <div class="gallery-item hidden" data-index="21">
+              <img src="images/gallery/22.jpg" alt="Gallery 22" />
+            </div>
+            <div class="gallery-item hidden" data-index="22">
+              <img src="images/gallery/23.jpg" alt="Gallery 23" />
+            </div>
+            <div class="gallery-item hidden" data-index="23">
+              <img src="images/gallery/24.jpg" alt="Gallery 24" />
+            </div>
+            <div class="gallery-item hidden" data-index="24">
+              <img src="images/gallery/25.jpg" alt="Gallery 25" />
+            </div>
+          </div>
+          <div class="gallery-toggle">
+            <button id="galleryBtn">
+              <span class="ka">მეტის ნახვა</span
+              ><span class="en">See More</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section class="performance" id="performance">
+      <div class="section-content fade-in">
+        <h2>
+          <span class="ka">გამოცადე ფლეიბექი</span
+          ><span class="en">Experience Playback</span>
+        </h2>
+        <div class="performance-info">
+          <div class="performance-schedule">
+            <span class="ka">ყოველი თვის ბოლო შაბათი</span
+            ><span class="en">Last Saturday of every month</span>
+          </div>
+          <div>20:00</div>
+          <div>
+            <span class="ka">ხორავას N14, თბილისი</span
+            ><span class="en">Khorava 14, Tbilisi</span>
+          </div>
+        </div>
+        <div class="performance-note">
+          <span class="ka"
+            >დასწრება თავისუფალია. მაყურებლები, როგორც წესი, მადლიერების
+            გამოხატვის სახით 20-40₾ დონაციას გვიტოვებენ — სწორედ ამით არსებობს
+            ეს თეატრი. თუ არ შეგიძლიათ, უბრალოდ მოდით — თქვენი ყოფნა
+            მნიშვნელოვანია 🤍</span
+          >
+          <span class="en"
+            >Attendance is free. As an expression of gratitude, audience members
+            typically leave a 20-40₾ donation — that's how this theatre exists.
+            If you can't, just come — your presence matters 🤍</span
+          >
+        </div>
+        <div class="performance-cta">
+          <a
+            href="mailto:info@playbacktheatre.ge?subject=დარეგისტრირება პერფორმანსზე"
+          >
+            <span class="ka">დარეგისტრირდი</span
+            ><span class="en">Register</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Courses -->
+    <!-- Organizations -->
+    <section class="organizations" id="organizations">
+      <div class="section-content fade-in">
+        <h2>
+          <span class="ka">ორგანიზაციებისთვის</span
+          ><span class="en">For Organizations</span>
+        </h2>
+        <p class="section-intro">
+          <span class="ka"
+            >შესთავაზეთ თქვენს გუნდს განსაკუთრებული გამოცდილება. ფლეიბექ თეატრი
+            აძლიერებს ნდობას, ემპათიას და კომუნიკაციას — იმას, რასაც ჩვეულებრივი
+            ტრენინგები ვერ აღწევს.</span
+          ><span class="en"
+            >Offer your team an extraordinary experience. Playback Theatre
+            strengthens trust, empathy, and communication — what conventional
+            trainings cannot achieve.</span
+          >
+        </p>
+        <div class="org-services">
+          <div class="org-service">
+            <h4>
+              <span class="ka">ექსკლუზიური სპექტაკლი</span
+              ><span class="en">Exclusive Performance</span>
+            </h4>
+            <p>
+              <span class="ka"
+                >დახურული პერფორმანსი თქვენი ორგანიზაციისთვის გუნდის ისტორიები
+                სცენაზე</span
+              ><span class="en"
+                >A private performance for your organization your team's stories
+                on stage</span
+              >
+            </p>
+          </div>
+          <div class="org-service">
+            <h4>
+              <span class="ka">ვორქშოფი</span><span class="en">Workshop</span>
+            </h4>
+            <p>
+              <span class="ka"
+                >პრაქტიკული სემინარი მოსმენის, სპონტანურობისა და გუნდური
+                მუშაობის უნარებზე</span
+              ><span class="en"
+                >A practical seminar on listening, spontaneity, and teamwork
+                skills</span
+              >
+            </p>
+          </div>
+          <div class="org-service">
+            <h4>
+              <span class="ka">ტრენინგ-პროგრამა</span
+              ><span class="en">Training Program</span>
+            </h4>
+            <p>
+              <span class="ka"
+                >მორგებული პროგრამა თქვენი ორგანიზაციის საჭიროებებზე</span
+              ><span class="en"
+                >A customized program tailored to your organization's
+                needs</span
+              >
+            </p>
+          </div>
+        </div>
+        <div class="org-cta">
+          <a
+            href="mailto:info@playbacktheatre.ge?subject=ორგანიზაციის%20პროგრამა"
+          >
+            <span class="ka">დაგვიკავშირდით</span
+            ><span class="en">Get in Touch</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="courses" id="courses">
+      <div class="section-content fade-in">
+        <h2><span class="ka">კურსები</span><span class="en">Courses</span></h2>
+        <p class="section-intro">
+          <span class="ka"
+            >ჩვენ არამხოლოდ წარმოდგენებს ვდგამთ — ვასწავლით კიდეც. მუდმივად
+            ვეძებთ ახალ ადამიანებს, ვისაც სურს გახდეს ფლეიბექ თეატრის
+            მსახიობი.</span
+          ><span class="en"
+            >We don't just perform — we teach. We're always looking for new
+            people who want to become Playback Theatre actors.</span
+          >
+        </p>
+        <div class="courses-grid">
+          <div class="course-item">
+            <div class="course-name">
+              <span class="ka">საბაზისო კურსი</span
+              ><span class="en">Basic Course</span>
+            </div>
+            <div class="course-duration">
+              <span class="ka">46 საათი</span><span class="en">46 hours</span>
+            </div>
+            <div class="course-desc">
+              <span class="ka"
+                >ფლეიბექის საფუძვლები მოსმენა, სპონტანურობა, იმპროვიზაცია</span
+              ><span class="en"
+                >Playback fundamentals listening, spontaneity,
+                improvisation</span
+              >
+            </div>
+          </div>
+
+          <div class="course-item">
+            <div class="course-name">
+              <span class="ka">პრაქტიკოსის კურსი</span
+              ><span class="en">Practitioner Course</span>
+            </div>
+            <div class="course-duration">
+              <span class="ka">180 საათი</span><span class="en">180 hours</span>
+            </div>
+            <div class="course-desc">
+              <span class="ka"
+                >სიღრმისეული მომზადება სცენური პრაქტიკა, კონდაქტინგი</span
+              ><span class="en"
+                >In-depth training stage practice, conducting</span
+              >
+            </div>
+          </div>
+
+          <div class="course-item">
+            <div class="course-name">
+              <span class="ka">ვორქშოფები</span
+              ><span class="en">Workshops</span>
+            </div>
+            <div class="course-duration">
+              <span class="ka">მოწვეული ტრენერებით</span
+              ><span class="en">With guest trainers</span>
+            </div>
+            <div class="course-desc">
+              <span class="ka"
+                >საერთაშორისო ტრენერებთან ფოკუსირებული სემინარები</span
+              ><span class="en"
+                >Focused sessions with international trainers</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="courses-cta">
+          <a
+            href="mailto:info@playbacktheatre.ge?subject=დაინტერესება%20კურსებით"
+          >
+            <span class="ka">დაგვიკავშირდი</span
+            ><span class="en">Get in Touch</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Organizations -->
+    <section class="ethics" id="ethics">
+      <div class="section-content fade-in">
+        <h2>
+          <span class="ka">ეთიკის კოდექსი</span
+          ><span class="en">Code of Ethics</span>
+        </h2>
+        <p class="section-intro">
+          <span class="ka"
+            >ფლეიბექ თეატრი მიჰყვება CPT-ის (Center for Playback Theatre)
+            საერთაშორისო ეთიკის პრინციპებს:</span
+          ><span class="en"
+            >Playback Theatre follows the ethical principles of CPT (Center for
+            Playback Theatre):</span
+          >
+        </p>
+        <div class="ethics-items">
+          <div class="ethics-item" data-index="0">
+            <div class="ethics-title">
+              <span
+                ><span class="ka">პატივისცემა</span
+                ><span class="en">Respect</span></span
+              >
+              <span class="ethics-icon">▼</span>
+            </div>
+            <div class="ethics-text hidden">
+              <span class="ka"
+                >ჩვენ პატივს ვცემთ თითოეულ ადამიანს, მის გამოცდილებასა და
+                ისტორიას. ვაღიარებთ ადამიანის მთლიანობას და ვიქცევით ისე, რომ არ
+                დავამციროთ იგი.</span
+              ><span class="en"
+                >We respect each person, their experience and their story. We
+                honor the wholeness of each individual and act so as never to
+                diminish them.</span
+              >
+            </div>
+          </div>
+
+          <div class="ethics-item" data-index="1">
+            <div class="ethics-title">
+              <span
+                ><span class="ka">ინკლუზიურობა</span
+                ><span class="en">Inclusivity</span></span
+              >
+              <span class="ethics-icon">▼</span>
+            </div>
+            <div class="ethics-text hidden">
+              <span class="ka"
+                >ღია ვართ ნებისმიერი ისტორიისადმი. ვცდილობთ გავაჟღეროთ ის ხმები,
+                რომლებიც ხშირად არ ისმის საზოგადოებაში.</span
+              ><span class="en"
+                >We are open to any story. We strive to amplify voices that are
+                often unheard in society.</span
+              >
+            </div>
+          </div>
+
+          <div class="ethics-item" data-index="2">
+            <div class="ethics-title">
+              <span
+                ><span class="ka">სპონტანურობა</span
+                ><span class="en">Spontaneity</span></span
+              >
+              <span class="ethics-icon">▼</span>
+            </div>
+            <div class="ethics-text hidden">
+              <span class="ka"
+                >ვაძლევთ მოვლენებს საშუალებას განვითარდეს ბუნებრივად, წინასწარი
+                დაგეგმვის ან მანიპულაციის გარეშე.</span
+              ><span class="en"
+                >We allow events to unfold naturally, without pre-planning or
+                manipulation.</span
+              >
+            </div>
+          </div>
+
+          <div class="ethics-item" data-index="3">
+            <div class="ethics-title">
+              <span
+                ><span class="ka">კომპეტენტურობა</span
+                ><span class="en">Competence</span></span
+              >
+              <span class="ethics-icon">▼</span>
+            </div>
+            <div class="ethics-text hidden">
+              <span class="ka"
+                >ჩვენი გუნდი მუდმივად ავითარებს კომპეტენციას სწავლით, პრაქტიკითა
+                და სუპერვიზიით.</span
+              ><span class="en"
+                >Our team continuously develops competence through learning,
+                practice, and supervision.</span
+              >
+            </div>
+          </div>
+
+          <div class="ethics-item" data-index="4">
+            <div class="ethics-title">
+              <span
+                ><span class="ka">სოციალური პასუხისმგებლობა</span
+                ><span class="en">Social Responsibility</span></span
+              >
+              <span class="ethics-icon">▼</span>
+            </div>
+            <div class="ethics-text hidden">
+              <span class="ka"
+                >გვესმის ფლეიბექ თეატრის შესაძლებლობა ხელი შეუწყოს სოციალურ
+                სამართლიანობას. ვიყენებთ ხელოვნებას, როგორც ცვლილების
+                ინსტრუმენტს.</span
+              ><span class="en"
+                >We understand Playback Theatre's potential to promote social
+                justice. We use art as an instrument of change.</span
+              >
+            </div>
+          </div>
+
+          <div class="ethics-item" data-index="5">
+            <div class="ethics-title">
+              <span
+                ><span class="ka">კეთილსინდისიერება</span
+                ><span class="en">Integrity</span></span
+              >
+              <span class="ethics-icon">▼</span>
+            </div>
+            <div class="ethics-text hidden">
+              <span class="ka"
+                >ვმოქმედებთ პატიოსნად და გამჭვირვალედ. ჩვენი სიტყვა და საქმე
+                თანმიმდევრულია.</span
+              ><span class="en"
+                >We act with honesty and transparency. Our words and actions are
+                consistent.</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="ethics-iptn">
+          <span class="ka">მეტი ინფორმაცია:</span
+          ><span class="en">Learn more:</span>
+          <a href="https://playbacktheatre.org" target="_blank">CPT</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Support -->
+    <section class="contact-footer" id="contact">
+      <div class="section-content fade-in">
+        <h2>
+          <span class="ka">მხარდაჭერა</span><span class="en">Support</span>
+        </h2>
+        <p
+          style="
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+            color: var(--text-light);
+          "
+        >
+          <span class="ka"
+            >ფლეიბექ თეატრს სჭირდება მხარდაჭერა არა მხოლოდ წარმოდგენებისთვის —
+            მუდმივად ვზრუნავთ კვალიფიკაციის ამაღლებაზე, ევროპის წამყვანი ფლეიბექ
+            თეატრებიდან ტრენერებს ვიწვევთ და ამ სივრცეს ვავითარებთ. თქვენი
+            დონაცია ამ ყველაფერს შესაძლებელს ხდის.</span
+          >
+          <span class="en"
+            >Playback Theatre needs support beyond performances — we
+            continuously invest in raising our skills, invite trainers from
+            leading European Playback theatres, and develop this space. Your
+            donation makes all of this possible.</span
+          >
+        </p>
+        <div class="donation-cta">
+          <a
+            href="mailto:info@playbacktheatre.ge?subject=მხარდაჭერა"
+            style="
+              color: var(--accent-gold);
+              text-decoration: none;
+              border-bottom: 2px solid var(--accent-gold);
+            "
+          >
+            <span class="ka">მხარდაჭერისთვის დაგვიკავშირდით</span>
+            <span class="en">Get in touch about support</span>
+          </a>
+        </div>
+        <div class="contact-footer-bottom">
+          <div class="footer-links">
+            <a href="mailto:info@playbacktheatre.ge">info@playbacktheatre.ge</a>
+            <a
+              href="https://www.facebook.com/groups/4088209314751117"
+              target="_blank"
+              >Facebook</a
+            >
+            <a href="https://playbacktheatre.org" target="_blank">CPT</a>
+          </div>
+          <p
+            style="
+              margin-top: 15px;
+              font-size: 14px;
+              color: rgba(232, 223, 208, 0.3);
+            "
+          >
+            <span class="ka">© 2025 ქართული ფლეიბექ თეატრის ცენტრი</span>
+            <span class="en">© 2025 Georgian Playback Theatre Center</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <div class="lightbox-content">
+        <button class="lightbox-close" id="lightboxClose">&times;</button>
+        <button class="lightbox-prev" id="lightboxPrev">&#10094;</button>
+        <img
+          class="lightbox-image"
+          id="lightboxImage"
+          src=""
+          alt="Gallery image"
+        />
+        <button class="lightbox-next" id="lightboxNext">&#10095;</button>
+        <div class="lightbox-counter">
+          <span id="lightboxCounter">1/25</span>
+        </div>
+      </div>
     </div>
 
-    <div class="page-footer">
-      <p>ეს გვერდი მხოლოდ შიდა გამოყენებისთვისაა - გუნდის მიერ ვარიანტის არჩევისთვის</p>
+    <!-- Impressions Carousel Popup -->
+    <div class="impressions-popup" id="impressionsPopup">
+      <button class="impressions-popup-close" id="impCloseBtn">&times;</button>
+      <button class="impressions-nav prev" id="impPrev">&#10094;</button>
+      <button class="impressions-nav next" id="impNext">&#10095;</button>
+      <div class="impressions-carousel" id="impressionsCarousel">
+        <div class="impressions-slide">
+          <div>
+            <blockquote>
+              <span class="ka"
+                >სხვისი ისტორიის ყურებისას საკუთარი თავი დავინახე. ძალიან ძლიერი
+                გამოცდილება იყო.</span
+              ><span class="en"
+                >Watching someone else's story, I saw myself. It was a very
+                powerful experience.</span
+              >
+            </blockquote>
+            <p class="slide-author">
+              <span class="ka">მაყურებელი</span
+              ><span class="en">Audience member</span>
+            </p>
+          </div>
+        </div>
+        <div class="impressions-slide">
+          <div>
+            <blockquote>
+              <span class="ka"
+                >ვერ დავიჯერე, რომ უცნობ ადამიანებთან ასეთი უსაფრთხოება
+                შეიძლებოდა მეგრძნო.</span
+              ><span class="en"
+                >I couldn't believe I could feel so safe among strangers.</span
+              >
+            </blockquote>
+            <p class="slide-author">
+              <span class="ka">მაყურებელი</span
+              ><span class="en">Audience member</span>
+            </p>
+          </div>
+        </div>
+        <div class="impressions-slide">
+          <div>
+            <blockquote>
+              <span class="ka"
+                >პირველად ვიყავი და ვერ წარმოვიდგენდი, რომ ასეთი რამ შეიძლებოდა.
+                ტირილიც მინდოდა და სიცილიც.</span
+              ><span class="en"
+                >It was my first time and I couldn't imagine something like this
+                was possible. I wanted to both cry and laugh.</span
+              >
+            </blockquote>
+            <p class="slide-author">
+              <span class="ka">მაყურებელი</span
+              ><span class="en">Audience member</span>
+            </p>
+          </div>
+        </div>
+        <div class="impressions-slide">
+          <div>
+            <blockquote>
+              <span class="ka"
+                >საკუთარ ამბავს როცა სცენაზე ვუყურე, ისეთი სიმსუბუქე ვიგრძენი,
+                თითქოს ტვირთი მომეხსნა.</span
+              ><span class="en"
+                >Watching my own story on stage, I felt such lightness, as if a
+                weight had been lifted.</span
+              >
+            </blockquote>
+            <p class="slide-author">
+              <span class="ka">მაყურებელი</span
+              ><span class="en">Audience member</span>
+            </p>
+          </div>
+        </div>
+        <div class="impressions-slide">
+          <div>
+            <blockquote>
+              <span class="ka"
+                >ამ საღამოს შემდეგ მთელი კვირა ემოციებით სავსე ვიყავი.</span
+              ><span class="en"
+                >I was filled with emotions all week after that evening.</span
+              >
+            </blockquote>
+            <p class="slide-author">
+              <span class="ka">მაყურებელი</span
+              ><span class="en">Audience member</span>
+            </p>
+          </div>
+        </div>
+        <div class="impressions-slide">
+          <div>
+            <blockquote>
+              <span class="ka"
+                >ეს არ არის უბრალოდ თეატრი. ეს რაღაც ძალიან ადამიანურია.</span
+              ><span class="en"
+                >This is not just theatre. This is something profoundly
+                human.</span
+              >
+            </blockquote>
+            <p class="slide-author">
+              <span class="ka">მაყურებელი</span
+              ><span class="en">Audience member</span>
+            </p>
+          </div>
+        </div>
+        <div class="impressions-slide">
+          <div>
+            <blockquote>
+              <span class="ka"
+                >ახლა ვხვდები, რომ ეს ზუსტად ის ადგილია, რომელიც ასე მჭირდებოდა
+                და დღეიდან ყველა პერფორმანსზე თქვენთან ვარ.</span
+              ><span class="en"
+                >Now I realize this is exactly the place I needed so much, and
+                from today I'll be at every performance.</span
+              >
+            </blockquote>
+            <p class="slide-author">
+              <span class="ka">მაყურებელი</span
+              ><span class="en">Audience member</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="impressions-paging" id="impressionsPaging">1 / 7</div>
     </div>
 
-  </div>
-</body>
+    <script>
+      // Language Toggle
+      const langToggle = document.getElementById("langToggle");
+      langToggle.addEventListener("click", () => {
+        document.body.classList.toggle("lang-en");
+        try {
+          localStorage.setItem(
+            "lang",
+            document.body.classList.contains("lang-en") ? "en" : "ka",
+          );
+        } catch (e) {}
+      });
+
+      // Check saved language
+      try {
+        if (localStorage.getItem("lang") === "en") {
+          document.body.classList.add("lang-en");
+        }
+      } catch (e) {}
+
+      // Hamburger Menu
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.querySelector(".nav-links");
+      hamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+      });
+
+      // Close menu on link click
+      document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("active");
+        });
+      });
+
+      // Nav scroll effect + URL hash update
+      const nav = document.querySelector("nav");
+      var hashSections = document.querySelectorAll("section[id]");
+      var hashTimer;
+      window.addEventListener(
+        "scroll",
+        function () {
+          if (window.scrollY > 50) {
+            nav.classList.add("scrolled");
+          } else {
+            nav.classList.remove("scrolled");
+          }
+          clearTimeout(hashTimer);
+          hashTimer = setTimeout(function () {
+            var current = "";
+            for (var i = 0; i < hashSections.length; i++) {
+              if (
+                window.scrollY >=
+                hashSections[i].offsetTop - window.innerHeight * 0.4
+              ) {
+                current = hashSections[i].id;
+              }
+            }
+            if (current && location.hash !== "#" + current) {
+              history.replaceState(null, "", "#" + current);
+            } else if (!current && location.hash) {
+              history.replaceState(null, "", location.pathname);
+            }
+          }, 100);
+        },
+        { passive: true },
+      );
+
+      // Fade-in on scroll
+      const fadeElements = document.querySelectorAll(".fade-in");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      fadeElements.forEach((el) => observer.observe(el));
+
+      // Gallery Setup
+      const galleryBtn = document.getElementById("galleryBtn");
+      const hiddenItems = document.querySelectorAll(
+        "#galleryGrid .gallery-item.hidden",
+      );
+      let expanded = false;
+
+      // Click handlers for all gallery items
+      document
+        .querySelectorAll("#galleryGrid .gallery-item")
+        .forEach((item) => {
+          item.addEventListener("click", () =>
+            openLightbox(parseInt(item.dataset.index) + 1),
+          );
+        });
+
+      // Gallery "See More" opens lightbox from photo 10 (index 9)
+      galleryBtn.addEventListener("click", () => {
+        openLightbox(10);
+      });
+
+      // Lightbox
+      let currentIndex = 1;
+
+      function openLightbox(index) {
+        currentIndex = index;
+        const lightbox = document.getElementById("lightbox");
+        const img = document.getElementById("lightboxImage");
+        img.src = `images/gallery/${index}.jpg`;
+        document.getElementById("lightboxCounter").textContent = `${index}/25`;
+        lightbox.classList.add("active");
+      }
+
+      document.getElementById("lightboxClose").addEventListener("click", () => {
+        document.getElementById("lightbox").classList.remove("active");
+      });
+
+      document.getElementById("lightboxPrev").addEventListener("click", () => {
+        currentIndex = currentIndex === 1 ? 25 : currentIndex - 1;
+        document.getElementById("lightboxImage").src =
+          `images/gallery/${currentIndex}.jpg`;
+        document.getElementById("lightboxCounter").textContent =
+          `${currentIndex}/25`;
+      });
+
+      document.getElementById("lightboxNext").addEventListener("click", () => {
+        currentIndex = currentIndex === 25 ? 1 : currentIndex + 1;
+        document.getElementById("lightboxImage").src =
+          `images/gallery/${currentIndex}.jpg`;
+        document.getElementById("lightboxCounter").textContent =
+          `${currentIndex}/25`;
+      });
+
+      // Lightbox keyboard controls
+      document.addEventListener("keydown", (e) => {
+        if (document.getElementById("lightbox").classList.contains("active")) {
+          if (e.key === "ArrowLeft")
+            document.getElementById("lightboxPrev").click();
+          if (e.key === "ArrowRight")
+            document.getElementById("lightboxNext").click();
+          if (e.key === "Escape")
+            document.getElementById("lightboxClose").click();
+        }
+      });
+
+      // Ethics Accordion
+      document.querySelectorAll(".ethics-item").forEach((item) => {
+        item.addEventListener("click", () => {
+          const text = item.querySelector(".ethics-text");
+          text.classList.toggle("hidden");
+          item.classList.toggle("active");
+        });
+      });
+
+      // Show nav on scroll past hero
+      const heroSection = document.querySelector(".hero");
+      if (heroSection && nav) {
+        const heroObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                nav.classList.remove("visible");
+              } else {
+                nav.classList.add("visible");
+              }
+            });
+          },
+          { threshold: 0.1 },
+        );
+
+        heroObserver.observe(heroSection);
+      }
+
+      // Impressions Carousel — fade-based
+      var slides = document.querySelectorAll(".impressions-slide");
+      var currentImpression = 0;
+      var totalImpressions = slides.length;
+
+      function showSlide(idx) {
+        for (var i = 0; i < slides.length; i++) {
+          slides[i].classList.remove("active");
+        }
+        slides[idx].classList.add("active");
+        document.getElementById("impressionsPaging").textContent =
+          idx + 1 + " / " + totalImpressions;
+      }
+
+      function openImpressionsCarousel() {
+        currentImpression = 3;
+        showSlide(3);
+        document.getElementById("impressionsPopup").classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeImpressionsCarousel() {
+        document.getElementById("impressionsPopup").classList.remove("active");
+        document.body.style.overflow = "auto";
+      }
+
+      function impressionNav(dir) {
+        currentImpression = Math.max(
+          0,
+          Math.min(totalImpressions - 1, currentImpression + dir),
+        );
+        showSlide(currentImpression);
+      }
+
+      document
+        .getElementById("impOpenBtn")
+        .addEventListener("click", openImpressionsCarousel);
+      document
+        .getElementById("impCloseBtn")
+        .addEventListener("click", closeImpressionsCarousel);
+      document.getElementById("impPrev").addEventListener("click", function () {
+        impressionNav(-1);
+      });
+      document.getElementById("impNext").addEventListener("click", function () {
+        impressionNav(1);
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (
+          document
+            .getElementById("impressionsPopup")
+            .classList.contains("active")
+        ) {
+          if (e.key === "ArrowRight") impressionNav(1);
+          if (e.key === "ArrowLeft") impressionNav(-1);
+          if (e.key === "Escape") closeImpressionsCarousel();
+        }
+      });
+
+      document
+        .getElementById("impressionsPopup")
+        .addEventListener("click", function (e) {
+          if (e.target === this) closeImpressionsCarousel();
+        });
+    </script>
+  </body>
 </html>
