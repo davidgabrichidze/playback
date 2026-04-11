@@ -3,7 +3,7 @@
     <style>
       .outer {
         fill: none;
-        stroke: #e8dfd0;
+        stroke: #bc9263;
         stroke-width: 24px;
         stroke-linecap: round;
         z-index: 0;
@@ -23,8 +23,8 @@
         z-index: 10;
       }
       .solid-node {
-        fill: #e8dfd0;
-        stroke: #e8dfd0;
+        fill: #bc9263;
+        stroke: #bc9263;
         stroke-width: 24px;
         z-index: 10;
       }

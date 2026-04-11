@@ -1,58 +1,93 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
   <defs>
     <style>
-      .outer {
+      .bg { fill: none; }
+      .ring {
         fill: none;
         stroke: #bc9263;
         stroke-width: 24px;
         stroke-linecap: round;
-        z-index: 0;
       }
-      .story {
+      .flow {
         fill: none;
-        stroke: #e8dfd0;
-        stroke-width: 16px;
+        stroke-width: 32px;
         stroke-linecap: round;
-        stroke-dasharray: 1 32;
-        z-index: 5;
+        stroke-linejoin: round;
       }
-      .open-node {
-        fill: #e8dfd0;
-        stroke: #e8dfd0;
-        stroke-width: 24px;
-        z-index: 10;
+      .teller {
+        fill: #f3efe6;
+        stroke: #d9cfbf;
+        stroke-width: 12px;
       }
-      .solid-node {
-        fill: #bc9263;
-        stroke: #bc9263;
-        stroke-width: 24px;
-        z-index: 10;
-      }
+      .red { fill: #ef6a5b; }
+      .blue { fill: #4a86db; }
+      .yellow { fill: #efbe3d; }
+      .green { fill: #58a34e; }
+      .knot { fill: #6c6073; }
     </style>
   </defs>
 
-  <!-- Full circle so the three right-side nodes remain connected by the same ring -->
-  <circle class="outer" cx="512" cy="512" r="310" />
+  <rect class="bg" x="0" y="0" width="1200" height="900" />
 
-  <!-- Nodes -->
-  <circle class="open-node" cx="202" cy="512" r="24" />
-  <circle class="solid-node" cx="780.467" cy="357" r="24" />
-  <circle class="solid-node" cx="822" cy="512" r="24" />
-  <circle class="solid-node" cx="780.467" cy="667" r="24" />
+  <!-- Circle -->
+  <circle class="ring" cx="600" cy="450" r="360" />
 
-  <!-- Story trunk -->
-  <path class="story" d="M 226 512
-                         C 278 512, 308 512, 340 512" />
+  <!-- 
+    4 actor nodes on the right side of the circle, top to bottom:
+    Red (top), Blue, Yellow, Green (bottom)
+    Spread evenly on the right half of circle.
+    Circle: cx=600, cy=450, r=360
+    
+    Angles from center (0° = right, going clockwise):
+    Red:    -50°  → (600 + 360*cos(-50°), 450 + 360*sin(-50°)) = (831.4, 174.2)
+    Blue:   -15°  → (600 + 360*cos(-15°), 450 + 360*sin(-15°)) = (947.7, 356.8)
+    Yellow:  25°  → (600 + 360*cos(25°),  450 + 360*sin(25°))  = (926.3, 602.1)
+    Green:   55°  → (600 + 360*cos(55°),  450 + 360*sin(55°))  = (806.5, 744.9)
+  -->
 
-  <!-- Split flow -->
-  <path class="story" d="M 340 512
-                         C 430 500, 505 435, 585 395
-                         C 650 363, 712 352, 756 357" />
+  <!-- 
+    Curves from teller (240, 450):
+    Exit order top to bottom: Green, Yellow, Blue, Red
+    
+    So: Green exits highest, crosses ALL the way down to Green node (bottom-right)
+        Yellow exits 2nd highest, crosses down to Yellow node (lower-right)  
+        Blue exits 2nd lowest, crosses up to Blue node (upper-right)
+        Red exits lowest, crosses ALL the way up to Red node (top-right)
+    
+    Crossing zone: around x=680-720, slightly right of center
+  -->
 
-  <path class="story" d="M 340 512
-                         C 455 512, 590 512, 798 512" />
+  <!-- Green: exits TOP from teller, sweeps high, then crosses DOWN to green node (bottom-right) -->
+  <path class="flow" stroke="#58a34e"
+        d="M 240 450
+           C 380 310, 560 290, 700 430
+           C 740 470, 770 620, 806.5 744.9" />
 
-  <path class="story" d="M 340 512
-                         C 430 524, 505 589, 585 629
-                         C 650 661, 712 672, 756 667" />
+  <!-- Yellow: exits upper-mid from teller, crosses down to yellow node -->
+  <path class="flow" stroke="#efbe3d"
+        d="M 240 450
+           C 390 360, 570 350, 700 440
+           C 740 460, 820 530, 926.3 602.1" />
+
+  <!-- Blue: exits lower-mid from teller, crosses up to blue node -->
+  <path class="flow" stroke="#4a86db"
+        d="M 240 450
+           C 390 540, 570 550, 700 460
+           C 740 440, 840 400, 947.7 356.8" />
+
+  <!-- Red: exits BOTTOM from teller, sweeps low, then crosses UP to red node (top-right) -->
+  <path class="flow" stroke="#ef6a5b"
+        d="M 240 450
+           C 380 590, 560 610, 700 470
+           C 730 440, 780 310, 831.4 174.2" />
+
+  <!-- Nodes on top -->
+  <circle class="teller" cx="240" cy="450" r="40" />
+  <circle class="red" cx="831.4" cy="174.2" r="40" />
+  <circle class="blue" cx="947.7" cy="356.8" r="40" />
+  <circle class="yellow" cx="926.3" cy="602.1" r="40" />
+  <circle class="green" cx="806.5" cy="744.9" r="40" />
+
+  <!-- Central knot -->
+  <circle class="knot" cx="700" cy="450" r="12" />
 </svg>

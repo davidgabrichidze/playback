@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>კომპონენტური ბიბლიოთეკა — Playback Theatre</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Georgian:wght@400;700&family=Noto+Sans+Georgian:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --dark-bg: #0a0805;
+      --text-light: #e8dfd0;
+      --accent-gold: #c49a6c;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans Georgian', sans-serif;
+      background: var(--dark-bg);
+      color: var(--text-light);
+      line-height: 1.6;
+      padding: 60px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Noto Serif Georgian', serif;
+    }
+
+    /* =====================
+       COMPONENT SYSTEM
+       ===================== */
+
+    /* --- Layout --- */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; text-align: left; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+    .grid-auto { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+    .grid-full { grid-column: 1 / -1; }
+
+    /* --- Typography --- */
+    .heading { font-size: 42px; color: var(--text-light); }
+    .hook { font-family: 'Noto Serif Georgian', serif; font-size: 32px; line-height: 1.5; color: var(--accent-gold); margin-bottom: 40px; }
+    .subhook { font-size: 20px; color: rgba(232, 223, 208, 0.8); }
+    .intro { font-size: 20px; text-align: center; max-width: 700px; margin: 0 auto 50px; line-height: 1.8; color: rgba(232, 223, 208, 0.6); }
+    .label { color: var(--accent-gold); font-weight: 600; margin-right: 6px; }
+
+    /* --- Cards --- */
+    .card { border: 1px solid rgba(196, 154, 108, 0.15); border-radius: 12px; overflow: hidden; }
+    .card-header { padding: 35px 30px 30px; text-align: center; border-bottom: 1px solid rgba(196, 154, 108, 0.15); }
+    .card-title { display: block; font-size: 22px; font-weight: 600; color: var(--accent-gold); }
+    .card-subtitle { display: block; font-size: 16px; color: rgba(232, 223, 208, 0.45); margin-top: 8px; }
+    .card-bordered { text-align: left; border-left: 3px solid var(--accent-gold); padding-left: 25px; }
+    .card-bordered h3 { font-size: 20px; font-weight: 600; color: var(--accent-gold); margin-bottom: 15px; }
+    .card-bordered p { font-size: 18px; color: var(--text-light); line-height: 1.7; }
+    .card-topped { background: rgba(196, 154, 108, 0.05); padding: 40px; border-top: 3px solid var(--accent-gold); }
+    .card-topped h3 { font-size: 22px; font-weight: 600; margin-bottom: 15px; color: var(--accent-gold); }
+    .card-topped p { font-size: 18px; color: var(--text-light); line-height: 1.7; }
+
+    /* --- Quotes --- */
+    .quote { font-family: 'Noto Serif Georgian', serif; font-style: italic; line-height: 1.8; }
+    .quote--large { font-size: 28px; margin-bottom: 30px; }
+    .quote--accent { font-weight: 600; color: var(--accent-gold); }
+
+    /* --- People --- */
+    .avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+    .avatar--lg { width: 160px; height: 160px; min-width: 160px; border-radius: 50%; background-size: cover; background-position: center; }
+    .avatar-group { display: inline-flex; align-items: center; gap: 12px; }
+    .avatar-info { display: flex; flex-direction: column; gap: 2px; text-align: left; }
+    .avatar-name { font-size: 16px; color: var(--text-light); }
+    .avatar-role { font-size: 13px; color: rgba(232, 223, 208, 0.5); letter-spacing: 0.5px; }
+    .profile { display: flex; align-items: flex-start; gap: 40px; max-width: 800px; text-align: left; }
+    .profile h3 { font-size: 24px; color: var(--text-light); margin-bottom: 6px; }
+    .profile-role { font-size: 14px; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+    .profile-desc { font-size: 18px; font-style: italic; color: rgba(232, 223, 208, 0.7); line-height: 1.7; }
+
+    /* --- Interactive --- */
+    .cta-button { text-align: center; margin-top: 40px; }
+    .cta-button a { display: inline-block; color: var(--accent-gold); text-decoration: none; font-size: 20px; font-style: italic; border: 2px solid var(--accent-gold); padding: 16px 60px; transition: all 0.3s ease; letter-spacing: 0.5px; }
+    .cta-button a:hover { color: #0a0805; background: var(--accent-gold); }
+    .note { font-size: 16px; padding: 25px 40px; color: var(--text-light); line-height: 1.7; border-top: 1px solid rgba(196, 154, 108, 0.1); text-align: left; }
+
+    /* =====================
+       PAGE-SPECIFIC STYLES
+       ===================== */
+    .ref-section {
+      margin-bottom: 100px;
+      padding-bottom: 60px;
+      border-bottom: 1px solid rgba(196, 154, 108, 0.15);
+    }
+
+    .ref-title {
+      font-size: 14px;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 40px;
+    }
+
+    .ref-row {
+      margin-bottom: 40px;
+    }
+
+    .ref-class {
+      font-family: 'Inter', monospace;
+      font-size: 13px;
+      color: rgba(232, 223, 208, 0.4);
+      margin-bottom: 10px;
+      background: rgba(196, 154, 108, 0.08);
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+
+    .ref-desc {
+      font-size: 14px;
+      color: rgba(232, 223, 208, 0.4);
+      margin-bottom: 15px;
+    }
+
+    .ref-demo {
+      padding: 30px;
+      border: 1px solid rgba(196, 154, 108, 0.1);
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    .page-title {
+      font-size: 48px;
+      color: var(--accent-gold);
+      margin-bottom: 10px;
+    }
+
+    .page-subtitle {
+      font-size: 18px;
+      color: rgba(232, 223, 208, 0.5);
+      margin-bottom: 80px;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .profile { flex-direction: column; align-items: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="page-title">Component Library</h1>
+  <p class="page-subtitle">Playback Theatre Design System</p>
+
+  <!-- ===== TYPOGRAPHY ===== -->
+  <div class="ref-section">
+    <div class="ref-title">Typography</div>
+
+    <div class="ref-row">
+      <div class="ref-class">.heading</div>
+      <div class="ref-desc">Section heading — 42px, serif</div>
+      <div class="ref-demo">
+        <h2 class="heading">გამოცადე ფლეიბექი</h2>
+      </div>
+    </div>
+
+    <div class="ref-row">
+      <div class="ref-class">.hook</div>
+      <div class="ref-desc">Accent hero text — 32px, serif, gold</div>
+      <div class="ref-demo">
+        <p class="hook">თქვენ ჰყვებით ისტორიას — მსახიობები მას სცენაზე აცოცხლებენ.</p>
+      </div>
+    </div>
+
+    <div class="ref-row">
+      <div class="ref-class">.subhook</div>
+      <div class="ref-desc">Secondary accent text — 20px, light</div>
+      <div class="ref-demo">
+        <p class="subhook">ყოველი წარმოდგენა ექსკლუზიურია და არასდროს მეორდება.</p>
+      </div>
+    </div>
+
+    <div class="ref-row">
+      <div class="ref-class">.intro</div>
+      <div class="ref-desc">Section intro paragraph — 20px, centered, muted</div>
+      <div class="ref-demo">
+        <p class="intro">ჩვენ არამხოლოდ წარმოდგენებს ვდგამთ — ვასწავლით კიდეც. მუდმივად ვეძებთ ახალ ადამიანებს, ვისაც სურს გახდეს ფლეიბექ თეატრის მსახიობი.</p>
+      </div>
+    </div>
+
+    <div class="ref-row">
+      <div class="ref-class">.label</div>
+      <div class="ref-desc">Small label — gold, bold</div>
+      <div class="ref-demo">
+        <p><span class="label">როდის:</span> 26 აპრილი, 20:00</p>
+        <p><span class="label">სად:</span> ხორავას N14, თბილისი</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== QUOTES ===== -->
+  <div class="ref-section">
+    <div class="ref-title">Quotes</div>
+
+    <div class="ref-row">
+      <div class="ref-class">.quote</div>
+      <div class="ref-desc">Standard italic serif quote — 20px</div>
+      <div class="ref-demo">
+        <p class="quote" style="font-size: 20px;">ჩემთვის ფლეიბექ თეატრი არის გადასვლა დიდი, სტრუქტურირებული და წინასწარ განსაზღვრული თეატრიდან, პატარა, ავთენტურ სივრცეში.</p>
+      </div>
+    </div>
+
+    <div class="ref-row">
+      <div class="ref-class">.quote.quote--large</div>
+      <div class="ref-desc">Large quote — 28px, for impressions</div>
+      <div class="ref-demo">
+        <p class="quote quote--large">ეს არ არის უბრალოდ თეატრი. ეს რაღაც ძალიან ადამიანურია.</p>
+      </div>
+    </div>
+
+    <div class="ref-row">
+      <div class="ref-class">.quote--accent</div>
+      <div class="ref-desc">Gold bold emphasis — for closing statements</div>
+      <div class="ref-demo">
+        <p class="quote quote--accent" style="font-size: 24px;">სწორედ ამ ადამიანურ, ცოცხალ ურთიერთობაში ვხედავ ფლეიბექ თეატრის მთავარ ღირებულებას.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CARDS ===== -->
+  <div class="ref-section">
+    <div class="ref-title">Cards</div>
+
+    <div class="ref-row">
+      <div class="ref-class">.card + .card-header + .card-title + .card-subtitle</div>
+      <div class="ref-desc">Bordered card with header</div>
+      <div class="ref-demo">
+        <div class="card" style="max-width: 500px;">
+          <div class="card-header">
+            <span class="card-title">ყოველი თვის ბოლო შაბათი</span>
+            <span class="card-subtitle">ყოველი წარმოდგენა ექსკლუზიურია</span>
+          </div>
+          <div style="padding: 20px;">
+            <p><span class="label">როდის:</span> 20:00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-row">
+      <div class="ref-class">.card-bordered</div>
+      <div class="ref-desc">Left-border card — courses, ethics, activities</div>
+      <div class="ref-demo">
+        <div class="grid-3">
+          <div class="card-bordered">
+            <h3>წარმოდგენები</h3>
+            <p>ყოველთვიური იმპროვიზაციული წარმოდგენები მაყურებლის ისტორიებზე</p>
+          </div>
+          <div class="card-bordered">
+            <h3>სწავლება</h3>
+            <p>საბაზისო და პრაქტიკოსის კურსები, საერთაშორისო ტრენერები</p>
+          </div>
+          <div class="card-bordered">
+            <h3>ორგანიზაციები</h3>
+            <p>ექსკლუზიური სპექტაკლები და ტრენინგ-პროგრამები</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-row">
+      <div class="ref-class">.card-topped</div>
+      <div class="ref-desc">Top-border card — services</div>
+      <div class="ref-demo">
+        <div class="grid-3">
+          <div class="card-topped">
+            <h3>ექსკლუზიური სპექტაკლი</h3>
+            <p>დახურული პერფორმანსი თქვენი ორგანიზაციისთვის</p>
+          </div>
+          <div class="card-topped">
+            <h3>ვორქშოფი</h3>
+            <p>პრაქტიკული სემინარი მოსმენის უნარებზე</p>
+          </div>
+          <div class="card-topped">
+            <h3>ტრენინგ-პროგრამა</h3>
+            <p>მორგებული პროგრამა თქვენი ორგანიზაციისთვის</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== GRIDS ===== -->
+  <div class="ref-section">
+    <div class="ref-title">Grids</div>
+
+    <div class="ref-row">
+      <div class="ref-class">.grid-2</div>
+      <div class="ref-desc">2 column grid</div>
+      <div class="ref-demo">
+        <div class="grid-2">
+          <div style="padding: 15px; border: 1px solid rgba(196,154,108,0.2);"><span class="label">როდის:</span> 20:00</div>
+          <div style="padding: 15px; border: 1px solid rgba(196,154,108,0.2);"><span class="label">სად:</span> ხორავას N14</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-row">
+      <div class="ref-class">.grid-3</div>
+      <div class="ref-desc">3 column grid</div>
+      <div class="ref-demo">
+        <div class="grid-3">
+          <div style="padding: 15px; border: 1px solid rgba(196,154,108,0.2);">1</div>
+          <div style="padding: 15px; border: 1px solid rgba(196,154,108,0.2);">2</div>
+          <div style="padding: 15px; border: 1px solid rgba(196,154,108,0.2);">3</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-row">
+      <div class="ref-class">.grid-auto</div>
+      <div class="ref-desc">Auto-fit grid (min 300px) — responsive</div>
+      <div class="ref-demo">
+        <div class="grid-auto">
+          <div style="padding: 15px; border: 1px solid rgba(196,154,108,0.2);">auto 1</div>
+          <div style="padding: 15px; border: 1px solid rgba(196,154,108,0.2);">auto 2</div>
+          <div style="padding: 15px; border: 1px solid rgba(196,154,108,0.2);">auto 3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PEOPLE ===== -->
+  <div class="ref-section">
+    <div class="ref-title">People</div>
+
+    <div class="ref-row">
+      <div class="ref-class">.avatar + .avatar-group + .avatar-info</div>
+      <div class="ref-desc">Small avatar with name and role</div>
+      <div class="ref-demo">
+        <div class="avatar-group">
+          <img src="images/team/tsisia-cholokashvili.jpg" alt="" class="avatar">
+          <div class="avatar-info">
+            <span class="avatar-name">ცისია ჩოლოყაშვილი</span>
+            <span class="avatar-role">დამფუძნებელი, ხელმძღვანელი</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-row">
+      <div class="ref-class">.profile + .avatar--lg + .profile-role + .profile-desc</div>
+      <div class="ref-desc">Full profile — large photo + name + role + description</div>
+      <div class="ref-demo">
+        <div class="profile">
+          <div class="avatar--lg" style="background-image: url('images/team/tsisia-cholokashvili.jpg');"></div>
+          <div>
+            <h3>ცისია ჩოლოყაშვილი</h3>
+            <p class="profile-role">დამფუძნებელი, ხელმძღვანელი</p>
+            <p class="profile-desc">პირადად ჩემთვის, ეს სივრცე წარმოადგენს ჩემი ორი პროფესიული გამოცდილების თანხვედრას.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== INTERACTIVE ===== -->
+  <div class="ref-section">
+    <div class="ref-title">Interactive</div>
+
+    <div class="ref-row">
+      <div class="ref-class">.cta-button</div>
+      <div class="ref-desc">Call-to-action button — gold border, italic</div>
+      <div class="ref-demo">
+        <div class="cta-button">
+          <a href="#">დარეგისტრირდი</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ref-row">
+      <div class="ref-class">.note</div>
+      <div class="ref-desc">Note/comment block — border-top, left-aligned</div>
+      <div class="ref-demo">
+        <div class="note">
+          <strong>დონაცია = დაფასება, არა ფასი.</strong> ის რაც აქ ხდება, თანხაში არ იზომება — მაგრამ თქვენი ნებისმიერი წვლილი გვეხმარება რომ ეს გაგრძელდეს. გელოდებით 💓
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== COLORS ===== -->
+  <div class="ref-section">
+    <div class="ref-title">Colors</div>
+    <div style="display: flex; gap: 30px; flex-wrap: wrap;">
+      <div style="text-align: center;">
+        <div style="width: 80px; height: 80px; background: #0a0805; border: 1px solid rgba(196,154,108,0.3); border-radius: 8px; margin-bottom: 8px;"></div>
+        <div class="ref-class">--dark-bg</div>
+        <div style="font-size: 12px; color: rgba(232,223,208,0.4);">#0a0805</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="width: 80px; height: 80px; background: #e8dfd0; border-radius: 8px; margin-bottom: 8px;"></div>
+        <div class="ref-class">--text-light</div>
+        <div style="font-size: 12px; color: rgba(232,223,208,0.4);">#e8dfd0</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="width: 80px; height: 80px; background: #c49a6c; border-radius: 8px; margin-bottom: 8px;"></div>
+        <div class="ref-class">--accent-gold</div>
+        <div style="font-size: 12px; color: rgba(232,223,208,0.4);">#c49a6c</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="width: 80px; height: 80px; background: rgba(232,223,208,0.6); border-radius: 8px; margin-bottom: 8px;"></div>
+        <div class="ref-class">muted text</div>
+        <div style="font-size: 12px; color: rgba(232,223,208,0.4);">rgba 0.6</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="width: 80px; height: 80px; background: rgba(232,223,208,0.45); border-radius: 8px; margin-bottom: 8px;"></div>
+        <div class="ref-class">subtitle</div>
+        <div style="font-size: 12px; color: rgba(232,223,208,0.4);">rgba 0.45</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
