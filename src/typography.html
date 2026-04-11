@@ -4,85 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>კომპონენტური ბიბლიოთეკა — Playback Theatre</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Georgian:wght@400;700&family=Noto+Sans+Georgian:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
   <style>
-    :root {
-      --dark-bg: #0a0805;
-      --text-light: #e8dfd0;
-      --accent-gold: #c49a6c;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
+    /* Page-specific overrides */
     body {
-      font-family: 'Noto Sans Georgian', sans-serif;
-      background: var(--dark-bg);
-      color: var(--text-light);
-      line-height: 1.6;
       padding: 60px 40px;
       max-width: 1200px;
       margin: 0 auto;
     }
 
-    h1, h2, h3 {
-      font-family: 'Noto Serif Georgian', serif;
-    }
-
-    /* =====================
-       COMPONENT SYSTEM
-       ===================== */
-
-    /* --- Layout --- */
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; text-align: left; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-    .grid-auto { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-    .grid-full { grid-column: 1 / -1; }
-
-    /* --- Typography --- */
-    .heading { font-size: 42px; color: var(--text-light); }
-    .hook { font-family: 'Noto Serif Georgian', serif; font-size: 32px; line-height: 1.5; color: var(--accent-gold); margin-bottom: 40px; }
-    .subhook { font-size: 20px; color: rgba(232, 223, 208, 0.8); }
-    .intro { font-size: 20px; text-align: center; max-width: 700px; margin: 0 auto 50px; line-height: 1.8; color: rgba(232, 223, 208, 0.6); }
-    .label { color: var(--accent-gold); font-weight: 600; margin-right: 6px; }
-
-    /* --- Cards --- */
-    .card { border: 1px solid rgba(196, 154, 108, 0.15); border-radius: 12px; overflow: hidden; }
-    .card-header { padding: 35px 30px 30px; text-align: center; border-bottom: 1px solid rgba(196, 154, 108, 0.15); }
-    .card-title { display: block; font-size: 22px; font-weight: 600; color: var(--accent-gold); }
-    .card-subtitle { display: block; font-size: 16px; color: rgba(232, 223, 208, 0.45); margin-top: 8px; }
-    .card-bordered { text-align: left; border-left: 3px solid var(--accent-gold); padding-left: 25px; }
-    .card-bordered h3 { font-size: 20px; font-weight: 600; color: var(--accent-gold); margin-bottom: 15px; }
-    .card-bordered p { font-size: 18px; color: var(--text-light); line-height: 1.7; }
-    .card-topped { background: rgba(196, 154, 108, 0.05); padding: 40px; border-top: 3px solid var(--accent-gold); }
-    .card-topped h3 { font-size: 22px; font-weight: 600; margin-bottom: 15px; color: var(--accent-gold); }
-    .card-topped p { font-size: 18px; color: var(--text-light); line-height: 1.7; }
-
-    /* --- Quotes --- */
-    .quote { font-family: 'Noto Serif Georgian', serif; font-style: italic; line-height: 1.8; }
-    .quote--large { font-size: 28px; margin-bottom: 30px; }
-    .quote--accent { font-weight: 600; color: var(--accent-gold); }
-
-    /* --- People --- */
-    .avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
-    .avatar--lg { width: 160px; height: 160px; min-width: 160px; border-radius: 50%; background-size: cover; background-position: center; }
-    .avatar-group { display: inline-flex; align-items: center; gap: 12px; }
-    .avatar-info { display: flex; flex-direction: column; gap: 2px; text-align: left; }
-    .avatar-name { font-size: 16px; color: var(--text-light); }
-    .avatar-role { font-size: 13px; color: rgba(232, 223, 208, 0.5); letter-spacing: 0.5px; }
-    .profile { display: flex; align-items: flex-start; gap: 40px; max-width: 800px; text-align: left; }
-    .profile h3 { font-size: 24px; color: var(--text-light); margin-bottom: 6px; }
-    .profile-role { font-size: 14px; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
-    .profile-desc { font-size: 18px; font-style: italic; color: rgba(232, 223, 208, 0.7); line-height: 1.7; }
-
-    /* --- Interactive --- */
-    .cta-button { text-align: center; margin-top: 40px; }
-    .cta-button a { display: inline-block; color: var(--accent-gold); text-decoration: none; font-size: 20px; font-style: italic; border: 2px solid var(--accent-gold); padding: 16px 60px; transition: all 0.3s ease; letter-spacing: 0.5px; }
-    .cta-button a:hover { color: #0a0805; background: var(--accent-gold); }
-    .note { font-size: 16px; padding: 25px 40px; color: var(--text-light); line-height: 1.7; border-top: 1px solid rgba(196, 154, 108, 0.1); text-align: left; }
-
-    /* =====================
-       PAGE-SPECIFIC STYLES
-       ===================== */
     .ref-section {
       margin-bottom: 100px;
       padding-bottom: 60px;
