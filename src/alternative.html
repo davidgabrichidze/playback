@@ -551,6 +551,23 @@
 			line-height: 1.8;
 		}
 
+		.founder-activities {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-wrap: wrap;
+			gap: 10px 20px;
+			margin: 40px 0;
+			font-size: 16px;
+			color: #b8afa0;
+			letter-spacing: 0.5px;
+		}
+
+		.founder-activity-sep {
+			color: #d4a574;
+			font-size: 20px;
+		}
+
 		#founder .founder-tagline {
 			font-size: 16px;
 			color: #d4a574;
@@ -1465,6 +1482,24 @@
   object-fit: cover;
 }
 
+.avatar-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+
+.avatar-name {
+  font-size: 16px;
+  color: #e8dfd0;
+}
+
+.avatar-role {
+  font-size: 13px;
+  color: #b8afa0;
+  letter-spacing: 0.5px;
+}
+
 .founder-avatar-attribution span {
   font-size: 16px;
   color: #b8afa0;
@@ -1695,7 +1730,7 @@ body.lang-en .team-quote {
 		<div style="position: relative; z-index: 2;">
 			<blockquote class="tsisia-doubt"><span class="ka">თავდაპირველად ვფიქრობდი, რომ საქართველოში ასეთი თეატრის განხორციელება რთული იქნებოდა...</span><span class="en">I initially thought, that it would be difficult to implement such theatre in Georgia...</span></blockquote>
 			<blockquote class="tsisia-resolve"><span class="ka">თუმცა ადამიანები გვიცხადებენ ნდობას, გვიზიარებენ პირად ისტორიებს და სწორედ ამით აცოცხლებენ თეატრალურ პროცესს.</span><span class="en">But people show us trust, share their personal stories, and by doing so bring the theatrical process to life.</span></blockquote>
-			<p class="quote-author tsisia-author"><img src="images/team/tsisia-cholokashvili.jpg" alt="ცისია ჩოლოყაშვილი" class="avatar-small"><span><span class="ka">ცისია ჩოლოყაშვილი</span><span class="en">Tsisia Cholokashvili</span></span></p>
+			<p class="quote-author tsisia-author"><img src="images/team/tsisia-cholokashvili.jpg" alt="ცისია ჩოლოყაშვილი" class="avatar-small"><div class="avatar-info"><span class="avatar-name"><span class="ka">ცისია ჩოლოყაშვილი</span><span class="en">Tsisia Cholokashvili</span></span><span class="avatar-role"><span class="ka">დამფუძნებელი, ხელმძღვანელი</span><span class="en">Founder, Director</span></span></div></p>
 		</div>
 	</section>
 
@@ -1760,12 +1795,22 @@ body.lang-en .team-quote {
 					<div class="timeline-text"><span class="ka">60+ ქვეყანაში მოქმედებს</span><span class="en">Active in 60+ countries</span></div>
 				</div>
 			</div>
+			<div class="founder-activities">
+				<div class="founder-activity"><span class="ka">ყოველთვიური წარმოდგენები</span><span class="en">Monthly performances</span></div>
+				<span class="founder-activity-sep">·</span>
+				<div class="founder-activity"><span class="ka">სასწავლო კურსები</span><span class="en">Educational courses</span></div>
+				<span class="founder-activity-sep">·</span>
+				<div class="founder-activity"><span class="ka">ორგანიზაციებთან მუშაობა</span><span class="en">Work with organizations</span></div>
+			</div>
 			<p class="founder-tagline"><span class="ka">თეატრი + ფსიქოთერაპია</span><span class="en">Theatre + Psychotherapy</span></p>
 			<p class="founder-quote"><span class="ka">ჩემთვის ფლეიბექ თეატრი არის გადასვლა დიდი, სტრუქტურირებული და წინასწარ განსაზღვრული თეატრიდან, პატარა, ავთენტურ სივრცეში, რომელიც ადამიანურ შეხვედრაზე, სპონტანურობაზე და ნამდვილობაზე დგას, სადაც ადამიანი შეიძლება იყოს ისეთი, როგორიც არის.</span><span class="en">For me, Playback Theatre is a transition from big, structured and predetermined theatre to a small, authentic space built on human encounter, spontaneity and genuineness, where a person can be who they truly are.</span></p>
 			<p class="founder-closing"><span class="ka">სწორედ ამ ადამიანურ, ცოცხალ ურთიერთობაში ვხედავ ფლეიბექ თეატრის მთავარ ღირებულებას.</span><span class="en">It is in this human, living relationship that I see the main value of Playback Theatre.</span></p>
 			<div class="founder-avatar-attribution">
 				<img src="images/team/tsisia-cholokashvili.jpg" alt="Tsisia Cholokashvili" class="avatar-small">
-				<span><span class="ka">ცისია ჩოლოყაშვილი, დამფუძნებელი</span><span class="en">Tsisia Cholokashvili, Founder</span></span>
+				<div class="avatar-info">
+					<span class="avatar-name"><span class="ka">ცისია ჩოლოყაშვილი</span><span class="en">Tsisia Cholokashvili</span></span>
+					<span class="avatar-role"><span class="ka">დამფუძნებელი, ხელმძღვანელი</span><span class="en">Founder, Director</span></span>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -1791,14 +1836,14 @@ body.lang-en .team-quote {
 					<p class="team-role"><span class="ka">დამფუძნებელი, ხელმძღვანელი</span><span class="en">Founder, director</span></p>
 				</div>
 			</div>
-			<div class="team-closing-quote">
-				<blockquote class="team-quote">
-					<span class="ka">ყოველი წარმოდგენა ექსკლუზიურია. წარმოდგენის დაწყებისას არასდროს ვიცით, როგორი იქნება, ვინ გაგვიზიარებს ისტორიას, რა ტიპის ისტორიებს მოვისმენთ, როგორ განვითარდება თამაში და როგორ აიგება წარმოდგენის უხილავი ხაზი, რომელსაც ჩვენ „ნარატიულ ქსელს“ ვუწოდებთ.</span>
-					<span class="en">Every performance is exclusive. When a performance begins, we never know what it will be like, who will share a story, what kind of stories we will hear, how the play will develop, and how the invisible thread of the performance will weave itself, what we call the “narrative web.”</span>
+			<div class=”team-closing-quote”>
+				<blockquote class=”team-quote”>
+					<span class=”ka”>პირადად ჩემთვის, როგორც ქართული ფლეიბექ თეატრის დამფუძნებლისა და ხელმძღვანელისთვის, ეს სივრცე წარმოადგენს ჩემი ორი პროფესიული გამოცდილების თანხვედრას: პროფესიული თეატრის და ფსიქოთერაპევტის პრაქტიკას.</span>
+					<span class=”en”>For me personally, as the founder and director of the Georgian Playback Theatre, this space represents the convergence of my two professional experiences: professional theatre and psychotherapy practice.</span>
 				</blockquote>
-				<div class="team-quote-avatar">
-					<img src="images/team/tsisia-cholokashvili.jpg" alt="ცისია ჩოლოყაშვილი" class="avatar-small">
-					<span class="team-quote-attr"><span class="ka">ცისია ჩოლოყაშვილი</span><span class="en">Tsisia Cholokashvili</span></span>
+				<div class=”team-quote-avatar”>
+					<img src=”images/team/tsisia-cholokashvili.jpg” alt=”ცისია ჩოლოყაშვილი” class=”avatar-small”>
+					<span class=”team-quote-attr”><span class=”ka”>ცისია ჩოლოყაშვილი</span><span class=”en”>Tsisia Cholokashvili</span></span>
 				</div>
 			</div>
 		</section>
@@ -1916,9 +1961,22 @@ body.lang-en .team-quote {
 				<span class="performance-detail-label"><span class="ka">ადგილი:</span><span class="en">Location:</span></span><span class="ka">ხორავას N14, თბილისი</span><span class="en">Khorava 14, Tbilisi</span>
 			</div>
 			<p class="performance-note">
-				<span class="ka">დასწრება თავისუფალია. მაყურებლები, როგორც წესი, მადლიერების გამოხატვის სახით 20-40₾ დონაციას გვიტოვებენ — სწორედ ამით არსებობს ეს თეატრი. თუ არ შეგიძლიათ, უბრალოდ მოდით — თქვენი ყოფნა მნიშვნელოვანია 🤍</span>
-				<span class="en">Attendance is free. As an expression of gratitude, audience members typically leave a 20-40₾ donation — that's how this theatre exists. If you can't, just come — your presence matters 🤍</span>
+				<span class="ka">დასწრება თავისუფალია, რეგისტრაცია სავალდებულოა. მაყურებლები ხშირად მადლიერებას დონაციით გამოხატავენ (20-40₾) — სწორედ ამით არსებობს ეს თეატრი. თუ ამჯერად არ გამოგდით, უბრალოდ მოდით — თქვენი ყოფნა ჩვენთვის ყველაზე მნი��ვნელოვანია 🤍</span>
+				<span class="en">Attendance is free, registration is required. Audience members often express their gratitude through a donation (20-40₾) — that's how this theatre exists. If it's not possible this time, just come — your presence matters most to us 🤍</span>
 			</p>
+			<div class="team-closing-quote" style="margin-top: 40px;">
+				<blockquote class="team-quote">
+					<span class="ka">ყოველი წარმოდგენა ექსკლუზიურია. წარმოდგენის დაწყებისას არასდროს ვიცით, როგორი იქნება, ვინ გაგვიზიარებს ისტორიას, რა ტიპის ისტორიებს მოვისმენთ, როგორ განვითარდება თამაში და როგორ აიგება წარმოდგენის უხილავი ხაზი, რომელსაც ჩვენ „ნარატიულ ქსელს" ვუწოდებთ.</span>
+					<span class="en">Every performance is exclusive. When a performance begins, we never know what it will be like, who will share a story, what kind of stories we will hear, how the play will develop, and how the invisible thread of the performance will weave itself, what we call the "narrative web."</span>
+				</blockquote>
+				<div class="team-quote-avatar">
+					<img src="images/team/tsisia-cholokashvili.jpg" alt="ცისია ჩოლოყაშვილი" class="avatar-small">
+					<div class="avatar-info">
+						<span class="avatar-name"><span class="ka">ცისია ჩოლოყაშვილი</span><span class="en">Tsisia Cholokashvili</span></span>
+						<span class="avatar-role"><span class="ka">დამფუძნებელი, ხელმძღვანელი</span><span class="en">Founder, Director</span></span>
+					</div>
+				</div>
+			</div>
 			<div class="performance-cta">
 				<a href="mailto:info@playbacktheatre.ge?subject=დარეგისტრირება პერფორმანსზე">
 					<span class="ka">დარეგისტრირდი</span>
