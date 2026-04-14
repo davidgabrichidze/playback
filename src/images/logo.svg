@@ -1,93 +1,83 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
   <defs>
     <style>
       .bg { fill: none; }
       .ring {
-        fill: none;
-        stroke: #bc9263;
-        stroke-width: 24px;
-        stroke-linecap: round;
+      fill: none;
+      stroke: #c49a6c;
+      stroke-width: 28px;
+      stroke-linecap: round;
       }
       .flow {
-        fill: none;
-        stroke-width: 32px;
-        stroke-linecap: round;
-        stroke-linejoin: round;
+      fill: none;
+      stroke-width: 30px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
       }
       .teller {
-        fill: #f3efe6;
-        stroke: #d9cfbf;
-        stroke-width: 12px;
+      fill: #e8dfd0;
       }
-      .red { fill: #ef6a5b; }
-      .blue { fill: #4a86db; }
-      .yellow { fill: #efbe3d; }
-      .green { fill: #58a34e; }
-      .knot { fill: #6c6073; }
+      .red { fill: #c85a48; }
+      .blue { fill: #5e8aa8; }
+      .yellow { fill: #e0a93a; }
+      .green { fill: #7a9456; }
+      .knot { fill: #e8dfd0; }
     </style>
   </defs>
 
-  <rect class="bg" x="0" y="0" width="1200" height="900" />
+  <rect class="bg" x="0" y="0" width="1200" height="1200" />
 
-  <!-- Circle -->
-  <circle class="ring" cx="600" cy="450" r="360" />
+  <!-- Circle (centered in square viewBox) -->
+  <circle class="ring" cx="600" cy="600" r="360" />
 
-  <!-- 
+  <!--
     4 actor nodes on the right side of the circle, top to bottom:
     Red (top), Blue, Yellow, Green (bottom)
-    Spread evenly on the right half of circle.
-    Circle: cx=600, cy=450, r=360
-    
+    Circle: cx=600, cy=600, r=360
     Angles from center (0° = right, going clockwise):
-    Red:    -50°  → (600 + 360*cos(-50°), 450 + 360*sin(-50°)) = (831.4, 174.2)
-    Blue:   -15°  → (600 + 360*cos(-15°), 450 + 360*sin(-15°)) = (947.7, 356.8)
-    Yellow:  25°  → (600 + 360*cos(25°),  450 + 360*sin(25°))  = (926.3, 602.1)
-    Green:   55°  → (600 + 360*cos(55°),  450 + 360*sin(55°))  = (806.5, 744.9)
+    Red:    -50°  → (831.4, 324.2)
+    Blue:   -15°  → (947.7, 506.8)
+    Yellow:  25°  → (926.3, 752.1)
+    Green:   55°  → (806.5, 894.9)
   -->
 
-  <!-- 
-    Curves from teller (240, 450):
+  <!--
+    Curves from teller (240, 600):
     Exit order top to bottom: Green, Yellow, Blue, Red
-    
-    So: Green exits highest, crosses ALL the way down to Green node (bottom-right)
-        Yellow exits 2nd highest, crosses down to Yellow node (lower-right)  
-        Blue exits 2nd lowest, crosses up to Blue node (upper-right)
-        Red exits lowest, crosses ALL the way up to Red node (top-right)
-    
-    Crossing zone: around x=680-720, slightly right of center
+    They cross around x=700, mimicking the eye's focal point / fish spine.
   -->
 
   <!-- Green: exits TOP from teller, sweeps high, then crosses DOWN to green node (bottom-right) -->
-  <path class="flow" stroke="#58a34e"
-        d="M 240 450
-           C 380 310, 560 290, 700 430
-           C 740 470, 770 620, 806.5 744.9" />
+  <path class="flow" stroke="#7a9456"
+    d="M 240 600
+           C 380 460, 560 440, 700 580
+           C 740 620, 770 770, 806.5 894.9" />
 
   <!-- Yellow: exits upper-mid from teller, crosses down to yellow node -->
-  <path class="flow" stroke="#efbe3d"
-        d="M 240 450
-           C 390 360, 570 350, 700 440
-           C 740 460, 820 530, 926.3 602.1" />
+  <path class="flow" stroke="#e0a93a"
+    d="M 240 600
+           C 390 510, 570 500, 700 590
+           C 740 610, 820 680, 926.3 752.1" />
 
   <!-- Blue: exits lower-mid from teller, crosses up to blue node -->
-  <path class="flow" stroke="#4a86db"
-        d="M 240 450
-           C 390 540, 570 550, 700 460
-           C 740 440, 840 400, 947.7 356.8" />
+  <path class="flow" stroke="#5e8aa8"
+    d="M 240 600
+           C 390 690, 570 700, 700 610
+           C 740 590, 840 550, 947.7 506.8" />
 
   <!-- Red: exits BOTTOM from teller, sweeps low, then crosses UP to red node (top-right) -->
-  <path class="flow" stroke="#ef6a5b"
-        d="M 240 450
-           C 380 590, 560 610, 700 470
-           C 730 440, 780 310, 831.4 174.2" />
+  <path class="flow" stroke="#c85a48"
+    d="M 240 600
+           C 380 740, 560 760, 700 620
+           C 730 590, 780 460, 831.4 324.2" />
 
   <!-- Nodes on top -->
-  <circle class="teller" cx="240" cy="450" r="40" />
-  <circle class="red" cx="831.4" cy="174.2" r="40" />
-  <circle class="blue" cx="947.7" cy="356.8" r="40" />
-  <circle class="yellow" cx="926.3" cy="602.1" r="40" />
-  <circle class="green" cx="806.5" cy="744.9" r="40" />
+  <circle class="teller" cx="240" cy="600" r="54" />
+  <circle class="red" cx="831.4" cy="324.2" r="54" />
+  <circle class="blue" cx="947.7" cy="506.8" r="54" />
+  <circle class="yellow" cx="926.3" cy="752.1" r="54" />
+  <circle class="green" cx="806.5" cy="894.9" r="54" />
 
-  <!-- Central knot -->
-  <circle class="knot" cx="700" cy="450" r="12" />
+  <!-- Central knot — the conductor, cream focal point (parallel to teller) -->
+  <circle class="knot" cx="715" cy="600" r="38" />
 </svg>

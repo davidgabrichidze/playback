@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+  <defs>
+    <style>
+      .ring {
+        fill: none;
+        stroke: #c49a6c;
+        stroke-width: 56px;
+      }
+      .flow {
+        fill: none;
+        stroke-width: 28px;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .teller { fill: #e8dfd0; }
+      .knot   { fill: #e8dfd0; }
+      .red    { fill: #c85a48; }
+      .blue   { fill: #5e8aa8; }
+      .yellow { fill: #e0a93a; }
+      .green  { fill: #7a9456; }
+    </style>
+  </defs>
+
+  <!--
+    Tab-favicon variant: same geometry family as logo.svg.
+    All strokes proportionally thickened so detail survives at 16-32px.
+    Stroke math: ring/flow scaled to ≈2× the main logo so they hit ~1.5px
+    at a 32px favicon render, and degrade to a recognizable colored blob at 16px.
+  -->
+
+  <circle class="ring" cx="600" cy="600" r="360" />
+
+  <!-- Green: top exit, crosses DOWN to green node -->
+  <path class="flow" stroke="#7a9456"
+        d="M 240 600
+           C 380 460, 560 440, 700 580
+           C 740 620, 770 770, 806.5 894.9" />
+
+  <!-- Yellow: upper-mid exit, crosses down to yellow node -->
+  <path class="flow" stroke="#e0a93a"
+        d="M 240 600
+           C 390 510, 570 500, 700 590
+           C 740 610, 820 680, 926.3 752.1" />
+
+  <!-- Blue: lower-mid exit, crosses up to blue node -->
+  <path class="flow" stroke="#5e8aa8"
+        d="M 240 600
+           C 390 690, 570 700, 700 610
+           C 740 590, 840 550, 947.7 506.8" />
+
+  <!-- Red: bottom exit, crosses UP to red node -->
+  <path class="flow" stroke="#c85a48"
+        d="M 240 600
+           C 380 740, 560 760, 700 620
+           C 730 590, 780 460, 831.4 324.2" />
+
+  <circle class="teller" cx="240" cy="600" r="100" />
+
+  <circle class="red"    cx="831.4" cy="324.2" r="100" />
+  <circle class="blue"   cx="947.7" cy="506.8" r="100" />
+  <circle class="yellow" cx="926.3" cy="752.1" r="100" />
+  <circle class="green"  cx="806.5" cy="894.9" r="100" />
+
+  <circle class="knot" cx="715" cy="600" r="60" />
+</svg>
