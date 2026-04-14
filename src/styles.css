@@ -540,7 +540,13 @@ section {
   background:
     linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url("images/general/hero.jpg") center/cover no-repeat;
-  background-attachment: fixed;
+  background-attachment: scroll;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero {
+    background-attachment: fixed;
+  }
 }
 
 .hero-logo {
@@ -1591,7 +1597,6 @@ footer {
   }
 
   .hero {
-    background-attachment: scroll;
     background-position: center top;
   }
 
