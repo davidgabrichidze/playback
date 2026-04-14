@@ -18,10 +18,10 @@
   "nav": {
     "logo": "Playback",
     "primary": [
-      { "href": "#theatre", "label": "Theatre" },
-      { "href": "#impressions", "label": "Impressions" },
-      { "href": "#gallery", "label": "Gallery" },
-      { "href": "#performance", "label": "Attend" }
+      { "href": "#theatre", "label": "Theatre", "class": "" },
+      { "href": "#impressions", "label": "Impressions", "class": "" },
+      { "href": "#gallery", "label": "Gallery", "class": "" },
+      { "href": "#performance", "label": "Attend", "class": "nav-cta" }
     ],
     "full": [
       { "href": "#theatre", "label": "Theatre" },
@@ -33,6 +33,7 @@
       { "href": "#performance", "label": "Attend" },
       { "href": "#organizations", "label": "For Organizations" },
       { "href": "#courses", "label": "Courses" },
+      { "href": "#ethics", "label": "Code of Ethics" },
       { "href": "#contact", "label": "Support" }
     ],
     "langToggleLabel": "KA",

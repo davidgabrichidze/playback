@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="{{assetPrefix}}images/logo.svg" />
+    <link rel="icon" type="image/svg+xml" href="{{assetPrefix}}images/favicon.svg" />
     <title>{{meta.title}}</title>
     <meta name="description" content="{{meta.description}}" />
     <meta name="keywords" content="{{meta.keywords}}" />
@@ -96,13 +96,13 @@
     <!-- Navigation -->
     <nav>
       <a href="#hero" class="logo">
-        <img src="{{assetPrefix}}images/logo.svg" alt="Playback Theatre logo" />
+        <img src="{{assetPrefix}}images/logo-mark.svg" alt="Playback Theatre logo" />
         {{nav.logo}}
       </a>
       <div class="nav-right">
         <ul class="nav-primary">
           {{#each nav.primary}}
-          <li><a href="{{item.href}}">{{item.label}}</a></li>
+          <li><a href="{{item.href}}" class="{{item.class}}">{{item.label}}</a></li>
           {{/each}}
         </ul>
         <a class="lang-toggle" href="{{nav.langToggleHref}}">{{nav.langToggleLabel}}</a>

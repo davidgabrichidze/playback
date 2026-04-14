@@ -18,10 +18,10 @@
   "nav": {
     "logo": "Playback",
     "primary": [
-      { "href": "#theatre", "label": "თეატრი" },
-      { "href": "#impressions", "label": "შთაბეჭდილებები" },
-      { "href": "#gallery", "label": "გალერეა" },
-      { "href": "#performance", "label": "დასწრება" }
+      { "href": "#theatre", "label": "თეატრი", "class": "" },
+      { "href": "#impressions", "label": "შთაბეჭდილებები", "class": "" },
+      { "href": "#gallery", "label": "გალერეა", "class": "" },
+      { "href": "#performance", "label": "დასწრება", "class": "nav-cta" }
     ],
     "full": [
       { "href": "#theatre", "label": "თეატრი" },
@@ -33,6 +33,7 @@
       { "href": "#performance", "label": "დასწრება" },
       { "href": "#organizations", "label": "ორგანიზაციებისთვის" },
       { "href": "#courses", "label": "კურსები" },
+      { "href": "#ethics", "label": "ეთიკის კოდექსი" },
       { "href": "#contact", "label": "მხარდაჭერა" }
     ],
     "langToggleLabel": "EN",
