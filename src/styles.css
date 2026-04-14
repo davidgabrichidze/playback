@@ -12,7 +12,8 @@
 }
 
 html {
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
 }
 
 @media (min-width: 769px) {
