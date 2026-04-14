@@ -452,8 +452,11 @@ nav.visible {
   gap: 15px;
   list-style: none;
   min-width: 220px;
-  border: 1px solid rgba(196, 154, 108, 0.15);
+  border: 1px solid rgba(196, 154, 108, 0.25);
   border-radius: 8px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(196, 154, 108, 0.18);
   z-index: 999;
 }
 
@@ -1514,7 +1517,7 @@ footer {
     min-width: 0;
     height: 100vh;
     padding: 80px 30px 30px;
-    gap: 24px;
+    gap: 20px;
     justify-content: flex-start;
     align-items: center;
     background: rgba(10, 8, 5, 0.98);

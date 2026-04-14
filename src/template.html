@@ -481,12 +481,25 @@
       });
 
       // Close menu on link click
+      function closeMenu() {
+        navLinks.classList.remove("active");
+        hamburger.classList.remove("active");
+        document.body.style.overflow = "";
+      }
       document.querySelectorAll(".nav-links a").forEach((link) => {
-        link.addEventListener("click", () => {
-          navLinks.classList.remove("active");
-          hamburger.classList.remove("active");
-          document.body.style.overflow = "";
-        });
+        link.addEventListener("click", closeMenu);
+      });
+
+      // Close menu on outside click or Escape
+      document.addEventListener("click", (e) => {
+        if (!navLinks.classList.contains("active")) return;
+        if (hamburger.contains(e.target) || navLinks.contains(e.target)) return;
+        closeMenu();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && navLinks.classList.contains("active")) {
+          closeMenu();
+        }
       });
 
       // Nav scroll effect + URL hash update
