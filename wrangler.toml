@@ -1,4 +1,4 @@
-name = "playback-theater"
+name = "playback-theatre"
 compatibility_date = "2026-04-14"
 compatibility_flags = ["nodejs_compat"]
 
