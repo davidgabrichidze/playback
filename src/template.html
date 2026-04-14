@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="{{meta.lang}}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="{{assetPrefix}}images/logo.svg" />
+    <title>{{meta.title}}</title>
+    <meta name="description" content="{{meta.description}}" />
+    <meta name="keywords" content="{{meta.keywords}}" />
+    <meta name="author" content="{{meta.author}}" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="{{meta.canonical}}" />
+
+    <!-- Hreflang -->
+    <link rel="alternate" hreflang="ka" href="https://playbacktheatre.ge/" />
+    <link rel="alternate" hreflang="en" href="https://playbacktheatre.ge/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://playbacktheatre.ge/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{meta.ogTitle}}" />
+    <meta property="og:description" content="{{meta.ogDescription}}" />
+    <meta property="og:image" content="{{assetPrefix}}images/general/hero.jpg" />
+    <meta property="og:url" content="{{meta.ogUrl}}" />
+    <meta property="og:locale" content="{{meta.locale}}" />
+    <meta property="og:locale:alternate" content="{{meta.alternateLocale}}" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{meta.twitterTitle}}" />
+    <meta name="twitter:description" content="{{meta.twitterDescription}}" />
+    <meta name="twitter:image" content="{{assetPrefix}}images/general/hero.jpg" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "PerformingArtsTheater",
+        "name": "{{meta.author}}",
+        "alternateName": "Georgian Playback Theatre Center",
+        "description": "{{meta.description}}",
+        "url": "{{meta.canonical}}",
+        "image": "{{assetPrefix}}images/general/hero.jpg",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Khorava 14",
+          "addressLocality": "Tbilisi",
+          "addressCountry": "GE"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 41.7068,
+          "longitude": 44.7827
+        },
+        "telephone": "+995577140222",
+        "email": "info@playbacktheatre.ge",
+        "foundingDate": "2025-03-02",
+        "founder": [{ "@type": "Person", "name": "{{team.founderName}}" }],
+        "event": {
+          "@type": "TheaterEvent",
+          "name": "{{hero.title}}",
+          "description": "{{meta.twitterDescription}}",
+          "eventSchedule": {
+            "@type": "Schedule",
+            "repeatFrequency": "P1M",
+            "byDay": "Saturday",
+            "startTime": "20:00"
+          },
+          "location": {
+            "@type": "Place",
+            "name": "{{performance.whereValue}}",
+            "address": "{{performance.whereValue}}"
+          },
+          "isAccessibleForFree": true,
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "GEL",
+            "description": "{{performance.attendanceValue}}"
+          }
+        },
+        "sameAs": ["https://www.facebook.com/groups/4088209314751117"]
+      }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;600;700&family=Noto+Serif+Georgian:wght@400;600;700&family=Playfair+Display:wght@400;700&family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{{assetPrefix}}styles.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <a href="#hero" class="logo">
+        <img src="{{assetPrefix}}images/logo.svg" alt="Playback Theatre logo" />
+        {{nav.logo}}
+      </a>
+      <div class="nav-right">
+        <ul class="nav-primary">
+          {{#each nav.primary}}
+          <li><a href="{{item.href}}">{{item.label}}</a></li>
+          {{/each}}
+        </ul>
+        <a class="lang-toggle" href="{{nav.langToggleHref}}">{{nav.langToggleLabel}}</a>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul class="nav-links">
+          {{#each nav.full}}
+          <li><a href="{{item.href}}">{{item.label}}</a></li>
+          {{/each}}
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="section-content">
+        <img src="{{assetPrefix}}images/logo.svg" alt="Playback Theatre" class="hero-logo" />
+        <h1>{{hero.title}}</h1>
+        <p>{{hero.subtitle}}</p>
+      </div>
+      <div class="scroll-indicator"></div>
+    </section>
+
+    <!-- What is Playback Theatre -->
+    <section class="what" id="theatre">
+      <div class="section-content fade-in">
+        <h2 class="heading">{{what.title}}</h2>
+        <p class="what-hook hook">{{what.hook}}</p>
+        <blockquote class="what-quote">{{what.quote}}</blockquote>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how" id="how">
+      <div class="section-content fade-in">
+        <h2 class="heading">{{how.title}}</h2>
+        <div class="steps grid-3">
+          {{#each how.steps}}
+          <div class="step">
+            <div class="step-number">{{item.number}}</div>
+            <h3>{{item.title}}</h3>
+            <p>{{item.description}}</p>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </section>
+
+    <!-- Impressions -->
+    <section class="impression-section" id="impressions">
+      <div class="impression tsisia-impression">
+        <div class="impression-content fade-in">
+          <div class="impression-quote tsisia-doubt">{{impressions.opening.doubt}}</div>
+          <div class="impression-quote tsisia-resolve">{{impressions.opening.resolve}}</div>
+          <div class="impression-author tsisia-author avatar-group">
+            <img
+              src="{{assetPrefix}}{{impressions.opening.authorImage}}"
+              alt="{{impressions.opening.author}}"
+              class="avatar"
+            />
+            <div class="avatar-info">
+              <span class="avatar-name">{{impressions.opening.author}}</span>
+              <span class="avatar-role">{{impressions.opening.role}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {{#each impressions.inline}}
+      <div class="impression">
+        <div class="impression-content fade-in">
+          <div class="impression-quote">{{item}}</div>
+          <div class="impression-author">{{impressions.audienceLabel}}</div>
+          {{#if isLast}}
+          <div class="impressions-more-wrap">
+            <button class="impressions-more-btn" id="impOpenBtn">{{impressions.moreButton}}</button>
+          </div>
+          {{/if}}
+        </div>
+      </div>
+      {{/each}}
+    </section>
+
+    <!-- Founder / About the Center -->
+    <section class="founder" id="about">
+      <div class="section-content fade-in">
+        <h2 class="heading">{{founder.title}}</h2>
+        <div class="founder-content">
+          <div class="timeline">
+            {{#each founder.timeline}}
+            <div class="timeline-item">
+              <div class="timeline-year">{{item.year}}</div>
+              <div class="timeline-dot"></div>
+              <div class="timeline-text">{{item.text}}</div>
+            </div>
+            {{/each}}
+          </div>
+          <p class="subhook">{{founder.subhook}}</p>
+          <div class="founder-activities-grid grid-3">
+            {{#each founder.activities}}
+            <div class="card-bordered">
+              <h3>{{item.title}}</h3>
+              <p>{{item.description}}</p>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section class="team" id="team">
+      <div class="section-content fade-in">
+        <h2 class="heading">{{team.title}}</h2>
+        <p class="team-size">{{team.size}}</p>
+        <div class="team-group-photo">
+          <img src="{{assetPrefix}}{{team.groupPhoto}}" alt="{{team.groupPhotoAlt}}" />
+        </div>
+        <div class="profile">
+          <div
+            class="avatar--lg"
+            style="background-image: url(&quot;{{assetPrefix}}{{team.founderImage}}&quot;);"
+          ></div>
+          <div>
+            <h3>{{team.founderName}}</h3>
+            <p class="profile-role">{{team.founderRole}}</p>
+            <p class="profile-desc">{{team.founderDesc}}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery" id="gallery">
+      <div class="section-content fade-in">
+        <h2 class="heading">{{gallery.title}}</h2>
+        <div class="gallery-container">
+          <div class="gallery-grid" id="galleryGrid">
+            {{#gallery}}
+          </div>
+          <div class="gallery-toggle">
+            <button id="galleryBtn">{{gallery.showMore}}</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Performance -->
+    <section class="performance" id="performance">
+      <div class="section-content fade-in">
+        <h2 class="heading">{{performance.title}}</h2>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">{{performance.cardTitle}}</span>
+            <span class="card-subtitle">{{performance.cardSubtitle}}</span>
+          </div>
+          <div class="grid-2">
+            <div class="performance-grid-item">
+              <span class="label">{{performance.whenLabel}}</span>
+              <span id="nextPerformanceDate">{{performance.whenDefault}}</span>
+            </div>
+            <div class="performance-grid-item">
+              <span class="label">{{performance.whereLabel}}</span>
+              <span>{{performance.whereValue}}</span>
+            </div>
+            <div class="performance-grid-item">
+              <span class="label">{{performance.attendanceLabel}}</span>
+              <span>{{performance.attendanceValue}}</span>
+            </div>
+            <div class="performance-grid-item">
+              <span class="label">{{performance.registrationLabel}}</span>
+              <span>{{performance.registrationValue}}</span>
+            </div>
+          </div>
+          <div class="note">
+            <strong>{{performance.noteStrong}}</strong> {{performance.noteText}}
+          </div>
+          <div class="performance-cta cta-button">
+            <a href="{{performance.ctaLink}}">{{performance.ctaText}}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Organizations -->
+    <section class="organizations" id="organizations">
+      <div class="section-content fade-in">
+        <h2 class="heading">{{organizations.title}}</h2>
+        <p class="intro">{{organizations.intro}}</p>
+        <div class="grid-3">
+          {{#each organizations.services}}
+          <div class="card-topped">
+            <h3>{{item.title}}</h3>
+            <p>{{item.description}}</p>
+          </div>
+          {{/each}}
+        </div>
+        <div class="cta-button">
+          <a href="{{organizations.ctaLink}}">{{organizations.ctaText}}</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Courses -->
+    <section class="courses" id="courses">
+      <div class="section-content fade-in">
+        <h2 class="heading">{{courses.title}}</h2>
+        <p class="intro">{{courses.intro}}</p>
+        <div class="grid-auto">
+          {{#each courses.items}}
+          <div class="card-bordered">
+            <h3>{{item.name}}</h3>
+            <p class="course-duration">{{item.duration}}</p>
+            <p>{{item.description}}</p>
+          </div>
+          {{/each}}
+        </div>
+        <div class="cta-button">
+          <a href="{{courses.ctaLink}}">{{courses.ctaText}}</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ethics -->
+    <section class="ethics" id="ethics">
+      <div class="section-content fade-in">
+        <h2 class="heading">{{ethics.title}}</h2>
+        <p class="intro ethics-intro">{{ethics.intro}}</p>
+        <div class="ethics-items">
+          {{#each ethics.items}}
+          <div class="card-bordered">
+            <h3>{{item.title}}</h3>
+            <p>{{item.text}}</p>
+          </div>
+          {{/each}}
+        </div>
+        <div class="ethics-iptn">
+          {{ethics.iptnText}}
+          <a href="https://playbacktheatre.org" target="_blank">CPT</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Support -->
+    <section class="contact-footer" id="contact">
+      <div class="section-content fade-in">
+        <h2 class="heading">{{support.title}}</h2>
+        <p class="support-text">{{support.text}}</p>
+        <div class="cta-button">
+          <a href="{{support.ctaLink}}">{{support.ctaText}}</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing -->
+    <section class="closing-section" id="closing">
+      <div class="section-content fade-in">
+        <h2 class="heading">{{closing.title}}</h2>
+        <blockquote class="closing-quote quote">{{closing.quote}}</blockquote>
+        <p class="closing-final quote--accent">{{closing.final}}</p>
+        <div class="closing-author avatar-group">
+          <img
+            src="{{assetPrefix}}{{closing.authorImage}}"
+            alt="{{closing.authorName}}"
+            class="avatar"
+          />
+          <div class="avatar-info">
+            <span class="avatar-name">{{closing.authorName}}</span>
+            <span class="avatar-role">{{closing.authorRole}}</span>
+          </div>
+        </div>
+        <div class="contact-footer-bottom">
+          <div class="footer-links">
+            <a href="mailto:info@playbacktheatre.ge">info@playbacktheatre.ge</a>
+            <a href="https://www.facebook.com/groups/4088209314751117" target="_blank">Facebook</a>
+            <a href="https://playbacktheatre.org" target="_blank">CPT</a>
+          </div>
+          <p class="footer-copyright">{{closing.copyright}}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <div class="lightbox-content">
+        <button class="lightbox-close" id="lightboxClose">&times;</button>
+        <button class="lightbox-prev" id="lightboxPrev">&#10094;</button>
+        <img
+          class="lightbox-image"
+          id="lightboxImage"
+          src=""
+          alt="Gallery image"
+        />
+        <button class="lightbox-next" id="lightboxNext">&#10095;</button>
+        <div class="lightbox-counter">
+          <span id="lightboxCounter">1/25</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Impressions Carousel Popup -->
+    <div class="impressions-popup" id="impressionsPopup">
+      <button class="impressions-popup-close" id="impCloseBtn">&times;</button>
+      <button class="impressions-nav prev" id="impPrev">&#10094;</button>
+      <button class="impressions-nav next" id="impNext">&#10095;</button>
+      <div class="impressions-carousel" id="impressionsCarousel">
+        {{#each impressions.carousel}}
+        <div class="impressions-slide">
+          <div>
+            <blockquote>{{item}}</blockquote>
+            <p class="slide-author">{{impressions.audienceLabel}}</p>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      <div class="impressions-paging" id="impressionsPaging">1 / 7</div>
+    </div>
+
+    <script>
+      // Next Performance Date
+      (function () {
+        var months = {{performance.monthsJson}};
+        var dateFormat = "{{performance.dateFormat}}";
+        var timeSuffix = ", {{performance.whenDefault}}";
+
+        function getLastSaturday(year, month) {
+          var d = new Date(year, month + 1, 0);
+          d.setDate(d.getDate() - ((d.getDay() + 1) % 7));
+          return d;
+        }
+
+        function findNext() {
+          var now = new Date();
+          var y = now.getFullYear();
+          var m = now.getMonth();
+          for (var i = 0; i < 13; i++) {
+            var cm = m + i;
+            var cy = y + Math.floor(cm / 12);
+            cm = cm % 12;
+            if (cm === 7) continue;
+            var sat = getLastSaturday(cy, cm);
+            if (sat > now || sat.toDateString() === now.toDateString()) {
+              return { date: sat, month: cm, year: cy };
+            }
+          }
+          return null;
+        }
+
+        var next = findNext();
+        if (next) {
+          var day = next.date.getDate();
+          var dateEl = document.getElementById("nextPerformanceDate");
+          if (dateEl) {
+            if (dateFormat === "month-day") {
+              dateEl.textContent = months[next.month] + " " + day + timeSuffix;
+            } else {
+              dateEl.textContent = day + " " + months[next.month] + timeSuffix;
+            }
+          }
+        }
+      })();
+
+      // Hamburger Menu
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.querySelector(".nav-links");
+      hamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+      });
+
+      // Close menu on link click
+      document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("active");
+        });
+      });
+
+      // Nav scroll effect + URL hash update
+      const nav = document.querySelector("nav");
+      var hashSections = document.querySelectorAll("section[id]");
+      var hashTimer;
+      window.addEventListener(
+        "scroll",
+        function () {
+          if (window.scrollY > 50) {
+            nav.classList.add("scrolled");
+          } else {
+            nav.classList.remove("scrolled");
+          }
+          clearTimeout(hashTimer);
+          hashTimer = setTimeout(function () {
+            var current = "";
+            for (var i = 0; i < hashSections.length; i++) {
+              if (
+                window.scrollY >=
+                hashSections[i].offsetTop - window.innerHeight * 0.4
+              ) {
+                current = hashSections[i].id;
+              }
+            }
+            if (current && location.hash !== "#" + current) {
+              history.replaceState(null, "", "#" + current);
+            } else if (!current && location.hash) {
+              history.replaceState(null, "", location.pathname);
+            }
+          }, 100);
+        },
+        { passive: true },
+      );
+
+      // Fade-in on scroll
+      const fadeElements = document.querySelectorAll(".fade-in");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      fadeElements.forEach((el) => observer.observe(el));
+
+      // Gallery Setup
+      const galleryBtn = document.getElementById("galleryBtn");
+      const hiddenItems = document.querySelectorAll(
+        "#galleryGrid .gallery-item.hidden",
+      );
+      let expanded = false;
+
+      // Click handlers for all gallery items
+      document
+        .querySelectorAll("#galleryGrid .gallery-item")
+        .forEach((item) => {
+          item.addEventListener("click", () =>
+            openLightbox(parseInt(item.dataset.index) + 1),
+          );
+        });
+
+      // Gallery "See More" opens lightbox from photo 10 (index 9)
+      galleryBtn.addEventListener("click", () => {
+        openLightbox(10);
+      });
+
+      // Lightbox
+      let currentIndex = 1;
+
+      function openLightbox(index) {
+        currentIndex = index;
+        const lightbox = document.getElementById("lightbox");
+        const img = document.getElementById("lightboxImage");
+        img.src = `{{assetPrefix}}images/gallery/${index}.jpg`;
+        document.getElementById("lightboxCounter").textContent = `${index}/25`;
+        lightbox.classList.add("active");
+      }
+
+      document.getElementById("lightboxClose").addEventListener("click", () => {
+        document.getElementById("lightbox").classList.remove("active");
+      });
+
+      document.getElementById("lightboxPrev").addEventListener("click", () => {
+        currentIndex = currentIndex === 1 ? 25 : currentIndex - 1;
+        document.getElementById("lightboxImage").src =
+          `{{assetPrefix}}images/gallery/${currentIndex}.jpg`;
+        document.getElementById("lightboxCounter").textContent =
+          `${currentIndex}/25`;
+      });
+
+      document.getElementById("lightboxNext").addEventListener("click", () => {
+        currentIndex = currentIndex === 25 ? 1 : currentIndex + 1;
+        document.getElementById("lightboxImage").src =
+          `{{assetPrefix}}images/gallery/${currentIndex}.jpg`;
+        document.getElementById("lightboxCounter").textContent =
+          `${currentIndex}/25`;
+      });
+
+      // Lightbox keyboard controls
+      document.addEventListener("keydown", (e) => {
+        if (document.getElementById("lightbox").classList.contains("active")) {
+          if (e.key === "ArrowLeft")
+            document.getElementById("lightboxPrev").click();
+          if (e.key === "ArrowRight")
+            document.getElementById("lightboxNext").click();
+          if (e.key === "Escape")
+            document.getElementById("lightboxClose").click();
+        }
+      });
+
+      // Show nav on scroll past hero
+      const heroSection = document.querySelector(".hero");
+      if (heroSection && nav) {
+        const heroObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                nav.classList.remove("visible");
+              } else {
+                nav.classList.add("visible");
+              }
+            });
+          },
+          { threshold: 0.1 },
+        );
+
+        heroObserver.observe(heroSection);
+      }
+
+      // Impressions Carousel — fade-based
+      var slides = document.querySelectorAll(".impressions-slide");
+      var currentImpression = 0;
+      var totalImpressions = slides.length;
+
+      function showSlide(idx) {
+        for (var i = 0; i < slides.length; i++) {
+          slides[i].classList.remove("active");
+        }
+        slides[idx].classList.add("active");
+        document.getElementById("impressionsPaging").textContent =
+          idx + 1 + " / " + totalImpressions;
+      }
+
+      function openImpressionsCarousel() {
+        currentImpression = 3;
+        showSlide(3);
+        document.getElementById("impressionsPopup").classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeImpressionsCarousel() {
+        document.getElementById("impressionsPopup").classList.remove("active");
+        document.body.style.overflow = "auto";
+      }
+
+      function impressionNav(dir) {
+        currentImpression = Math.max(
+          0,
+          Math.min(totalImpressions - 1, currentImpression + dir),
+        );
+        showSlide(currentImpression);
+      }
+
+      document
+        .getElementById("impOpenBtn")
+        .addEventListener("click", openImpressionsCarousel);
+      document
+        .getElementById("impCloseBtn")
+        .addEventListener("click", closeImpressionsCarousel);
+      document.getElementById("impPrev").addEventListener("click", function () {
+        impressionNav(-1);
+      });
+      document.getElementById("impNext").addEventListener("click", function () {
+        impressionNav(1);
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (
+          document
+            .getElementById("impressionsPopup")
+            .classList.contains("active")
+        ) {
+          if (e.key === "ArrowRight") impressionNav(1);
+          if (e.key === "ArrowLeft") impressionNav(-1);
+          if (e.key === "Escape") closeImpressionsCarousel();
+        }
+      });
+
+      document
+        .getElementById("impressionsPopup")
+        .addEventListener("click", function (e) {
+          if (e.target === this) closeImpressionsCarousel();
+        });
+    </script>
+  </body>
+</html>

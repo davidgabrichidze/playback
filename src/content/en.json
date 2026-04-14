@@ -1,27 +1,47 @@
 {
   "meta": {
-    "title": "Georgian Playback Theatre",
-    "lang": "en"
+    "lang": "en",
+    "locale": "en_US",
+    "alternateLocale": "ka_GE",
+    "title": "Georgian Playback Theatre — An extraordinary place where your story is brought to life on stage",
+    "description": "Georgian Playback Theatre Center — the first Playback Theatre in Tbilisi. You tell a story, and actors bring it to life on stage. Free admission. Last Saturday of the current month, 20:00, Khorava 14.",
+    "keywords": "playback theatre, Georgian Playback Theatre, Tbilisi, improvisational theatre, spontaneous theatre, theatre in Tbilisi, extraordinary place, free performance, playback in Georgia",
+    "author": "Georgian Playback Theatre Center",
+    "canonical": "https://playbacktheatre.ge/en/",
+    "ogTitle": "Georgian Playback Theatre — Your story brought to life on stage",
+    "ogDescription": "An extraordinary place in Tbilisi where your story comes to life on stage. Last Saturday of the current month, 20:00.",
+    "ogUrl": "https://playbacktheatre.ge/en/",
+    "twitterTitle": "Georgian Playback Theatre",
+    "twitterDescription": "You tell a story — actors bring it to life on stage."
   },
 
   "nav": {
     "logo": "Playback",
-    "links": {
-      "theatre": "Theatre",
-      "impressions": "Impressions",
-      "performance": "Performance",
-      "courses": "Courses",
-      "organizations": "For Organizations",
-      "gallery": "Gallery",
-      "team": "Team"
-    },
-    "langToggle": "KA"
+    "primary": [
+      { "href": "#theatre", "label": "Theatre" },
+      { "href": "#impressions", "label": "Impressions" },
+      { "href": "#gallery", "label": "Gallery" },
+      { "href": "#performance", "label": "Attend" }
+    ],
+    "full": [
+      { "href": "#theatre", "label": "Theatre" },
+      { "href": "#how", "label": "How It Works" },
+      { "href": "#impressions", "label": "Impressions" },
+      { "href": "#about", "label": "Center" },
+      { "href": "#team", "label": "Team" },
+      { "href": "#gallery", "label": "Gallery" },
+      { "href": "#performance", "label": "Attend" },
+      { "href": "#organizations", "label": "For Organizations" },
+      { "href": "#courses", "label": "Courses" },
+      { "href": "#contact", "label": "Support" }
+    ],
+    "langToggleLabel": "KA",
+    "langToggleHref": "/"
   },
 
   "hero": {
     "title": "Georgian Playback Theatre",
-    "subtitle": "We play back your stories",
-    "scrollIndicator": "↓ Scroll"
+    "subtitle": "We play back your stories"
   },
 
   "what": {
@@ -36,7 +56,7 @@
       {
         "number": "1",
         "title": "We listen",
-        "description": "A member of the audience shares a real story from their life"
+        "description": "During the performance, any willing audience member shares a real story from their life"
       },
       {
         "number": "2",
@@ -45,36 +65,35 @@
       },
       {
         "number": "3",
-        "title": "We return (playback)",
-        "description": "We ritually return this story to the teller, and it becomes a shared experience"
+        "title": "Playback",
+        "description": "We ritually return this story to the teller, and it becomes a shared experience."
       }
     ]
   },
 
   "impressions": {
     "opening": {
-      "doubt": "I initially thought it would be difficult...",
-      "resolve": "But people show us trust, share their stories, and by doing so bring the theatrical process to life.",
+      "doubt": "I initially thought, that it would be difficult to implement such theatre in Georgia...",
+      "resolve": "But people show us trust, share their personal stories, and by doing so bring the theatrical process to life.",
       "author": "Tsisia Cholokashvili",
+      "role": "Founder, Director",
       "authorImage": "images/team/tsisia-cholokashvili.jpg"
     },
-    "quotes": [
-      {
-        "text": "It was my first time and I couldn't imagine something like this was possible. I wanted to both cry and laugh.",
-        "author": "Audience member"
-      },
-      {
-        "text": "This is not just theatre. This is something profoundly human.",
-        "author": "Audience member"
-      },
-      {
-        "text": "I was filled with emotions all week after that evening.",
-        "author": "Audience member"
-      },
-      {
-        "text": "Now I realize this is exactly the place I needed so much, and from today I'll be at every performance.",
-        "author": "Audience member"
-      }
+    "audienceLabel": "Audience member",
+    "moreButton": "Others' Impressions",
+    "inline": [
+      "Watching someone else's story, I saw myself. It was a very powerful experience.",
+      "I couldn't believe I could feel so safe among strangers.",
+      "It was my first time and I couldn't imagine something like this was possible. I wanted to both cry and laugh."
+    ],
+    "carousel": [
+      "Watching someone else's story, I saw myself. It was a very powerful experience.",
+      "I couldn't believe I could feel so safe among strangers.",
+      "It was my first time and I couldn't imagine something like this was possible. I wanted to both cry and laugh.",
+      "Watching my own story on stage, I felt such lightness, as if a weight had been lifted.",
+      "I was filled with emotions all week after that evening.",
+      "This is not just theatre. This is something profoundly human.",
+      "Now I realize this is exactly the place I needed so much, and from today I'll be at every performance."
     ]
   },
 
@@ -82,25 +101,95 @@
     "title": "About the Center",
     "timeline": [
       { "year": "1975", "text": "Playback Theatre founded (Jonathan Fox & Jo Salas)" },
-      { "year": "2025", "text": "Georgian Playback Theatre Center, Tbilisi" },
+      { "year": "2025", "text": "Georgian Playback Theatre Center founded in Tbilisi" },
       { "year": "Today", "text": "Active in 60+ countries" }
     ],
-    "quote": "This space represents the convergence of my two professional experiences: professional theatre and psychotherapy practice. For me, Playback Theatre is a transition from big, structured and predetermined theatre to a small, authentic space built on human encounter, spontaneity and genuineness, where a person can be who they truly are. It is in this human, living relationship that I see the main value of Playback Theatre.",
-    "attribution": "Tsisia Cholokashvili, Founder",
-    "attributionImage": "images/team/tsisia-cholokashvili.jpg"
+    "subhook": "Today the center operates in three directions:",
+    "activities": [
+      {
+        "title": "Performances",
+        "description": "Monthly improvisational performances based on audience stories — open and free"
+      },
+      {
+        "title": "Education",
+        "description": "Basic and practitioner courses, for becoming a Playback Theatre actor"
+      },
+      {
+        "title": "Organizations",
+        "description": "Exclusive performances, workshops and training programs for organizations"
+      }
+    ]
+  },
+
+  "team": {
+    "title": "Team",
+    "size": "Today the center is home to 14 people from diverse professional backgrounds, united by Playback Theatre.",
+    "groupPhoto": "images/about_center/1.jpg",
+    "groupPhotoAlt": "Georgian Playback Theatre Center team",
+    "founderName": "Tsisia Cholokashvili",
+    "founderImage": "images/team/tsisia-cholokashvili.jpg",
+    "founderRole": "Founder, Director · Prima Ballerina · Practicing Psychotherapist · Artistic Director",
+    "founderDesc": "For me personally, as the founder and director of the Georgian Playback Theatre, this space represents the convergence of my two professional experiences: professional theatre and psychotherapy practice."
+  },
+
+  "gallery": {
+    "title": "Gallery",
+    "showMore": "See More",
+    "itemAlt": "Gallery"
   },
 
   "performance": {
     "title": "Experience Playback",
-    "scheduleLabel": "Schedule:",
-    "schedule": "Last Saturday of every month",
-    "timeLabel": "Time:",
-    "time": "20:00",
-    "locationLabel": "Location:",
-    "location": "Khorava 14, Tbilisi",
-    "note": "Attendance is free, registration is required. Audience members often express their gratitude through a donation (20-40₾) — that's how this theatre exists. If it's not possible this time, just come — your presence matters most to us 🤍",
+    "cardTitle": "Last Saturday of current month",
+    "cardSubtitle": "Every performance is exclusive and never repeats",
+    "whenLabel": "When:",
+    "whenDefault": "20:00",
+    "whereLabel": "Where:",
+    "whereValue": "Khorava 14, Tbilisi",
+    "attendanceLabel": "Attendance:",
+    "attendanceValue": "free, donation-based",
+    "registrationLabel": "Registration:",
+    "registrationValue": "required",
+    "noteStrong": "Donation = appreciation, not a price.",
+    "noteText": "What happens here can't be measured in money — but any contribution helps us keep this going. We look forward to seeing you 💓",
     "ctaText": "Register",
-    "ctaLink": "mailto:info@playbacktheatre.ge?subject=Register for Performance"
+    "ctaLink": "mailto:info@playbacktheatre.ge?subject=Register for Performance",
+    "months": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "dateFormat": "month-day"
+  },
+
+  "organizations": {
+    "title": "For Organizations",
+    "intro": "Offer your team an extraordinary experience. Playback Theatre strengthens trust, empathy, and communication — what conventional trainings cannot achieve.",
+    "services": [
+      {
+        "title": "Exclusive Performance",
+        "description": "A private performance for your organization: your team's stories on stage"
+      },
+      {
+        "title": "Workshop",
+        "description": "A practical seminar on listening, spontaneity, and teamwork skills"
+      },
+      {
+        "title": "Training Program",
+        "description": "A customized program tailored to your organization's needs"
+      }
+    ],
+    "ctaText": "Get in Touch",
+    "ctaLink": "mailto:info@playbacktheatre.ge?subject=Organization Inquiry"
   },
 
   "courses": {
@@ -125,80 +214,6 @@
     ],
     "ctaText": "Get in Touch",
     "ctaLink": "mailto:info@playbacktheatre.ge?subject=Course Inquiry"
-  },
-
-  "organizations": {
-    "title": "For Organizations",
-    "subtitle": "Playback Theatre as a team experience",
-    "intro": "Offer your team an extraordinary experience. Playback Theatre strengthens trust, empathy, and communication, what conventional trainings cannot achieve.",
-    "services": [
-      {
-        "name": "Exclusive Performance",
-        "description": "A private performance for your organization: your team's stories on stage"
-      },
-      {
-        "name": "Workshop",
-        "description": "A practical seminar on listening, spontaneity, and teamwork skills"
-      },
-      {
-        "name": "Training Program",
-        "description": "A customized program tailored to your organization's needs"
-      }
-    ],
-    "ctaText": "Get in Touch",
-    "ctaLink": "mailto:info@playbacktheatre.ge?subject=Organization Inquiry"
-  },
-
-  "gallery": {
-    "title": "Gallery",
-    "images": [
-      "images/gallery/1.jpg",
-      "images/gallery/2.jpg",
-      "images/gallery/3.jpg",
-      "images/gallery/4.jpg",
-      "images/gallery/5.jpg",
-      "images/gallery/6.jpg",
-      "images/gallery/7.jpg",
-      "images/gallery/8.jpg",
-      "images/gallery/9.jpg",
-      "images/gallery/10.jpg",
-      "images/gallery/11.jpg",
-      "images/gallery/12.jpg",
-      "images/gallery/13.jpg",
-      "images/gallery/14.jpg",
-      "images/gallery/15.jpg",
-      "images/gallery/16.jpg",
-      "images/gallery/17.jpg",
-      "images/gallery/18.jpg",
-      "images/gallery/19.jpg",
-      "images/gallery/20.jpg",
-      "images/gallery/21.jpg",
-      "images/gallery/22.jpg",
-      "images/gallery/23.jpg",
-      "images/gallery/24.jpg",
-      "images/gallery/25.jpg"
-    ],
-    "initialVisible": 6,
-    "showMore": "See More",
-    "showLess": "Show Less"
-  },
-
-  "team": {
-    "title": "Team",
-    "members": [
-      {
-        "name": "Tsisia Cholokashvili",
-        "role": "Founder, director",
-        "photo": "images/team/tsisia-cholokashvili.jpg"
-      }
-    ],
-    "groupPhoto": "images/about_center/1.jpg",
-    "groupText": "Today the center is home to 14 people from diverse professional backgrounds, united by Playback Theatre.",
-    "closingQuote": {
-      "text": "Every performance is exclusive. When a performance begins, we never know what it will be like, who will share a story, what kind of stories we will hear, how the play will develop, and how the invisible thread of the performance will weave itself, what we call the \"narrative web.\"",
-      "author": "Tsisia Cholokashvili",
-      "authorImage": "images/team/tsisia-cholokashvili.jpg"
-    }
   },
 
   "ethics": {
@@ -230,36 +245,23 @@
         "text": "We act with honesty and transparency. Our words and actions are consistent."
       }
     ],
-    "iptnText": "Learn more:",
-    "iptnLink": "https://playbacktheatre.org"
+    "iptnText": "Learn more:"
   },
 
-  "donation": {
+  "support": {
     "title": "Support",
     "text": "Playback Theatre needs support beyond performances — we continuously invest in raising our skills, invite trainers from leading European Playback theatres, and develop this space. Your donation makes all of this possible.",
-    "ctaText": "Get in touch about support",
-    "ctaLink": "mailto:info@playbacktheatre.ge?subject=About Donations"
+    "ctaText": "Get in touch about donations",
+    "ctaLink": "mailto:info@playbacktheatre.ge?subject=Support"
   },
 
-  "contact": {
-    "title": "Contact",
-    "email": "info@playbacktheatre.ge",
-    "facebook": {
-      "label": "Facebook Group",
-      "link": "https://www.facebook.com/groups/4088209314751117"
-    }
-  },
-
-  "footer": {
-    "copyright": "© 2025 Georgian Playback Theatre Center",
-    "links": [
-      { "label": "CPT", "url": "https://playbacktheatre.org" },
-      { "label": "Facebook", "url": "https://www.facebook.com/groups/4088209314751117" }
-    ]
-  },
-
-  "images": {
-    "hero": "images/general/hero.jpg",
-    "footer": "images/general/footer.jpg"
+  "closing": {
+    "title": "So what is Playback Theatre, really?",
+    "quote": "For me, Playback Theatre is a transition from big, structured and predetermined theatre to a small, authentic space built on human encounter, spontaneity and genuineness, where a person can be who they truly are.",
+    "final": "It is in this human, living relationship that I see the main value of Playback Theatre.",
+    "authorName": "Tsisia Cholokashvili",
+    "authorRole": "Founder, Director",
+    "authorImage": "images/team/tsisia-cholokashvili.jpg",
+    "copyright": "© 2025 Georgian Playback Theatre Center"
   }
 }
