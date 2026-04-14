@@ -115,6 +115,9 @@
           {{#each nav.full}}
           <li><a href="{{item.href}}">{{item.label}}</a></li>
           {{/each}}
+          <li class="nav-links-lang">
+            <a href="{{nav.langToggleHref}}">{{nav.langToggleLabel}}</a>
+          </li>
         </ul>
       </div>
     </nav>
@@ -472,13 +475,17 @@
       const hamburger = document.getElementById("hamburger");
       const navLinks = document.querySelector(".nav-links");
       hamburger.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
+        const isActive = navLinks.classList.toggle("active");
+        hamburger.classList.toggle("active", isActive);
+        document.body.style.overflow = isActive ? "hidden" : "";
       });
 
       // Close menu on link click
       document.querySelectorAll(".nav-links a").forEach((link) => {
         link.addEventListener("click", () => {
           navLinks.classList.remove("active");
+          hamburger.classList.remove("active");
+          document.body.style.overflow = "";
         });
       });
 
