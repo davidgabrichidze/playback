@@ -12,12 +12,13 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: none;
 }
 
 @media (min-width: 769px) {
   html {
     scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
   }
 }
 
