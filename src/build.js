@@ -269,6 +269,16 @@ function build() {
   copyDir(path.join(SRC, "images"), path.join(DIST, "images"));
   console.log("wrote dist/images/");
 
+  // Copy standalone pages that don't go through the template engine
+  const standalone = ["typography.html", "philosophy.html"];
+  for (const name of standalone) {
+    const srcPath = path.join(SRC, name);
+    if (fs.existsSync(srcPath)) {
+      fs.copyFileSync(srcPath, path.join(DIST, name));
+      console.log("wrote dist/" + name);
+    }
+  }
+
   console.log("build complete.");
 }
 
