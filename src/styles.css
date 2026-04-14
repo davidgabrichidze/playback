@@ -13,12 +13,25 @@
 
 html {
   scroll-behavior: none;
+  scroll-snap-type: none;
 }
 
 @media (min-width: 769px) {
   html {
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
+  }
+
+  section {
+    scroll-snap-align: start;
+  }
+
+  .impression-section {
+    scroll-snap-align: none;
+  }
+
+  .impression {
+    scroll-snap-align: start;
   }
 }
 
@@ -512,7 +525,6 @@ section {
   justify-content: center;
   padding: 100px 40px;
   position: relative;
-  scroll-snap-align: start;
 }
 
 .section-content {
@@ -649,7 +661,6 @@ body.lang-en .what p {
   display: block;
   min-height: auto;
   padding: 0;
-  scroll-snap-align: none;
 }
 
 .impression {
@@ -658,7 +669,6 @@ body.lang-en .what p {
   align-items: center;
   justify-content: center;
   padding: 100px 40px;
-  scroll-snap-align: start;
 }
 
 .impression:first-child {
