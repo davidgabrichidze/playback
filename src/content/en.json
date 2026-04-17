@@ -12,7 +12,7 @@
     "ogDescription": "An extraordinary place in Tbilisi where your story comes to life on stage. Last Saturday of the current month, 20:00.",
     "ogUrl": "https://playbacktheatre.ge/en/",
     "twitterTitle": "Georgian Playback Theatre",
-    "twitterDescription": "You tell a story — actors bring it to life on stage."
+    "twitterDescription": "You tell a story — we bring it to life on stage."
   },
 
   "nav": {
@@ -57,17 +57,17 @@
       {
         "number": "1",
         "title": "We listen",
-        "description": "During the performance, any willing audience member shares a real story from their life"
+        "description": "During the performance, we invite audience members to share real stories from their life"
       },
       {
         "number": "2",
         "title": "We play",
-        "description": "The story is performed right there by actors, with live music"
+        "description": "We bring these stories to life on the spot through acting and live music"
       },
       {
         "number": "3",
-        "title": "Playback",
-        "description": "We ritually return this story to the teller, and it becomes a shared experience."
+        "title": "We playback",
+        "description": "We play the story back to the teller — transforming it into a shared experience"
       }
     ]
   },
@@ -77,7 +77,7 @@
       "doubt": "I initially thought, that it would be difficult to implement such theatre in Georgia...",
       "resolve": "But people show us trust, share their personal stories, and by doing so bring the theatrical process to life.",
       "author": "Tsisia Cholokashvili",
-      "role": "Founder, Director",
+      "role": "Founder",
       "authorImage": "images/team/tsisia-cholokashvili.jpg"
     },
     "audienceLabel": "Audience member",
@@ -129,7 +129,7 @@
     "groupPhotoAlt": "Georgian Playback Theatre Center team",
     "founderName": "Tsisia Cholokashvili",
     "founderImage": "images/team/tsisia-cholokashvili.jpg",
-    "founderRole": "Founder · Ballerina · Practicing Psychotherapist",
+    "founderRole": "Founder · Playback Practitoner · Ballerina · Practicing Psychotherapist",
     "founderDesc": "For me personally, as the founder and director of the Georgian Playback Theatre, this space represents the convergence of my two professional experiences: professional theatre and psychotherapy practice."
   },
 
