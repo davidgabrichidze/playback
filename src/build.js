@@ -18,7 +18,7 @@
  *   {{#each array}} ... {{/each}}       — loop (item referenced as {{item}} or {{item.xxx}})
  *                                         inside loops {{isLast}}, {{isFirst}}, {{index}} are available
  *   {{#if flag}} ... {{/if}}            — conditional block
- *   {{#gallery}}                        — shortcut that expands 25 gallery items
+ *   {{#gallery}}                        — shortcut that expands 21 gallery items
  *
  * No external dependencies — built-ins only (fs, path).
  */
@@ -212,7 +212,7 @@ function renderTemplate(str, globals, scope) {
 
 function galleryMarkup(data) {
   const initialVisible = 9;
-  const total = 25;
+  const total = 21;
   let out = "";
   for (let i = 0; i < total; i++) {
     const hidden = i >= initialVisible ? " hidden" : "";

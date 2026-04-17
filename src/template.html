@@ -125,7 +125,6 @@
     <!-- Hero -->
     <section class="hero" id="hero">
       <div class="section-content">
-        <img src="{{assetPrefix}}images/logo.svg" alt="Playback Theatre" class="hero-logo" />
         <h1>{{hero.title}}</h1>
         <p>{{hero.subtitle}}</p>
       </div>
@@ -404,7 +403,7 @@
         />
         <button class="lightbox-next" id="lightboxNext">&#10095;</button>
         <div class="lightbox-counter">
-          <span id="lightboxCounter">1/25</span>
+          <span id="lightboxCounter">1/21</span>
         </div>
       </div>
     </div>
@@ -579,7 +578,7 @@
         const lightbox = document.getElementById("lightbox");
         const img = document.getElementById("lightboxImage");
         img.src = `{{assetPrefix}}images/gallery/${index}.jpg`;
-        document.getElementById("lightboxCounter").textContent = `${index}/25`;
+        document.getElementById("lightboxCounter").textContent = `${index}/21`;
         lightbox.classList.add("active");
       }
 
@@ -588,19 +587,19 @@
       });
 
       document.getElementById("lightboxPrev").addEventListener("click", () => {
-        currentIndex = currentIndex === 1 ? 25 : currentIndex - 1;
+        currentIndex = currentIndex === 1 ? 21 : currentIndex - 1;
         document.getElementById("lightboxImage").src =
           `{{assetPrefix}}images/gallery/${currentIndex}.jpg`;
         document.getElementById("lightboxCounter").textContent =
-          `${currentIndex}/25`;
+          `${currentIndex}/21`;
       });
 
       document.getElementById("lightboxNext").addEventListener("click", () => {
-        currentIndex = currentIndex === 25 ? 1 : currentIndex + 1;
+        currentIndex = currentIndex === 21 ? 1 : currentIndex + 1;
         document.getElementById("lightboxImage").src =
           `{{assetPrefix}}images/gallery/${currentIndex}.jpg`;
         document.getElementById("lightboxCounter").textContent =
-          `${currentIndex}/25`;
+          `${currentIndex}/21`;
       });
 
       // Lightbox keyboard controls
