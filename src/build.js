@@ -208,6 +208,50 @@ function renderTemplate(str, globals, scope) {
   return renderedBefore + renderedBlock + renderedAfter;
 }
 
+// ---------- next performance date ----------
+
+/**
+ * Compute the next scheduled performance: the last Saturday of the current
+ * month (or of the following month if the current month's last Saturday has
+ * already passed, or if the current month is August — summer break).
+ * Returns ISO 8601 strings with Georgia timezone (+04:00) for startDate (20:00)
+ * and endDate (21:30, ~90 min show).
+ */
+function lastSaturdayOf(year, month /* 0-11 */) {
+  const d = new Date(Date.UTC(year, month + 1, 0)); // last day of that month
+  const daysBack = (d.getUTCDay() - 6 + 7) % 7;
+  d.setUTCDate(d.getUTCDate() - daysBack);
+  return d; // UTC date matches the local date since we only care about Y/M/D
+}
+
+function nextPerformance(now = new Date()) {
+  const AUG = 7; // month index for August
+  let year = now.getUTCFullYear();
+  let month = now.getUTCMonth();
+
+  for (let i = 0; i < 14; i++) {
+    if (month === AUG) {
+      month = (month + 1) % 12;
+      if (month === 0) year++;
+      continue;
+    }
+    const sat = lastSaturdayOf(year, month);
+    const y = sat.getUTCFullYear();
+    const m = String(sat.getUTCMonth() + 1).padStart(2, "0");
+    const dd = String(sat.getUTCDate()).padStart(2, "0");
+    const startIso = `${y}-${m}-${dd}T20:00:00+04:00`;
+    const endIso = `${y}-${m}-${dd}T21:30:00+04:00`;
+    // Compare against "now" in Georgia time; if this Saturday 20:00 hasn't passed, use it
+    const startAbs = new Date(startIso).getTime();
+    if (startAbs >= now.getTime()) {
+      return { startDate: startIso, endDate: endIso };
+    }
+    month = (month + 1) % 12;
+    if (month === 0) year++;
+  }
+  throw new Error("nextPerformance: could not find upcoming date within 14 months");
+}
+
 // ---------- gallery expansion ----------
 
 /**
@@ -265,9 +309,13 @@ function build() {
   const galleryFiles = discoverGalleryFiles();
   console.log("gallery: " + galleryFiles.length + " image(s) discovered");
 
+  const np = nextPerformance();
+  console.log("next performance: " + np.startDate);
+
   for (const lang of langs) {
     const globals = Object.assign({}, lang.data, {
       assetPrefix: lang.assetPrefix,
+      nextPerformance: np,
     });
     globals.performance = Object.assign({}, lang.data.performance, {
       monthsJson: JSON.stringify(lang.data.performance.months),

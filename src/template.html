@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{{assetPrefix}}images/favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="{{assetPrefix}}images/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{assetPrefix}}images/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{assetPrefix}}images/apple-touch-icon.png" />
     <title>{{meta.title}}</title>
     <meta name="description" content="{{meta.description}}" />
     <meta name="keywords" content="{{meta.keywords}}" />
@@ -20,7 +23,11 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="{{meta.ogTitle}}" />
     <meta property="og:description" content="{{meta.ogDescription}}" />
-    <meta property="og:image" content="{{assetPrefix}}images/general/hero.jpg" />
+    <meta property="og:image" content="https://playbacktheatre.ge/images/general/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:alt" content="{{meta.ogTitle}}" />
     <meta property="og:url" content="{{meta.ogUrl}}" />
     <meta property="og:locale" content="{{meta.locale}}" />
     <meta property="og:locale:alternate" content="{{meta.alternateLocale}}" />
@@ -29,7 +36,8 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="{{meta.twitterTitle}}" />
     <meta name="twitter:description" content="{{meta.twitterDescription}}" />
-    <meta name="twitter:image" content="{{assetPrefix}}images/general/hero.jpg" />
+    <meta name="twitter:image" content="https://playbacktheatre.ge/images/general/og-image.jpg" />
+    <meta name="twitter:image:alt" content="{{meta.twitterTitle}}" />
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -60,22 +68,45 @@
           "@type": "TheaterEvent",
           "name": "{{hero.title}}",
           "description": "{{meta.twitterDescription}}",
+          "startDate": "{{nextPerformance.startDate}}",
+          "endDate": "{{nextPerformance.endDate}}",
+          "eventStatus": "https://schema.org/EventScheduled",
+          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+          "image": ["https://playbacktheatre.ge/images/general/og-image.jpg"],
+          "organizer": {
+            "@type": "Organization",
+            "name": "{{meta.author}}",
+            "url": "{{meta.canonical}}"
+          },
+          "performer": {
+            "@type": "TheaterGroup",
+            "name": "{{meta.author}}"
+          },
           "eventSchedule": {
             "@type": "Schedule",
             "repeatFrequency": "P1M",
-            "byDay": "Saturday",
-            "startTime": "20:00"
+            "byDay": "https://schema.org/Saturday",
+            "startTime": "20:00",
+            "endTime": "21:30"
           },
           "location": {
             "@type": "Place",
             "name": "{{performance.whereValue}}",
-            "address": "{{performance.whereValue}}"
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Khorava 14",
+              "addressLocality": "Tbilisi",
+              "addressCountry": "GE"
+            }
           },
           "isAccessibleForFree": true,
           "offers": {
             "@type": "Offer",
             "price": "0",
             "priceCurrency": "GEL",
+            "availability": "https://schema.org/InStock",
+            "url": "{{meta.canonical}}",
+            "validFrom": "{{nextPerformance.startDate}}",
             "description": "{{performance.attendanceValue}}"
           }
         },
