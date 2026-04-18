@@ -252,6 +252,51 @@ function nextPerformance(now = new Date()) {
   throw new Error("nextPerformance: could not find upcoming date within 14 months");
 }
 
+// ---------- sitemap ----------
+
+/**
+ * Generate dist/sitemap.xml with both locales cross-referenced via
+ * xhtml:link hreflang alternates. Keeps Google's understanding of
+ * language variants explicit and matches the <link rel="alternate">
+ * tags in template.html.
+ */
+const SITE_URL = "https://playbacktheatre.ge";
+const LOCALES = [
+  { hreflang: "ka", loc: "/", xdefault: true },
+  { hreflang: "en", loc: "/en/", xdefault: false },
+];
+
+function writeSitemap() {
+  const today = new Date().toISOString().split("T")[0];
+  const altTags = LOCALES.map(
+    (l) =>
+      `    <xhtml:link rel="alternate" hreflang="${l.hreflang}" href="${SITE_URL}${l.loc}" />`,
+  );
+  altTags.push(
+    `    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE_URL}/" />`,
+  );
+  const altBlock = altTags.join("\n");
+
+  const urls = LOCALES.map(
+    (l) => `  <url>
+    <loc>${SITE_URL}${l.loc}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>${l.xdefault ? "1.0" : "0.9"}</priority>
+${altBlock}
+  </url>`,
+  ).join("\n");
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${urls}
+</urlset>
+`;
+  fs.writeFileSync(path.join(DIST, "sitemap.xml"), xml, "utf8");
+  console.log("wrote dist/sitemap.xml");
+}
+
 // ---------- gallery expansion ----------
 
 /**
@@ -340,7 +385,7 @@ function build() {
   console.log("wrote dist/images/");
 
   // Copy standalone pages that don't go through the template engine
-  const standalone = ["typography.html", "philosophy.html"];
+  const standalone = ["typography.html", "philosophy.html", "robots.txt"];
   for (const name of standalone) {
     const srcPath = path.join(SRC, name);
     if (fs.existsSync(srcPath)) {
@@ -348,6 +393,8 @@ function build() {
       console.log("wrote dist/" + name);
     }
   }
+
+  writeSitemap();
 
   console.log("build complete.");
 }
