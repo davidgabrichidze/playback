@@ -1,0 +1,14 @@
+{
+  "name": "playback-theatre",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "build": "node src/build.js",
+    "dev": "node --watch --watch-path=./src src/build.js",
+    "preview": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  }
+}

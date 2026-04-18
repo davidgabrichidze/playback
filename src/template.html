@@ -403,7 +403,7 @@
         />
         <button class="lightbox-next" id="lightboxNext">&#10095;</button>
         <div class="lightbox-counter">
-          <span id="lightboxCounter">1/21</span>
+          <span id="lightboxCounter">1/{{gallery.total}}</span>
         </div>
       </div>
     </div>
@@ -556,50 +556,51 @@
       );
       let expanded = false;
 
-      // Click handlers for all gallery items
+      // Lightbox — file list injected at build time from src/images/gallery/ scan.
+      // currentIndex is a 0-based position into GALLERY_FILES, NOT a filename number.
+      const GALLERY_FILES = {{gallery.filesJson}};
+      const ASSET_PREFIX = "{{assetPrefix}}";
+      let currentIndex = 0;
+
+      function showAt(i) {
+        const total = GALLERY_FILES.length;
+        if (total === 0) return;
+        currentIndex = ((i % total) + total) % total; // safe wrap for negatives too
+        document.getElementById("lightboxImage").src =
+          `${ASSET_PREFIX}images/gallery/${GALLERY_FILES[currentIndex]}`;
+        document.getElementById("lightboxCounter").textContent =
+          `${currentIndex + 1}/${total}`;
+      }
+
+      function openLightbox(i) {
+        showAt(i);
+        document.getElementById("lightbox").classList.add("active");
+      }
+
+      // Click handlers for all gallery items — data-index is already 0-based
       document
         .querySelectorAll("#galleryGrid .gallery-item")
         .forEach((item) => {
           item.addEventListener("click", () =>
-            openLightbox(parseInt(item.dataset.index) + 1),
+            openLightbox(parseInt(item.dataset.index, 10)),
           );
         });
 
-      // Gallery "See More" opens lightbox from photo 10 (index 9)
+      // "See More" opens lightbox at the first hidden photo (10th, index 9 if present)
       galleryBtn.addEventListener("click", () => {
-        openLightbox(10);
+        openLightbox(Math.min(9, GALLERY_FILES.length - 1));
       });
-
-      // Lightbox
-      let currentIndex = 1;
-
-      function openLightbox(index) {
-        currentIndex = index;
-        const lightbox = document.getElementById("lightbox");
-        const img = document.getElementById("lightboxImage");
-        img.src = `{{assetPrefix}}images/gallery/${index}.jpg`;
-        document.getElementById("lightboxCounter").textContent = `${index}/21`;
-        lightbox.classList.add("active");
-      }
 
       document.getElementById("lightboxClose").addEventListener("click", () => {
         document.getElementById("lightbox").classList.remove("active");
       });
 
       document.getElementById("lightboxPrev").addEventListener("click", () => {
-        currentIndex = currentIndex === 1 ? 21 : currentIndex - 1;
-        document.getElementById("lightboxImage").src =
-          `{{assetPrefix}}images/gallery/${currentIndex}.jpg`;
-        document.getElementById("lightboxCounter").textContent =
-          `${currentIndex}/21`;
+        showAt(currentIndex - 1);
       });
 
       document.getElementById("lightboxNext").addEventListener("click", () => {
-        currentIndex = currentIndex === 21 ? 1 : currentIndex + 1;
-        document.getElementById("lightboxImage").src =
-          `{{assetPrefix}}images/gallery/${currentIndex}.jpg`;
-        document.getElementById("lightboxCounter").textContent =
-          `${currentIndex}/21`;
+        showAt(currentIndex + 1);
       });
 
       // Lightbox keyboard controls

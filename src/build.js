@@ -18,7 +18,7 @@
  *   {{#each array}} ... {{/each}}       — loop (item referenced as {{item}} or {{item.xxx}})
  *                                         inside loops {{isLast}}, {{isFirst}}, {{index}} are available
  *   {{#if flag}} ... {{/if}}            — conditional block
- *   {{#gallery}}                        — shortcut that expands 21 gallery items
+ *   {{#gallery}}                        — auto-discovers gallery items by scanning src/images/gallery/
  *
  * No external dependencies — built-ins only (fs, path).
  */
@@ -210,17 +210,31 @@ function renderTemplate(str, globals, scope) {
 
 // ---------- gallery expansion ----------
 
+/**
+ * Auto-discover gallery images by scanning src/images/gallery/.
+ * Returns an array of filenames, naturally sorted (so "10.jpg" comes after "9.jpg",
+ * and "a.jpg" before "b.jpg"). Filenames are otherwise opaque — gaps in numbering
+ * are fine, non-numeric names are fine.
+ */
+function discoverGalleryFiles() {
+  const dir = path.join(SRC, "images", "gallery");
+  if (!fs.existsSync(dir)) return [];
+  return fs
+    .readdirSync(dir)
+    .filter((f) => /\.jpe?g$/i.test(f))
+    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" }));
+}
+
 function galleryMarkup(data) {
   const initialVisible = 9;
-  const total = 21;
+  const files = data.gallery.files || [];
   let out = "";
-  for (let i = 0; i < total; i++) {
+  files.forEach((file, i) => {
     const hidden = i >= initialVisible ? " hidden" : "";
-    const n = i + 1;
     out += '            <div class="gallery-item' + hidden + '" data-index="' + i + '">\n';
-    out += '              <img src="' + data.assetPrefix + 'images/gallery/' + n + '.jpg" alt="' + data.gallery.itemAlt + ' ' + n + '" />\n';
+    out += '              <img src="' + data.assetPrefix + 'images/gallery/' + file + '" alt="' + data.gallery.itemAlt + ' ' + (i + 1) + '" />\n';
     out += "            </div>\n";
-  }
+  });
   return out;
 }
 
@@ -248,12 +262,20 @@ function build() {
     },
   ];
 
+  const galleryFiles = discoverGalleryFiles();
+  console.log("gallery: " + galleryFiles.length + " image(s) discovered");
+
   for (const lang of langs) {
     const globals = Object.assign({}, lang.data, {
       assetPrefix: lang.assetPrefix,
     });
     globals.performance = Object.assign({}, lang.data.performance, {
       monthsJson: JSON.stringify(lang.data.performance.months),
+    });
+    globals.gallery = Object.assign({}, lang.data.gallery, {
+      files: galleryFiles,
+      filesJson: JSON.stringify(galleryFiles),
+      total: galleryFiles.length,
     });
 
     let out = template.replace(/\{\{#gallery\}\}/g, galleryMarkup(globals));
