@@ -357,10 +357,20 @@ function build() {
   const np = nextPerformance();
   console.log("next performance: " + np.startDate);
 
+  // Site-wide config (analytics IDs etc.) — shared across locales
+  const configPath = path.join(SRC, "config.json");
+  const config = fs.existsSync(configPath) ? readJson(configPath) : {};
+  const analytics = config.analytics || {};
+  console.log(
+    "analytics: GA4=" + (analytics.ga4Id ? "on" : "off") +
+    ", Clarity=" + (analytics.clarityId ? "on" : "off"),
+  );
+
   for (const lang of langs) {
     const globals = Object.assign({}, lang.data, {
       assetPrefix: lang.assetPrefix,
       nextPerformance: np,
+      analytics: analytics,
     });
     globals.performance = Object.assign({}, lang.data.performance, {
       monthsJson: JSON.stringify(lang.data.performance.months),

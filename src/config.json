@@ -1,0 +1,11 @@
+{
+  "_comment": "Site-wide configuration. NOT per-locale. Build-time injection.",
+
+  "analytics": {
+    "_ga4": "Google Analytics 4 Measurement ID. Format: G-XXXXXXXXXX. Empty string disables GA4.",
+    "ga4Id": "G-7S2RDDTF47",
+
+    "_clarity": "Microsoft Clarity Project ID. Format: 10-char alphanumeric. Empty string disables Clarity.",
+    "clarityId": "wdsjrxkiyb"
+  }
+}

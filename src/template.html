@@ -122,6 +122,28 @@
     />
 
     <link rel="stylesheet" href="{{assetPrefix}}styles.css" />
+
+    {{#if analytics.ga4Id}}
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{analytics.ga4Id}}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{analytics.ga4Id}}', { anonymize_ip: true });
+    </script>
+    {{/if}}
+
+    {{#if analytics.clarityId}}
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "{{analytics.clarityId}}");
+    </script>
+    {{/if}}
   </head>
   <body>
     <!-- Navigation -->
@@ -729,6 +751,55 @@
         .addEventListener("click", function (e) {
           if (e.target === this) closeImpressionsCarousel();
         });
+
+      // ---- Analytics event tracking ----
+      // Defensive: only fires if gtag is present; silent if GA4 not configured.
+      (function () {
+        function track(name, params) {
+          if (typeof window.gtag === "function") {
+            window.gtag("event", name, params || {});
+          }
+        }
+
+        // Attend / register CTAs (all .cta-button links)
+        document.querySelectorAll(".cta-button a").forEach(function (a) {
+          a.addEventListener("click", function () {
+            track("cta_click", {
+              cta_label: (a.textContent || "").trim().slice(0, 80),
+              cta_href: a.getAttribute("href") || "",
+              section: (a.closest("section") || {}).id || "unknown",
+            });
+          });
+        });
+
+        // Hero-level primary CTA (nav-cta class)
+        document.querySelectorAll("a.nav-cta").forEach(function (a) {
+          a.addEventListener("click", function () {
+            track("nav_cta_click", { cta_href: a.getAttribute("href") || "" });
+          });
+        });
+
+        // External: Facebook group link
+        document.querySelectorAll('a[href*="facebook.com"]').forEach(function (a) {
+          a.addEventListener("click", function () {
+            track("social_click", { network: "facebook", href: a.getAttribute("href") });
+          });
+        });
+
+        // Language toggle
+        document.querySelectorAll("a.lang-toggle").forEach(function (a) {
+          a.addEventListener("click", function () {
+            track("lang_toggle", { to: a.getAttribute("href") || "" });
+          });
+        });
+
+        // Gallery open (useful depth signal)
+        document.querySelectorAll(".gallery-item").forEach(function (g) {
+          g.addEventListener("click", function () {
+            track("gallery_open", { index: g.getAttribute("data-index") || "" });
+          }, { once: true });
+        });
+      })();
     </script>
   </body>
 </html>
