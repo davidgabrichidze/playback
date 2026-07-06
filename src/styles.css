@@ -1073,6 +1073,13 @@ body.lang-en .team-quote {
   padding: 30px 40px;
 }
 
+/* Special one-off event banner (image at top of the performance card) */
+.event-banner {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 /* =========================================
    COURSES
    ========================================= */

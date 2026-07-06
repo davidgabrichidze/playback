@@ -1,0 +1,408 @@
+import React, { useState, useMemo } from "react";
+
+const css = `
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.flow-root {
+  --bg: #15110D; --surface: #221C15; --surface-hi: #2A2219; --line: #342A1F;
+  --text: #F3ECE0; --muted: #A99C8C; --faint: #6F6456;
+  --base: #84A0B4; --fund: #C9A063; --sol: #E8814A; --warn: #D96A5B;
+  font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--text);
+  min-height: 100vh; padding: 28px 16px 56px; position: relative; overflow-x: hidden;
+}
+.flow-root::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(900px 500px at 80% -5%, rgba(232,129,74,0.10), transparent 60%),
+              radial-gradient(700px 600px at -5% 100%, rgba(132,160,180,0.06), transparent 55%);
+}
+.wrap { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+.eyebrow { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sol); font-weight: 600; margin-bottom: 12px; }
+.title { font-family: 'Fraunces', serif; font-weight: 600; font-size: clamp(26px, 6vw, 42px); line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 10px; }
+.sub { color: var(--muted); font-size: 14px; max-width: 640px; line-height: 1.55; }
+.divider { height: 1px; background: var(--line); margin: 24px 0; }
+
+.panel { background: linear-gradient(180deg, var(--surface), rgba(34,28,21,0.55)); border: 1px solid var(--line); border-radius: 16px; padding: 20px; margin-bottom: 14px; }
+.panel-title { font-size: 11px; letter-spacing:.14em; text-transform:uppercase; color: var(--fund); font-weight:700; margin-bottom: 16px; }
+.ctrls { display: grid; grid-template-columns: 1fr; gap: 20px; }
+@media (min-width: 640px){ .ctrls { grid-template-columns: 2fr 1fr; align-items: center; } }
+.fees { display:grid; grid-template-columns:1fr; gap:20px; }
+@media (min-width: 560px){ .fees { grid-template-columns: 1fr 1fr; } }
+.ctrl-label { font-size: 12px; letter-spacing: 0.04em; color: var(--muted); text-transform: uppercase; font-weight: 600; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: baseline; }
+.ctrl-val { font-family: 'IBM Plex Mono', monospace; color: var(--sol); font-size: 20px; }
+.ctrl-val.gold { color: var(--fund); }
+input[type=range]{ -webkit-appearance:none; appearance:none; width:100%; height:4px; background:var(--line); border-radius:4px; outline:none; cursor:pointer; }
+input[type=range]::-webkit-slider-thumb{ -webkit-appearance:none; width:20px; height:20px; border-radius:50%; background:var(--sol); cursor:pointer; border:3px solid var(--bg); box-shadow:0 0 0 1px var(--sol); }
+input[type=range]::-moz-range-thumb{ width:20px; height:20px; border-radius:50%; background:var(--sol); border:3px solid var(--bg); }
+input.gold[type=range]::-webkit-slider-thumb{ background:var(--fund); box-shadow:0 0 0 1px var(--fund); }
+input.gold[type=range]::-moz-range-thumb{ background:var(--fund); }
+.range-sm::-webkit-slider-thumb{ width:16px; height:16px; }
+
+.stepper { display:flex; align-items:center; gap:12px; }
+.step-btn { width:40px; height:40px; border-radius:11px; border:1px solid var(--line); background:var(--surface-hi); color:var(--text); font-size:22px; cursor:pointer; display:flex; align-items:center; justify-content:center; line-height:1; font-family:'IBM Plex Mono',monospace; transition:all .15s; }
+.step-btn:hover{ border-color:var(--sol); color:var(--sol); }
+.step-btn:active{ transform:scale(.94); }
+.step-num{ font-family:'IBM Plex Mono',monospace; font-size:22px; min-width:30px; text-align:center; }
+.step-cap{ font-size:11px; color:var(--faint); line-height:1.4; }
+
+.warn { display:flex; gap:12px; align-items:flex-start; margin-bottom:14px; padding:14px 16px; border-radius:13px; background:rgba(217,106,91,0.12); border:1px solid rgba(217,106,91,0.45); }
+.warn .icon { color:var(--warn); font-size:18px; line-height:1.3; }
+.warn .txt { font-size:13px; color:var(--text); line-height:1.5; }
+.warn b { color:var(--warn); }
+
+.viz { background: var(--surface); border:1px solid var(--line); border-radius:16px; padding: 18px 14px 8px; }
+.svg-host { width:100%; overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; }
+.scroll-hint { text-align:center; font-size:11px; color:var(--faint); padding-top:6px; }
+.legend { display:flex; flex-wrap:wrap; gap:14px; justify-content:center; padding:14px 8px 4px; font-size:12px; color:var(--muted); }
+.legend span{ display:flex; align-items:center; gap:6px; }
+.swatch{ width:11px; height:11px; border-radius:3px; display:inline-block; }
+
+.roster { margin-top:22px; display:grid; grid-template-columns:1fr; gap:12px; }
+@media (min-width:560px){ .roster{ grid-template-columns:1fr 1fr; } }
+@media (min-width:860px){ .roster{ grid-template-columns:1fr 1fr 1fr; } }
+.pcard { background:var(--surface); border:1px solid var(--line); border-radius:13px; padding:14px; }
+.phead { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:12px; }
+.pname { font-family:'Fraunces',serif; font-size:16px; font-weight:600; }
+.pbase { font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--muted); }
+.seg { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.seg button { padding:9px 6px; border-radius:9px; border:1px solid var(--line); background:var(--bg); color:var(--muted); font-size:12.5px; font-weight:600; cursor:pointer; font-family:'Manrope',sans-serif; transition:all .15s; }
+.seg button:hover{ border-color:var(--faint); color:var(--text); }
+.seg button.on-keep{ background:rgba(132,160,180,0.16); border-color:var(--base); color:var(--base); }
+.seg button.on-fund{ background:rgba(201,160,99,0.16); border-color:var(--fund); color:var(--fund); }
+.seg button.on-sol{ background:rgba(232,129,74,0.16); border-color:var(--sol); color:var(--sol); }
+.frac { margin-top:12px; }
+.frac-label{ display:flex; justify-content:space-between; font-size:11px; color:var(--faint); margin-bottom:7px; }
+.frac-label b{ font-family:'IBM Plex Mono',monospace; color:var(--text); font-weight:500; }
+
+.summary { margin-top:24px; display:grid; grid-template-columns:1fr; gap:12px; }
+@media (min-width:560px){ .summary{ grid-template-columns:1fr 1fr; } }
+@media (min-width:860px){ .summary{ grid-template-columns:repeat(3,1fr); } }
+.scard{ background:var(--surface); border:1px solid var(--line); border-radius:13px; padding:16px 18px; }
+.scard .lbl{ font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--faint); font-weight:600; margin-bottom:8px; }
+.scard .big{ font-family:'IBM Plex Mono',monospace; font-size:24px; font-weight:600; }
+.scard .det{ font-size:12px; color:var(--muted); margin-top:6px; line-height:1.5; }
+.scard.fund .big{ color:var(--fund); }
+.scard.sol .big{ color:var(--sol); }
+.scard.fixed .big{ color:var(--fund); }
+.check{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--base); margin-top:14px; text-align:center; }
+.remainder{ margin-top:12px; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 18px; border-radius:13px; background:linear-gradient(180deg, rgba(201,160,99,0.12), rgba(201,160,99,0.04)); border:1px solid rgba(201,160,99,0.4); }
+.rem-lbl{ font-size:12px; letter-spacing:.04em; text-transform:uppercase; color:var(--fund); font-weight:700; margin-bottom:6px; }
+.rem-det{ font-size:12px; color:var(--muted); line-height:1.5; max-width:560px; }
+.rem-amt{ font-family:'IBM Plex Mono',monospace; font-size:26px; font-weight:700; color:var(--fund); white-space:nowrap; }
+`;
+
+const ka = (n) => "₾" + (Math.round(n * 100) / 100).toLocaleString("en-US", { maximumFractionDigits: 2 });
+const kaR = (n) => "₾" + Math.round(n).toLocaleString("en-US");
+const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+
+const DESTS = [
+  { k: "keep", label: "ვინახავ", cls: "on-keep" },
+  { k: "fund", label: "→ ფონდს", cls: "on-fund" },
+  { k: "peers", label: "→ მსახ.", cls: "on-sol" },
+  { k: "both", label: "→ ორივეს", cls: "on-sol" },
+];
+
+export default function VoluntaryFlow() {
+  const [revenue, setRevenue] = useState(1500);
+  const [condFee, setCondFee] = useState(300);
+  const [musFee, setMusFee] = useState(200);
+  const [performers, setPerformers] = useState([
+    { d: "both", f: 0.5 },
+    { d: "peers", f: 0.6 },
+    { d: "keep", f: 1 },
+    { d: "keep", f: 1 },
+    { d: "keep", f: 1 },
+  ]);
+
+  const P = performers.length;
+
+  const onRevenue = (v) => { setRevenue(v); setCondFee((f) => Math.min(f, v)); setMusFee((f) => Math.min(f, v)); };
+  const setCount = (n) => {
+    const t = clamp(n, 3, 20);
+    setPerformers((prev) => { const a = [...prev]; while (a.length < t) a.push({ d: "keep", f: 1 }); return a.slice(0, t); });
+  };
+  const setDest = (i, d) => setPerformers((p) => p.map((x, j) => (j === i ? { ...x, d } : x)));
+  const setFrac = (i, f) => setPerformers((p) => p.map((x, j) => (j === i ? { ...x, f } : x)));
+
+  const model = useMemo(() => {
+    const fundBase = revenue * 0.2;
+    const pool = revenue * 0.8;
+    const rawFixed = condFee + musFee;
+    const overBudget = rawFixed > pool;
+    const scale = overBudget && rawFixed > 0 ? pool / rawFixed : 1;
+    const condReal = condFee * scale;
+    const musReal = musFee * scale;
+    const fixedPaidReal = condReal + musReal;
+    const performerPool = Math.max(0, pool - fixedPaidReal);
+    const baseShare = P > 0 ? performerPool / P : 0;
+
+    const rows = performers.map((p) => {
+      const released = p.d === "keep" ? 0 : baseShare * p.f;
+      const toFund = p.d === "fund" ? released : p.d === "both" ? released / 2 : 0;
+      const toPeers = p.d === "peers" ? released : p.d === "both" ? released / 2 : 0;
+      return { ...p, base: baseShare, released, toFund, toPeers, isKeeper: p.d === "keep" };
+    });
+    const fundDonations = rows.reduce((s, r) => s + r.toFund, 0);
+    const peerPool = rows.reduce((s, r) => s + r.toPeers, 0);
+    const keepers = rows.filter((r) => r.isKeeper).length;
+    const peerToFund = keepers === 0 ? peerPool : 0;
+    const peerShare = keepers > 0 ? peerPool / keepers : 0;
+    rows.forEach((r) => { r.received = r.isKeeper ? peerShare : 0; r.nominal = r.base - r.released + r.received; r.final = Math.floor(r.nominal + 1e-6); });
+
+    const condPaid = Math.floor(condReal + 1e-6);
+    const musPaid = Math.floor(musReal + 1e-6);
+    const sumPerfPaid = rows.reduce((s, r) => s + r.final, 0);
+    const roundingRemainder = (condReal - condPaid) + (musReal - musPaid) + rows.reduce((s, r) => s + (r.nominal - r.final), 0);
+    const fundFinal = fundBase + fundDonations + peerToFund + roundingRemainder;
+    const sum = condPaid + musPaid + sumPerfPaid + fundFinal;
+
+    return { fundBase, pool, rawFixed, overBudget, condReal, musReal, condPaid, musPaid, fixedPaidReal, performerPool, baseShare, rows, fundDonations, peerPool, peerShare, keepers, sumPerfPaid, roundingRemainder, fundFinal, sum };
+  }, [revenue, condFee, musFee, performers, P]);
+
+  // unified bar list: conductor, musician, then performers
+  const bars = [
+    { type: "fixed", label: "ხელმძღ", amount: model.condPaid },
+    { type: "fixed", label: "მუსიკ", amount: model.musPaid },
+    ...model.rows.map((r, i) => ({ type: "perf", r, idx: i, label: "მს." + (i + 1) })),
+  ];
+  const M = bars.length;
+
+  // ---- geometry ----
+  const PAD = 36;
+  const gap = M > 12 ? 8 : M > 7 ? 13 : 18;
+  const minColW = 42;
+  const innerW = Math.max(652, M * minColW + (M - 1) * gap);
+  const W = innerW + PAD * 2;
+  const colW = (innerW - gap * (M - 1)) / M;
+  const Hsvg = 420;
+  const splitY = 22, splitH = 22;
+  const colTop = 108, baseY = 286, maxBarH = baseY - colTop;
+  const maxVal = Math.max(model.baseShare, model.condPaid, model.musPaid, ...model.rows.map((r) => r.final), 1);
+  const scaleP = maxBarH / maxVal;
+  const equalY = baseY - model.baseShare * scaleP;
+  const fundPillY = 352, fundPillH = 46;
+  const labelFont = M > 14 ? 9 : M > 9 ? 10 : 11.5;
+
+  const xOf = (i) => PAD + i * (colW + gap);
+  const cxOf = (i) => xOf(i) + colW / 2;
+  const perfFirstX = xOf(2) - 4;
+  const perfLastX = xOf(M - 1) + colW + 4;
+
+  const keeperXs = model.rows.map((r, i) => (r.isKeeper ? cxOf(2 + i) : null)).filter((x) => x !== null);
+  const keeperCx = keeperXs.length ? keeperXs.reduce((a, b) => a + b, 0) / keeperXs.length : (perfFirstX + perfLastX) / 2;
+
+  const curve = (x1, y1, x2, y2, bend = 0.5) => { const my = y1 + (y2 - y1) * bend; return `M ${x1} ${y1} C ${x1} ${my}, ${x2} ${my}, ${x2} ${y2}`; };
+
+  const arrows = [];
+  model.rows.forEach((r, i) => {
+    const cx = cxOf(2 + i);
+    if (r.toFund > 0.005) arrows.push({ d: curve(cx, baseY + 4, PAD + innerW * 0.1, fundPillY - 4, 0.55), color: "var(--fund)", marker: "url(#ah-fund)", key: "f" + i });
+    if (r.toPeers > 0.005) {
+      const tgt = model.keepers > 0 ? keeperCx : PAD + innerW * 0.1;
+      const ty = model.keepers > 0 ? equalY - 14 : fundPillY - 4;
+      arrows.push({ d: curve(cx, baseY + 4, tgt, ty, 0.4), color: "var(--sol)", marker: "url(#ah-sol)", key: "p" + i });
+    }
+  });
+
+  // split bar segments
+  const fundW = innerW * 0.2;
+  const fixedW = innerW * (model.fixedPaidReal / revenue);
+  const perfW = innerW * (model.performerPool / revenue);
+
+  const svgStyle = W > 760 ? { width: W + "px", minWidth: W + "px", height: "auto", display: "block" } : { width: "100%", height: "auto", display: "block" };
+
+  return (
+    <div className="flow-root">
+      <style>{css}</style>
+      <div className="wrap">
+        <div className="eyebrow">სოლიდარობის მოდელი · ფიქსირებული + ნებაყოფლობითი</div>
+        <h1 className="title">20 / 80 + არჩევანის ნაკადი</h1>
+        <p className="sub">
+          20% ფონდში. დანარჩენი 80%-დან ხელმძღვანელი და მუსიკოსი იღებენ ფიქსირებულ თანხას,
+          ხოლო დარჩენილს მსახიობები თანაბრად ინაწილებენ. შემდეგ თითო მსახიობი თვითონ წყვეტს —
+          ინახავს, უშვებს ფონდში, სხვა მსახიობებში, ან ორივეგან. გადახდები მრგვალდება მთელ ლარამდე ქვემოთ; ნაშთი ფონდს ემატება.
+        </p>
+
+        <div className="divider" />
+
+        <div className="panel">
+          <div className="ctrls">
+            <div>
+              <div className="ctrl-label"><span>ბილეთების შემოსავალი</span><span className="ctrl-val">{ka(revenue)}</span></div>
+              <input type="range" min="300" max="5000" step="50" value={revenue} onChange={(e) => onRevenue(Number(e.target.value))} />
+            </div>
+            <div>
+              <div className="ctrl-label"><span>მსახიობების რაოდენობა</span></div>
+              <div className="stepper">
+                <button className="step-btn" onClick={() => setCount(P - 1)}>−</button>
+                <div className="step-num">{P}</div>
+                <button className="step-btn" onClick={() => setCount(P + 1)}>+</button>
+                <div className="step-cap">თითო მსახიობი<br />{ka(model.baseShare)}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="panel">
+          <div className="panel-title">ფიქსირებული თანხები (პულიდან, თავიდანვე)</div>
+          <div className="fees">
+            <div>
+              <div className="ctrl-label"><span>ხელმძღვანელი</span><span className="ctrl-val gold">{ka(model.condPaid)}</span></div>
+              <input className="gold" type="range" min="0" max={revenue} step="10" value={Math.min(condFee, revenue)} onChange={(e) => setCondFee(Number(e.target.value))} />
+            </div>
+            <div>
+              <div className="ctrl-label"><span>მუსიკოსი</span><span className="ctrl-val gold">{ka(model.musPaid)}</span></div>
+              <input className="gold" type="range" min="0" max={revenue} step="10" value={Math.min(musFee, revenue)} onChange={(e) => setMusFee(Number(e.target.value))} />
+            </div>
+          </div>
+        </div>
+
+        {model.overBudget && (
+          <div className="warn">
+            <span className="icon">⚠</span>
+            <span className="txt">
+              შემოსავალი ვერ ფარავს ფიქსირებულ თანხებს: მოთხოვნილი <b>{ka(model.rawFixed)}</b> {">"} გასანაწილებელი პული <b>{ka(model.pool)}</b>.
+              ფიქსირებული თანხები პროპორციულად შემცირდა პულის ფარგლებში, მსახიობებს კი დარჩა <b>₾0</b>.
+            </span>
+          </div>
+        )}
+
+        {/* VISUALIZATION */}
+        <div className="viz">
+          <div className="svg-host">
+            <svg viewBox={`0 0 ${W} ${Hsvg}`} style={svgStyle} xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="ah-fund" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--fund)" /></marker>
+                <marker id="ah-sol" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--sol)" /></marker>
+              </defs>
+
+              {/* Stage A: split bar — fund / fixed / performers */}
+              <text x={PAD} y={splitY - 6} fill="var(--muted)" fontSize="11" fontFamily="Manrope">შემოსავლის დაშლა</text>
+              <rect x={PAD} y={splitY} width={fundW} height={splitH} rx="4" fill="var(--faint)" />
+              {fixedW > 0.5 && <rect x={PAD + fundW} y={splitY} width={fixedW} height={splitH} rx="4" fill="var(--fund)" opacity="0.9" />}
+              {perfW > 0.5 && <rect x={PAD + fundW + fixedW} y={splitY} width={perfW} height={splitH} rx="4" fill="var(--base)" opacity="0.85" />}
+              {fundW > 40 && <text x={PAD + fundW / 2} y={splitY + 15} fill="#15110D" fontSize="10.5" fontWeight="700" textAnchor="middle" fontFamily="IBM Plex Mono">20% ფონდი</text>}
+              {fixedW > 46 && <text x={PAD + fundW + fixedW / 2} y={splitY + 15} fill="#15110D" fontSize="10.5" fontWeight="700" textAnchor="middle" fontFamily="IBM Plex Mono">ფიქს.</text>}
+              {perfW > 60 && <text x={PAD + fundW + fixedW + perfW / 2} y={splitY + 15} fill="#15110D" fontSize="10.5" fontWeight="700" textAnchor="middle" fontFamily="IBM Plex Mono">მსახიობები</text>}
+
+              {/* equal-share line (performers only) */}
+              {model.baseShare > 0 && (
+                <>
+                  <line x1={perfFirstX} y1={equalY} x2={perfLastX} y2={equalY} stroke="var(--base)" strokeWidth="1" strokeDasharray="5 5" opacity="0.7" />
+                  <text x={perfLastX + 6} y={equalY + 4} fill="var(--base)" fontSize="10" fontFamily="IBM Plex Mono">თანაბ.</text>
+                </>
+              )}
+
+              {/* bars */}
+              {bars.map((b, i) => {
+                const x = xOf(i);
+                const cx = cxOf(i);
+                if (b.type === "fixed") {
+                  const h = b.amount * scaleP;
+                  const topY = baseY - h;
+                  return (
+                    <g key={i}>
+                      <rect x={x} y={topY} width={colW} height={Math.max(h, 1)} rx="3" fill="var(--fund)" opacity="0.9" />
+                      <text x={cx} y={topY - 6} fill="var(--fund)" fontSize={labelFont} fontWeight="600" textAnchor="middle" fontFamily="IBM Plex Mono">{kaR(b.amount)}</text>
+                      <text x={cx} y={baseY + 15} fill="var(--fund)" fontSize={Math.min(labelFont, 10)} textAnchor="middle" fontFamily="Manrope">ფიქს.</text>
+                      <text x={cx} y={baseY + 30} fill="var(--fund)" fontSize={Math.min(labelFont, 10.5)} textAnchor="middle" fontFamily="Manrope">{b.label}</text>
+                    </g>
+                  );
+                }
+                const r = b.r;
+                const finalH = r.final * scaleP;
+                const topY = baseY - finalH;
+                const gave = r.released > 0.005;
+                const recv = r.received > 0.005;
+                return (
+                  <g key={i}>
+                    {gave && model.baseShare > 0 && <rect x={x} y={equalY} width={colW} height={Math.max(baseY - equalY, 0)} rx="3" fill="none" stroke="var(--faint)" strokeWidth="1" strokeDasharray="3 3" opacity="0.6" />}
+                    <rect x={x} y={topY} width={colW} height={Math.max(finalH, 1)} rx="3" fill="var(--base)" opacity={gave ? 0.5 : 0.9} />
+                    {recv && <rect x={x} y={topY} width={colW} height={Math.max(r.received * scaleP, 1)} rx="3" fill="var(--sol)" opacity="0.92" />}
+                    <text x={cx} y={topY - 6} fill={recv ? "var(--sol)" : gave ? "var(--muted)" : "var(--text)"} fontSize={labelFont} fontWeight="600" textAnchor="middle" fontFamily="IBM Plex Mono">{kaR(r.final)}</text>
+                    {gave && <text x={cx} y={baseY + 15} fill="var(--faint)" fontSize={Math.min(labelFont, 10)} textAnchor="middle" fontFamily="IBM Plex Mono">−{kaR(r.released)}</text>}
+                    {recv && <text x={cx} y={baseY + 15} fill="var(--sol)" fontSize={Math.min(labelFont, 10)} textAnchor="middle" fontFamily="IBM Plex Mono">+{kaR(r.received)}</text>}
+                    <text x={cx} y={baseY + 30} fill="var(--muted)" fontSize={Math.min(labelFont, 10.5)} textAnchor="middle" fontFamily="Manrope">{b.label}</text>
+                  </g>
+                );
+              })}
+
+              <line x1={PAD - 6} y1={baseY} x2={W - PAD + 6} y2={baseY} stroke="var(--line)" strokeWidth="1.5" />
+
+              {arrows.map((a) => <path key={a.key} d={a.d} fill="none" stroke={a.color} strokeWidth="1.8" opacity="0.8" markerEnd={a.marker} />)}
+
+              {/* Fund pill */}
+              <rect x={PAD} y={fundPillY} width={innerW} height={fundPillH} rx="11" fill="rgba(201,160,99,0.10)" stroke="var(--fund)" strokeWidth="1" />
+              <text x={PAD + 16} y={fundPillY + 19} fill="var(--fund)" fontSize="12" fontWeight="700" fontFamily="Manrope">ანსამბლის ფონდი</text>
+              <text x={PAD + 16} y={fundPillY + 35} fill="var(--muted)" fontSize="10.5" fontFamily="IBM Plex Mono">
+                ბაზა {ka(model.fundBase)}{model.fundDonations > 0.005 ? "  +  შემოწირ. " + ka(model.fundDonations) : ""}{model.roundingRemainder > 0.005 ? "  +  ნაშთი " + ka(model.roundingRemainder) : ""}
+              </text>
+              <text x={PAD + innerW - 16} y={fundPillY + 29} fill="var(--fund)" fontSize="20" fontWeight="700" textAnchor="end" fontFamily="IBM Plex Mono">{ka(model.fundFinal)}</text>
+            </svg>
+          </div>
+          {W > 760 && <div className="scroll-hint">← გადააფურცლე ჰორიზონტალურად →</div>}
+
+          <div className="legend">
+            <span><i className="swatch" style={{ background: "var(--fund)" }} />ფიქს. (ხელმძღ./მუსიკ.)</span>
+            <span><i className="swatch" style={{ background: "var(--base)" }} />მსახიობის წილი</span>
+            <span><i className="swatch" style={{ background: "var(--sol)" }} />მიღებული სოლიდარობა</span>
+            <span><i className="swatch" style={{ border: "1px dashed var(--faint)", background: "transparent" }} />გაცემული წილი</span>
+          </div>
+        </div>
+
+        {/* PERFORMER CONTROLS */}
+        <div className="roster">
+          {performers.map((m, i) => (
+            <div className="pcard" key={i}>
+              <div className="phead">
+                <span className="pname">მსახიობი {i + 1}</span>
+                <span className="pbase">{ka(model.baseShare)}</span>
+              </div>
+              <div className="seg">
+                {DESTS.map((d) => <button key={d.k} className={m.d === d.k ? d.cls : ""} onClick={() => setDest(i, d.k)}>{d.label}</button>)}
+              </div>
+              {m.d !== "keep" && (
+                <div className="frac">
+                  <div className="frac-label"><span>რამდენს უშვებს</span><b>{Math.round(m.f * 100)}%</b></div>
+                  <input className="range-sm" type="range" min="0" max="1" step="0.05" value={m.f} onChange={(e) => setFrac(i, Number(e.target.value))} />
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* SUMMARY */}
+        <div className="summary">
+          <div className="scard fixed">
+            <div className="lbl">ფიქსირებული თანხები</div>
+            <div className="big">{ka(model.condPaid + model.musPaid)}</div>
+            <div className="det">ხელმძღ. {ka(model.condPaid)} · მუსიკ. {ka(model.musPaid)}</div>
+          </div>
+          <div className="scard sol">
+            <div className="lbl">სოლიდარობის პული</div>
+            <div className="big">{ka(model.peerPool)}</div>
+            <div className="det">
+              {model.peerPool < 0.005 ? "ჯერ არავის გაუცია მსახიობებში" :
+               model.keepers > 0 ? "ნაწილდება " + model.keepers + " მსახიობზე · " + ka(model.peerShare) + " თითო" :
+               "მიმღები არ არის → გადადის ფონდში"}
+            </div>
+          </div>
+          <div className="scard fund">
+            <div className="lbl">ფონდი საბოლოოდ</div>
+            <div className="big">{ka(model.fundFinal)}</div>
+            <div className="det">ბაზა {ka(model.fundBase)} (20%){model.fundDonations > 0.005 ? " + შემოწირ. " + ka(model.fundDonations) : ""}{model.roundingRemainder > 0.005 ? " + ნაშთი " + ka(model.roundingRemainder) : ""}</div>
+          </div>
+        </div>
+
+        <div className="remainder">
+          <div className="rem-left">
+            <div className="rem-lbl">დამრგვალების ნაშთი → ფონდი</div>
+            <div className="rem-det">თითო გადახდა დამრგვალდა მთელ ლარამდე ქვემოთ; მოჭრილი ნამცეცები დაგროვდა და ფონდს დაემატა.</div>
+          </div>
+          <div className="rem-amt">+{ka(model.roundingRemainder)}</div>
+        </div>
+
+        <div className="check">✓ ჯამი: {ka(model.sum)} = შემოსავალი {ka(revenue)}</div>
+      </div>
+    </div>
+  );
+}

@@ -374,6 +374,7 @@ function build() {
     });
     globals.performance = Object.assign({}, lang.data.performance, {
       monthsJson: JSON.stringify(lang.data.performance.months),
+      regular: !lang.data.performance.special,
     });
     globals.gallery = Object.assign({}, lang.data.gallery, {
       files: galleryFiles,

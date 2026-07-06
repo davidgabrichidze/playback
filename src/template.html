@@ -312,6 +312,46 @@
     <section class="performance" id="performance">
       <div class="section-content fade-in">
         <h2 class="heading">{{performance.title}}</h2>
+
+        {{#if performance.special}}
+        <div class="card">
+          <img
+            class="event-banner"
+            src="{{assetPrefix}}{{performance.specialBanner}}"
+            alt="{{performance.specialBannerAlt}}"
+          />
+          <div class="card-header">
+            <span class="card-title">{{performance.specialCardTitle}}</span>
+            <span class="card-subtitle">{{performance.specialCardSubtitle}}</span>
+          </div>
+          <div class="grid-2">
+            <div class="performance-grid-item">
+              <span class="label">{{performance.whenLabel}}</span>
+              <span>{{performance.specialWhenValue}}</span>
+            </div>
+            <div class="performance-grid-item">
+              <span class="label">{{performance.whereLabel}}</span>
+              <span>{{performance.specialWhereValue}}</span>
+            </div>
+            <div class="performance-grid-item">
+              <span class="label">{{performance.attendanceLabel}}</span>
+              <span>{{performance.specialAttendanceValue}}</span>
+            </div>
+            <div class="performance-grid-item">
+              <span class="label">{{performance.registrationLabel}}</span>
+              <span>{{performance.specialRegistrationValue}}</span>
+            </div>
+          </div>
+          <div class="note">
+            <strong>{{performance.specialNoteStrong}}</strong> {{performance.specialNoteText}}
+          </div>
+          <div class="performance-cta cta-button">
+            <a href="{{performance.specialCtaLink}}" target="_blank" rel="noopener">{{performance.specialCtaText}}</a>
+          </div>
+        </div>
+        {{/if}}
+
+        {{#if performance.regular}}
         <div class="card">
           <div class="card-header">
             <span class="card-title">{{performance.cardTitle}}</span>
@@ -342,6 +382,7 @@
             <a href="{{performance.ctaLink}}">{{performance.ctaText}}</a>
           </div>
         </div>
+        {{/if}}
       </div>
     </section>
 
