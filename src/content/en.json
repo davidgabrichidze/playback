@@ -101,8 +101,14 @@
   "founder": {
     "title": "About the Center",
     "timeline": [
-      { "year": "1975", "text": "Playback Theatre founded (Jonathan Fox & Jo Salas)" },
-      { "year": "2025", "text": "Georgian Playback Theatre Center founded in Tbilisi" },
+      {
+        "year": "1975",
+        "text": "Playback Theatre founded (Jonathan Fox & Jo Salas)"
+      },
+      {
+        "year": "2025",
+        "text": "Georgian Playback Theatre Center founded in Tbilisi"
+      },
       { "year": "Today", "text": "Active in 60+ countries" }
     ],
     "subhook": "Today the center operates in three directions:",
@@ -144,8 +150,8 @@
     "special": true,
     "specialBanner": "images/events/skene-2026-07-12.jpg",
     "specialBannerAlt": "Playback Theatre at Skene — July 12, 19:00",
-    "specialCardTitle": "Special performance with Skene Theatre",
-    "specialCardSubtitle": "A one-off, ticketed collaboration — our usual monthly performance is on pause this time",
+    "specialCardTitle": "Special performance with Conceptual Theatre - Skene",
+    "specialCardSubtitle": "This is our first collaboration with Skene Theatre, and this time the performance will be ticketed.",
     "specialWhenValue": "July 12, 19:00",
     "specialWhereValue": "Skene Theatre, Rkinis Rigi 7, Tbilisi",
     "specialAttendanceValue": "Ticket — 40 GEL",
@@ -257,7 +263,7 @@
       {
         "title": "Integrity",
         "text": "We act with honesty and transparency. Our words and actions are consistent."
-        },
+      },
       {
         "title": "Confidentiality",
         "text": "We recognize that stories told in performances cannot be kept fully confidential. However, we commit to retelling or describing them only with respect and care."
